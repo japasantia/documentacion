@@ -1,0 +1,656 @@
+%% Created by Maple 13.0, Linux
+%% Source Worksheet: Calculos redes desacopladas-Dispersion.mw
+%% Generated: Thu Apr 27 12:08:34 VET 2017
+\documentclass{article}
+\usepackage{maplestd2e}
+\def\emptyline{\vspace{12pt}}
+\begin{document}
+\pagestyle{empty}
+\DefineParaStyle{Maple Heading 1}
+\DefineParaStyle{Maple Text Output}
+\DefineParaStyle{Maple Dash Item}
+\DefineParaStyle{Maple Bullet Item}
+\DefineParaStyle{Maple Normal}
+\DefineParaStyle{Maple Heading 4}
+\DefineParaStyle{Maple Heading 3}
+\DefineParaStyle{Maple Heading 2}
+\DefineParaStyle{Maple Warning}
+\DefineParaStyle{Maple Title}
+\DefineParaStyle{Maple Error}
+\DefineCharStyle{Maple Hyperlink}
+\DefineCharStyle{Maple 2D Math}
+\DefineCharStyle{Maple Maple Input}
+\DefineCharStyle{Maple 2D Output}
+\DefineCharStyle{Maple 2D Input}
+\mapleinline{inert}{2d}{restart; 1}{\[\displaystyle \]}
+\mapleinline{inert}{2d}{with(LinearAlgebra)}{\[\displaystyle {\it with} \left( {\it LinearAlgebra} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{[`&x`, Add, Adjoint, BackwardSubstitute, BandMatrix, Basis, BezoutMatrix, BidiagonalForm, BilinearForm, CharacteristicMatrix, CharacteristicPolynomial, Column, ColumnDimension, ColumnOperation, ColumnSpace, CompanionMatrix, ConditionNumber, ConstantMatrix, ConstantVector, Copy, CreatePermutation, CrossProduct, DeleteColumn, DeleteRow, Determinant, Diagonal, DiagonalMatrix, Dimension, Dimensions, DotProduct, EigenConditionNumbers, Eigenvalues, Eigenvectors, Equal, ForwardSubstitute, FrobeniusForm, GaussianElimination, GenerateEquations, GenerateMatrix, Generic, GetResultDataType, GetResultShape, GivensRotationMatrix, GramSchmidt, HankelMatrix, HermiteForm, HermitianTranspose, HessenbergForm, HilbertMatrix, HouseholderMatrix, IdentityMatrix, IntersectionBasis, IsDefinite, IsOrthogonal, IsSimilar, IsUnitary, JordanBlockMatrix, JordanForm, KroneckerProduct, LA_Main, LUDecomposition, LeastSquares, LinearSolve, LyapunovSolve, Map, Map2, MatrixAdd, MatrixExponential, MatrixFunction, MatrixInverse, MatrixMatrixMultiply, MatrixNorm, MatrixPower, MatrixScalarMultiply, MatrixVectorMultiply, MinimalPolynomial, Minor, Modular, Multiply, NoUserValue, Norm, Normalize, NullSpace, OuterProductMatrix, Permanent, Pivot, PopovForm, QRDecomposition, RandomMatrix, RandomVector, Rank, RationalCanonicalForm, ReducedRowEchelonForm, Row, RowDimension, RowOperation, RowSpace, ScalarMatrix, ScalarMultiply, ScalarVector, SchurForm, SingularValues, SmithForm, StronglyConnectedBlocks, SubMatrix, SubVector, SumBasis, SylvesterMatrix, SylvesterSolve, ToeplitzMatrix, Trace, Transpose, TridiagonalForm, UnitVector, VandermondeMatrix, VectorAdd, VectorAngle, VectorMatrixMultiply, VectorNorm, VectorScalarMultiply, ZeroMatrix, ZeroVector, Zip]}{\[\displaystyle [\mbox {{\tt `\&x`}},{\it Add},{\it Adjoint},{\it BackwardSubstitute}\\
+\mbox{},{\it BandMatrix},{\it Basis},{\it BezoutMatrix},{\it BidiagonalForm}\\
+\mbox{},{\it BilinearForm},{\it CharacteristicMatrix},{\it CharacteristicPolynomial}\\
+\mbox{},{\it Column},{\it ColumnDimension},{\it ColumnOperation}\\
+\mbox{},{\it ColumnSpace},{\it CompanionMatrix},{\it ConditionNumber}\\
+\mbox{},{\it ConstantMatrix},{\it ConstantVector},{\it Copy}\\
+\mbox{},{\it CreatePermutation},{\it CrossProduct},{\it DeleteColumn}\\
+\mbox{},{\it DeleteRow},{\it Determinant},{\it Diagonal}\\
+\mbox{},{\it DiagonalMatrix},{\it Dimension},{\it Dimensions}\\
+\mbox{},{\it DotProduct},{\it EigenConditionNumbers},{\it Eigenvalues}\\
+\mbox{},{\it Eigenvectors},{\it Equal},{\it ForwardSubstitute}\\
+\mbox{},{\it FrobeniusForm},{\it GaussianElimination},{\it GenerateEquations}\\
+\mbox{},{\it GenerateMatrix},{\it Generic},{\it GetResultDataType}\\
+\mbox{},{\it GetResultShape},{\it GivensRotationMatrix},{\it GramSchmidt}\\
+\mbox{},{\it HankelMatrix},{\it HermiteForm},{\it HermitianTranspose}\\
+\mbox{},{\it HessenbergForm},{\it HilbertMatrix},{\it HouseholderMatrix}\\
+\mbox{},{\it IdentityMatrix},{\it IntersectionBasis},{\it IsDefinite}\\
+\mbox{},{\it IsOrthogonal},{\it IsSimilar},{\it IsUnitary}\\
+\mbox{},{\it JordanBlockMatrix},{\it JordanForm},{\it KroneckerProduct}\\
+\mbox{},{\it LA\_Main},{\it LUDecomposition},{\it LeastSquares}\\
+\mbox{},{\it LinearSolve},{\it LyapunovSolve},{\it Map},{\it Map2}\\
+\mbox{},{\it MatrixAdd},{\it MatrixExponential},{\it MatrixFunction}\\
+\mbox{},{\it MatrixInverse},{\it MatrixMatrixMultiply},{\it MatrixNorm}\\
+\mbox{},{\it MatrixPower},{\it MatrixScalarMultiply},{\it MatrixVectorMultiply}\\
+\mbox{},{\it MinimalPolynomial},{\it Minor},{\it Modular}\\
+\mbox{},{\it Multiply},{\it NoUserValue},{\it Norm},{\it Normalize}\\
+\mbox{},{\it NullSpace},{\it OuterProductMatrix},{\it Permanent}\\
+\mbox{},{\it Pivot},{\it PopovForm},{\it QRDecomposition}\\
+\mbox{},{\it RandomMatrix},{\it RandomVector},{\it Rank}\\
+\mbox{},{\it RationalCanonicalForm},{\it ReducedRowEchelonForm}\\
+\mbox{},{\it Row},{\it RowDimension},{\it RowOperation},{\it RowSpace}\\
+\mbox{},{\it ScalarMatrix},{\it ScalarMultiply},{\it ScalarVector}\\
+\mbox{},{\it SchurForm},{\it SingularValues},{\it SmithForm}\\
+\mbox{},{\it StronglyConnectedBlocks},{\it SubMatrix},{\it SubVector}\\
+\mbox{},{\it SumBasis},{\it SylvesterMatrix},{\it SylvesterSolve}\\
+\mbox{},{\it ToeplitzMatrix},{\it Trace},{\it Transpose}\\
+\mbox{},{\it TridiagonalForm},{\it UnitVector},{\it VandermondeMatrix}\\
+\mbox{},{\it VectorAdd},{\it VectorAngle},{\it VectorMatrixMultiply}\\
+\mbox{},{\it VectorNorm},{\it VectorScalarMultiply},{\it ZeroMatrix}\\
+\mbox{},{\it ZeroVector},{\it Zip}]\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Se hallara la relacion existente entre los parametros dispersion SB2 en una impedancia de referencia ZB2 medidos en un analizador vectorial de redes a una impedancia de referencia ZB1, para una red de dos puertos lineal}\end{Maple Normal}
+
+\begin{Maple Normal}{
+Se hallara la relacion existente entre los parametros dispersion SB2 en una impedancia de referencia ZB2 medidos en un analizador vectorial de redes a una impedancia de referencia ZB1, para una red de dos puertos lineal}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Matriz de dispersion de la red de la red en una impedancia referencia de ZB2}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e1 := S[B2] = Matrix(2, 2, [[S1[B2], S12[B2]], [S21[B2], S22[B2]]])}{\[\displaystyle {\it e1}\, := \,S_{{{\it B2}}}= \left[ \begin {array}{cc} {\it S1}_{{{\it B2}}}&{\it S12}_{{{\it B2}}}\\ \noalign{\medskip}{\it S21}_{{{\it B2}}}&{\it S22}_{{{\it B2}}}\end {array} \right] \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S[B2] = Matrix(%id = 162682348)}{\[\displaystyle S_{{{\it B2}}}= \left[ \begin {array}{cc} {\it S11}_{{{\it B2}}}&{\it S12}_{{{\it B2}}}\\ \noalign{\medskip}{\it S21}_{{{\it B2}}}&{\it S22}_{{{\it B2}}}\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+atriz de dispersion para la misma red en la impedancia ZB1, impedancia del VNA}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e2 := S[B1] = Matrix(2, 2, [[S11[B1], S12[B1]], [S21[B1], S22[B1]]])}{\[\displaystyle {\it e2}\, := \,S_{{{\it B1}}}= \left[ \begin {array}{cc} {\it S11}_{{{\it B1}}}&{\it S12}_{{{\it B1}}}\\ \noalign{\medskip}{\it S21}_{{{\it B1}}}&{\it S22}_{{{\it B1}}}\end {array} \right] \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S[B1] = Matrix(%id = 172547196)}{\[\displaystyle S_{{{\it B1}}}= \left[ \begin {array}{cc} {\it S11}_{{{\it B1}}}&{\it S12}_{{{\it B1}}}\\ \noalign{\medskip}{\it S21}_{{{\it B1}}}&{\it S22}_{{{\it B1}}}\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Vectores de señal incidente A y reflejada B en ambos puertos de la red}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e3 := A = Matrix(2, 1, [a[1], a[2]])}{\[\displaystyle {\it e3}\, := \,A= \left[ \begin {array}{c} a_{{1}}\\ \noalign{\medskip}a_{{2}}\end {array} \right] \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{A = Matrix(%id = 173648592)}{\[\displaystyle A= \left[ \begin {array}{c} a_{{1}}\\ \noalign{\medskip}a_{{2}}\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e4 := B = Matrix(2, 1, [b[1], b[2]])}{\[\displaystyle {\it e4}\, := \,B= \left[ \begin {array}{c} b_{{1}}\\ \noalign{\medskip}b_{{2}}\end {array} \right] \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B = Matrix(%id = 174381560)}{\[\displaystyle B= \left[ \begin {array}{c} b_{{1}}\\ \noalign{\medskip}b_{{2}}\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Ecuacion que describe la red, en la impedancia ZB2}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e5 := B = S[B2]*A}{\[\displaystyle {\it e5}\, := \,B=S_{{{\it B2}}}A\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B = S[B2]*A}{\[\displaystyle B=S_{{{\it B2}}}A\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+En el puerto 2 se encuetra la carga de la red ZL, suponiendo un desacople en la carga, se tiene que}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e6 := a[2] = GAMMA[L]*b2}{\[\displaystyle {\it e6}\, := \,a_{{2}}=\Gamma _{{L}}{\it b2}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{a[2] = GAMMA[L]*b2}{\[\displaystyle a_{{2}}=\Gamma _{{L}}{\it b2}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+De la isa forma, en el puerto uno de la red se ubica el generador, se tiene la siguiente relacion}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e7 := a[1] = v+GAMMA[S]*b1}{\[\displaystyle {\it e7}\, := \,a_{{1}}=v+\Gamma _{{S}}{\it b1}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{a[1] = v+GAMMA[S]*b1}{\[\displaystyle a_{{1}}=v+\Gamma _{{S}}{\it b1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Expresando las ecuaciones para a1 (e7) y a2 (e6) de forma matricial}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e8 := A = Matrix(2, 1, [v, 0])+Typesetting:-delayDotProduct(Matrix(2, 2, [[GAMMA[S], 0], [0, GAMMA[L]]]), B)}{\[\displaystyle {\it e8}\, := \,A= \left[ \begin {array}{c} v\\ \noalign{\medskip}0\end {array} \right] +{\it delayDotProduct} \left(  \left[ \begin {array}{cc} \Gamma _{{S}}&0\\ \noalign{\medskip}0&\Gamma _{{L}}\end {array} \right] ,B \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{A = Typesetting:-delayDotProduct(Matrix(%id = 177076952), B)+Matrix(%id = 176696844)}{\[\displaystyle A={\it delayDotProduct} \left(  \left[ \begin {array}{cc} \Gamma _{{S}}&0\\ \noalign{\medskip}0&\Gamma _{{L}}\end {array} \right] ,B \right) + \left[ \begin {array}{c} v\\ \noalign{\medskip}0\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendoas ecuaciones para a1 (e7) y a2 (e6) en el vector de señal incidente A}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e9 := subs(e6, e7, e3)}{\[\displaystyle {\it e9}\, := \,{\it subs} \left( {\it e6},{\it e7},{\it e3} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{A = Matrix(%id = 179510672)}{\[\displaystyle A= \left[ \begin {array}{c} v+\Gamma _{{S}}{\it b1}\\ \noalign{\medskip}\Gamma _{{L}}{\it b2}\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Ecuacion que describe el comportamiento de red en base a parametros S, con impedancia de referencia ZB2}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e10 := B = Typesetting:-delayDotProduct(S[B2], A)}{\[\displaystyle {\it e10}\, := \,B={\it delayDotProduct} \left( S_{{{\it B2}}},A \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B = Typesetting:-delayDotProduct(S[B2], A)}{\[\displaystyle B={\it delayDotProduct} \left( S_{{{\it B2}}},A \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo en la ecuacion del sistema B (e10) el vector A (e8)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e11 := subs(e8, e10)}{\[\displaystyle {\it e11}\, := \,{\it subs} \left( {\it e8},{\it e10} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B = Typesetting:-delayDotProduct(S[B2], Typesetting:-delayDotProduct(Matrix(%id = 173336460), B)+Matrix(%id = 172130964))}{\[\displaystyle B={\it delayDotProduct} \left( S_{{{\it B2}}},{\it delayDotProduct} \left(  \left[ \begin {array}{cc} \Gamma _{{S}}&0\\ \noalign{\medskip}0&\Gamma _{{L}}\end {array} \right] ,B \right) \\
+\mbox{}+ \left[ \begin {array}{c} v\\ \noalign{\medskip}0\end {array} \right]  \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+"Intentando" que Maple despeje B...}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e12 := `assuming`([isolate(e11, B)], [B::SquareMatrix])}{\[\displaystyle \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B-Typesetting:-delayDotProduct(S[B2], Typesetting:-delayDotProduct(Matrix(%id = 171180200), B)+Matrix(%id = 171141128)) = 0}{\[\displaystyle B-{\it delayDotProduct} \left( S_{{{\it B2}}},{\it delayDotProduct} \left(  \left[ \begin {array}{cc} \Gamma _{{S}}&0\\ \noalign{\medskip}0&\Gamma _{{L}}\end {array} \right] ,B \right) + \left[ \begin {array}{c} v\\ \noalign{\medskip}0\end {array} \right] \\
+\mbox{} \right) =0\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Despejando el vector B de la ecuacion (e11) (la barra de division denota invesion de matriz)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e13 := B = Typesetting:-delayDotProduct(Typesetting:-delayDotProduct(1/(Matrix(2, 2, shape = identity)-Typesetting:-delayDotProduct(S[B2], Matrix(2, 2, [GAMMA[S], 0, 0, GAMMA[L]]))), S[B2]), Matrix(2, 1, [v, 0]))}{\[\displaystyle {\it e13}\, := \,B={\it delayDotProduct} \left( {\it delayDotProduct} \left(  \left(  \left[ \begin {array}{cc} 1&0\\ \noalign{\medskip}0&1\end {array} \right] -{\it delayDotProduct} \left( S_{{{\it B2}}}, \left[ \begin {array}{cc} \Gamma _{{S}}&0\\ \noalign{\medskip}0&\Gamma _{{L}}\end {array} \right]  \right) \\
+\mbox{} \right) ^{-1},S_{{{\it B2}}} \right) , \left[ \begin {array}{c} v\\ \noalign{\medskip}0\end {array} \right]  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B = Typesetting:-delayDotProduct(Typesetting:-delayDotProduct(1/(-Typesetting:-delayDotProduct(S[B2], Matrix(%id = 162682796))+Matrix(%id = 162682860)), S[B2]), Matrix(%id = 162682924))}{\[\displaystyle B={\it delayDotProduct} \left( {\it delayDotProduct} \left(  \left( -{\it delayDotProduct} \left( S_{{{\it B2}}}, \left[ \begin {array}{cc} \Gamma _{{S}}&0\\ \noalign{\medskip}0&\Gamma _{{L}}\end {array} \right]  \right) \\
+\mbox{}+ \left[ \begin {array}{cc} 1&0\\ \noalign{\medskip}0&1\end {array} \right]  \right) ^{-1},S_{{{\it B2}}} \right) , \left[ \begin {array}{c} v\\ \noalign{\medskip}0\end {array} \right]  \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo la matriz SB2 en la ecuacion de B anterior (e13)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{}{\[\displaystyle \]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e14 := subs(e1, e13)}{\[\displaystyle {\it e14}\, := \,{\it subs} \left( {\it e1},{\it e13} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B = Typesetting:-delayDotProduct(Typesetting:-delayDotProduct(1/(-Typesetting:-delayDotProduct(Matrix(%id = 162683052), Matrix(%id = 162683116))+Matrix(%id = 162683180)), Matrix(%id = 162683052)), Matrix(%id = 162683244))}{\[\displaystyle B={\it delayDotProduct} \left( {\it delayDotProduct} \left(  \left( -{\it delayDotProduct} \left(  \left[ \begin {array}{cc} {\it S11}_{{{\it B2}}}&{\it S12}_{{{\it B2}}}\\ \noalign{\medskip}{\it S21}_{{{\it B2}}}&{\it S22}_{{{\it B2}}}\end {array} \right] , \left[ \begin {array}{cc} \Gamma _{{S}}&0\\ \noalign{\medskip}0&\Gamma _{{L}}\end {array} \right]  \right) \\
+\mbox{}+ \left[ \begin {array}{cc} 1&0\\ \noalign{\medskip}0&1\end {array} \right]  \right) ^{-1}, \left[ \begin {array}{cc} {\it S11}_{{{\it B2}}}&{\it S12}_{{{\it B2}}}\\ \noalign{\medskip}{\it S21}_{{{\it B2}}}&{\it S22}_{{{\it B2}}}\end {array} \right]  \right) , \left[ \begin {array}{c} v\\ \noalign{\medskip}0\end {array} \right]  \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{Typesetting:-mrow(Typesetting:-mi("Simplificando", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("para", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("resolver", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("inversion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("matriz", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("última", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ecuación", italic = "true", mathvariant = "italic"), Typesetting:-mo(",", mathvariant = "normal", fence = "false", separator = "true", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.3333333em"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("se", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ha", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("resuelto", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("el", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("vector", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("B", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mfenced(Typesetting:-mrow(Typesetting:-mi("señales", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("reflejadas", italic = "true", mathvariant = "italic")), mathvariant = "normal"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("funcion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("los", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("parametros", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("dispersion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("red", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("impedancia", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("base", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ZB2", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("y", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("los", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("coeficientes", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("reflexion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("tanto", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("carga", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("como", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("fuente", italic = "true", mathvariant = "italic"), Typesetting:-mo(",", mathvariant = "normal", fence = "false", separator = "true", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.3333333em"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("y", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("tension", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("normalizada", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("del", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("generador", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("calculados", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("impedancia", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("referencia", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ZB2", italic = "true", mathvariant = "italic"), Typesetting:-mo(".", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"))}{\[\displaystyle {\it Simplificando} \mathop{\rm  }{\it para} \mathop{\rm  }{\it resolver} \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }{\it inversion} \mathop{\rm  }{\it de} \mathop{\rm  }{\it matriz} \mathop{\rm  }{\it en} \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }\mbox {{\tt última}}\\
+\mbox{} \mathop{\rm  }\mbox {{\tt ecuación}} ,\mathop{\rm  }{\it se} \mathop{\rm  }{\it ha} \mathop{\rm  }{\it resuelto}\\
+\mbox{} \mathop{\rm  }{\it el} \mathop{\rm  }{\it vector} \mathop{\rm  }B \mathop{\rm  }\left(\mbox {{\tt señales}} \mathop{\rm  }{\it reflejadas}\\
+\mbox{} \right)\mathop{\rm  }{\it en} \mathop{\rm  }{\it funcion} \mathop{\rm  }{\it de} \mathop{\rm  }{\it los} \mathop{\rm  }{\it parametros} \mathop{\rm  }{\it de} \mathop{\rm  }{\it dispersion}\\
+\mbox{} \mathop{\rm  }{\it de} \mathop{\rm  }{\it la} \mathop{\rm  }{\it red} \mathop{\rm  }{\it en} \mathop{\rm  }{\it impedancia} \mathop{\rm  }{\it base}\\
+\mbox{} \mathop{\rm  }{\it ZB2} \mathop{\rm  }y \mathop{\rm  }{\it los} \mathop{\rm  }{\it coeficientes} \mathop{\rm  }{\it de} \mathop{\rm  }{\it reflexion} \mathop{\rm  }{\it tanto}\\
+\mbox{} \mathop{\rm  }{\it en} \mathop{\rm  }{\it carga} \mathop{\rm  }{\it como} \mathop{\rm  }{\it en} \mathop{\rm  }{\it fuente} ,\mathop{\rm  }y \mathop{\rm  }{\it la} \mathop{\rm  }{\it tension} \mathop{\rm  }{\it normalizada}\\
+\mbox{} \mathop{\rm  }{\it del} \mathop{\rm  }{\it generador} \mathop{\rm  }{\it calculados} \mathop{\rm  }{\it en} \mathop{\rm  }{\it la} \mathop{\rm  }{\it impedancia} \mathop{\rm  }{\it de} \mathop{\rm  }{\it referencia}\\
+\mbox{} \mathop{\rm  }{\it ZB2} .\]}
+}\end{Maple Normal}
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{Typesetting:-mrow(Typesetting:-mi("Simplificando", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("para", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("resolver", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("inversion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("matriz", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("última", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ecuación", italic = "true", mathvariant = "italic"), Typesetting:-mo(",", mathvariant = "normal", fence = "false", separator = "true", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.3333333em"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("se", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ha", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("resuelto", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("el", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("vector", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("B", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mfenced(Typesetting:-mrow(Typesetting:-mi("señales", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("reflejadas", italic = "true", mathvariant = "italic")), mathvariant = "normal"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("funcion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("los", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("parametros", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("dispersion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("red", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("impedancia", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("base", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ZB2", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("y", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("los", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("coeficientes", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("reflexion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("tanto", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("carga", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("como", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("fuente", italic = "true", mathvariant = "italic"), Typesetting:-mo(",", mathvariant = "normal", fence = "false", separator = "true", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.3333333em"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("y", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("tension", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("normalizada", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("del", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("generador", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("calculados", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("impedancia", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("referencia", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ZB2", italic = "true", mathvariant = "italic"), Typesetting:-mo(".", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"))}{\[\displaystyle {\it Simplificando} \mathop{\rm  }{\it para} \mathop{\rm  }{\it resolver} \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }{\it inversion} \mathop{\rm  }{\it de} \mathop{\rm  }{\it matriz} \mathop{\rm  }{\it en} \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }\mbox {{\tt última}}\\
+\mbox{} \mathop{\rm  }\mbox {{\tt ecuación}} ,\mathop{\rm  }{\it se} \mathop{\rm  }{\it ha} \mathop{\rm  }{\it resuelto}\\
+\mbox{} \mathop{\rm  }{\it el} \mathop{\rm  }{\it vector} \mathop{\rm  }B \mathop{\rm  }\left(\mbox {{\tt señales}} \mathop{\rm  }{\it reflejadas}\\
+\mbox{} \right)\mathop{\rm  }{\it en} \mathop{\rm  }{\it funcion} \mathop{\rm  }{\it de} \mathop{\rm  }{\it los} \mathop{\rm  }{\it parametros} \mathop{\rm  }{\it de} \mathop{\rm  }{\it dispersion}\\
+\mbox{} \mathop{\rm  }{\it de} \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }{\it red} \mathop{\rm  }{\it en} \mathop{\rm  }{\it impedancia} \mathop{\rm  }{\it base} \mathop{\rm  }{\it ZB2} \mathop{\rm  }y \mathop{\rm  }{\it los} \mathop{\rm  }{\it coeficientes}\\
+\mbox{} \mathop{\rm  }{\it de} \mathop{\rm  }{\it reflexion} \mathop{\rm  }{\it tanto} \mathop{\rm  }{\it en} \mathop{\rm  }{\it carga} \mathop{\rm  }{\it como} \mathop{\rm  }{\it en} \mathop{\rm  }{\it fuente}\\
+\mbox{} ,\mathop{\rm  }y \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }{\it tension} \mathop{\rm  }{\it normalizada} \mathop{\rm  }{\it del} \mathop{\rm  }{\it generador}\\
+\mbox{} \mathop{\rm  }{\it calculados} \mathop{\rm  }{\it en} \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }{\it impedancia} \mathop{\rm  }{\it de} \mathop{\rm  }{\it referencia} \mathop{\rm  }{\it ZB2} .\]}
+}\end{Maple Normal}
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{Typesetting:-mrow(Typesetting:-mi("Simplificando", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("para", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("resolver", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("inversion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("matriz", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("última", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ecuación", italic = "true", mathvariant = "italic"), Typesetting:-mo(",", mathvariant = "normal", fence = "false", separator = "true", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.3333333em"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("se", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ha", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("resuelto", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("el", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("vector", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("B", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mfenced(Typesetting:-mrow(Typesetting:-mi("señales", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("reflejadas", italic = "true", mathvariant = "italic")), mathvariant = "normal"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("funcion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("los", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("parametros", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("dispersion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("red", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("impedancia", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("base", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ZB2", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("y", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("los", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("coeficientes", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("reflexion", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("tanto", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("carga", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("como", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("fuente", italic = "true", mathvariant = "italic"), Typesetting:-mo(",", mathvariant = "normal", fence = "false", separator = "true", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.3333333em"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("y", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("tension", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("normalizada", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("del", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("generador", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("calculados", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("en", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("la", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("impedancia", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("de", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("referencia", italic = "true", mathvariant = "italic"), Typesetting:-mo(" ", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"), Typesetting:-mi("ZB2", italic = "true", mathvariant = "italic"), Typesetting:-mo(".", mathvariant = "normal", fence = "false", separator = "false", stretchy = "false", symmetric = "false", largeop = "false", movablelimits = "false", accent = "false", lspace = "0.0em", rspace = "0.0em"))}{\[\displaystyle {\it Simplificando} \mathop{\rm  }{\it para} \mathop{\rm  }{\it resolver} \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }{\it inversion} \mathop{\rm  }{\it de} \mathop{\rm  }{\it matriz} \mathop{\rm  }{\it en} \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }\mbox {{\tt última}}\\
+\mbox{} \mathop{\rm  }\mbox {{\tt ecuación}} ,\mathop{\rm  }{\it se} \mathop{\rm  }{\it ha} \mathop{\rm  }{\it resuelto}\\
+\mbox{} \mathop{\rm  }{\it el} \mathop{\rm  }{\it vector} \mathop{\rm  }B \mathop{\rm  }\left(\mbox {{\tt señales}} \mathop{\rm  }{\it reflejadas}\\
+\mbox{} \right)\mathop{\rm  }{\it en} \mathop{\rm  }{\it funcion} \mathop{\rm  }{\it de} \mathop{\rm  }{\it los} \mathop{\rm  }{\it parametros} \mathop{\rm  }{\it de} \mathop{\rm  }{\it dispersion}\\
+\mbox{} \mathop{\rm  }{\it de} \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }{\it red} \mathop{\rm  }{\it en} \mathop{\rm  }{\it impedancia} \mathop{\rm  }{\it base} \mathop{\rm  }{\it ZB2} \mathop{\rm  }y \mathop{\rm  }{\it los} \mathop{\rm  }{\it coeficientes}\\
+\mbox{} \mathop{\rm  }{\it de} \mathop{\rm  }{\it reflexion} \mathop{\rm  }{\it tanto} \mathop{\rm  }{\it en} \mathop{\rm  }{\it carga} \mathop{\rm  }{\it como} \mathop{\rm  }{\it en} \mathop{\rm  }{\it fuente}\\
+\mbox{} ,\mathop{\rm  }y \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }{\it tension} \mathop{\rm  }{\it normalizada} \mathop{\rm  }{\it del} \mathop{\rm  }{\it generador}\\
+\mbox{} \mathop{\rm  }{\it calculados} \mathop{\rm  }{\it en} \mathop{\rm  }{\it la}\\
+\mbox{} \mathop{\rm  }{\it impedancia} \mathop{\rm  }{\it de} \mathop{\rm  }{\it referencia} \mathop{\rm  }{\it ZB2} .\]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e15 := simplify(e14)}{\[\displaystyle {\it e15}\, := \,{\it simplify} \left( {\it e14} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B = Matrix(%id = 183869448)}{\[\displaystyle B= \left[ \begin {array}{c} -{\frac { \left( {\it S11}_{{{\it B2}}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S11}_{{{\it B2}}}-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}} \right) v}{{\it S11}_{{{\it B2}}}\Gamma _{{S}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S11}_{{{\it B2}}}\Gamma _{{S}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}\Gamma _{{S}}}}\\ \noalign{\medskip}{\frac {{\it S21}_{{{\it B2}}}v}{{\it S11}_{{{\it B2}}}\Gamma _{{S}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S11}_{{{\it B2}}}\Gamma _{{S}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}\Gamma _{{S}}}}\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo ahora el vector B en la ecuación que expresa el vector A en funcion de los coeficientes de reflexion en fuente y carga}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e16 := subs(e15, e8)}{\[\displaystyle {\it e16}\, := \,{\it subs} \left( {\it e15},{\it e8} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{A = Typesetting:-delayDotProduct(Matrix(%id = 183870076), Matrix(%id = 161515704))+Matrix(%id = 161515576)}{\[\displaystyle A={\it delayDotProduct} \left(  \left[ \begin {array}{cc} \Gamma _{{S}}&0\\ \noalign{\medskip}0&\Gamma _{{L}}\end {array} \right] , \left[ \begin {array}{c} -{\frac { \left( {\it S11}_{{{\it B2}}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S11}_{{{\it B2}}}-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}} \right) v}{{\it S11}_{{{\it B2}}}\Gamma _{{S}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S11}_{{{\it B2}}}\Gamma _{{S}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}\Gamma _{{S}}}}\\ \noalign{\medskip}{\frac {{\it S21}_{{{\it B2}}}v}{{\it S11}_{{{\it B2}}}\Gamma _{{S}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S11}_{{{\it B2}}}\Gamma _{{S}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}\Gamma _{{S}}}}\end {array} \right] \\
+\mbox{} \right) + \left[ \begin {array}{c} v\\ \noalign{\medskip}0\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Simplificando esta ultia ecuacion}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e17 := simplify(e16)}{\[\displaystyle {\it e17}\, := \,{\it simplify} \left( {\it e16} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{A = Matrix(%id = 192335096)}{\[\displaystyle A= \left[ \begin {array}{c} -{\frac {v \left( {\it S22}_{{{\it B2}}}\Gamma _{{L}}-1 \right) }{{\it S11}_{{{\it B2}}}\Gamma _{{S}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S11}_{{{\it B2}}}\Gamma _{{S}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}\Gamma _{{S}}}}\\ \noalign{\medskip}{\frac {\Gamma _{{L}}{\it S21}_{{{\it B2}}}v}{{\it S11}_{{{\it B2}}}\Gamma _{{S}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S11}_{{{\it B2}}}\Gamma _{{S}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}\Gamma _{{S}}}}\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Los parametros que mediria el VNA con impedancia ZB1 en una red de impedancia ZB2 son los cocientes de las señales reflejadas e incidentes en los puertos de esta red, dados por los vectores A (e17) y B (e15). Estos prametros vienen dados por las siguientes expresiones}\end{Maple Normal}
+
+\begin{Maple Normal}{
+Los parametros que mediria el VNA con impedancia ZB1 en una red de impedancia ZB2 son los cocientes de las señales reflejadas e incidentes en los puertos de esta red, dados por los vectores A (e17) y B (e15). Estos prametros vienen dados por las siguientes expresiones}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e19 := S11[B1] = B[1, 1]/A[1, 1]}{\[\displaystyle {\it e19}\, := \,{\it S11}_{{{\it B1}}}={\frac {B_{{1,1}}}{A_{{1,1}}}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S11[B1] = B[1, 1]/A[1, 1]}{\[\displaystyle {\it S11}_{{{\it B1}}}={\frac {B_{{1,1}}}{A_{{1,1}}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e20 := S12[B1] = B[1, 1]/A[2, 1]}{\[\displaystyle {\it e20}\, := \,{\it S12}_{{{\it B1}}}={\frac {B_{{1,1}}}{A_{{2,1}}}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S12[B1] = B[1, 1]/A[2, 1]}{\[\displaystyle {\it S12}_{{{\it B1}}}={\frac {B_{{1,1}}}{A_{{2,1}}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e21 := S21[B1] = B[2, 1]/A[1, 1]}{\[\displaystyle {\it e21}\, := \,{\it S21}_{{{\it B1}}}={\frac {B_{{2,1}}}{A_{{1,1}}}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S21[B1] = B[2, 1]/A[1, 1]}{\[\displaystyle {\it S21}_{{{\it B1}}}={\frac {B_{{2,1}}}{A_{{1,1}}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e22 := S22[B1] = B[2, 1]/A[2, 1]}{\[\displaystyle {\it e22}\, := \,{\it S22}_{{{\it B1}}}={\frac {B_{{2,1}}}{A_{{2,1}}}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S22[B1] = B[2, 1]/A[2, 1]}{\[\displaystyle {\it S22}_{{{\it B1}}}={\frac {B_{{2,1}}}{A_{{2,1}}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e23 := eval(subs(e15, e17, e19))}{\[\displaystyle {\it e23}\, := \,{\it eval} \left( {\it subs} \left( {\it e15},{\it e17},{\it e19}\\
+\mbox{} \right)  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S11[B1] = (S11[B2]*S22[B2]*GAMMA[L]-S11[B2]-S12[B2]*GAMMA[L]*S21[B2])/(S22[B2]*GAMMA[L]-1)}{\[\displaystyle {\it S11}_{{{\it B1}}}={\frac {{\it S11}_{{{\it B2}}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}\\
+\mbox{}-{\it S11}_{{{\it B2}}}-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}}{{\it S22}_{{{\it B2}}}\Gamma _{{L}}-1}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e24 := eval(subs(e15, e17, e20))}{\[\displaystyle {\it e24}\, := \,{\it eval} \left( {\it subs} \left( {\it e15},{\it e17},{\it e20}\\
+\mbox{} \right)  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S12[B1] = -(S11[B2]*S22[B2]*GAMMA[L]-S11[B2]-S12[B2]*GAMMA[L]*S21[B2])/(GAMMA[L]*S21[B2])}{\[\displaystyle {\it S12}_{{{\it B1}}}=-{\frac {{\it S11}_{{{\it B2}}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}\\
+\mbox{}-{\it S11}_{{{\it B2}}}-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}}{\Gamma _{{L}}{\it S21}_{{{\it B2}}}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e25 := eval(subs(e15, e17, e21))}{\[\displaystyle {\it e25}\, := \,{\it eval} \left( {\it subs} \left( {\it e15},{\it e17},{\it e21}\\
+\mbox{} \right)  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S21[B1] = -S21[B2]/(S22[B2]*GAMMA[L]-1)}{\[\displaystyle {\it S21}_{{{\it B1}}}=-{\frac {{\it S21}_{{{\it B2}}}}{{\it S22}_{{{\it B2}}}\Gamma _{{L}}\\
+\mbox{}-1}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e26 := eval(subs(e15, e17, e22))}{\[\displaystyle {\it e26}\, := \,{\it eval} \left( {\it subs} \left( {\it e15},{\it e17},{\it e22}\\
+\mbox{} \right)  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S22[B1] = 1/GAMMA[L]}{\[\displaystyle {\it S22}_{{{\it B1}}}={\Gamma _{{L}}}^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Se aprecia que los parametros que indicaria un VNA midiendo una red lineal de dos puertos con impedancia desacoplada no dependen del coeficiente de reflexion en la carga, y el parametro S22B1 depende unicamente del coeficiente de reflexion en la carga}\end{Maple Normal}
+
+\begin{Maple Normal}{
+Se aprecia que los parametros que indicaria un VNA midiendo una red lineal de dos puertos con impedancia desacoplada no dependen del coeficiente de reflexion en la carga, y el parametro S22B1 depende unicamente del coeficiente de reflexion en la carga}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Esta medicion se debe repetir intercambiando los puertos, es decir, el puerto que se conecto a la salida del VNA ahora debe colocarse en la entrada. Los puertos intercambian de roles, el puerto de entrada pasa a ser la salida. Hecho esto, se miden un nuevo conjunto de parametros de dispersion.}\end{Maple Normal}
+
+\begin{Maple Normal}{
+Esta medicion se debe repetir intercambiando los puertos, es decir, el puerto que se conecto a la salida del VNA ahora debe colocarse en la entrada. Los puertos intercambian de roles, el puerto de entrada pasa a ser la salida. Hecho esto, se miden un nuevo conjunto de parametros de dispersion.}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+}\end{Maple Normal}
+}\end{Maple Normal}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Se coloca el generado con tension normalizada en el puerto 2, el vectro de señal incidente resulta ahora de}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e27 := A = Typesetting:-delayDotProduct(Matrix(2, 2, [GAMMA[L], 0, 0, GAMMA[S]]), B)+Matrix(2, 1, [0, v])}{\[\displaystyle {\it e27}\, := \,A={\it delayDotProduct} \left(  \left[ \begin {array}{cc} \Gamma _{{L}}&0\\ \noalign{\medskip}0&\Gamma _{{S}}\end {array} \right] ,B \right) + \left[ \begin {array}{c} 0\\ \noalign{\medskip}v\end {array} \right] \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{A = Typesetting:-delayDotProduct(Matrix(%id = 178589908), B)+Matrix(%id = 193912896)}{\[\displaystyle A={\it delayDotProduct} \left(  \left[ \begin {array}{cc} \Gamma _{{L}}&0\\ \noalign{\medskip}0&\Gamma _{{S}}\end {array} \right] ,B \right) + \left[ \begin {array}{c} 0\\ \noalign{\medskip}v\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{(Sustituyendo*el*vector*A*en*la*ecuacion*de*red*para*el)*sistema*e10}{\[\displaystyle {\it Sustituyendo}\,{{\it el}}^{2} \left( {\it vector} \right) \,A{\it en}\,\\
+\mbox{}{\it la}\,{\it ecuacion}\,{\it de}\,{\it red}\,{\it para}\,\\
+\mbox{}{\it sistema}\,{\it e10}\]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e28 := subs(e27, e10)}{\[\displaystyle {\it e28}\, := \,{\it subs} \left( {\it e27},{\it e10} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B = Typesetting:-delayDotProduct(S[B2], Typesetting:-delayDotProduct(Matrix(%id = 167698552), B)+Matrix(%id = 178155100))}{\[\displaystyle B={\it delayDotProduct} \left( S_{{{\it B2}}},{\it delayDotProduct} \left(  \left[ \begin {array}{cc} \Gamma _{{L}}&0\\ \noalign{\medskip}0&\Gamma _{{S}}\end {array} \right] ,B \right) \\
+\mbox{}+ \left[ \begin {array}{c} 0\\ \noalign{\medskip}v\end {array} \right]  \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{}{\[\displaystyle \]}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{}{\[\displaystyle \]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{Despenjando*el*vertor*de*`señales`*reflejadas*B}{\[\displaystyle {\it Despenjando}\,{\it el}\,{\it vertor}\,{\it de}\,\mbox {{\tt señales}}\,\\
+\mbox{}{\it reflejadas}\,B\]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e29 := B = Typesetting:-delayDotProduct(Typesetting:-delayDotProduct(1/(Matrix(2, 2, shape = identity)-Typesetting:-delayDotProduct(S[B2], Matrix(2, 2, [GAMMA[L], 0, 0, GAMMA[L]]))), S[B2]), Matrix(2, 1, [0, v]))}{\[\displaystyle {\it e29}\, := \,B={\it delayDotProduct} \left( {\it delayDotProduct} \left(  \left(  \left[ \begin {array}{cc} 1&0\\ \noalign{\medskip}0&1\end {array} \right] -{\it delayDotProduct} \left( S_{{{\it B2}}}, \left[ \begin {array}{cc} \Gamma _{{L}}&0\\ \noalign{\medskip}0&\Gamma _{{L}}\end {array} \right]  \right) \\
+\mbox{} \right) ^{-1},S_{{{\it B2}}} \right) , \left[ \begin {array}{c} 0\\ \noalign{\medskip}v\end {array} \right]  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B = Typesetting:-delayDotProduct(Typesetting:-delayDotProduct(1/(-Typesetting:-delayDotProduct(S[B2], Matrix(%id = 190063588))+Matrix(%id = 182026816)), S[B2]), Matrix(%id = 169705228))}{\[\displaystyle B={\it delayDotProduct} \left( {\it delayDotProduct} \left(  \left( -{\it delayDotProduct} \left( S_{{{\it B2}}}, \left[ \begin {array}{cc} \Gamma _{{L}}&0\\ \noalign{\medskip}0&\Gamma _{{L}}\end {array} \right]  \right) \\
+\mbox{}+ \left[ \begin {array}{cc} 1&0\\ \noalign{\medskip}0&1\end {array} \right]  \right) ^{-1},S_{{{\it B2}}} \right) , \left[ \begin {array}{c} 0\\ \noalign{\medskip}v\end {array} \right]  \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{}{\[\displaystyle \]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo la matriz de dispersion SB2 en l impedancia de la red}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e30 := subs(e1, e29)}{\[\displaystyle {\it e30}\, := \,{\it subs} \left( {\it e1},{\it e29} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B = Typesetting:-delayDotProduct(Typesetting:-delayDotProduct(1/(-Typesetting:-delayDotProduct(Matrix(%id = 176264616), Matrix(%id = 176257352))+Matrix(%id = 163897388)), Matrix(%id = 176264616)), Matrix(%id = 176801288))}{\[\displaystyle B={\it delayDotProduct} \left( {\it delayDotProduct} \left(  \left( -{\it delayDotProduct} \left(  \left[ \begin {array}{cc} {\it S11}_{{{\it B2}}}&{\it S12}_{{{\it B2}}}\\ \noalign{\medskip}{\it S21}_{{{\it B2}}}&{\it S22}_{{{\it B2}}}\end {array} \right] , \left[ \begin {array}{cc} \Gamma _{{L}}&0\\ \noalign{\medskip}0&\Gamma _{{L}}\end {array} \right]  \right) \\
+\mbox{}+ \left[ \begin {array}{cc} 1&0\\ \noalign{\medskip}0&1\end {array} \right]  \right) ^{-1}, \left[ \begin {array}{cc} {\it S11}_{{{\it B2}}}&{\it S12}_{{{\it B2}}}\\ \noalign{\medskip}{\it S21}_{{{\it B2}}}&{\it S22}_{{{\it B2}}}\end {array} \right]  \right) , \left[ \begin {array}{c} 0\\ \noalign{\medskip}v\end {array} \right]  \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Simplificando se obtienen las ondas reflejadas en funcion de los parametros de dispersion, coeficientes de reflexion en carga y fuente y la tension normalizada del generador}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e31 := simplify(e30)}{\[\displaystyle {\it e31}\, := \,{\it simplify} \left( {\it e30} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{B = Matrix(%id = -1231655652)}{\[\displaystyle B= \left[ \begin {array}{c} {\frac {{\it S12}_{{{\it B2}}}v}{{\it S11}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S22}_{{{\it B2}}}-{\it S11}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S21}_{{{\it B2}}}}}\\ \noalign{\medskip}-{\frac { \left( -{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}+{\it S11}_{{{\it B2}}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}} \right) v}{{\it S11}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S22}_{{{\it B2}}}-{\it S11}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S21}_{{{\it B2}}}}}\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo el vector B (e31) en la expresion para el vector de ondas incidentes A (e27) en funcion del desacople en los puertos}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e32 := subs(e31, e27)}{\[\displaystyle {\it e32}\, := \,{\it subs} \left( {\it e31},{\it e27} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{A = Typesetting:-delayDotProduct(Matrix(%id = 162593500), Matrix(%id = 162592828))+Matrix(%id = 162682988)}{\[\displaystyle A={\it delayDotProduct} \left(  \left[ \begin {array}{cc} \Gamma _{{L}}&0\\ \noalign{\medskip}0&\Gamma _{{S}}\end {array} \right] , \left[ \begin {array}{c} {\frac {{\it S12}_{{{\it B2}}}v}{{\it S11}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S22}_{{{\it B2}}}-{\it S11}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S21}_{{{\it B2}}}}}\\ \noalign{\medskip}-{\frac { \left( -{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}+{\it S11}_{{{\it B2}}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}} \right) v}{{\it S11}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S22}_{{{\it B2}}}-{\it S11}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S21}_{{{\it B2}}}}}\end {array} \right] \\
+\mbox{} \right) + \left[ \begin {array}{c} 0\\ \noalign{\medskip}v\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Simplificando se obtiene el vector de onda incidentes en funcion de parametros de red}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e33 := simplify(e32)}{\[\displaystyle {\it e33}\, := \,{\it simplify} \left( {\it e32} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{A = Matrix(%id = 179737600)}{\[\displaystyle A= \left[ \begin {array}{c} {\frac {{\it S12}_{{{\it B2}}}\Gamma _{{L}}v}{{\it S11}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S22}_{{{\it B2}}}-{\it S11}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S21}_{{{\it B2}}}}}\\ \noalign{\medskip}{\frac {v \left( {\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}\Gamma _{{S}}-{\it S11}_{{{\it B2}}}\Gamma _{{S}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}+\Gamma _{{S}}{\it S22}_{{{\it B2}}}+{\it S11}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S22}_{{{\it B2}}}-{\it S11}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S21}_{{{\it B2}}} \right) }{{\it S11}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S22}_{{{\it B2}}}-{\it S11}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S21}_{{{\it B2}}}}}\end {array} \right] \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Ahora se calculan los parametros de dispersion segun los mide el VNA, recordando que se han invertido los roles de los puertos (en el puerto 2 o de salida de la red se ha colocado el generador)(Se intercambian indices 1 por 2 y 2 por 1)}\end{Maple Normal}
+
+\begin{Maple Normal}{
+Ahora se calculan los parametros de dispersion segun los mide el VNA, recordando que se han invertido los roles de los puertos (en el puerto 2 o de salida de la red se ha colocado el generador)(Se intercambian indices 1 por 2 y 2 por 1)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{}{\[\displaystyle \]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e34 := S11R[B1] = B[2, 1]/A[2, 1]}{\[\displaystyle {\it e34}\, := \,{\it S11R}_{{{\it B1}}}={\frac {B_{{2,1}}}{A_{{2,1}}}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S11R[B1] = B[2, 1]/A[2, 1]}{\[\displaystyle {\it S11R}_{{{\it B1}}}={\frac {B_{{2,1}}}{A_{{2,1}}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{}{\[\displaystyle \]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e35 := S12R[B1] = B[2, 1]/A[1, 1]}{\[\displaystyle {\it e35}\, := \,{\it S12R}_{{{\it B1}}}={\frac {B_{{2,1}}}{A_{{1,1}}}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S12R[B1] = B[2, 1]/A[1, 1]}{\[\displaystyle {\it S12R}_{{{\it B1}}}={\frac {B_{{2,1}}}{A_{{1,1}}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e36 := S21R[B1] = B[1, 1]/A[2, 1]}{\[\displaystyle {\it e36}\, := \,{\it S21R}_{{{\it B1}}}={\frac {B_{{1,1}}}{A_{{2,1}}}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S21R[B1] = B[1, 1]/A[2, 1]}{\[\displaystyle {\it S21R}_{{{\it B1}}}={\frac {B_{{1,1}}}{A_{{2,1}}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e37 := S22R[B1] = B[1, 1]/A[1, 1]}{\[\displaystyle {\it e37}\, := \,{\it S22R}_{{{\it B1}}}={\frac {B_{{1,1}}}{A_{{1,1}}}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S22R[B1] = B[1, 1]/A[1, 1]}{\[\displaystyle {\it S22R}_{{{\it B1}}}={\frac {B_{{1,1}}}{A_{{1,1}}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e38 := simplify(eval(subs(e30, e32, e34)))}{\[\displaystyle {\it e38}\, := \,{\it simplify} \left( {\it eval} \left( {\it subs} \left( {\it e30}\\
+\mbox{},{\it e32},{\it e34} \right)  \right)  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S11R[B1] = -(-S12[B2]*GAMMA[L]*S21[B2]+S11[B2]*S22[B2]*GAMMA[L]-S22[B2])/(S12[B2]*GAMMA[L]*S21[B2]*GAMMA[S]-S11[B2]*GAMMA[S]*S22[B2]*GAMMA[L]+GAMMA[S]*S22[B2]+S11[B2]*GAMMA[L]^2*S22[B2]-S11[B2]*GAMMA[L]-S22[B2]*GAMMA[L]+1-S12[B2]*GAMMA[L]^2*S21[B2])}{\[\displaystyle {\it S11R}_{{{\it B1}}}=-{\frac {-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}\\
+\mbox{}+{\it S11}_{{{\it B2}}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}}}{{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}\Gamma _{{S}}-{\it S11}_{{{\it B2}}}\Gamma _{{S}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}\\
+\mbox{}+\Gamma _{{S}}{\it S22}_{{{\it B2}}}+{\it S11}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S22}_{{{\it B2}}}-{\it S11}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S21}_{{{\it B2}}}\\
+\mbox{}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e39 := simplify(eval(subs(e30, e32, e35)))}{\[\displaystyle {\it e39}\, := \,{\it simplify} \left( {\it eval} \left( {\it subs} \left( {\it e30}\\
+\mbox{},{\it e32},{\it e35} \right)  \right)  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S12R[B1] = -(-S12[B2]*GAMMA[L]*S21[B2]+S11[B2]*S22[B2]*GAMMA[L]-S22[B2])/(S12[B2]*GAMMA[L])}{\[\displaystyle {\it S12R}_{{{\it B1}}}=-{\frac {-{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}\\
+\mbox{}+{\it S11}_{{{\it B2}}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}}}{{\it S12}_{{{\it B2}}}\Gamma _{{L}}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e40 := simplify(eval(subs(e30, e32, e36)))}{\[\displaystyle {\it e40}\, := \,{\it simplify} \left( {\it eval} \left( {\it subs} \left( {\it e30}\\
+\mbox{},{\it e32},{\it e36} \right)  \right)  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S21R[B1] = S12[B2]/(S12[B2]*GAMMA[L]*S21[B2]*GAMMA[S]-S11[B2]*GAMMA[S]*S22[B2]*GAMMA[L]+GAMMA[S]*S22[B2]+S11[B2]*GAMMA[L]^2*S22[B2]-S11[B2]*GAMMA[L]-S22[B2]*GAMMA[L]+1-S12[B2]*GAMMA[L]^2*S21[B2])}{\[\displaystyle {\it S21R}_{{{\it B1}}}={\frac {{\it S12}_{{{\it B2}}}}{{\it S12}_{{{\it B2}}}\Gamma _{{L}}{\it S21}_{{{\it B2}}}\Gamma _{{S}}\\
+\mbox{}-{\it S11}_{{{\it B2}}}\Gamma _{{S}}{\it S22}_{{{\it B2}}}\Gamma _{{L}}+\Gamma _{{S}}{\it S22}_{{{\it B2}}}+{\it S11}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S22}_{{{\it B2}}}\\
+\mbox{}-{\it S11}_{{{\it B2}}}\Gamma _{{L}}-{\it S22}_{{{\it B2}}}\Gamma _{{L}}+1-{\it S12}_{{{\it B2}}}{\Gamma _{{L}}}^{2}{\it S21}_{{{\it B2}}}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e41 := simplify(eval(subs(e30, e32, e37)))}{\[\displaystyle {\it e41}\, := \,{\it simplify} \left( {\it eval} \left( {\it subs} \left( {\it e30}\\
+\mbox{},{\it e32},{\it e37} \right)  \right)  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{S22R[B1] = 1/GAMMA[L]}{\[\displaystyle {\it S22R}_{{{\it B1}}}={\Gamma _{{L}}}^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{solve({e23, e24, e25, e26, e38, e39, e40, e41})}{\[\displaystyle {\it solve} \left(  \left\{ {\it e23},{\it e24},{\it e25},{\it e26}\\
+\mbox{},{\it e38},{\it e39},{\it e40},{\it e41} \right\}  \right) \]}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{}{\[\displaystyle \]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\end{document}

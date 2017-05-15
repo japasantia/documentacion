@@ -1,0 +1,711 @@
+%% Created by Maple 13.0, Linux
+%% Source Worksheet: Calculos redes desacopladas-Impedancia.mw
+%% Generated: Thu Apr 27 12:08:54 VET 2017
+\documentclass{article}
+\usepackage{maplestd2e}
+\def\emptyline{\vspace{12pt}}
+\begin{document}
+\pagestyle{empty}
+\DefineParaStyle{Maple Heading 1}
+\DefineParaStyle{Maple Text Output}
+\DefineParaStyle{Maple Dash Item}
+\DefineParaStyle{Maple Bullet Item}
+\DefineParaStyle{Maple Normal}
+\DefineParaStyle{Maple Heading 4}
+\DefineParaStyle{Maple Heading 3}
+\DefineParaStyle{Maple Heading 2}
+\DefineParaStyle{Maple Warning}
+\DefineParaStyle{Maple Title}
+\DefineParaStyle{Maple Error}
+\DefineCharStyle{Maple Hyperlink}
+\DefineCharStyle{Maple 2D Math}
+\DefineCharStyle{Maple Maple Input}
+\DefineCharStyle{Maple 2D Output}
+\DefineCharStyle{Maple 2D Input}
+\mapleinline{inert}{2d}{restart}{\[\displaystyle {\it restart}\]}
+\mapleinline{inert}{2d}{with(LinearAlgebra); -1}{\[\displaystyle \]}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sea la matriz de impedancia de una red lineal de dos puertos, en forma de ecuaciones se tienen las relaciones de voltage y corriente en los puertos:}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e1 := V1 = I1*Z11+I2*Z12}{\[\displaystyle {\it e1}\, := \,{\it V1}={\it I1}\,{\it Z11}+{\it I2}\,{\it Z12}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{V1 = I1*Z11+I2*Z12}{\[\displaystyle {\it V1}={\it I1}\,{\it Z11}+{\it I2}\,{\it Z12}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e2 := V2 = I1*Z21+I2*Z22}{\[\displaystyle {\it e2}\, := \,{\it V2}={\it I1}\,{\it Z21}+{\it I2}\,{\it Z22}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{V2 = I1*Z21+I2*Z22}{\[\displaystyle {\it V2}={\it I1}\,{\it Z21}+{\it I2}\,{\it Z22}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+La tension de ruido termico viene dada por}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e3 := VNS = sqrt(4*k*RNS*B*T)}{\[\displaystyle {\it e3}\, := \,{\it VNS}= \sqrt{4\,k{\it RNS}\,BT}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{VNS = 2*sqrt(k*RNS*B*T)}{\[\displaystyle {\it VNS}=2\, \sqrt{k{\it RNS}\,BT}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+La impedancia de carga de la red es la impedancia de entrada del VNA, ZNFA, y esta dada por}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e4 := V2 = -I2*ZNFA}{\[\displaystyle {\it e4}\, := \,{\it V2}=-{\it I2}\,{\it ZNFA}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{V2 = -I2*ZNFA}{\[\displaystyle {\it V2}=-{\it I2}\,{\it ZNFA}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+La tension en la entrada de la red tambien puede expresarse en funcion de la tension de la fuente de ruido}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e5 := V1 = VNS-I1*RNS}{\[\displaystyle {\it e5}\, := \,{\it V1}={\it VNS}-{\it I1}\,{\it RNS}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{V1 = VNS-I1*RNS}{\[\displaystyle {\it V1}={\it VNS}-{\it I1}\,{\it RNS}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo V1 (e5) en la ecuacion para V1 en la definicion matricial de la red (e1) resulta}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e6 := subs(e5, e1)}{\[\displaystyle {\it e6}\, := \,{\it subs} \left( {\it e5},{\it e1} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{VNS-I1*RNS = I1*Z11+I2*Z12}{\[\displaystyle {\it VNS}-{\it I1}\,{\it RNS}={\it I1}\,{\it Z11}+{\it I2}\,{\it Z12}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Ahora depejando la corriente en el puerto de entrada}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e7 := isolate(e6, I1)}{\[\displaystyle {\it e7}\, := \,{\it isolate} \left( {\it e6},{\it I1} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{I1 = (-VNS+I2*Z12)/(-RNS-Z11)}{\[\displaystyle {\it I1}={\frac {-{\it VNS}+{\it I2}\,{\it Z12}}{-{\it RNS}-{\it Z11}\\
+\mbox{}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo V2 (e4) e I1 (e7) en la ecuacion que define V2 en la matriz de red}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e8 := subs(e4, e7, e2)}{\[\displaystyle {\it e8}\, := \,{\it subs} \left( {\it e4},{\it e7},{\it e2} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{-I2*ZNFA = (-VNS+I2*Z12)*Z21/(-RNS-Z11)+I2*Z22}{\[\displaystyle -{\it I2}\,{\it ZNFA}={\frac { \left( -{\it VNS}+{\it I2}\,{\it Z12} \right) {\it Z21}}{-{\it RNS}-{\it Z11}\\
+\mbox{}}}+{\it I2}\,{\it Z22}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Despejando I2 de esta ultima (e8)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e9 := isolate(e8, I2)}{\[\displaystyle {\it e9}\, := \,{\it isolate} \left( {\it e8},{\it I2} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{I2 = -Z21*VNS/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)}{\[\displaystyle {\it I2}=-{\frac {{\it Z21}\,{\it VNS}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}\\
+\mbox{}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{}{\[\displaystyle \]}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{(Sustituyendo*I2*en*la*expresion*para*V2*en)*funcion*de*la*carga*e4}{\[\displaystyle {\it Sustituyendo}\,{\it I2}\,{{\it en}}^{2}{{\it la}}^{2}{\it expresion}\,\\
+\mbox{}{\it para}\,{\it V2}\,{\it funcion}\,{\it de}\,{\it carga}\,\\
+\mbox{}{\it e4}\]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e10 := subs(e9, e4)}{\[\displaystyle {\it e10}\, := \,{\it subs} \left( {\it e9},{\it e4} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{V2 = Z21*VNS*ZNFA/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)}{\[\displaystyle {\it V2}={\frac {{\it Z21}\,{\it VNS}\,{\it ZNFA}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}\\
+\mbox{}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo I2(e9) en I1 (e7)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e11 := subs(e9, e7)}{\[\displaystyle {\it e11}\, := \,{\it subs} \left( {\it e9},{\it e7} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{I1 = (-VNS-Z21*VNS*Z12/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11))/(-RNS-Z11)}{\[\displaystyle {\it I1}= \left( -{\it VNS}-{\frac {{\it Z21}\,{\it VNS}\,{\it Z12}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}\\
+\mbox{}+{\it Z22}\,{\it Z11}}} \right)  \left( -{\it RNS}-{\it Z11} \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Simplificando la expresion anterior para I1}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e11 := simplify(e11)}{\[\displaystyle {\it e11}\, := \,{\it simplify} \left( {\it e11} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{I1 = (ZNFA+Z22)*VNS/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)}{\[\displaystyle {\it I1}={\frac { \left( {\it ZNFA}+{\it Z22} \right) {\it VNS}}{{\it ZNFA}\,{\it RNS}\\
+\mbox{}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+}\end{Maple Normal}
+}\end{Maple Normal}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo las expresiones para I1(e11)  y para I2 (e9) en la ecuacion que define V1 matricialmente, se obtiene la expresion para V1}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e12 := subs(e9, e11, e1)}{\[\displaystyle {\it e12}\, := \,{\it subs} \left( {\it e9},{\it e11},{\it e1} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{V1 = (ZNFA+Z22)*VNS*Z11/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)-Z21*VNS*Z12/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)}{\[\displaystyle {\it V1}={\frac { \left( {\it ZNFA}+{\it Z22} \right) {\it VNS}\,{\it Z11}}{{\it ZNFA}\,{\it RNS}\\
+\mbox{}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}}-{\frac {{\it Z21}\,{\it VNS}\,{\it Z12}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+La potencia en la carga o impedancia de entrada del VNA representa la lectura de potencia de ruido de este dispositivo. Viene dada por}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e13 := PNFA = Re(abs(V2)^2/ZNFA)}{\[\displaystyle {\it e13}\, := \,{\it PNFA}={\it Re} \left( {\frac { \left(  \left| {\it V2} \right|  \right) ^{2}}{{\it ZNFA}}} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{PNFA = abs(V2)^2*Re(1/ZNFA)}{\[\displaystyle {\it PNFA}= \left(  \left| {\it V2} \right|  \right) ^{2}{\it Re} \left( {{\it ZNFA}}^{-1} \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo V2 (e10) en la ecuuacion para PNFA (e13), se llega a la potencia de ruido que lee el VNA en funcion de parametros de impedancia de la red y la tension de ruido de la fuente}\end{Maple Normal}
+
+\begin{Maple Normal}{
+Sustituyendo V2 (e10) en la ecuuacion para PNFA (e13), se llega a la potencia de ruido que lee el VNA en funcion de parametros de impedancia de la red y la tension de ruido de la fuente}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e14 := subs(e10, e13)}{\[\displaystyle {\it e14}\, := \,{\it subs} \left( {\it e10},{\it e13} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{PNFA = abs(Z21*VNS*ZNFA/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11))^2*Re(1/ZNFA)}{\[\displaystyle {\it PNFA}= \left(  \left| {\frac {{\it Z21}\,{\it VNS}\,{\it ZNFA}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}\\
+\mbox{}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right|  \right) ^{2}{\it Re} \left( {{\it ZNFA}}^{-1} \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo la tension de ruido de la fuente VNS en la ecuacion anterior por su valor rms dado por la ecuacion (e3)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e15 := subs(e3, e14)}{\[\displaystyle {\it e15}\, := \,{\it subs} \left( {\it e3},{\it e14} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{PNFA = abs(2*Z21*sqrt(k*RNS*B*T)*ZNFA/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11))^2*Re(1/ZNFA)}{\[\displaystyle {\it PNFA}= \left(  \left| 2\,{\frac {{\it Z21}\, \sqrt{k{\it RNS}\,BT}{\it ZNFA}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}\\
+\mbox{}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right|  \right) ^{2}{\it Re} \left( {{\it ZNFA}}^{-1} \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+La potencia que lee el VNA para la fuente de ruido encendida se obtiene sustituyendo T = THOT en la ecuacion anterior (e15)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e16 := PHOT = subs(T = THOT, rhs(e15))}{\[\displaystyle {\it e16}\, := \,{\it PHOT}={\it subs} \left( T={\it THOT},{\it rhs} \left( {\it e15}\\
+\mbox{} \right)  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{PHOT = 4*abs(Z21*sqrt(k*RNS*B*THOT)*ZNFA/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11))^2*Re(1/ZNFA)}{\[\displaystyle {\it PHOT}=4\, \left(  \left| {\frac {{\it Z21}\, \sqrt{k{\it RNS}\,B{\it THOT}}{\it ZNFA}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}\\
+\mbox{}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right|  \right) ^{2}{\it Re} \left( {{\it ZNFA}}^{-1} \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+De igual forma se halla la lectura del VNA para cuando se apaga la fuente de ruido, ahora se tiene T = TCOLD}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e17 := PCOLD = subs(T = TCOLD, rhs(e15))}{\[\displaystyle {\it e17}\, := \,{\it PCOLD}={\it subs} \left( T={\it TCOLD},{\it rhs} \left( {\it e15}\\
+\mbox{} \right)  \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{PCOLD = 4*abs(Z21*sqrt(k*RNS*B*TCOLD)*ZNFA/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11))^2*Re(1/ZNFA)}{\[\displaystyle {\it PCOLD}=4\, \left(  \left| {\frac {{\it Z21}\, \sqrt{k{\it RNS}\,B{\it TCOLD}}{\it ZNFA}\\
+\mbox{}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right|  \right) ^{2}\\
+\mbox{}{\it Re} \left( {{\it ZNFA}}^{-1} \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+EL factor Y es el coeciente entre estas potencias}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e18 := Y = PHOT/PCOLD}{\[\displaystyle {\it e18}\, := \,Y={\frac {{\it PHOT}}{{\it PCOLD}}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{Y = PHOT/PCOLD}{\[\displaystyle Y={\frac {{\it PHOT}}{{\it PCOLD}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo las expresiones de PHOT (e16) y PCOLD (e17)  en la expresion para el factor Y (e18) resulta}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e19 := subs(e16, e17, e18)}{\[\displaystyle {\it e19}\, := \,{\it subs} \left( {\it e16},{\it e17},{\it e18} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{Y = abs(Z21*sqrt(k*RNS*B*THOT)*ZNFA/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11))^2/abs(Z21*sqrt(k*RNS*B*TCOLD)*ZNFA/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11))^2}{\[\displaystyle Y= \left(  \left| {\frac {{\it Z21}\, \sqrt{k{\it RNS}\,B{\it THOT}}{\it ZNFA}\\
+\mbox{}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right|  \right) ^{2} \left(  \left| {\frac {{\it Z21}\, \sqrt{k{\it RNS}\,B{\it TCOLD}}\\
+\mbox{}{\it ZNFA}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right|  \right) ^{-2}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Simplificando la ultima ecuacion}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e19 := simplify(e19)}{\[\displaystyle {\it e19}\, := \,{\it simplify} \left( {\it e19} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{Y = abs(THOT/TCOLD)}{\[\displaystyle Y= \left| {\frac {{\it THOT}}{{\it TCOLD}}} \right| \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Como era de esperarse, el factor Y es el cociente simple entre las temperaturas equivalentes de la fuente de ruido, por ser la red lineal.}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+La ganancia de la red, como la mediria el VNA, para el sistema desacoplado es}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e20 := GDES_NFA = (PHOT-PCOLD)/(k*THOT*B-k*TCOLD*B)}{\[\displaystyle {\it e20}\, := \,{\it GDES\_NFA}={\frac {{\it PHOT}-{\it PCOLD}}{k{\it THOT}\,B\\
+\mbox{}-k{\it TCOLD}\,B}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{GDES_NFA = (PHOT-PCOLD)/(k*THOT*B-k*TCOLD*B)}{\[\displaystyle {\it GDES\_NFA}={\frac {{\it PHOT}-{\it PCOLD}}{k{\it THOT}\,B\\
+\mbox{}-k{\it TCOLD}\,B}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo las expresiones de PHOT (e16) y PCOLD (e17)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e21 := subs(e16, e17, e20)}{\[\displaystyle {\it e21}\, := \,{\it subs} \left( {\it e16},{\it e17},{\it e20} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{GDES_NFA = (4*abs(Z21*sqrt(k*RNS*B*THOT)*ZNFA/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11))^2*Re(1/ZNFA)-4*abs(Z21*sqrt(k*RNS*B*TCOLD)*ZNFA/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11))^2*Re(1/ZNFA))/(k*THOT*B-k*TCOLD*B)}{\[\displaystyle {\it GDES\_NFA}= \left( 4\, \left(  \left| {\frac {{\it Z21}\, \sqrt{k{\it RNS}\,B{\it THOT}}{\it ZNFA}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}\\
+\mbox{}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right|  \right) ^{2}{\it Re} \left( {{\it ZNFA}}^{-1} \right) \\
+\mbox{}-4\, \left(  \left| {\frac {{\it Z21}\, \sqrt{k{\it RNS}\,B{\it TCOLD}}{\it ZNFA}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right|  \right) ^{2}{\it Re} \left( {{\it ZNFA}}^{-1} \right) \\
+\mbox{} \right)  \left( k{\it THOT}\,B-k{\it TCOLD}\,B \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Simplificando}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e21 := simplify(e21)}{\[\displaystyle {\it e21}\, := \,{\it simplify} \left( {\it e21} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{GDES_NFA = -4*Re(1/ZNFA)*(abs(Z21^2*k*RNS*B*THOT*ZNFA^2/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)^2)-abs(Z21^2*k*RNS*B*TCOLD*ZNFA^2/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)^2))/(k*B*(-THOT+TCOLD))}{\[\displaystyle {\it GDES\_NFA}=-4\,{\it Re} \left( {{\it ZNFA}}^{-1} \right)  \left(  \left| {\frac {{{\it Z21}}^{2}k{\it RNS}\,B{\it THOT}\,{{\it ZNFA}}^{2}}{ \left( {\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}\\
+\mbox{}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right| - \left| {\frac {{{\it Z21}}^{2}k{\it RNS}\,B{\it TCOLD}\,{{\it ZNFA}}^{2}}{ \left( {\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right|  \right) \\
+\mbox{}{k}^{-1}{B}^{-1} \left( -{\it THOT}+{\it TCOLD} \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{La*impedancia*de*entrada*a*la*red}{\[\displaystyle {\it La}\,{\it impedancia}\,{\it de}\,{\it entrada}\,a{\it la}\,\\
+\mbox{}{\it red}\]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e22 := ZIN = V1/I1}{\[\displaystyle {\it e22}\, := \,{\it ZIN}={\frac {{\it V1}}{{\it I1}}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{ZIN = V1/I1}{\[\displaystyle {\it ZIN}={\frac {{\it V1}}{{\it I1}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo en ZIN la expresiones para V1 (e12) y I1 (e11)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e23 := subs(e11, e12, e22)}{\[\displaystyle {\it e23}\, := \,{\it subs} \left( {\it e11},{\it e12},{\it e22} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{ZIN = ((ZNFA+Z22)*VNS*Z11/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)-Z21*VNS*Z12/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11))*(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)/((ZNFA+Z22)*VNS)}{\[\displaystyle {\it ZIN}= \left( {\frac { \left( {\it ZNFA}+{\it Z22} \right) {\it VNS}\,{\it Z11}}{{\it ZNFA}\,{\it RNS}\\
+\mbox{}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}}-{\frac {{\it Z21}\,{\it VNS}\,{\it Z12}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right) \\
+\mbox{} \left( {\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11} \right)  \left( {\it ZNFA}+{\it Z22} \right) ^{-1}{{\it VNS}}^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+A partir de esta expresion para ZIN se puede halla la impedancia caracteristica de la red haciendo ZIN = ZO y la impedancia de carga igual a la impedancia caracteristica (ZNFA = ZO)}\end{Maple Normal}
+
+\begin{Maple Normal}{
+A partir de esta expresion para ZIN se puede halla la impedancia caracteristica de la red haciendo ZIN = ZO y la impedancia de carga igual a la impedancia caracteristica (ZNFA = ZO)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e24 := subs(ZIN = ZO, ZNFA = ZO, e23)}{\[\displaystyle {\it e24}\, := \,{\it subs} \left( {\it ZIN}={\it ZO},{\it ZNFA}={\it ZO},{\it e23}\\
+\mbox{} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{ZO = ((ZO+Z22)*VNS*Z11/(ZO*RNS+ZO*Z11-Z21*Z12+Z22*RNS+Z22*Z11)-Z21*VNS*Z12/(ZO*RNS+ZO*Z11-Z21*Z12+Z22*RNS+Z22*Z11))*(ZO*RNS+ZO*Z11-Z21*Z12+Z22*RNS+Z22*Z11)/((ZO+Z22)*VNS)}{\[\displaystyle {\it ZO}= \left( {\frac { \left( {\it ZO}+{\it Z22} \right) {\it VNS}\,{\it Z11}}{{\it ZO}\,{\it RNS}+{\it ZO}\,{\it Z11}-{\it Z21}\,{\it Z12}\\
+\mbox{}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}}-{\frac {{\it Z21}\,{\it VNS}\,{\it Z12}}{{\it ZO}\,{\it RNS}+{\it ZO}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right)  \left( {\it ZO}\,{\it RNS}+{\it ZO}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11} \right)  \left( {\it ZO}+{\it Z22} \right) ^{-1}{{\it VNS}}^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Despejando ZO se tiene la impedancia caracteristica de la red en funcion de los parametros de impedancia}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e25 := isolate(e24, ZO)}{\[\displaystyle {\it e25}\, := \,{\it isolate} \left( {\it e24},{\it ZO} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{ZO = -(1/2)*Z22+(1/2)*Z11-(1/2)*sqrt(Z22^2+2*Z22*Z11+Z11^2-4*Z21*Z12)}{\[\displaystyle {\it ZO}=-1/2\,{\it Z22}+1/2\,{\it Z11}-1/2\, \sqrt{{{\it Z22}}^{2}+2\,{\it Z22}\,{\it Z11}+{{\it Z11}}^{2}-4\,{\it Z21}\,{\it Z12}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{Typesetting:-delayDotProduct((Se*hallara*ahora*la*ganacia*de*la)*red*en*un*sistema*acoplado, La)*potencia*entegada*a*la*red*es}{\[\displaystyle {\it delayDotProduct} \left( {\it Se}\,{\it hallara}\,{\it ahora}\,\\
+\mbox{}{{\it la}}^{2}{\it ganacia}\,{\it de}\,{\it red}\,{\it en}\,{\it un}\,\\
+\mbox{}{\it sistema}\,{\it acoplado},{\it La} \right) {\it potencia}\,\\
+\mbox{}{\it entegada}\,a{\it la}\,{\it red}\,{\it es}\]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e26 := PIN = Re(V1*conjugate(I1))}{\[\displaystyle {\it e26}\, := \,{\it PIN}={\it Re} \left( {\it V1}\,{\it conjugate} \left( {\it I1} \right) \\
+\mbox{} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{PIN = Re(V1*conjugate(I1))}{\[\displaystyle {\it PIN}={\it Re} \left( {\it V1}\,{\it conjugate} \left( {\it I1} \right) \\
+\mbox{} \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+La que la red suministra a la carga}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e27 := POUT = Re(V2*conjugate(-I2))}{\[\displaystyle {\it e27}\, := \,{\it POUT}={\it Re} \left( {\it V2}\,{\it conjugate} \left( -{\it I2} \right) \\
+\mbox{} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{POUT = -Re(V2*conjugate(I2))}{\[\displaystyle {\it POUT}=-{\it Re} \left( {\it V2}\,{\it conjugate} \left( {\it I2} \right) \\
+\mbox{} \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+La ganancia (disponible, de transductor?) es la relacion entre la potencia entregada a la carga en funcion de la potencia entregada a la red}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e28 := G = POUT/PIN}{\[\displaystyle {\it e28}\, := \,G={\frac {{\it POUT}}{{\it PIN}}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{G = POUT/PIN}{\[\displaystyle G={\frac {{\it POUT}}{{\it PIN}}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo en PIN las expresiones V1 (e12) e I1(e11)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e29 := subs(e11, e12, e26)}{\[\displaystyle {\it e29}\, := \,{\it subs} \left( {\it e11},{\it e12},{\it e26} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{PIN = Re(((ZNFA+Z22)*VNS*Z11/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)-Z21*VNS*Z12/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11))*conjugate((ZNFA+Z22)*VNS/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)))}{\[\displaystyle {\it PIN}={\it Re} \left(  \left( {\frac { \left( {\it ZNFA}+{\it Z22} \right) {\it VNS}\,{\it Z11}}{{\it ZNFA}\,{\it RNS}\\
+\mbox{}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}}-{\frac {{\it Z21}\,{\it VNS}\,{\it Z12}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right) \\
+\mbox{}{\it conjugate} \left( {\frac { \left( {\it ZNFA}+{\it Z22} \right) {\it VNS}}{{\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11}}} \right)  \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Simplificando PIN}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e29 := simplify(e29)}{\[\displaystyle {\it e29}\, := \,{\it simplify} \left( {\it e29} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{PIN = abs((ZNFA+Z22)^2*VNS^2/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)^2)*Re((ZNFA*Z11-Z21*Z12+Z22*Z11)/(ZNFA+Z22))}{\[\displaystyle {\it PIN}= \left| {\frac { \left( {\it ZNFA}+{\it Z22} \right) ^{2}{{\it VNS}}^{2}}{ \left( {\it ZNFA}\,{\it RNS}\\
+\mbox{}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right| {\it Re} \left( {\frac {{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it Z11}}{{\it ZNFA}+{\it Z22}}} \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+De igual forma, sustituyendo los valores de V2 (e10) y I2 (e9) en POUT}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e30 := subs(e9, e10, e27)}{\[\displaystyle {\it e30}\, := \,{\it subs} \left( {\it e9},{\it e10},{\it e27} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\underline{}\end{maplegroup}
+\mapleinline{inert}{2d}{e30 := simplify(e30)}{\[\displaystyle {\it e30}\, := \,{\it simplify} \left( {\it e30} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{POUT = abs(Z21^2*VNS^2/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)^2)*Re(ZNFA)}{\[\displaystyle {\it POUT}= \left| {\frac {{{\it Z21}}^{2}{{\it VNS}}^{2}}{ \left( {\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}\\
+\mbox{}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right| {\it Re} \left( {\it ZNFA} \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustittuyendo PIN (e29) y POUT (e30) en la expresion de ganancia G (e28)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e31 := subs(e29, e30, e28)}{\[\displaystyle {\it e31}\, := \,{\it subs} \left( {\it e29},{\it e30},{\it e28} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{G = abs(Z21^2*VNS^2/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)^2)*Re(ZNFA)/(abs((ZNFA+Z22)^2*VNS^2/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)^2)*Re((ZNFA*Z11-Z21*Z12+Z22*Z11)/(ZNFA+Z22)))}{\[\displaystyle G= \left| {\frac {{{\it Z21}}^{2}{{\it VNS}}^{2}}{ \left( {\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}\\
+\mbox{}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right| {\it Re} \left( {\it ZNFA} \right)  \left(  \left| {\frac { \left( {\it ZNFA}+{\it Z22} \right) ^{2}\\
+\mbox{}{{\it VNS}}^{2}}{ \left( {\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right|  \right) ^{-1} \left( {\it Re} \left( {\frac {{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it Z11}}{{\it ZNFA}+{\it Z22}}} \right)  \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Simplificando}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e31 := simplify(e31)}{\[\displaystyle {\it e31}\, := \,{\it simplify} \left( {\it e31} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{G = Re(ZNFA)*abs(Z21^2/(ZNFA+Z22)^2)/Re((ZNFA*Z11-Z21*Z12+Z22*Z11)/(ZNFA+Z22))}{\[\displaystyle G={\it Re} \left( {\it ZNFA} \right)  \left| {\frac {{{\it Z21}}^{2}}{ \left( {\it ZNFA}+{\it Z22} \right) ^{2}}} \right| \\
+\mbox{} \left( {\it Re} \left( {\frac {{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it Z11}}{{\it ZNFA}+{\it Z22}}} \right)  \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Como se trata de la ganacia disponible, la red esta acoplada en generado y carga en la impedancia ZO\_2, sustituyendo impedancia de fuente de ruido RNS = ZO\_2 e impedancia de carga de la red (impedancia de entrada VNA) ZNFA = ZO\_2}\end{Maple Normal}
+
+\begin{Maple Normal}{
+Como se trata de la ganacia disponible, la red esta acoplada en generado y carga en la impedancia ZO\_2, sustituyendo impedancia de fuente de ruido RNS = ZO\_2 e impedancia de carga de la red (impedancia de entrada VNA) ZNFA = ZO\_2}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e32 := subs(RNS = ZO_2, ZNFA = ZO_2, e31)}{\[\displaystyle {\it e32}\, := \,{\it subs} \left( {\it RNS}={\it ZO\_2},{\it ZNFA}={\it ZO\_2},{\it e31}\\
+\mbox{} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{G = Re(ZO_2)*abs(Z21^2/(ZO_2+Z22)^2)/Re((ZO_2*Z11-Z21*Z12+Z22*Z11)/(ZO_2+Z22))}{\[\displaystyle G={\it Re} \left( {\it ZO\_2} \right)  \left| {\frac {{{\it Z21}}^{2}}{ \left( {\it ZO\_2}+{\it Z22} \right) ^{2}}} \right| \\
+\mbox{} \left( {\it Re} \left( {\frac {{\it ZO\_2}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it Z11}}{{\it ZO\_2}+{\it Z22}}} \right)  \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Simplificando, asumiendo ZO\_2 real}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e32 := `assuming`([simplify(e32)], [ZO_2::real])}{\[\displaystyle \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{G = ZO_2*abs(Z21^2/(ZO_2+Z22)^2)/Re((ZO_2*Z11-Z21*Z12+Z22*Z11)/(ZO_2+Z22))}{\[\displaystyle G={\it ZO\_2}\, \left| {\frac {{{\it Z21}}^{2}}{ \left( {\it ZO\_2}+{\it Z22} \right) ^{2}}} \right|  \left( {\it Re} \left( {\frac {{\it ZO\_2}\,{\it Z11}\\
+\mbox{}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it Z11}}{{\it ZO\_2}+{\it Z22}}} \right)  \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+¿Sustituyendo ZO (e25) en la expresion de G? (no depende de ZO)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e33 := subs(e25, e32)}{\[\displaystyle {\it e33}\, := \,{\it subs} \left( {\it e25},{\it e32} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{G = ZO_2*abs(Z21^2/(ZO_2+Z22)^2)/Re((ZO_2*Z11-Z21*Z12+Z22*Z11)/(ZO_2+Z22))}{\[\displaystyle G={\it ZO\_2}\, \left| {\frac {{{\it Z21}}^{2}}{ \left( {\it ZO\_2}+{\it Z22} \right) ^{2}}} \right|  \left( {\it Re} \left( {\frac {{\it ZO\_2}\,{\it Z11}\\
+\mbox{}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it Z11}}{{\it ZO\_2}+{\it Z22}}} \right)  \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{Simplificando*asumiendo*parametros*de*impedancia*complejos}{\[\displaystyle {\it Simplificando}\,{\it asumiendo}\,{\it parametros}\,\\
+\mbox{}{\it de}\,{\it impedancia}\,{\it complejos}\]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e33 := `assuming`([simplify(e33)], [Z11::complex, Z12::complex, Z21::complex, Z22::complex])}{\[\displaystyle \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{G = ZO_2*abs(Z21^2/(ZO_2+Z22)^2)/Re((ZO_2*Z11-Z21*Z12+Z22*Z11)/(ZO_2+Z22))}{\[\displaystyle G={\it ZO\_2}\, \left| {\frac {{{\it Z21}}^{2}}{ \left( {\it ZO\_2}+{\it Z22} \right) ^{2}}} \right|  \left( {\it Re} \left( {\frac {{\it ZO\_2}\,{\it Z11}\\
+\mbox{}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it Z11}}{{\it ZO\_2}+{\it Z22}}} \right)  \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Simplifiando la ganancia medida por el NFA, con las asunciones adecuadas}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e34 := `assuming`([simplify(e21)], [k::positive, B::positive, TCOLD::positive, THOT::positive, RNS::positive, ZNFA::positive, Z11::complex, Z12::complex, Z21::complex, Z22::complex])}{\[\displaystyle \]}
+\mapleinline{inert}{2d}{e34 := `assuming`([simplify(e21)], [k::positive, B::positive, TCOLD::positive, THOT::positive, RNS::positive, ZNFA::positive, Z11::complex, Z12::complex, Z21::complex, Z22::complex])}{\[\displaystyle \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{GDES_NFA = 4*RNS*ZNFA*abs(Z21^2/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)^2)}{\[\displaystyle {\it GDES\_NFA}=4\,{\it RNS}\,{\it ZNFA}\, \left| {\frac {{{\it Z21}}^{2}}{ \left( {\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right| \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+El factor relaciona la ganancia de la red en el sistema desacoplada y medida por el NFA contra la ganancia nominal, en un sistema acoplado}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e35 := K = GDES_NFA/G}{\[\displaystyle {\it e35}\, := \,K={\frac {{\it GDES\_NFA}}{G}}\]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{K = GDES_NFA/G}{\[\displaystyle K={\frac {{\it GDES\_NFA}}{G}}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Sustituyendo las expresiones de ganancia GDES\_NFA (e34, e21) y G (e33)}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e36 := subs(e33, e34, e35)}{\[\displaystyle {\it e36}\, := \,{\it subs} \left( {\it e33},{\it e34},{\it e35} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{K = 4*RNS*ZNFA*abs(Z21^2/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)^2)*Re((ZO_2*Z11-Z21*Z12+Z22*Z11)/(ZO_2+Z22))/(ZO_2*abs(Z21^2/(ZO_2+Z22)^2))}{\[\displaystyle K=4\,{\it RNS}\,{\it ZNFA}\, \left| {\frac {{{\it Z21}}^{2}}{ \left( {\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right| {\it Re} \left( {\frac {{\it ZO\_2}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it Z11}}{{\it ZO\_2}+{\it Z22}}} \right) \\
+\mbox{}{{\it ZO\_2}}^{-1} \left(  \left| {\frac {{{\it Z21}}^{2}}{ \left( {\it ZO\_2}+{\it Z22} \right) ^{2}}} \right|  \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+Simplificando, con las suposiciones adecuadas}\end{Maple Normal}
+
+}\end{Maple Normal}
+
+\mapleinline{inert}{2d}{e36 := `assuming`([simplify(e36)], [Z11::complex, Z12::complex, Z21::complex, Z22::complex, RNS::positive, ZNFA::positive])}{\[\displaystyle \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{K = 4*RNS*ZNFA*Re((ZO_2*Z11-Z21*Z12+Z22*Z11)/(ZO_2+Z22))*abs((ZO_2+Z22)^2/(ZNFA*RNS+ZNFA*Z11-Z21*Z12+Z22*RNS+Z22*Z11)^2)/ZO_2}{\[\displaystyle K=4\,{\it RNS}\,{\it ZNFA}\,{\it Re} \left( {\frac {{\it ZO\_2}\,{\it Z11}-{\it Z21}\,{\it Z12}\\
+\mbox{}+{\it Z22}\,{\it Z11}}{{\it ZO\_2}+{\it Z22}}} \right)  \left| {\frac { \left( {\it ZO\_2}+{\it Z22} \right) ^{2}}{ \left( {\it ZNFA}\,{\it RNS}+{\it ZNFA}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it RNS}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right| \\
+\mbox{}{{\it ZO\_2}}^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+}\end{Maple Normal}
+}\end{Maple Normal}
+\mapleinline{inert}{2d}{e37 := subs(RNS = ZO_1, ZNFA = ZO_1, e34)}{\[\displaystyle {\it e37}\, := \,{\it subs} \left( {\it RNS}={\it ZO\_1},{\it ZNFA}={\it ZO\_1},{\it e34}\\
+\mbox{} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{GDES_NFA = 4*ZO_1^2*abs(Z21^2/(ZO_1^2+ZO_1*Z11-Z21*Z12+Z22*ZO_1+Z22*Z11)^2)}{\[\displaystyle {\it GDES\_NFA}=4\,{{\it ZO\_1}}^{2} \left| {\frac {{{\it Z21}}^{2}}{ \left( {{\it ZO\_1}}^{2}+{\it ZO\_1}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it ZO\_1}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right| \]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e38 := `assuming`([simplify(e37)], [ZO_1::real])}{\[\displaystyle \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{GDES_NFA = 4*ZO_1^2*abs(Z21^2/(ZO_1^2+ZO_1*Z11-Z21*Z12+Z22*ZO_1+Z22*Z11)^2)}{\[\displaystyle {\it GDES\_NFA}=4\,{{\it ZO\_1}}^{2} \left| {\frac {{{\it Z21}}^{2}}{ \left( {{\it ZO\_1}}^{2}+{\it ZO\_1}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it ZO\_1}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right| \]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{e39 := subs(e38, e32, e35)}{\[\displaystyle {\it e39}\, := \,{\it subs} \left( {\it e38},{\it e32},{\it e35} \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{K = 4*ZO_1^2*abs(Z21^2/(ZO_1^2+ZO_1*Z11-Z21*Z12+Z22*ZO_1+Z22*Z11)^2)*Re((ZO_2*Z11-Z21*Z12+Z22*Z11)/(ZO_2+Z22))/(ZO_2*abs(Z21^2/(ZO_2+Z22)^2))}{\[\displaystyle K=4\,{{\it ZO\_1}}^{2} \left| {\frac {{{\it Z21}}^{2}}{ \left( {{\it ZO\_1}}^{2}+{\it ZO\_1}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it ZO\_1}+{\it Z22}\,{\it Z11} \right) ^{2}}} \right| {\it Re} \left( {\frac {{\it ZO\_2}\,{\it Z11}-{\it Z21}\,{\it Z12}+{\it Z22}\,{\it Z11}}{{\it ZO\_2}+{\it Z22}}} \right) {{\it ZO\_2}}^{-1\\
+\mbox{}} \left(  \left| {\frac {{{\it Z21}}^{2}}{ \left( {\it ZO\_2}+{\it Z22} \right) ^{2}}} \right|  \right) ^{-1}\]}
+\end{maplelatex}
+\end{maplegroup}
+\mapleinline{inert}{2d}{solve(Typesetting:-delayDotProduct(U+S, C) = Z, C)}{\[\displaystyle {\it solve} \left( {\it delayDotProduct} \left( U+S,C \right) =Z,C \right) \]}
+\begin{maplegroup}
+\mapleresult
+\begin{maplelatex}
+\mapleinline{inert}{2d}{RootOf(-Typesetting:-delayDotProduct(U+S, _Z)+Z)}{\[\displaystyle {\it RootOf} \left( -{\it delayDotProduct} \left( U+S,{\it \_Z} \right) \\
+\mbox{}+Z \right) \]}
+\end{maplelatex}
+\end{maplegroup}
+\begin{Maple Normal}{
+\begin{Maple Normal}{
+\mapleinline{inert}{2d}{}{\[\displaystyle \]}
+}\end{Maple Normal}
+}\end{Maple Normal}
+\end{document}

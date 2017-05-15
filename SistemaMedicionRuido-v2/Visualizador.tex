@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=3.5cm,bottom=2cm,
+bindingoffset=5mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Fuente escalable
+\usepackage{lmodern}
+\usepackage[english,spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,textcomp}
+\usepackage{array}
+\usepackage{supertabular}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{hhline}
+\usepackage[pdftex]{graphicx}
+%Figuras al lado del texto
+\usepackage{wrapfig} 
+%Figuras flotantes alrededor del texto
+%por defecto a la derecha del texto
+\usepackage[rflt]{floatflt}
+
+\usepackage{microtype}
+
+% Bibliografia
+%\usepackage{bibtex}
+\usepackage{biblatex}
+\bibliographystyle{amsplain}
+\bibliography{Bibliografia.bib}
+% Formato de unidades
+\usepackage{siunitx}
+
+% Graficos
+\usepackage{tikz}
+% Esquematicos
+\usepackage[siunitx, american, cuteinductors, smartlabels]{circuitikz}
+% Tablas con ancho establecido por usuario
+\usepackage{tabularx}
+% Agrega comandos extra al comando tabular
+% \toprule, \midrule, \bottomrule
+\usepackage{booktabs}
+% Permite unir varias filas en tablas
+\usepackage{multirow}
+% Encabezados personalizados
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+\makeatletter
+\newcommand\arraybslash{\let\\\@arraycr}
+\makeatother
+\setlength\tabcolsep{1mm}
+\renewcommand\arraystretch{1.3}
+\newcounter{Table}
+\renewcommand\theTable{\arabic{Table}}
+\newcounter{Drawing}
+\renewcommand\theDrawing{\arabic{Drawing}}
+\title{}
+\author{}
+\date{2017-03-28}
+
+% Cabeceras
+\pagestyle{fancy}
+% Borra cabecera y pie actuales
+\fancyhf{}
+% Cintillo cabecera
+\chead{
+	\includegraphics[width=150mm]{Imagenes/Cabecera.png}
+}
+
+\begin{document}
+	\section{Equipos que conforman el sistema}
+	%\include{FuentesRuidoN4000}
+	%\include{ControladorAtenuadoresAisladores11713}
+	%\include{AnalizadorFiguraRuidoN8975}	
+	%\include{BancoAtenuadoresN2002}
+	%\include{PuenteLanE5810}
+	\include{Conectores}
+\end{document}

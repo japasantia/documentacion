@@ -1,0 +1,540 @@
+% This file was converted to LaTeX by Writer2LaTeX ver. 1.4
+% see http://writer2latex.sourceforge.net for more info
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T3,T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[noenc]{tipa}
+\usepackage{tipx}
+\usepackage[geometry,weather,misc,clock]{ifsym}
+\usepackage{pifont}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{wasysym}
+\usepackage{amssymb,amsfonts,textcomp}
+\usepackage{array}
+\usepackage{supertabular}
+\usepackage{hhline}
+\usepackage{graphicx}
+\makeatletter
+\newcommand\arraybslash{\let\\\@arraycr}
+\makeatother
+\setlength\tabcolsep{1mm}
+\renewcommand\arraystretch{1.3}
+\newcounter{Table}
+\renewcommand\theTable{\arabic{Table}}
+\newcounter{Drawing}
+\renewcommand\theDrawing{\arabic{Drawing}}
+\title{}
+\begin{document}
+Fuentes de ruido SNS serie N4000A (N4000A, N4001, N4002)
+
+	\begin{figure}[h!]
+		\centering
+		\begin{minipage}{18.516cm}
+			\includegraphics{Imagenes/EsquemaConectors35mm.png}
+		\end{minipage}
+		\caption{Sistema para medición de figura de ruido}
+		\label{Fig:EsquemaSistemaMedicion}
+	\end{figure}
+
+\subsection{Principio de operación de la fuente de ruido}
+En la figura 1 se muestra un diagrama de bloques que muestra la estructura interna de las fuentes de ruido de la serie N4000. La fuente de ruido requiere de una tensión de alimentación de +28V para su operación. En las fuentes de ruido N4000A y N4001A, un inversor de voltaje interno convierte esta tensión \ {}-25 V y la aplica al regulador de corriente que alimenta al bloque regulador de corriente para el diodo generador de ruido. El modelo N4002 emplea una polarización positiva, asi que no posee un inversor de voltaje en su interior.
+
+El bloque regulador de corriente se encarga además de realizar la conmutación necesaria para producir los estados de ruido ON y OFF.
+
+Las fuentes de ruido SNS poseen una memoria EEPROM no volátil. Las fuentes de ruido SNS utiliza emplean un bus serial (two-wire bus) para transferencia de datos entre la fuente de ruido y el NFA. El NFA puede leer y modificar estos, que incluyen modelo, numero de serial y la configuración de la intensidad de corriente de diodo y datos de calibración. El NFA debe proveer una alimentación de +5 V a la interfaz serial, la memoria EEPROM y el sensor digital de temperatura.
+
+El termómetro digital esta termicamente acoplado al ensamble de microondas.
+
+Cuando la SNS esta en el estado ON, el diodo produce ruido de banda ancha el cual se inyecta al atenuador. El atenuador fija el valor final de ENR y establece la impedancia de salida de la SNS. Este atenuador es de 16 dB en los modelos N4000A para entregar ENR de 5 dB. Los modelos de SNS N4001A y N4002A utilizan un atenuador de 6 dB \ para valor nominale de ENR de 15 dB.
+
+Estas fuentes cuentan con capacidad de descargar los datos de ENR al analizador, los datos de calibración para el ENR almacenados disminuyen el error. Integra un sensor de temperatura [1].
+
+Las características de salida de una fuente de ruido vienen dadas en función de su rango de frecuencia y la razón de ruido en exceso (ENR). Son comunes fuentes de ruido con valores nominales de ENR entre \ 6dB y 15 dB. Los valores de ENR son calibrados en puntos específicos de frecuencia.
+
+Se emplean fuentes de ruido con bajo valor de ENR para minimizar el error por la no linealidad del detector de ruido. El error sera menor si la medida se realiza sobre un rango menor, en la zona de mayor linealidad, del detector de ruido. En este caso se emplea una fuente con ENR de 6 dB. [3]
+
+Se debe emplear una fuente de ruido con un conector adecuado para el DUT en vez de emplear un adaptador, en especial para dispositivos de alta ganancia. Los valores de ENR para una \ fuente de ruido aplican solo hasta el su conector. Un adaptador añade perdidas a los valores de ENR, la incertidumbre en estas perdidas incrementa la incertidumbre total en la medición. Si se usa un adaptado, se deben tomar en cuenta sus perdidas. [3].
+
+Es importante emplear un NS con el menor cambio en su impedancia de salida entre sus estado de encendido y apagado. Estos cambios de impedancia alteran el acoplamiento entre la NS y el DUT lo que conlleva a cambos en la ganancia y en la figura de ruido del DUT. Las fuentes de ruido comerciales de 6dB ENR limitan el cambio del coeficiente de reflexión entre los estados ON y OFF a menos de 0.01 a frecuencias hasta de 18 GHz. [3]
+
+Las fuentes de ruido con bajo valor de ENR son ideales para medición, sin embargo, las fuentes de alto ruido son necesarias para calibrar el rango dinámico completo del instrumento. Los NFA pueden tomar en cuenta las distintas tablas de ENR requeridas para la calibración y medida. [3]
+
+Una fuente con un bajo valor de ENR necesitara en el instrumento un menor valor de atenuación para cubrir el rango dinámico, excepto cuando la ganancia del DUT es muy alta. Emplear menor atenuación redice la figura de ruido del instrumento de medición, lo cual a su vez reduce la incertidumbre en la medición. [3]
+
+Las SNS pueden generar ruido en dos estados ON y OFF. Cuando se activa el estado OFF produce ruido térmico \ en banda RF generado por agitación térmica de sus componentes de RF de acuerdo a su temperatura física. Cuando se activa en ON aún produce ruido térmico y ruido adicional conocido como ruido en exceso.
+
+Estos dos niveles de ruido se usan para medición de \ ganancia \ y ruido agregado por parte del dispositivo bajo prueba, y por consiguiente, su figura de ruido.
+
+Los valores de ENR son dados en puntos de frecuencia cardinales sobre el rango de frecuencia de cada fuente, las parejas de datos frecuencia/ENR están almacenado en una EEPROM interna así como también los datos de incertidumbre y el coeficiente de reflexión complejo en ambos estados ON y OFF, \ documentados en el reporte de calibración. [1.8]. El ENR relaciona el nivel de ruido en exceso al ruido obtenido con la temperatura estándar de 296 K o al nivel de ruido que existe a la temperatura a estándar de 296 K. El valor de ENR no incluye la componente de ruido en OFF. 
+
+\subsection[Precauciones]{Precauciones}
+El modulo de diodo interno es sensible a la estática, que puede dañarlo o alterar la calibración. No se debe rotar la fuente al momento de la conexión al NFA para evitar daños internos. \ Se debe emplear un capacitor de bloqueo para corriente directa DC cuando se conecte la fuente SNS a un sistema donde este presente un voltaje DC en el conductor central.
+
+En los datos de la EEPROM se incluye además incluye los datos de incertidumbre \ en ENR y los datos del coeficiente de reflexión en los estados ON y OFF de las fuentes SNS.
+
+Las fuentes de ruido SNS incluyen un termómetro, el cual monitorea la temperatura ambiente, este valor puede ser transferido al NFA, como el valor Tcold.
+
+Posee dos conectores, uno de ellos con 12 pines para alimentación de potencia y transferencia de datos. El conector de salida es un macho APC-3.5, opcionalmente dispone de conector N para los modelos N4000A y N4001A.
+
+El análisis de incertidumbre esta basado en la guía ISO/TAG4, el valor de incertidumbre solo es valido para los tipos conectores APC 3.5 mm y Tipo N (opción 001). Los valores de incertidumbre son validos únicamente a temperatura ambiente (23 °C +- 1 °C).
+
+\subsection{Que significa Excess Noise Ratio}
+El ENR Razón de ruido en exceso , cuando la fuente se comanda en OFF produce ruido debido a la agitación térmica de los componentes de RF en un nivel que va de acuerdo a su temperatura física. Cuando se comanda en ON todavía produce el ruido térmico además de una componente adicional, conocida como ruido en exceso. Se usan estos dos niveles de ruido para medir la ganancia y el ruido adicionado del DUT, y por consiguiente su figura de ruido.
+
+Periodo entre calibraciones: 12 meses [2.19].
+
+Calibración. Niveles estándar de calibración
+
+Opción A1R (calibration against 1-level removed reference standard): el desempeño solo puede ser apareado con un estándar de los laboratorios de Keysight (Roseville Standards Lab).
+
+Opción APR (calibration against a primary reference standard): el desempeño solo puede ser igualado \ al Laboratorio Nacional de Física de Reino Unido (National Physical Laboratory).
+
+N4000A \ 
+
+Empleada para medir dispositivos con baja figura de ruido, que sean sensibles a pequeños cambios en la impedancia de entrada (como la mayoría de los FET de GaAs). Esta fuente mantiene su impedancia constante ya sea encendida apagada, de esta forma los cambios en la ganancia del DUT son reducidos. Los cambios de ganancia en el DUT se enmascaran como errores en la figura de ruido. Esta fuente incluye atenuación interna, con el objeto de proveer mayor aislamiento en su salida. SU impedancia de salida es menos susceptible a las condiciones ON OFF que la impedancia del N4001A con un atenuador externo. La atenuación extra en N4000A esta incluida en la calibración.
+
+Se emplea además para medir DUT con muy baja figura de ruido, siempre que esta no exceda de 15 dB.
+
+\subsection[N4001A]{N4001A}
+Medición de F hasta 30dB en aplicaciones de propósito general. 
+
+\begin{center}
+\tablefirsthead{}
+\tablehead{}
+\tabletail{}
+\tablelasttail{}
+\begin{supertabular}{|m{5.323cm}|m{4.2400002cm}|m{4.197cm}|m{3.03cm}|}
+\hline
+\centering Model SNS &
+\centering N4000A &
+\centering N4001A &
+\centering\arraybslash N4002A\\\hline
+\centering Rango de frecuencia &
+\centering 10 MHz a 18 GHz &
+\centering 10 MHz a 18 GHz &
+\centering\arraybslash 10MHz a 26.5 GHz\\\hline
+\centering Conector &
+\centering APC 3.5 (m) con opción de Tipo-N (m) &
+\centering APC 3.5 (m) con opción de Tipo-N (m) &
+\centering\arraybslash APC 3.5 (m)\\\hline
+\centering ENR nominal &
+\centering 6 dB &
+\centering 15 dB &
+\centering\arraybslash 30 dB\\\hline
+\centering ENR rango &
+\centering 4.5 – 6.5dB &
+\centering 14 – 16 dB &
+\centering\arraybslash 12 – 17 dB\\\hline
+\centering Rango F en el DUT &
+\centering {\textless} 20 dB &
+\centering {\textless} 30 dB &
+~
+\\\hline
+\centering Rango temperatura &
+\multicolumn{3}{m{11.867cm}|}{\centering 0 a 55 ºC [1.8]}\\\hline
+\centering Precisión  &
+\multicolumn{3}{m{11.867cm}|}{{\centering ± 1 a 25 ºC \par}
+
+\centering ± 2 en 0 ºC a 55 ºC [1.8]}\\\hline
+\centering Impedancia &
+\centering 50 Ω &
+\centering 50 Ω &
+\centering\arraybslash 50 Ω\\\hline
+\centering Máxima potencia reversa &
+\centering 1 W &
+\centering 1 W &
+\centering\arraybslash 1 W\\\hline
+\centering Variación ENR con temperatura &
+\multicolumn{3}{m{11.867cm}|}{\centering {\textless} 0.01 dB / °C de 30 MHz a 26.\% MHz}\\\hline
+\centering Sensor de temperatura &
+\multicolumn{3}{m{11.867cm}|}{\centering Rango 0 a 55ºC}\\\hline
+ &
+\multicolumn{3}{m{11.867cm}|}{\centering Resolución 0.25ºC}\\\hhline{~---}
+ &
+\multicolumn{3}{m{11.867cm}|}{\centering Precisión ± 1º a 25ºC \ ±2 º de 0º a 55ºC}\\\hhline{~---}
+\end{supertabular}
+\end{center}
+\subsection{Condiciones ambientales recomendadas }
+\begin{center}
+\begin{tabular}{|m{3.291cm}|m{2.418cm}|m{3.0809999cm}|}
+\hline
+\centering Condición ambiental &
+\multicolumn{2}{m{5.6990004cm}|}{\centering Requisito}\\\hline
+\centering Temperatura &
+\centering Operación &
+\centering\arraybslash 0 °C a 55 °C\\\hline
+ &
+\centering Almacenamiento &
+\centering\arraybslash {}-55 °C a 75 °C\\\hhline{~--}
+\centering Humedad &
+~
+ &
+\centering\arraybslash {\textless} 95\% RH\\\hline
+\centering Altitud  &
+\centering Operación &
+\centering\arraybslash {\textless} 4600 m\\\hline
+ &
+\centering Almacenamiento &
+\centering\arraybslash {\textless} 153000 m\\\hhline{~--}
+\end{tabular}
+\end{center}
+\subsection{}
+La salida de una fuente de ruido se da usualmente en términos de Razón de Ruido en Exceso (ENR), la cual debe ser conocida de forma previa. Cualquier incertidumbre en los valores de ENR se transfiere a la incertidumbre de F en forma directa, dB por dB.
+
+Se debe emplear una fuente de ruido de ENR 6 dB cuando el DUT es altamente sensible a los cambios de impedancia en su entrada. Cuando existe la necesidad de medir figuras de ruido muy bajas. Cuando la figura de ruido no excede 20 dB.
+
+\subsection{}
+\subsection[Datos de SWR, coeficiente de reflexión e incertidumbre en ENR [4{]}]{Datos de SWR, coeficiente de reflexión e incertidumbre en ENR [4]}
+\begin{center}
+\begin{tabular}{m{2.1599998cm}|m{2.428cm}|m{1.8429999cm}|m{4.829cm}|m{4.204cm}|}
+
+\hline
+\multicolumn{1}{|m{2.1599998cm}|}{~
+} &
+\centering Rango de frecuencia (GHz) &
+\centering SWR máxima  &
+{\centering Coeficiente de reflexión\par}
+
+\centering para los estados ON / OFF &
+\centering\arraybslash Incertidumbre ENR\\\hline
+\multicolumn{1}{|m{2.1599998cm}|}{\centering N4000A} &
+\centering 0.01 – 1.5 &
+\centering {\textless} 1.06 : 1 &
+\centering 0.03 &
+\centering\arraybslash 0.16\\\hline
+ &
+\centering 1,5 – 3,0 &
+\centering {\textless} 1.06 : 1 &
+\centering 0.03 &
+\centering\arraybslash 0.15\\\hhline{~----}
+ &
+\centering 3.0 – 7.0 &
+\centering {\textless}1.13 : 1 &
+\centering 0.06 &
+\centering\arraybslash 0.15\\\hhline{~----}
+ &
+\centering 7.0 – 18.0 &
+\centering {\textless} 1.22 : 1 &
+\centering 0.10 &
+\centering\arraybslash 0.16\\\hhline{~----}
+\multicolumn{1}{|m{2.1599998cm}|}{\centering N4001A} &
+\centering 0.01 – 1.5 &
+\centering {\textless} 1.15 : 1 &
+\centering 0.07 &
+\centering\arraybslash 0.14\\\hline
+ &
+\centering 1.5 – 3.0 &
+\centering {\textless} 1.15 : 1 &
+\centering 0.07 &
+\centering\arraybslash 0.13\\\hhline{~----}
+ &
+\centering 3.0 – 7.0 &
+\centering {\textless} 1.20 : 1 &
+\centering 0.09 &
+\centering\arraybslash 0.16\\\hhline{~----}
+ &
+\centering 7.0 – 18.0 &
+\centering {\textless} 1.25 : 1 &
+\centering 0.11 &
+\centering\arraybslash 0.15\\\hhline{~----}
+\multicolumn{1}{|m{2.1599998cm}|}{\centering N4002} &
+\centering 0.01 – 1.5 &
+\centering {\textless} 1.22 : 1 &
+\centering 0.10 &
+\centering\arraybslash 0.13\\\hline
+ &
+\centering 1.5 – 3.0 &
+\centering {\textless} 1.22 : 1 &
+\centering 0.10 &
+\centering\arraybslash 0.13\\\hhline{~----}
+ &
+\centering 7.0 – 18.0  &
+\centering {\textless} 1.25 : 1 &
+\centering 0.11 &
+\centering\arraybslash 0.15\\\hhline{~----}
+ &
+\centering 18.0 – 26.5 &
+\centering {\textless} 1.35 : 1 &
+\centering 0.15 &
+\centering\arraybslash 0.22\\\hhline{~----}
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\subsection{Datos de incertidumbre [1.8]}
+
+
+\begin{center}
+\begin{minipage}{17.041cm}
+Figura \stepcounter{Drawing}{\theDrawing}
+
+ [Warning: Image ignored] % Unhandled or unsupported graphics:
+%\includegraphics{FuentesderuidoN4000-img002.png}
+SWR característico a 23° C para cada modelo de SNS. 
+
+Los valores característicos son cumplidos y superados por el 90\% de los dispositivos con una confianza del 90\%
+\end{minipage}
+\end{center}
+
+\bigskip
+
+\subsection{Datos de SWR (ROE) y coeficiente de reflexión.}
+El cambio máximo del coeficiente de reflexión para la fuente de ruido entre los estados ON y OFF es de 0.01.
+
+La variación de ENR con la temperatura es menor de 0.01 dB / ºC para 30 MHz a 26.5GHz.
+
+
+\bigskip
+
+\clearpage\subsection{Conectores}
+\begin{center}
+\tablefirsthead{}
+\tablehead{}
+\tabletail{}
+\tablelasttail{}
+\begin{supertabular}{|m{2.402cm}|m{9.558001cm}|}
+\hline
+\centering Salida de SNS &
+\centering\arraybslash Estándar APC-3.5 (m) o tipo N (m) opción 0011\\\hline
+\centering Entrada SNS &
+\centering\arraybslash Conector multi pin Conectar con el cable 11730A/B/C al NFA\\\hline
+\end{supertabular}
+\end{center}
+Tabla \stepcounter{Table}{\theTable}
+
+Conectores empleados en SNS (1. Conector tipo N (opción 001) disponible solo en los modelos N4000A y N4001A
+
+
+\bigskip
+
+\subsection{Formato del archivo de datos ENR [1.4]}
+Es un archivo de texto simple que incluye todos los datos suministrados impresos en el reporte de calibración. Es un archivo que se procesa linea a linea cada linea se termina con uno de los siguientes caracteres: carácter de retorno de carro (carriage return - CR), alimentación de linea (line feed - LF) o una pareja de CR y LF. \ Cada linea debe tener menos de 100 caracteres, las lineas con espacios en blanco o tabulaciones son ignoradas.
+
+Cada linea es interpretado como uno de los siguientes tres tipos de registros: comentarios, campo de cabecera o datos de ENR.
+
+Los \ valores de ENR para cada SNS han sido medidos en puntos de frecuencia cardinales, estas parejas de frecuencia/ENR han sido almacenados en la memoria EEPROM interna de la SNS. El valor de ENR de la fuente \ relaciona el exceso de ruido en dB al nivel de ruido apropiado a la temperatura estándar, 296K. \ EL valor de ENR no incluye la componente de ruido OFF.
+
+Comentarios: deben poseer el carácter '\#' o el carácter \ {}'!' como primer elemento en la linea. \ Las lineas que comienzan \ con el carácter de comentario son ignoradas. Se puede agregar comentarios en cualquier punto del archivo.
+
+Campo de cabecera: Los campos de cabecera deben comenzar con el carácter '['. Cada registro de cabecera tiene el formato:
+
+[NombreCampo ValorOpcional]
+
+Debe existir un espacio en blanco entre NombreCampo y ValorOpcional. Los espacios después de '[' y antes de ']' son ignorados. El archivo debe comenzar con uno o más campos de cabecera.
+
+En cada archivo ENR debe existir dos campos cabecera obligatorios: Filetype y Version.
+
+
+
+\begin{center}
+\begin{minipage}{11.61cm}
+Campos de cabecera obligatorios
+ [Warning: Image ignored] % Unhandled or unsupported graphics:
+%\includegraphics{FuentesderuidoN4000-img003.png}
+\end{minipage}
+\end{center}
+
+\bigskip
+
+\subsection{Datos de ENR}
+Los registros de ENR deben ordenarse de acuerdo a la frecuencia, de menor a mayor. El analizador de figura de ruido interpreta las lineas que no son ni comentarios ni cabeceras como datos de ENR. Los datos de ENR tienen la forma general.
+
+Freq [Funit] ENR [Eunit] [Euncert [on\_mag on\_phase off\_mag off\_phase [on\_mag\_uncert [on\_phase\_uncert off\_mag\_uncert off\_phase\_uncert]]]]
+
+Freq: campo de frecuencia.
+
+Funit: (opcional) unidad de frecuencia, valores validos son Hz, kHz, MHz, GHz, Thz. Por defecto es Hz.
+
+
+
+\begin{center}
+\begin{minipage}{10.61cm}
+Campos de cabecera opcionales
+ [Warning: Image ignored] % Unhandled or unsupported graphics:
+%\includegraphics{FuentesderuidoN4000-img004.png}
+\end{minipage}
+\end{center}
+ENR: valor de ENR medido a una frecuencia especifica.
+
+Eunit: (opcional) Unidad de medida para el valor de ENR. El único valor soportado es dB.
+
+Euncert: (opcional) Valor de incertidumbre para el valor respectivo de ENR. EL campo Euncert debe estar presente si se suministra los datos de coeficiente de reflexión.
+
+on\_mag: (opcional) magnitud del coeficiente de reflexión con la fuente SNS encendida (ON).
+
+on\_phase: (opcional) fase del coeficiente de reflexión con la fuente SNS encendida (ON).
+
+off\_mag: (opcional) magnitud del coeficiente de reflexión con la fuente SNS apagada (OFF).
+
+off\_phase: (opcional) fase del coeficiente de reflexión con la fuente SNS apagada (OFF).
+
+on\_mag: (opcional) magnitud del coeficiente de reflexión con la fuente SNS encendida (ON).
+
+on\_mag\_uncert: (opcional) incertidumbre en la magnitud del coeficiente de reflexión con la fuente SNS encendida (ON).
+
+on\_phase\_uncert: (opcional) incertidumbre en la fase de reflexión con la fuente SNS encendida (ON).
+
+off\_mag\_uncert : (opcional) incertidumbre en la magnitud del coeficiente de reflexión con la fuente SNS apagada (OFF).
+
+off\_phase\_uncert: (opcional) incertidumbre en la fase del coeficiente de reflexión con la fuente SNS apagada (OFF).
+
+
+\bigskip
+
+Cada campo se separa con un espacio o con una coma simple (,). Todos los campos son numéricos con excepción de dos campos opcionales para unidad de medida. Los campos numéricos pueden tener un indicador de signo opcional (+ o -), seguido por una secuencia de uno o más dígitos que pueden incluir un único punto decimal dentro de la secuencia) y \ seguido por un carácter indicador de exponente adicional (e o E). Por ejemplo 10e6 representa 10MHz.
+
+
+\bigskip
+
+
+\bigskip
+
+[Warning: Draw object ignored]
+
+\clearpage\subsection[Importancia del coeficiente de reflexión de la fuente de ruido]{[Warning: Draw object ignored]Importancia del coeficiente de reflexión de la fuente de ruido}
+Un coeficiente de reflexión distinto de cero contribuye con reflexiones entre el DUT y la fuente. Las reflexiones causan incertidumbre en la potencia de ruido que emerge de la fuente. Un desacople de impedancias del valor \ ideal de 50 Ohm, causa que la medida se refiera al valor de impedancia real. Keysight mantiene esta incertidumbre en las fuentes SNS bajo 0.1 dB.
+
+El cambio del coeficiente de reflexión entre el encendido y apagado de la fuente pueden provocar variaciones en la ganancia del DUT lo que a su vez puede causar errores en la medición de figura de ruido. Este problema se elimina con las fuentes SNS N4000, para el cual el cambio en el coeficientes de reflexión es menor a 0.01.
+
+\subsection{Cuidados para el conector APC-3.5 (m)}
+Este conector tiene una expectativa de vida de 1000 conexiones si se usan las precauciones dadas en [1.10], como la de usar únicamente una llave de torque para ajustar al torque recomendado (como Keysight 20 mm torque wrench 8710-1764). Ajustar solo por la nuez del conector para evitar la rotación de un conector con respecto al otro ya que la fricción causa un rápido desgaste. Los conectores deben limpiarse cada 10 conexiones. Aparear los APC con conectores en buenas condiciones.
+
+Razón par usar dos fuentes de ruido en mediciones con el NFA N8975
+
+Por ejemplo se usa una fuente de ruido en forma de guía de onda, la cual no permite calibrar el NFA a bajas frecuencias. Se usan dos tablas de ENR, una la de calibración permite calibrar a bajas frecuencia y la otra tabla de ENR la de medición para la medidas de alta frecuencia.
+
+Otro ejemplo es la medición de DUTs de muy bajo ruido y de muy alta ganancia, se emplean dos tablas de ENR. Se usa una fuente de alto ENR para la calibración del NFA y luego se usa una fuente de bajo ENR para medición sobre el DUT. L fuente N4000 esta diseñada para caracterización de dispositivos sensibles a la impedancia de entrada como FETs y amplificadores de UHF. Posee un pequeño cambio en el coeficiente de reflexión (({\textless} 0.01) \ cuando la fuente pasa de encendido a apagado.
+
+\begin{center}
+\begin{minipage}{14.88cm}
+Figura \stepcounter{Drawing}{\theDrawing}
+
+ [Warning: Image ignored] % Unhandled or unsupported graphics:
+%\includegraphics{FuentesderuidoN4000-img005.png}
+Llave de torque de 20 mm de Keysight, para ajuste de conectores APC-3.5 (m)
+\end{minipage}
+\end{center}
+Operaciones con el NFA y las fuentes de ruido
+
+[Warning: Draw object ignored]
+
+[Warning: Draw object ignored]
+
+
+
+
+[Warning: Draw object ignored]
+
+
+\bigskip
+
+[Warning: Draw object ignored]
+
+
+\bigskip
+
+
+\bigskip
+
+
+\bigskip
+
+
+\bigskip
+
+
+\bigskip
+
+
+\bigskip
+
+
+\bigskip
+
+Presione el botón preset [panel system]. 
+
+Presione botón ENR [panel measure]. 
+
+Presione SNS Setup [tecla menú pantalla]. 
+
+Conectar la SNS al NFA empleando el cable 11730
+
+\subsection{Selección de fuente de ruido}
+Una fuente de bajo ruido minimiza el error debido a las no linealidades del detector de ruido. El error sera más pequeño si la medida es realizada sobre un rango pequeño y por ende más lineal del detector del instrumento. 
+
+\subsection{Fuentes de 15 dB para}
+Aplicaciones de propósito general hasta figuras de ruido de 30dB.
+
+Calibración realizada por el usuario del \ rango dinámico del instrumento completo, antes de medir dispositivos de alta ganancia.
+
+\subsection{Fuentes de 6 dB para}
+Medición en dispositivos de alta ganancia, especialmente sensibles a los cambios de impedancia de fuente.
+
+El dispositivo bajo prueba posee muy baja figura de ruido.
+
+La figura de ruido no excede de 15 dB
+
+
+
+\begin{center}
+ [Warning: Image ignored] % Unhandled or unsupported graphics:
+%\includegraphics{FuentesderuidoN4000-img006.png}
+
+\end{center}
+\subsection[Selección del estándar de la fuente de ruido [1.34{]}]{Selección del estándar de la fuente de ruido [1.34]}
+El estándar de referencia define las frecuencias sobre las cuales deben realizarse las mediciones, tanto en la misma referencia como en el DUT. 
+
+La precisión en la medición del ENR del DUT es dependiente de la precisión en la calibración del estándar de referencia. Así la incertidumbre en la medición es dependiente en la incertidumbre en la referencia. Por lo tanto para maximizar la exactitud y minimizar la incertidumbre, Agilent recomienda emplear una referencia calibrada por un laboratorio especialista (national standards laboratory).
+
+Los valores de ENR de una referencia estándar son validos únicamente a la temperatura de calibración.
+
+Los valores de incertidumbre de una referencia estándar son validos únicamente a la temperatura ambiente (23 ºC +- 1ºC)(296K).
+
+Puede emplearse más de un estándar de referencia para resultados con mayor exactitud, Agilent recomienda emplear el mismo estándar que la fuente de ruido objeto de medida.
+
+El proceso de medida requiere de varios adaptadores y cables, Agilent recomienda que deben ser de buena calidad y de precisión. Estos deben estar especificados para el rango de frecuencia en los que serán usados.
+
+Las fuentes de ruido de Agilent pueden emplearse en frecuencias no cardinales. Pero los valores de ENR y su incertidumbre deben ser interpolados de la data disponible.
+
+
+
+\begin{center}
+ [Warning: Image ignored] % Unhandled or unsupported graphics:
+%\includegraphics{FuentesderuidoN4000-img007.jpg}
+
+\end{center}
+\begin{center}
+\begin{minipage}{13.707cm}
+Figura \stepcounter{Drawing}{\theDrawing}
+
+ [Warning: Image ignored] % Unhandled or unsupported graphics:
+%\includegraphics{FuentesderuidoN4000-img008.png}
+\-Tabla para ingreso de ENR en el NFA
+\end{minipage}
+\end{center}
+
+\bigskip
+
+Utilizando las fuentes con el NFA
+
+Transferir datos de ENR de la fuente de ruido al NFA
+
+
+\bigskip
+
+Bibliografía
+
+[1] N4000A, N4001A, N4002A SNS SERIES NOISE SOURCES TECHNICAL OVERVIEW
+
+[2] N4000A, N4001A, AND N4002A SNS SERIES SMART NOISE SOURCES-AGILENT
+
+[3] 10 HINTS FOR MAKING SUCCESSFUL NOISE FIGURE MEASUREMENTS-AGILENT
+
+
+\bigskip
+
+[4] KEYSIGHT SMART NOISE SOURCE SNS SERIES N400A, N4001A, AND N4002A-KEYSIGHT
+\end{document}
