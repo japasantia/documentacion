@@ -1,0 +1,397 @@
+\documentclass[10pt, letter]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+%\usepackage[spanish]{babel}
+\usepackage{tikz}
+\usepackage[siunitx, american, cuteinductors, smartlabels]{circuitikz}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\definecolor{AlleeRed}{rgb}{0.5, 0, 0}
+
+
+\begin{document}
+	
+	\title{Medición de Figura de Ruido}
+	\maketitle
+	
+	\section{Ruido térmico}
+	El \emph{ruido térmico} o \emph{ruido de Johson} encuentra su origen en las colisiones aleatorias de los portadores de carga dentro de la estructura de celosía del material. Es generado por cualquier elemento de circuito que presente perdidas de energía, como lo son resistores o líneas de transmisión. Existen otras fuentes de ruido, externas a un dispositivo, generadas por la absorcón atmosferica y la radicaión cosmica de fondo, que puede considerarse de origen térmico ya que es producto del movimiento aleatorio de particulas cargadas.
+	
+	  El resistor de la figura \ref{F:RESISTOR_RUIDO} se encuentra a una temperatura $T (Kelvin)$, la energia cinetica de los electrones en el cuerpo del resistor es proporcional a su temperatura aboluta.  El movimiento aleatorio de los electrones se manifiesta como pequñas fluctuaciones de voltage, sensible a través de sus terminales. 
+	 
+	 \begin{figure}
+		\centering
+		\begin{circuitikz}
+			\draw 
+				(0, 0) to[R, l_=$R$] (0, 2)
+				to [short, -o] (2, 2)
+				to [open, v^=$v_{n}(t)$] (2, 0)
+				to [short, o-] (0, 0);
+		\end{circuitikz}
+		\caption{Fuente de ruido termico}
+		\label{F:RESISTOR_RUIDO}
+	\end{figure}	
+	
+	 El valor instantane de $v_{n}(t)$ de no puede ser precisado debido a su naturaleza estocástica, pero puede ser modelado por sus valores estadísticos. El valor medio de ésta tensión es cero y su valor cuadrátcio medio, en un ancho de banda estrecho $B$, viene dado por la aproximación de \emph{Rayleight-Jeans}. Este puede ser modelado con una fuente de voltage en serie o una fuente de corriente en paralelo con los siguientes valores cuadraticos medios,  ecuaciones \eqref{E:VOLTAGE_RUIDO} y \eqref{E:CORRIENTE_RUIDO},	
+	
+	\begin{equation}
+		\label{E:VOLTAGE_RUIDO}	
+		\bar{v^2_{N}} = 4{\kappa}TBR{\Delta}f		
+	\end{equation}
+
+	\begin{equation}
+		\label{E:CORRIENTE_RUIDO}
+		\bar{i^2_{N}} = 4{\kappa}T{\Delta}f
+		\text{$\quad{\kappa}=1.380\dot10^{-23} \, {\SI{}\joule}{\SI{}\kelvin}$} 	
+	\end{equation}
+	
+	\noindent donde $R$ es la resistencia en \SI{}{\ohm}, ${\Delta}f$ es el ancho de banda en \SI{}{\hertz} sobre el cual el ruido es medido. El ruido térmico en un resistor es \emph{independiente} de su composición.
+	
+	\subsection{Densidad espectral}
+	
+	La potencia de ruido por unidad de ancho de banda $S$ que un resistor en equilibrio térmico a una una temperatura T entrega a través de sus terminales viene dada por. La desidad de potencia de ruido para el modelo Thevenin del resistor viene dada por
+	
+	\begin{equation}
+		\label{E:DENSIDAD_POTENCIA_VOLTAGE}
+		S_{v}(f) = 2{\kappa}TR
+	\end{equation}
+
+\noindent y la densidad de potencia de ruido para el modelo Norton del resistor resulta	
+	
+	\begin{equation}
+		\label{E:DENSIDAD_POTENCIA_CORRIENTE}
+		S_{i}(f) = 2{\kappa}TG
+	\end{equation}	
+
+\noindent donde $\kappa$ es la constante de Boltzmann, G es la conductancia del resistor en Siemens ($\SI{}\siemens$) y $R$ su resistencia en Ohms ($\SI{}\ohm$).	
+
+	La potencia total de ruido $P$ en $Watts$ en un ancho de banda bilateral, desde -B hasta +B $\SI{}\hertz$ esta dada por
+	
+	\begin{equation}
+		\label{E:POTENCIA_TOTAL_1}
+		P = 2S_{v}(f)B
+	\end{equation}
+	
+	\noindent sustituyendo \eqref{E:DENSIDAD_POTENCIA_VOLTAGE} en \eqref{E:POTENCIA_TOTAL_1} se obtiene
+	
+	\begin{equation}
+		\label{E:POTENCIA_TOTAL_2}
+		P = 4{\kappa}TRB
+	\end{equation}	
+
+	\subsection{Máxima potencia disponible}
+	
+	
+	Tensión en la carga 
+	\begin{equation}
+		\label{E:VOLTAJE_MAXIMO}
+		v_{R} =    \frac{R}{2} \text{\quad\SI{}\volt \, rms}	
+	\end{equation}
+	La potencia en la carga resulta la máxima potencia disponible
+	\begin{equation}
+		\label{E:VOLTAJE_MAXIMO}
+		P_{n} = \frac{v^2_{R}}{4R} = {\kappa}TB \text{\quad\SI{}\watt}	
+	\end{equation}	
+
+	
+	\section{Tempertura de ruido equivalente}	
+	
+	\begin{figure}
+		\centering		
+			\begin{circuitikz}
+				\draw
+					(0, 0) rectangle ++(2, 2)
+					(1, 1) node[below] {Red ruidosa}	
+					(2, 1.8) to[short, -o] (3, 1.8)
+					to[short,  i=$N_{O}$] (4, 1.8)
+					to[R, l^=$R$] (4, 0.2)
+					to[short] (3, 0.2)
+					to[short, o-] (2, 0.2);
+			\end{circuitikz}
+		\caption{Fuente de ruido termico}
+		\label{F:FUENTE_RUIDO}
+	\end{figure}
+
+	\begin{figure}
+		\centering
+			\begin{circuitikz}	
+				\draw[dotted]
+					(0, 0) rectangle ++(2, 2);	
+				\draw
+					(1, 0.2) to[R, l_=$R$] (1, 1.8)
+					to[short, -o] (3, 1.8)
+					to[short,  i=$N_{O}$] (4, 1.8)
+					to[R, l^=$R(T_E)$] (4, 0.2)
+					to[short, -o] (3, 0.2)
+					to[short] (1, 0.2);
+			\end{circuitikz}	
+		\caption{Red ruidosa remplazada por resistor a temperatura equivalente}
+		\label{F:RED_SIN_RUIDO}
+	\end{figure}
+
+	\begin{equation}
+		T_{E} = \frac{N_{0}}{{\kappa}B}	\text{\quad \SI{}\kelvin}
+		\label{E:TEMPERATURA_EQUIVALENTE_RUIDO}
+	\end{equation}
+	
+
+%	\begin{circuitikz} [american voltages, baseline=(current bounding box.center)]
+%		\ctikzset {label/align = straight}
+%		\draw (0, 0)
+%		to[V=$V_{Th}$]  (0, 2)
+%		to[R=$R_{Th}$] (2.5, 2)
+%		to[short, i=$I$, -o] (4, 2)
+%		to[short] (4.5, 2)
+%		(0,0) to[short, -o] (4, 0)
+%		to[short] (4.5, 0)
+%		node[draw, minimum width=2cm, minimum height=2.4cm, anchor=south west] at (4.5, -0.2){Load};
+%	\end{circuitikz}
+%
+%	\begin{circuitikz} [american voltages, baseline=(current bounding box.center)]
+%		\draw
+%		(0, 0) to [V=$V_{n}$] (0, 3)
+%		to[R=$R_{n}$] (3, 3)
+%		to[short, i_<=$I$, -o] (6, 3)
+%		to[short] (9, 3)
+%		(0, 0) to[short, -o] (6, 0)
+%		to[short] (9, 0)
+%		node[draw, minimum width=3cm, minimum height=4cm, anchor=south west] at (9, -0.4){Source};
+%	\end{circuitikz}
+%
+%	\begin{circuitikz}
+%		\draw
+%		(0, 0) node[mixer] (m) {}
+%		(m.1) to[short, -o] ++(-1, 0)
+%		(m.2) to[short, -o] ++(0, -1)
+%		(m.3) to[short, -o] ++(1, 0);
+%		(m.1) node[inputarrow] {}
+%		(m.2) node[inputarrow, rotate=90] {};
+%	\end{circuitikz}
+%
+%
+%
+%	\begin{tikzpicture}		
+%		\coordinate (SolarCellP) at (0.5, 0);
+%		\coordinate (ChopperP) at (4, 0);
+%		\coordinate (InverterP) at (8, 0);
+%		
+%		\begin{scope}[every node/.style={draw,ultra thick, fill=AlleeRed!30, rectangle,text width=1.5cm, minimum height=2cm, text badly centered}]
+%		
+%			\node[name=pv, pattern=grid, pattern color=AlleeRed!30]	at (SolarCellP) {\bfseries Solar Panel};	
+%			\node[name=chopper] at (ChopperP){DC-DC};
+%			\node[name=inverter] at (InverterP){DC-AC};
+%
+%		\end{scope}
+%
+%		\draw
+%			% PV to chopper
+%			(pv.30) -- (chopper.150)
+%			(pv.330) -- (chopper.210)
+%			% DC link and cap
+%			(chopper.30) -- (inverter.150)
+%			(chopper.330) -- (inverter.210)
+%			($(chopper.330)!0.4!(inverter.210)$) to[battery, l=\SI{60}{\volt}, mirror] ($(chopper.30)!0.4!(inverter.150)$)
+%   			%AC side
+%			(inverter.30)
+%			to[short] ++(1, 0)
+%			to[L] ++(1.1, 0)
+%			to[R] ++(1.1, 0)
+%			to[short] ++(1, 0) coordinate(N1)
+%			to[L, bipoles/length=0.8cm] ++(0, -1)
+%			|- (inverter.330);
+%
+%	\end{tikzpicture}
+%
+%	\begin{tikzpicture}
+%		\draw
+%			 plot coordinates{(0,0) (6,6)}
+%			[->] (0, -3.5) node[below]{$M$} -- (0, 2) node[above, scale = 1.3]{$\varepsilon$};
+%			\path (0, 0) node[draw, shape=rectangle](v0) {$v_0$};
+%	\end{tikzpicture}
+%
+%	\begin{tikzpicture}[scale=2]
+%		\tikzstyle{every node} = [draw, shape=rectangle];
+%		\path(0:0cm)			node (v0) {$v_0$};
+%		\path(0:1cm)			node (v1) {$v_1$};
+%		\path(72:1cm)		node (v2) {$v_2$};
+%		\path(2*72:1cm)		node (v3) {$v_3$};
+%		\path(3*72:1cm)		node (v4) {$v_4$};
+%		\path(4*72:1cm)		node (v5) {$v_4$};
+%
+%		\draw [->]  (v0) -- (v1)
+%			[<-] (v0) -- (v2)
+%			[->] (v0) -- (v3)
+%			[<-] (v0) -- (v4)
+%			[->] (v0) -- (v5);
+%			
+%	\end{tikzpicture}
+%
+%		\begin{tikzpicture}
+%			\draw (0,0) 	rectangle ++(2, 2) (1, 1) node[below] {$sin(x)$}
+%				(1, 3)	rectangle ++(3, 2) node[below] {$cos(x)$}
+%					rectangle (4, 3) node[below] {$tan(x)$};		
+%		\end{tikzpicture}	
+%
+
+	\section{Potencia de ruido disponible desde el DUT}
+
+	\begin{figure}
+		\centering
+		\begin{circuitikz}
+			\ctikzset{bipoles/amp/width=1.2}
+			 \draw 
+				(0, 0) to[sV, l=$2{\kappa}T_{S}B\SI{}{\watt}$] (0, 2)				
+				(0, 2) to[generic, l=$Z_{0}$, -o] (2, 2)
+				to[amp, t=DUT, -o] (6, 2) 
+				to[short] (7, 2)
+				to[generic, l=$Z_{0}$] (7, 0)
+				to[short] (6, 0)
+				to[short, o-o] (2, 0)
+				to[short] (0, 0)
+				node[ground] {};
+
+			\draw 
+				(2.5, 1.8) node[below] {${\kappa}T_{S}B$}	
+				(6.5, 1.5) node[below] {$N_{O}$};
+		\end{circuitikz}
+		\caption{Respuesta al ruido DUT}\label{F:RESPUESTA_RUIDO_DUT} 
+	\end{figure}
+	
+	\begin{equation}
+		N_O = {\kappa}BGT_S + N_A
+		\label{E:RUIDO_SALIDA_DUT}
+	\end{equation}
+
+	\begin{figure}
+		\centering
+		\begin{circuitikz}
+			\draw [->] (-0.5, 0) node[anchor=east] {$0$} -- (4, 0) node[anchor=west]{$T_{S}(\SI{}{\kelvin})$};
+			\draw	[->] (0, -0.5) node[below]{$0$} -- (0, 4) node[above]{$N_{O}(\SI{}{\watt})$};
+			\draw [thick] (0, 0.5) -- (3.5, 3.2);
+			\draw  [dotted]  
+				(1.5, 1.7) -- (2, 1.7)
+				(2, 1.7) -- (2, 2.1);
+			\draw 
+				(2, 1.7) node[right]  {Pendiente ${\kappa}T_{S}BG$}
+				(0, 0.5) node[left] {$N_A$};
+			\draw [dotted]
+				(1.5, 0) -- (1.5, 1.7)
+				(2, 0) -- (2, 1.7);
+			\draw 
+				(1.5, -0.1) node[below]{$T_{C}$}
+				(2, -0.1) node[below] {$T_{H}$};
+			\draw	[dotted]
+				(0, 1.7) -- (1.5, 1.7)
+				(0, 2.1) -- (2, 2.1);
+			\draw 
+				(-0.1, 1.7) node[left] {$N_{C}$}
+				(-0.1, 2.1) node[left] {$N_{H}$};			
+		\end{circuitikz}
+		\caption{Potencia disponible del DUT}
+	\end{figure}
+
+
+	\begin{figure}
+		\centering
+		\begin{circuitikz}
+			\draw 
+				(0, 0) to[R, l=${\kappa}T_{S}$] (0, 4)
+				(0, 4) to[short, -o] (1, 4)
+				(1, 4) to[amp, t=$A_{1}$] (4, 4)
+				(4, 4) to[amp, t=$A_{2}$] (7, 4)
+				(7, 4) to[amp, t=$A_{3}$, -o] (10, 4)
+				(10, 4) to[short] (12, 4)
+				(12, 4) to[R, l=$R_{L}$] (12, 0)
+				(12, 0) to[short] (11, 0)
+				(11, 0) to[short, o-o] (1, 0)
+				(1, 0) to[short] (0, 0)
+				node[ground] {};
+
+			\draw
+				(2.5, 4.5) node[above] {$N_{A1}, G_{1}, B$}
+				(5.5, 4.5) node[above] {$N_{A2}, G_{2}, B$}
+				(8.5, 4.5) node[above] {$N_{A3}, G_{3}, B$};
+
+			\draw
+				(1, 2.8) node[below] {${\kappa}T_{O}B$}
+
+				(4, 2.8) node[below] {${\kappa}T_{O}BG_{1}$}
+				(4, 2.3) node[below] {$N_{A1}$}
+			
+				(7, 2.8) node[below] {${\kappa}T_{O}BG_{1}G_{2}$}
+				(7, 2.3) node[below] {$BG_{2}N_{A1}$}
+				(7, 1.8) node[below] {$N_{A2}$}
+
+				(10, 2.8) node[below] {${\kappa}T_{O}BG_1{1}G_{2}G_{3}$}
+				(10, 2.3) node[below] {$BG_{3}G_{2}G_{1}N_{A1}$}
+				(10, 1.8) node[below] {$BG_{3}G_{2}N_{A2}$}
+				(10, 1.3) node[below] {$N_{A3}$};
+
+		\end{circuitikz}
+		\caption{Dispositivos en cascada}\label{F:AMPLIFICADORES_CASCADA} 
+	\end{figure}
+
+
+%	\begin{circuitikz}
+%		\draw	(0, 0) to[amp, l=\SI{10}{dB}] ++(2.5, 0);
+%		\draw	(2.5, 0) to[lowpass, l=opt.] ++(2.5, 0);			
+%	\end{circuitikz}
+
+
+%	\begin{figure}
+%		\centering
+%		\begin{circuitikz}
+%			\ctikzset{bipoles/amp/width=0.9}
+%			\draw (0, 0) to[amp, t=LNA, l_=$F{=}0.9\,$dB, o-o] ++(3, 0);
+%		\end{circuitikz}
+%		\caption{Un LNA.} \label{F:LNA}
+%	\end{figure}
+
+	\begin{figure}
+		\centering
+		\begin{circuitikz}
+			\ctikzset{bipoles/amp/width=1.5}
+			\draw
+				(0, 0) to[amp, t=$DUT_{k}$, o-o] (4, 0)
+				to[amp, t=$DUT_{k+1}$, o-o] (8, 0);
+				
+		\end{circuitikz}
+	\end{figure}
+
+	\begin{figure}
+		\centering
+		\begin{circuitikz}[american voltages]
+			\draw
+				(0, 0) to[open] (0, 4)
+				to[short, o-] (1, 4)
+				to[generic, l_=$jX_{11, k}$] (1, 2)
+				to[R, l_=$R_{11,k}$, v^>=$e_{k}$] (1, 0)
+				node[ground]{}
+
+				(2, 0) node[ground]{}
+				to[sV_<=$a'_{k}e_{k}$] (2, 4)
+				to[R, l_=$R_{22, k}$] (4, 4)
+				to[generic, l_=$jX{22, k}$] (6, 4)
+				to[short, -o] (7, 4)
+				to[short] (8, 4)
+				to[generic, l_=$jX_{11, k + 1}$] (8, 2)
+				to[R, l_=$R_{11, k + 1}$, v^>=$e_{k + 1}$] (8, 0)
+				node[ground] {}		
+				
+				(9, 0) node[ground]{}
+				to[sV_<=$a'_{k+1}e_{k+1}$] (9, 4)
+				to[R, l_=$R_{22, k + 1}$] (11, 4)
+				to[generic, l_=$jX_{22, k + 1}$, -o] (13, 4);				
+			
+		\end{circuitikz}
+		\caption{Dispositivo activo, lineal, unidireccional y su modelo equivalente}
+		\label{F:MODELO_EQUIVALENTE_DUT}
+
+	\end{figure}
+	
+
+\end{document}
