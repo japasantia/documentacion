@@ -2096,5 +2096,7 @@
     <bcf:datasource type="file" datatype="bibtex">Bibliografia.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
+    <bcf:citekey order="1">AGI02</bcf:citekey>
+    <bcf:citekey order="2">AGI03</bcf:citekey>
   </bcf:section>
 </bcf:controlfile>
