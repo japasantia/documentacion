@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[left=3cm,right=3cm,top=3.5cm,bottom=2cm,
+\usepackage[left=3cm,right=3cm,top=3.5cm,bottom=3.0cm,
 bindingoffset=5mm, headheight=3.5cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -58,11 +58,11 @@ bindingoffset=5mm, headheight=3.5cm]{geometry}
 %}
 \fancyhead[L]{\includegraphics[width=150mm]{Imagenes/Cabecera.png}}
 \fancyfoot[C]{
-	\begin{tabularx}{\textwidth}{|c|X|c|}
-		\hline
-			JA	& {\centering \includegraphics[height=1.5cm]{Imagenes/Pie.png}} & \thepage / \pageref{LastPage} \\
-		\hline
-	\end{tabularx}
+		\begin{tabular}{|m{2.0cm}|m{10.0cm}|m{2.0cm}|}
+			\hline
+				\centering JA	& \centering \includegraphics[height=0.8cm]{Imagenes/Pie.png} & {\thepage / \pageref{LastPage}}\\			
+			\hline 
+		\end{tabular}
 }
 
 % Numeracion de paginas
@@ -76,7 +76,7 @@ bindingoffset=5mm, headheight=3.5cm]{geometry}
 	%\input{FuentesRuidoN4000}
 	%\input{ControladorAtenuadoresAisladores11713}
 	%\input{AnalizadorFiguraRuidoN8975}	
-	%\input{BancoAtenuadoresN2002}
+	\input{BancoAtenuadoresN2002}
 	%\input{PuenteLanE5810}
-	\input{Conectores}
+	%\input{Conectores}
 \end{document}
