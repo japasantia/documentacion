@@ -38,30 +38,34 @@ bindingoffset=5mm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 
-\makeatletter
-\newcommand\arraybslash{\let\\\@arraycr}
-\makeatother
-\setlength\tabcolsep{1mm}
-\renewcommand\arraystretch{1.3}
-\newcounter{Table}
-\renewcommand\theTable{\arabic{Table}}
-\newcounter{Drawing}
-\renewcommand\theDrawing{\arabic{Drawing}}
-\title{}
-\author{}
-\date{2017-03-28}
+% Permite obtener el numero de la ultima pagina
+\usepackage{lastpage}
 
 % Cabeceras
 \pagestyle{fancy}
 % Borra cabecera y pie actuales
-\fancyhf{}
+\fancyhead{}
 % Cintillo cabecera
-\chead{
-	\includegraphics[width=150mm]{Imagenes/Cabecera.png}
+%\chead{
+%	\includegraphics[width=150mm]{Imagenes/Cabecera.png}
+%}
+\fancyhead[L]{\includegraphics[width=150mm]{Imagenes/Cabecera.png}}
+\fancyfoot[C]{
+	\begin{tabular}{|m{2.0cm}|m{10.0cm}|m{2.0cm}|}
+		\hline
+		\centering JA	& \centering \includegraphics[height=0.8cm]{Imagenes/Pie.png} & {\thepage / \pageref{LastPage}}\\			
+		\hline 
+	\end{tabular}
 }
 
+% Numeracion de paginas
+% numeros arabigos
+\pagenumbering{arabic}
+% numeros romanos
+%\pagenumbering{roman}
+
 \begin{document}
-	\title{\textsc{Sistema para Medicion de Figura de Ruido}} 
+	\title{\textsc{Sistema para Medición de Figura de Ruido}} 
 	\author{Jose A. Arias B.}
 	\date{28-03-2017}
 	% Comando para imprimir el encabezado(titulo, subtitulo, autor, fecha=
@@ -149,19 +153,19 @@ bindingoffset=5mm]{geometry}
 			\begin{supertabular}{|m{2.34cm}|m{6.573cm}|m{2.34cm}|m{1.917cm}|}
 				\hline
 				\centering Modelo & \centering Descripción & \centering Fabricante & 
-				\centering\arraybslash Cantidad \\
+				\centering Cantidad \\
 				\hline
 				\centering N8975A &	\centering Analizador de figura de ruido & \centering Agilent &
-				\centering\arraybslash 1\\
+				\centering 1\\
 				\hline
 				\centering N2002 & \centering Equipo para pruebas con fuente de ruido &
-				\centering Agilent & \centering\arraybslash 1\\ 
+				\centering Agilent & \centering 1\\ 
 				\hline
 				\centering E5810 & 	\centering Puente red LAN a bus GPIB / RS232 & \centering Agilent &
-				\centering\arraybslash 1\\
+				\centering 1\\
 				\hline
 				\centering 82357B & \centering Adaptador bus USB a bus GPIB  & 	\centering Agilent &
-				\centering\arraybslash 2\\
+				\centering 2\\
 				\hline
 			\end{supertabular}
 		\end{center}
@@ -177,19 +181,19 @@ bindingoffset=5mm]{geometry}
 				\centering Modelo &
 				\centering Descripción &
 				\centering Fabricante &
-				\centering\arraybslash Cantidad\\\hline
+				\centering Cantidad\\\hline
 				\centering N4000A &
 				\centering Fuente de ruido SNS ENR nominal de 6 dB &
 				\centering Agilent &
-				\centering\arraybslash 1\\\hline
+				\centering 1\\\hline
 				\centering N4001A &
 				\centering Fuente de ruido SNS ENR nominal de 15 dB &
 				\centering Agilent &
-				\centering\arraybslash 1\\\hline
+				\centering 1\\\hline
 				\centering N4002A &
 				\centering Fuente de ruido SNS ENR nominal de 14 dB &
 				\centering Agilent &
-				\centering\arraybslash 1\\\hline
+				\centering 1\\\hline
 			\end{supertabular}
 		\end{flushleft}
 	
@@ -204,24 +208,24 @@ bindingoffset=5mm]{geometry}
 				\centering Modelo &
 				\centering Descripción &
 				\centering Fabricante &
-				\centering\arraybslash Cantidad\\\hline
+				\centering Cantidad\\\hline
 				\centering 11730A &
 				Cable para fuente de ruido SNS &
 				\centering Agilent &
-				\centering\arraybslash 3\\\hline
+				\centering 3\\\hline
 				\centering 10833A &
 				Cable conexión bus GPIB, 1 metro &
 				\centering Agilent &
-				\centering\arraybslash 2\\\hline
+				\centering 2\\\hline
 				\centering 10833B &
 				Cable conexión bus GPIB, 2 metros &
 				\centering Agilent &
-				\centering\arraybslash 2\\\hline
+				\centering 2\\\hline
 				\centering 11500E &
 				Cable coaxial de 3.5 mm – (m-m) &
 				~
 				&
-				\centering\arraybslash 1\\\hline
+				\centering 1\\\hline
 			\end{supertabular}
 		\end{flushleft}
 	
@@ -236,27 +240,27 @@ bindingoffset=5mm]{geometry}
 				\centering Modelo &
 				\centering Descripción &
 				\centering Fabricante &
-				\centering\arraybslash Cantidad\\\hline
+				\centering Cantidad\\\hline
 				\centering 1250-1744 &
 				\centering Adaptador coaxial Tipo N (m) a 3.5 mm (f)  &
 				\centering Agilent &
-				\centering\arraybslash 1\\\hline
+				\centering 1\\\hline
 				\centering 1250-1745 &
 				\centering Adaptador coaxial Tipo N (f) a 3.5 mm (f)  &
 				\centering Agilent &
-				\centering\arraybslash 1\\\hline
+				\centering 1\\\hline
 				\centering 1250-1750 &
 				\centering Adaptador coaxial Tipo N (f) a 3.5 mm (m)  &
 				\centering Agilent &
-				\centering\arraybslash 1\\\hline
+				\centering 1\\\hline
 				\centering 83059A &
 				\centering Adaptador coaxial de 3.5 mm (m) a (m) &
 				\centering Agilent &
-				\centering\arraybslash 1\\\hline
+				\centering 1\\\hline
 				\centering 83059B &
 				\centering Adaptador coaxial de 3.5 mm (f) a (f) &
 				\centering Agilent &
-				\centering\arraybslash 1\\\hline
+				\centering 1\\\hline
 			\end{supertabular}
 		\end{flushleft}
 	
@@ -271,11 +275,11 @@ bindingoffset=5mm]{geometry}
 				\centering Modelo &
 				\centering Descripción &
 				\centering Fabricante &
-				\centering\arraybslash Cantidad\\\hline
+				\centering Cantidad\\\hline
 				\centering E5810-100 &
 				\centering Kit para montaje en rack del E5810 &
 				\centering Agilent &
-				\centering\arraybslash 1\\\hline
+				\centering 1\\\hline
 			\end{supertabular}
 		\end{flushleft}
 	
@@ -349,26 +353,26 @@ bindingoffset=5mm]{geometry}
 		\begin{supertabular}{|m{2.952cm}|m{4.323cm}|}
 			\hline
 			\centering Tipo de conector &
-			\centering\arraybslash Torque lb-pulgada (N-cm)\\\hline
+			\centering Torque lb-pulgada (N-cm)\\\hline
 			\centering Precisión 7 mm &
-			\centering\arraybslash 12 (136)\\\hline
+			\centering 12 (136)\\\hline
 			\centering Precisión 3.5 mm &
-			\centering\arraybslash 8 (90)\\\hline
+			\centering 8 (90)\\\hline
 			\centering SMA * &
-			\centering\arraybslash 5 (56)\\\hline
+			\centering 5 (56)\\\hline
 			\centering Precisión 2.4 mm &
-			\centering\arraybslash 8 (90)\\\hline
+			\centering 8 (90)\\\hline
 			\centering Precisión 1.85 mm &
-			\centering\arraybslash 8 (90)\\\hline
+			\centering 8 (90)\\\hline
 			\centering Tipo-N &
-			\centering\arraybslash 12 (136)\\\hline
+			\centering 12 (136)\\\hline
 		\end{supertabular}
 	\end{center}
 
 	* Usar el valor de torque SMA para conexión de SMA macho con 3.5 mm hembra. Usar el valor de torque 3.5 mm para conexión
 	3.5 mm macho con SMA hembra.
 	
-	Tabla \stepcounter{Table}{\theTable}: Valores recomendados de torque para conectores [1]
+	Tabla Valores recomendados de torque para conectores [1]
 	
 	Adaptadores para puerto de prueba de 3.5 mm a tipo-N (50 Ohm test port adapter) [2]
 	
@@ -402,11 +406,11 @@ bindingoffset=5mm]{geometry}
 			~
 			\\\hline
 			\centering 1250-1744 &
-			\centering\arraybslash 3.5 mm (m) a tipo-N (m)\\\hline
+			\centering 3.5 mm (m) a tipo-N (m)\\\hline
 			\centering 1250-1745 &
-			\centering\arraybslash 3.5 mm (f) a tipo-N (f)\\\hline
+			\centering 3.5 mm (f) a tipo-N (f)\\\hline
 			\centering 1250-1750 &
-			\centering\arraybslash 3,5 mm (m) a tipo-N (f)\\\hline
+			\centering 3,5 mm (m) a tipo-N (f)\\\hline
 		\end{supertabular}
 	\end{center}
 	Tabla \stepcounter{Table}{\theTable}: Adaptadores de 3.5 mm a tipo N [2]	
@@ -419,23 +423,23 @@ bindingoffset=5mm]{geometry}
 		\begin{supertabular}{|m{2.756cm}|m{5.1660004cm}|}
 			\hline
 			\centering Conector &
-			\centering\arraybslash Rango de frecuencia útil (GHz)\\\hline
+			\centering Rango de frecuencia útil (GHz)\\\hline
 			\centering Presicion 7 mm &
-			\centering\arraybslash DC a 20\\\hline
+			\centering DC a 20\\\hline
 			\centering Tipo N &
-			\centering\arraybslash DC a 18 GHz\\\hline
+			\centering DC a 18 GHz\\\hline
 			\centering PSC-N &
-			\centering\arraybslash DC a 18 GHz\\\hline
+			\centering DC a 18 GHz\\\hline
 			\centering SMA &
-			\centering\arraybslash DC a 23\\\hline
+			\centering DC a 23\\\hline
 			\centering Precision 3.5 mm &
-			\centering\arraybslash DC a 34\\\hline
+			\centering DC a 34\\\hline
 			\centering PSC-3.5 mm &
-			\centering\arraybslash DC a 34\\\hline
+			\centering DC a 34\\\hline
 			\centering Precision 2.4 mm &
-			\centering\arraybslash DC a 50\\\hline
+			\centering DC a 50\\\hline
 			\centering PSC-2.4 mm &
-			\centering\arraybslash DC a 50\\\hline
+			\centering DC a 50\\\hline
 		\end{supertabular}
 	\end{center}
 
@@ -466,17 +470,17 @@ bindingoffset=5mm]{geometry}
 			\centering Tipo de conector &
 			\centering Frecuencia (GHz) &
 			\centering Perdida de retorno típica &
-			\centering\arraybslash Perdida de inserción típica\\\hline
+			\centering Perdida de inserción típica\\\hline
 			\centering 83059A &
 			\centering 3.5 mm (m-m) &
 			\centering DC -26.5 &
 			\centering {}-32 dB  &
-			\centering\arraybslash 0.074 dB\\\hline
+			\centering 0.074 dB \\ \hline
 			\centering 83059B &
 			\centering 3,5 mm (f-f) &
 			\centering DC -26.5 &
 			\centering {}-32 dB &
-			\centering\arraybslash 0.074 dB\\\hline
+			\centering 0.074 dB\\\hline
 		\end{supertabular}
 	\end{center}
 	

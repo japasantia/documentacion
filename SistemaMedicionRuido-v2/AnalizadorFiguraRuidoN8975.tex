@@ -1,4 +1,4 @@
-\subsection{Analizador de figura de ruido N8975A (NFA Series Noise Figure Analyzer)
+\subsection{Analizador de figura de ruido N8975A (NFA Series Noise Figure Analyzer)}
 \subsubsection{Descripcion general}
 
 Representa el equipo fundamental en el sistema de la figura 2, es esencialmente un dispositivo que mide de potencia de ruido en RF y UW generada por elementos pasivos o activos. A partir de la medida de potencia, este equipo puede	calcular el valor de la figura de ruido de elemento, así como también su temperatura efectiva, ganancia y presentar el resultado en pantalla. 
@@ -13,7 +13,8 @@ A través de un cable que conecta el NFA con el puerto de control de la NS, el N
 	\caption{Esquema de conexiones de la instrumentación básica para medición de NF.}
 \label{Fig:BancoPruebasFuenteRuido}
 \end{figure}
-El N8975 emplea la técnica del factor Y para la medición de ruido sobre un \ DUT. Esta técnica consiste básicamente en	inyectar en la entrada del DUT dos niveles distintos de potencia de ruido, el primero   sensiblemente mayor que el segundo, para luego medir la potencia de ruido que a la salida del DUT existen para cada uno de estos niveles.	Calculado un cociente entre el valor mayor y el valor menor de la medición, esto es el factor Y, y con la tabla de	ENR de la fuente de ruido se puede conseguir la figura del ruido del DUT.
+
+El N8975 emplea la técnica del factor Y para la medición de ruido sobre un DUT. Esta técnica consiste básicamente en	inyectar en la entrada del DUT dos niveles distintos de potencia de ruido, el primero   sensiblemente mayor que el segundo, para luego medir la potencia de ruido que a la salida del DUT existen para cada uno de estos niveles.	Calculado un cociente entre el valor mayor y el valor menor de la medición, esto es el factor Y, y con la tabla de	ENR de la fuente de ruido se puede conseguir la figura del ruido del DUT.
 
 Aparte de la figura de ruido, puede realizar las siguientes mediciones:
 
@@ -27,8 +28,8 @@ Aparte de la figura de ruido, puede realizar las siguientes mediciones:
 El NFA cuenta con las siguientes interfaces
 
 \begin{itemize}
-	\item Una interfaz de usuario. 
-	\item Una interfaz de señal (RF y UW)
+	\item Una interfaz de usuario, en su panel frontal. 
+	\item Una interfaz de señal (RF y {}W)
 	\item Una interfaz de datos.
 \end{itemize}
 
@@ -42,7 +43,7 @@ Interfaz GPIB conector IEEE-488, bus serial RS-232, 9 pines D-sub, macho.
 La interfaz de señal señal que dispone el equipo en su panel frontal consiste en 
 
 \begin{itemize}
-	\item Un conector de entrada para señal RF-$\mu$F. 
+	\item Un conector de entrada para señal RF-$\mu${\textmu}F. 
 	\item Un conector de salida para el control, alimentación y datos de una fuente inteligente de ruido (SNS) de la serie N4000 de Agilent 
 	\item Un puerto para alimentación y conmutación de una fuente de ruido tradicional serie 346 de Agilent. 
 \end{itemize}
@@ -58,97 +59,97 @@ Ancho de banda de medición: 4 MHz, 2 MHz, 1 MHz, 400 kHz, 200 kHz, 100 kHz.
 
 El desempeño depende del ENR de la fuente empleada	
 
-\begin{center}
-	\tablefirsthead{}
-	\tablehead{}
-	\tabletail{}
-	\tablelasttail{}
-	\begin{supertabular}{|m{3.0809999cm}|m{3.284cm}|m{1.8429999cm}|m{1.8429999cm}|m{1.737cm}|}
-		\hline
-		\multicolumn{5}{|m{12.588cm}|}{\centering Figura de ruido N975A [AGI00]}\\\hline
-		\multicolumn{2}{|m{6.565cm}|}{\centering Rango de ENR para la fuente de ruido} &
-		\centering 4 – 7 dB &
-		\centering 12 -17 dB &
-		\centering\arraybslash 20 – 22 dB\\\hline
-		\centering 10 MHz a 3.0 GHz &
-		\centering Rango de medición &
-		\centering 0 a 20 dB &
-		\centering 0 – 30 dB &
-		\centering\arraybslash 0 a 35 dB\\\hline
-		&
-		\centering Incertidumbre  &
-		\centering ± {\textless} 0.05 dB &
-		\centering ± {\textless} 0.05 dB &
-		\centering\arraybslash ± {\textless} 0.1 dB\\\hhline{~----}
-		\centering Mayor a 3.0 GHz &
-		\centering Rango de medición &
-		\centering 0 a 20 dB &
-		\centering 0 a 30 dB &
-		\centering\arraybslash 0 a 35 dB\\\hline
-		&
-		\centering Incertidumbre &
-		\centering ± {\textless} 0.15 dB &
-		\centering ± {\textless} 0.15 dB &
-		\centering\arraybslash ± {\textless} 0.2 dB\\\hhline{~----}
-	\end{supertabular}
-\end{center}
+\begin{table}
+	\centering
+	\begin{tabular}{ccccc}
+		\toprule
+		\multicolumn{2}{c}{\bfseries Rango de ENR para la fuente   de ruido} &
+		{\bfseries 4 - 7 \si{\decibel}} & 
+		{\bfseries 12 - 17 \si{\decibel}} & 
+		{\bfseries 20 - 22 \si{\decibel}} \\
+		\midrule
+		\multirow{2}{*}{\bfseries 10 \si{\mega\hertz} a 3 \si{\giga\hertz}} & {\bfseries Rango de medición} 
+		& 0 a 20 \si{\decibel} 	& 0 a 30 \si{\decibel} & 0 a 35 \si{\decibel} \\
+		\cmidrule{2-5}
+		& {\bfseries Incertidumbre} 
+		& $\pm$ < 0.05 \si{\decibel} 
+		& $\pm$ < 0.05 \si{\decibel} 
+		& $\pm$ < 0.1 \si{\decibel} \\
+		\midrule
+		\multirow{2}{*}{\bfseries Mayor a 3.0 \si{\giga\hertz}} 
+		& {\bfseries Rango de medición} 
+		& 0 a 20 \si{\decibel} 	
+		& 0 a 30 \si{\decibel} 
+		& 0 a 35 \si{\decibel} \\
+					\cmidrule{2-5}
+		& {\bfseries Incertidumbre} 
+		& $\pm$ < 0.15 \si{\decibel} 
+		& $\pm$ < 0.15 \si{\decibel} 
+		& $\pm$ < 0.2 \si{\decibel} \\	
+		\bottomrule	
+		
+	\end{tabular}
+	\caption{Figura de ruido N8975A}
+	\label{Tab: FiguraRuidoN8975A}
+\end{table}
 
-\begin{center}
-	\tablefirsthead{}
-	\tablehead{}
-	\tabletail{}
-	\tablelasttail{}
-	\begin{supertabular}{|m{3.01cm}|m{3.284cm}|m{1.384cm}m{1.599cm}m{1.7759999cm}|}
-		\hline
-		\multicolumn{5}{|m{11.853cm}|}{\centering Ganancia N8975A [AGI00}\\\hline
-		\multicolumn{2}{|m{6.4940004cm}|}{\centering Rango de ENR para la fuente de ruido} &
-		\multicolumn{1}{m{1.384cm}|}{\centering 4 – 7 dB} &
-		\multicolumn{1}{m{1.599cm}|}{\centering 12 -17 dB} &
-		\centering\arraybslash 20 – 22 dB\\\hline
-		\centering 10 MHz a 3.0 GHz &
-		\centering Rango de medición &
-		\multicolumn{3}{m{5.159cm}|}{\centering {}-20 a +40 dB}\\\hline
-		&
-		\centering Incertidumbre  &
-		\multicolumn{3}{m{5.159cm}|}{\centering ± {\textless} 0.17}\\\hhline{~----}
-		\centering Mayor a 3.0 GHz &
-		\centering Rango de medición &
-		\multicolumn{3}{m{5.159cm}|}{\centering {}-20 a +40 dB}\\\hline
-		&
-		\centering Incertidumbre &
-		\multicolumn{3}{m{5.159cm}|}{\centering ± {\textless} 0.17 dB}\\\hhline{~----}
-	\end{supertabular}
-\end{center}
+\begin{table}
+	\centering
+	\begin{tabular}{ccccc}
+		\toprule
+		\multicolumn{2}{c}{\bfseries Rango de ENR para la fuente   de ruido} &
+		{\bfseries 4 - \SI{7}{\decibel}} & 
+		{\bfseries 12 - \SI{17}{\decibel}} & 
+		{\bfseries 20 - \SI{22}{\decibel}} \\	
+		\midrule
+		\multirow{2}{*}{\bfseries \SI{10}{\mega\hertz} a \SI{3} {\giga\hertz}} 
+			& {\bfseries Rango de medición} 
+		& \multicolumn{3}{c}{-20 a \SI{+40}{\decibel}} \\
+		\cmidrule{2-5}			
+		& {\bfseries Incertidumbre} 
+		& \multicolumn{3}{c}{$\pm$ < 0.17} \\		
+		\midrule
+		\multirow{2}{*}{\bfseries Mayor a \SI{3.0}{\giga\hertz}} 
+			& {\bfseries Rango de medición} 
+		& \multicolumn{3}{c}{-20 a \SI{+40}{\decibel}} \\
+		\cmidrule{2-5}			
+		& {\bfseries Incertidumbre} 
+		& \multicolumn{3}{c}{$\pm$ < 0.17} \\				
+		\bottomrule
+	\end{tabular}
+	\caption{Ganancia N8975A}
+\end{table}
+
+\begin{table}
+	\begin{tabular}{ccc}
+		\toprule
+		\textbf{Frecuencia (\si{\giga\hertz})}
+		& \textbf{Figura de ruido (\si{\decibel})} 
+		& \textbf{Figura de ruido @ 23 $\pm$ \SI{3}{\degreeCelsius} (\si{\decibel})} \\
+		\midrule
+		\textbf{0.010 a < 0.5} 
+		& $< 4.9 + (0.0025)f(\si{\mega\hertz})$
+		& $< 4.4 + (0.0025)f(\si{\mega\hertz})$ \\
+		\textbf{0.5 a 2.3} 
+		& $< 4.9 + (0.00135)f(\si{\mega\hertz})$
+		& $< 5.9 + (0.00135)f(\si{\mega\hertz})$ \\
+		\textbf{2.3 a < 3.0} 
+		& $< 4.9 + (0.0015)f(\si{\mega\hertz})$
+		& $< 2.9 + (0.0015)f(\si{\mega\hertz})$ \\		
+		\textbf{3.0 a 13.2} 
+		& $< 12.0$
+		& $< 10.5$ \\		
+		\textbf{13.2 a 26.5} 
+		& $< 16.0$
+		& $< 12.5$ \\		
+		\bottomrule				
+	\end{tabular}
+\end{table}
+
 
 Ruido generado por el instrumento \cite{AGI01}
 
-\begin{center}
-	\tablefirsthead{}
-	\tablehead{}
-	\tabletail{}
-	\tablelasttail{}
-	\begin{supertabular}{|m{3.707cm}|m{4.854cm}|m{5.952cm}|}
-		\hline
-		\centering Frecuencia &
-		\centering Figura de ruido  &
-		\centering\arraybslash Figura de ruido en torno a 23 ± 3 °C\\\hline
-		\centering 10 MHz a {\textless} 500 MHz &
-		\centering {\textless} 4.9 dB + ( 0.0025 * f(MHz) ) &
-		\centering\arraybslash {\textless} 4.4 dB + ( 0.0025 * f(MHz) )\\\hline
-		\centering 500 MHz a {\textless} 2.3 GHz &
-		\centering {\textless} 4.9 dB + ( 0.00135 * f(MHz) ) &
-		\centering\arraybslash {\textless} 5.9 dB + ( 0.00135 * f(MHz) )\\\hline
-		\centering 2.3 GHz a 3.0 GHz &
-		\centering 4.9 dB + ( 0.0015 * f(MHz) ) &
-		\centering\arraybslash {\textless} 2.9 dB + ( 0.0015 * f(MHz) )\\\hline
-		\centering {\textgreater} 3.0 GHz a 13.2 GHz &
-		\centering {\textless} 12.0 dB &
-		\centering\arraybslash {\textless} 10.5 dB\\\hline
-		\centering {\textgreater} 13.2 GHz a 26.5 GHz &
-		\centering {\textless} 16.0 dB &
-		\centering\arraybslash {\textless} 12.5 dB\\\hline
-	\end{supertabular}
-\end{center}
+
 
 	El NFA puede realizar mediciones en un rango de frecuencia o en una frecuencia particular. Si se trata de un rango o	lista de frecuencias, el dispositivo calcula la edición requerida de forma automáticas para cada valor de frecuencia de interés. El usuario también puede configurar el NFA para ejecutar la medición en forma manual en cada punto de frecuencia. 
 	
