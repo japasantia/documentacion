@@ -372,85 +372,182 @@ bindingoffset=5mm]{geometry}
 	
 	\subsubsection{Medición de figura de ruido. El factor Y.}	
 	
-	La mayoría de los dispositivos de RF y microondas generan muy bajos niveles de ruido, resulta difícil aplicar el método de medición directa de esta potencia de ruido de manera precisa. En cambio, una técnica que vence esta dificultad utilizando una razón de medidas de potencia  es llamada el factor Y.  La técnica se resume en la figura , en donde un dispositivo bajo prueba -el DUT- se alimenta desde una de dos fuentes de ruido acopladas a distintas temperaturas. La temperatura $T_C$ es la temperatura de la carga fría y la temperatura $T_H$ es la temperatura de la carga caliente, la potencia que genera la fuente fría es $N_1$  y la potencia que genera la fuente caliente es $N_2$.  
+	Cuando a un dispositivo lineal de dos puertos se alimenta con una fuente de ruido térmico a una temperatura TS como se indica en la figura \ref{Fig:RuidoRed2Puertos}, la potencia  medida a su salida puede representarse como	
 	
-	\begin{center}				
-		\begin{tikzpicture}
-		% Esconde marcas de los ejes
-		\pgfplotsset{ticks=none} 			
-		\begin{axis}[
-		black,
-		xlabel=$T_S (\si{\kelvin})$,
-		ylabel={$N_O (\si{\watt}/\si{\hertz})$}, 
-		domain = 0:10,
-		samples = 100,
-		xmin = 0, xmax = 10,
-		ymin = 0, ymax = 10,
-		no markers,
-		% Esconde marcas de los ejes
-		% yticklabels={,,}
-		%,hide axis
-		]
-		\pgfmathsetseed{1}
-		\addplot[color = black] {2 + 6 * x / 10}; 		
-		\addplot[color = black, domain = 3:6, dotted] {3.8}; 		
-		\addplot[color = black, dotted] coordinates {(6,3.8) (6,5.6)};		
-		\node at (axis cs:1, 2) [anchor=north east] {$N_A$};		
-		\node at (axis cs:6, 3.8) [anchor=north east] {$G = {\kappa}RT_SB$};		
-		\end{axis}
-		\end{tikzpicture}
-	\end{center}	
+	\begin{equation}
+		N_o = {\kappa}GBT_s + N_a 
+	\end{equation}
 	
-	Ya que el ruido generado por las fuentes no esta correlacionado con el ruido generado por el DUT, el ruido es aditivo y el ruido total a la salida del DUT es la suma de la potencia de ruido de la fuente y la potencia de ruido generada por el propio DUT.	
+	\noindent En donde $N_a$ representa el ruido interno generado por el propio dispositivo y el término ${\kappa}GBT_s$ representa el ruido térmico de la fuente a la salida. Esta ecuación representa la ecuación de una recta, donde la potencia de salida depende de manera lineal de la temperatura de la fuente $T_s$.
+	
+	\begin{figure}[h!]
+		\begin{minipage}{0.5\textwidth}
+			\centering
+			\begin{circuitikz}
+				\ctikzset{bipoles/amp/width=1.2}
+				\draw
+				(0, 0) to [R=$R$] (0, 3) 				
+				to[amp, t=$DUT$, -o] (4, 3)		
+				(0,0) node[ground]{};										
+				\draw 
+				(1.2, 1.5) node[below] {$T_s$}	
+				(1.2, 1.0) node[below] {$N_{s}={\kappa}T_S$}
+				(4.0, 3.0) node[below] {$N_{o}={\kappa}GBT_S$};
+			\end{circuitikz}			
+		\end{minipage}
+		\begin{minipage}{0.5\textwidth}
+			\centering
+			\begin{tikzpicture}
+				% Esconde marcas de los ejes
+				\pgfplotsset{ticks=none} 			
+				\begin{axis}[
+					black,
+					xlabel=$T_S (\si{\kelvin})$,
+					ylabel={$N_o (\si{\watt}/\si{\hertz})$}, 
+					domain = 0:10,
+					samples = 100,
+					xmin = 0, xmax = 10,
+					ymin = 0, ymax = 10,
+					no markers,
+					% Esconde marcas de los ejes
+					% yticklabels={,,}
+					%,hide axis
+					]
+					\pgfmathsetseed{1}
+					\addplot[color = black] {2 + 6 * x / 10}; 		
+					\addplot[color = black, domain = 3:6, dotted] {3.8}; 		
+					\addplot[color = black, dotted] coordinates {(3, 0) (3, 3.8)};	
+					\addplot[color = black, dotted] coordinates {(6, 0) (6, 5.6)};										
+					\node at (axis cs:1, 2) [anchor=north east] {$N_A$};		
+					\node at (axis cs:6, 3.8) [anchor=north east] {$G = {\kappa}RT_SB$};		
+					\node at (axis cs:3, 1.0) [anchor=north east] {$T_C$};		
+					\node at (axis cs:6, 1.0) [anchor=north east] {$T_H$};									
+				\end{axis}
+			\end{tikzpicture}
+		\end{minipage}
+		\caption{Respuesta al ruido DUT}
+		\label{Fig:RuidoRed2Puertos}
+	\end{figure}		
+	
+	La mayoría de los dispositivos de RF y microondas generan muy bajos niveles de ruido, resulta difícil aplicar el método de medición directa de esta potencia de ruido de manera precisa. En cambio, una técnica que vence esta dificultad utilizando una razón de medidas de potencia  es llamada el factor Y.  La técnica se resume en la figura , en donde un dispositivo bajo prueba -el DUT- se alimenta desde una de dos fuentes de ruido acopladas a distintas temperaturas.
+	
+	Para medir la figura de ruido empleando el factor Y, se conecta a la entrada del dispositivo objeto de estudio, un generador de ruido, el cual puede ser un diodo con polarización inversa. La temperatura de ruido equivalente guarda relación con con la corriente de polarización inversa del diodo, esta corriente se hace variar en dos niveles, \emph{encendido (ON)} y \emph{apagado (OFF)}, lo que equivale a aplicar una fuente de ruido con dos temperaturas equivalentes de ruido, la temperatura fría ($T_C$) y la temperatura caliente ($T_H$). Para las temperatura de fuente $T_C$, se registrará en la salida del dispositivo la potencia N1; para la temperatura caliente se registrará una temperatura caliente $T_H$:	
 	
 	\begin{equation}
 		\begin{align}
 			N_1 &= N_a+{\kappa}GBT_C \\
 			N_2 &= N_a+{\kappa}GBT_H 
-		\end{align}
+		\end{align}		
+	\end{equation}
+	
+	Ya que el ruido generado por las fuentes no esta correlacionado con el ruido generado por el DUT, el ruido es aditivo y el ruido total a la salida del DUT es la suma de la potencia de ruido de la fuente y la potencia de ruido generada por el propio DUT.
+		
+	La razón de ruido en exceso (ENR) para la fuente utilizada puede expresarse en función de las temperaturas $T_C$, $T_H$ y la temperatura de referencia $T_0$
+	
+	\begin{equation}
+		ENR = \frac{T_H - T_C}{T_0}
+		\label{Ec:EnrFactorY}
 	\end{equation}
 	
 	El \emph{factor Y} se define como	
 	
 	\begin{equation} 
-		Y = \frac{N_1}{N_2} = \frac{N_a+{\kappa}GBT_C}{N_a+{\kappa}GBT_H}
+		Y = \frac{N_2}{N_1} = \frac{N_a+{\kappa}GBT_C}{N_a+{\kappa}GBT_H}
 	\end{equation}
 	
 	De esta ecuación se puede resolver para encontrar la potencia de ruido generada por el dispositivo.
 	
+	\begin{equation}
+		N_a = \frac{{\kappa}GB(T_H - T_C) + (1 - Y)T_C}{Y - 1}
+	\end{equation}
+	
+	Al emplear la expresión para ENR de la ecuación \eqref{Ec:EnrFactorY}
+	
 	\begin{equation} 
-		N_a = {\kappa}GB\left[\frac{T_0ENR}{Y-1}-T_C\right]
+		N_a = {\kappa}GB\left(\frac{T_0ENR}{Y-1}-T_C\right)
 	\end{equation}
 	
 	El factor Y puede ser expresado en función de la temperatura equivalente de ruido $T_e$ del dispositivo, resulta
 	
 	\begin{equation} 
-		Y = \frac{N_1}{N_2} = \frac{T_C + T_e}{T_H + T_e}		
+		Y = \frac{N_2}{N_1} = \frac{{\kappa}GB(T_H + T_e)}{{\kappa}GB(T_C + T_e)}		
 	\end{equation}	
 	
-	De esta ecuación se puede resolver la temperatura de ruido equivalente del dispositivo.
+	Aplicando en esta última ecuación la expresión para ENR de la ecuación \eqref{Ec:EnrFactorY}, se resuelve $T_e$
 	
 	\begin{equation} 
-		T_e = \frac{T_C + YT_2}{Y - 1}
+		T_e = \frac{T_0ENR}{Y - 1} - T_C
 	\end{equation}
+	
+	\subsubsection{Medición de figura de ruido dispositivos en cascada.}
+			
+		\begin{figure}[h!]
+			\centering
+			\begin{circuitikz}
+				\draw 
+				(0, 0) to[R, l=${\kappa}T_o$] (0, 4)
+				(0, 4) to[short, -o] (1, 4)
+				(1, 4) to[amp, t=$A_{1}$] (4, 4)
+				(4, 4) to[amp, t=$A_{2}$] (7, 4)
+				(7, 4) to[amp, t=$A_{3}$, -o] (10, 4)
+				(10, 4) to[short] (12, 4)
+				(12, 4) to[R, l=$R_{L}$] (12, 0)
+				(12, 0) to[short] (11, 0)
+				(11, 0) to[short, o-o] (1, 0)
+				(1, 0) to[short] (0, 0)
+				node[ground] {};
+				
+				\draw
+				(2.5, 4.5) node[above] {$N_{A1}, G_{1}, B$}
+				(5.5, 4.5) node[above] {$N_{A2}, G_{2}, B$}
+				(8.5, 4.5) node[above] {$N_{A3}, G_{3}, B$};
+				
+				\draw
+				(1, 2.8) node[below] {${\kappa}T_{O}B$}
+				
+				(4, 2.8) node[below] {${\kappa}T_{O}BG_{1}$}
+				(4, 2.3) node[below] {$N_{A1}$}
+				
+				(7, 2.8) node[below] {${\kappa}T_{O}BG_{1}G_{2}$}
+				(7, 2.3) node[below] {$BG_{2}N_{A1}$}
+				(7, 1.8) node[below] {$N_{A2}$}
+				
+				(10, 2.8) node[below] {${\kappa}T_{O}BG_1{1}G_{2}G_{3}$}
+				(10, 2.3) node[below] {$BG_{2}G_{3}N_{A1}$}
+				(10, 1.8) node[below] {$BG_{3}N_{A2}$}
+				(10, 1.3) node[below] {$N_{A3}$};
+				
+			\end{circuitikz}
+			\caption{Dispositivos en cascada}\label{Fig:AmplificadoresCascada} 
+	\end{figure}
+
+	\begin{align}
+		N_o &= {\kappa}T_0BG_1G_2G_3 + G_2G_3N_{A1} + G_3N_{A2}+N_{A3} \\
+		N_o &= {\kappa}ToBG_1G_2G_3(1 + \frac{N_{A1}}{{\kappa}BG_1T_0}  + \frac{N_{A2}}{{\kappa}BG_1G_2T_0}+\frac{N_{A3}}{{\kappa}T_0BG_1G_2G_3}) \\	
+		N_o &= {\kappa}ToBG_1G_2G_3(F_1 + \frac{F_2 - 1}{G_1} + \frac{F_3 - 1}{G1G2})
+	\end{align}
+	
+	Como la figura de ruido de los dispositivos en cascada viene dada por
+	
+	\begin{align} 
+		F &= \frac{\text{Ruido total a la salida}}{\text{Ruido de $R_s$ en la salida}} \\
+		F &= \frac{N_o}{{\kappa}T_0BG_1G_2G_3} \\
+		F &= F_1 + \frac{F_2 - 1}{G_1} + \frac{F_3 - 1}{G_1G_2}		
+	\end{align} 		
+	
+	\subsubsection{Medición de figura de ruido empleando el factor Y.}	
 	
 	\begin{figure}[h!]
 		\centering
-		\begin{circuitikz}
-			\ctikzset{bipoles/amp/width=1.2}
-			\draw
-			(0, 3) to [V, l=$S_i$] (0, 0) 
-			(0, 3) to[R=$R$] (2, 3)
-			to[amp, t=$DUT$] (6, 3)							
-			to[R=$R$] (6, 0)
-			to[short] (3, 0);							
-			\draw 
-			(1.0, 2.8) node[below] {$T_0 = 290\si{\kelvin}$}	
-			(6.5, 1.5) node[below] {$N_{O}$};
-		\end{circuitikz}
-		\caption{Respuesta al ruido DUT}\label{Fig:AmpFiguraRuido} 
-	\end{figure}		
-		
+		\includegraphics[width=10cm]{Imagenes/InstrumentacionFactorY.pdf}
+		\caption{Montaje para medición de figura de ruido con el factor Y}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=16cm]{Imagenes/InstrumentacionCalibracionMedicion.pdf}
+	\end{figure}
+
 	\begin{figure}[h!]
 		\centering
 		\begin{circuitikz}
@@ -469,269 +566,7 @@ bindingoffset=5mm]{geometry}
 			(2.5, 1.8) node[below] {${\kappa}T_{S}B$}	
 			(6.5, 1.5) node[below] {$N_{O}$};
 		\end{circuitikz}
-		\caption{Respuesta al ruido DUT}\label{F:RESPUESTA_RUIDO_DUT} 
+		\caption{Respuesta al ruido DUT}\label{Fig:RespuestaRuidoDut} 
 	\end{figure}
-		
-
-		
-		\begin{center}				
-			\begin{tikzpicture}
-				% Esconde marcas de los ejes
-				\pgfplotsset{ticks=none} 			
-				\begin{axis}[
-					black,
-					xlabel=$x$,
-					ylabel={$f(x)$}, 
-					domain = 0:10,
-					samples = 100,
-					xmin = 0, xmax = 10,
-					ymin = -1, ymax = 1,
-					no markers,
-					% Esconde marcas de los ejes
-					% yticklabels={,,}
-					%,hide axis
-				]
-				\pgfmathsetseed{1}
-				\addplot[color = black] {0.1 * rand }; 		
-				\node at (axis cs:0,0) [anchor=north east] {test};		
-				\node at (axis cs:1,1) [anchor=north east] {test};		
-				\node at (axis cs:1,0) [anchor=north east] {test};						
-				\node at (axis cs:10,1) [anchor=north east] {test};										
-				\end{axis}
-			\end{tikzpicture}
-		\end{center}
-	
-		\begin{center}				
-			\begin{tikzpicture}
-				% Esconde marcas de los ejes
-				\pgfplotsset{ticks=none} 			
-				\begin{axis}[
-				black,
-				xlabel=$T_S (\si{\kelvin})$,
-				ylabel={$N_O (\si{\watt}/\si{\hertz})$}, 
-				domain = 0:10,
-				samples = 100,
-				xmin = 0, xmax = 10,
-				ymin = 0, ymax = 10,
-				no markers,
-				% Esconde marcas de los ejes
-				% yticklabels={,,}
-				%,hide axis
-				]
-				\pgfmathsetseed{1}
-				\addplot[color = black] {2 + 6 * x / 10}; 		
-				\addplot[color = black, domain = 3:6, dotted] {3.8}; 		
-				\addplot[color = black, dotted] coordinates {(6,3.8) (6,5.6)};		
-				\node at (axis cs:1, 2) [anchor=north east] {$N_A$};		
-				\node at (axis cs:6, 3.8) [anchor=north east] {$G = {\kappa}RT_SB$};		
-				\end{axis}
-			\end{tikzpicture}
-		\end{center}	
-		
-		
-		
-		%	\begin{circuitikz} [american voltages, baseline=(current bounding box.center)]
-		%		\ctikzset {label/align = straight}
-		%		\draw (0, 0)
-		%		to[V=$V_{Th}$]  (0, 2)
-		%		to[R=$R_{Th}$] (2.5, 2)
-		%		to[short, i=$I$, -o] (4, 2)
-		%		to[short] (4.5, 2)
-		%		(0,0) to[short, -o] (4, 0)
-		%		to[short] (4.5, 0)
-		%		node[draw, minimum width=2cm, minimum height=2.4cm, anchor=south west] at (4.5, -0.2){Load};
-		%	\end{circuitikz}
-		%
-		%	\begin{circuitikz} [american voltages, baseline=(current bounding box.center)]
-		%		\draw
-		%		(0, 0) to [V=$V_{n}$] (0, 3)
-		%		to[R=$R_{n}$] (3, 3)
-		%		to[short, i_<=$I$, -o] (6, 3)
-		%		to[short] (9, 3)
-		%		(0, 0) to[short, -o] (6, 0)
-		%		to[short] (9, 0)
-		%		node[draw, minimum width=3cm, minimum height=4cm, anchor=south west] at (9, -0.4){Source};
-		%	\end{circuitikz}
-		%
-		%	\begin{circuitikz}
-		%		\draw
-		%		(0, 0) node[mixer] (m) {}
-		%		(m.1) to[short, -o] ++(-1, 0)
-		%		(m.2) to[short, -o] ++(0, -1)
-		%		(m.3) to[short, -o] ++(1, 0);
-		%		(m.1) node[inputarrow] {}
-		%		(m.2) node[inputarrow, rotate=90] {};
-		%	\end{circuitikz}
-		%
-		%
-		%
-		%	\begin{tikzpicture}		
-		%		\coordinate (SolarCellP) at (0.5, 0);
-		%		\coordinate (ChopperP) at (4, 0);
-		%		\coordinate (InverterP) at (8, 0);
-		%		
-		%		\begin{scope}[every node/.style={draw,ultra thick, fill=AlleeRed!30, rectangle,text width=1.5cm, minimum height=2cm, text badly centered}]
-		%		
-		%			\node[name=pv, pattern=grid, pattern color=AlleeRed!30]	at (SolarCellP) {\bfseries Solar Panel};	
-		%			\node[name=chopper] at (ChopperP){DC-DC};
-		%			\node[name=inverter] at (InverterP){DC-AC};
-		%
-		%		\end{scope}
-		%
-		%		\draw
-		%			% PV to chopper
-		%			(pv.30) -- (chopper.150)
-		%			(pv.330) -- (chopper.210)
-		%			% DC link and cap
-		%			(chopper.30) -- (inverter.150)
-		%			(chopper.330) -- (inverter.210)
-		%			($(chopper.330)!0.4!(inverter.210)$) to[battery, l=\SI{60}{\volt}, mirror] ($(chopper.30)!0.4!(inverter.150)$)
-		%   			%AC side
-		%			(inverter.30)
-		%			to[short] ++(1, 0)
-		%			to[L] ++(1.1, 0)
-		%			to[R] ++(1.1, 0)
-		%			to[short] ++(1, 0) coordinate(N1)
-		%			to[L, bipoles/length=0.8cm] ++(0, -1)
-		%			|- (inverter.330);
-		%
-		%	\end{tikzpicture}
-		%
-		%	\begin{tikzpicture}
-		%		\draw
-		%			 plot coordinates{(0,0) (6,6)}
-		%			[->] (0, -3.5) node[below]{$M$} -- (0, 2) node[above, scale = 1.3]{$\varepsilon$};
-		%			\path (0, 0) node[draw, shape=rectangle](v0) {$v_0$};
-		%	\end{tikzpicture}
-		%
-		%	\begin{tikzpicture}[scale=2]
-		%		\tikzstyle{every node} = [draw, shape=rectangle];
-		%		\path(0:0cm)			node (v0) {$v_0$};
-		%		\path(0:1cm)			node (v1) {$v_1$};
-		%		\path(72:1cm)		node (v2) {$v_2$};
-		%		\path(2*72:1cm)		node (v3) {$v_3$};
-		%		\path(3*72:1cm)		node (v4) {$v_4$};
-		%		\path(4*72:1cm)		node (v5) {$v_4$};
-		%
-		%		\draw [->]  (v0) -- (v1)
-		%			[<-] (v0) -- (v2)
-		%			[->] (v0) -- (v3)
-		%			[<-] (v0) -- (v4)
-		%			[->] (v0) -- (v5);
-		%			
-		%	\end{tikzpicture}
-		%
-		%		\begin{tikzpicture}
-		%			\draw (0,0) 	rectangle ++(2, 2) (1, 1) node[below] {$sin(x)$}
-		%				(1, 3)	rectangle ++(3, 2) node[below] {$cos(x)$}
-		%					rectangle (4, 3) node[below] {$tan(x)$};		
-		%		\end{tikzpicture}	
-		%
-		
-		\section{Potencia de ruido disponible desde el DUT}
-		
-		\begin{figure}
-		\centering
-		\begin{circuitikz}
-			\ctikzset{bipoles/amp/width=1.2}
-			\draw 
-				(0, 0) to[sV, l=$2{\kappa}T_{S}B\SI{}{\watt}$] (0, 2)				
-				(0, 2) to[generic, l=$Z_{0}$, -o] (2, 2)
-				to[amp, t=DUT, -o] (6, 2) 
-				to[short] (7, 2)
-				to[generic, l=$Z_{0}$] (7, 0)
-				to[short] (6, 0)
-				to[short, o-o] (2, 0)
-				to[short] (0, 0)
-				node[ground] {};
-		
-			\draw 
-				(2.5, 1.8) node[below] {${\kappa}T_{S}B$}	
-				(6.5, 1.5) node[below] {$N_{O}$};
-		\end{circuitikz}
-		\caption{Respuesta al ruido DUT}\label{F:RESPUESTA_RUIDO_DUT} 
-		\end{figure}
-		
-		\begin{equation}
-		N_O = {\kappa}BGT_S + N_A
-		\label{E:RUIDO_SALIDA_DUT}
-		\end{equation}
-		
-		\begin{figure}
-			\centering
-			\begin{circuitikz}
-				\draw [-] (-0.5, 0) -- (4, 0); 
-			\end{circuitikz};
-			\caption{Potencia disponible del DUT}
-		
-		\end{figure}
-		
-		
-		\begin{figure}
-		\centering
-		\begin{circuitikz}
-			\draw 
-				(0, 0) to[R, l=${\kappa}T_{S}$] (0, 4)
-				(0, 4) to[short, -o] (1, 4)
-				(1, 4) to[amp, t=$A_{1}$] (4, 4)
-				(4, 4) to[amp, t=$A_{2}$] (7, 4)
-				(7, 4) to[amp, t=$A_{3}$, -o] (10, 4)
-				(10, 4) to[short] (12, 4)
-				(12, 4) to[R, l=$R_{L}$] (12, 0)
-				(12, 0) to[short] (11, 0)
-				(11, 0) to[short, o-o] (1, 0)
-				(1, 0) to[short] (0, 0)
-				node[ground] {};
-		
-			\draw
-				(2.5, 4.5) node[above] {$N_{A1}, G_{1}, B$}
-				(5.5, 4.5) node[above] {$N_{A2}, G_{2}, B$}
-				(8.5, 4.5) node[above] {$N_{A3}, G_{3}, B$};
-		
-			\draw
-				(1, 2.8) node[below] {${\kappa}T_{O}B$}
-		
-				(4, 2.8) node[below] {${\kappa}T_{O}BG_{1}$}
-				(4, 2.3) node[below] {$N_{A1}$}
-			
-				(7, 2.8) node[below] {${\kappa}T_{O}BG_{1}G_{2}$}
-				(7, 2.3) node[below] {$BG_{2}N_{A1}$}
-				(7, 1.8) node[below] {$N_{A2}$}
-		
-				(10, 2.8) node[below] {${\kappa}T_{O}BG_1{1}G_{2}G_{3}$}
-				(10, 2.3) node[below] {$BG_{3}G_{2}G_{1}N_{A1}$}
-				(10, 1.8) node[below] {$BG_{3}G_{2}N_{A2}$}
-				(10, 1.3) node[below] {$N_{A3}$};
-		
-		\end{circuitikz}
-		\caption{Dispositivos en cascada}\label{F:AMPLIFICADORES_CASCADA} 
-		\end{figure}
-		
-		
-		%	\begin{circuitikz}
-		%		\draw	(0, 0) to[amp, l=\SI{10}{dB}] ++(2.5, 0);
-		%		\draw	(2.5, 0) to[lowpass, l=opt.] ++(2.5, 0);			
-		%	\end{circuitikz}
-		
-		
-		%	\begin{figure}
-		%		\centering
-		%		\begin{circuitikz}
-		%			\ctikzset{bipoles/amp/width=0.9}
-		%			\draw (0, 0) to[amp, t=LNA, l_=$F{=}0.9\,$dB, o-o] ++(3, 0);
-		%		\end{circuitikz}
-		%		\caption{Un LNA.} \label{F:LNA}
-		%	\end{figure}
-		
-		\begin{figure}Red ruidosa
-		\centering
-		\begin{circuitikz}
-			\ctikzset{bipoles/amp/width=1.5}
-			\draw
-				(0, 0) to[amp, t=$DUT_{k}$, o-o] (4, 0)
-				to[amp, t=$DUT_{k+1}$, o-o] (8, 0);
-				
-		\end{circuitikz}
-		\end{figure}	
 
 \end{document}
