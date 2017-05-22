@@ -1,0 +1,737 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=3.5cm,bottom=2cm,
+bindingoffset=5mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Fuente escalable
+\usepackage{lmodern}
+\usepackage[english,spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,textcomp}
+\usepackage{array}
+\usepackage{supertabular}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{hhline}
+\usepackage[pdftex]{graphicx}
+\usepackage{microtype}
+% Bibliografia
+%\usepackage{bibtex}
+\usepackage{biblatex}
+%\bibliographystyle{amsplain}
+%\bibliography{Bibliografia.bib}
+% Formato de unidades
+\usepackage{siunitx}
+% Graficos
+\usepackage{tikz}
+% Esquematicos
+\usepackage[siunitx, american, cuteinductors, smartlabels]{circuitikz}
+% Tablas con ancho establecido por usuario
+\usepackage{tabularx}
+% Agrega comandos extra al comando tabular
+% \toprule, \midrule, \bottomrule
+% Multiples figuras dentro de una figura
+\usepackage{subfigure}
+\usepackage{booktabs}
+% Permite unir varias filas en tablas
+\usepackage{multirow}
+% Encabezados personalizados
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+% Graficas
+\usepackage{pgfplots}
+
+% Cabeceras
+\pagestyle{fancy}
+% Borra cabecera y pie actuales
+\fancyhf{}
+% Cintillo cabecera
+\chead{
+	\includegraphics[width=150mm]{Imagenes/Cabecera.png}
+}
+
+\begin{document}
+	
+	\section{Ruido eléctrico}
+		El ruido eléctrico se manifiesta por pequeñas fluctuaciones de corriente y de voltaje en los dispositivos electrónicos. Son múltiples las orígenes o causas del ruido eléctrico, pero todas ellas se pueden agrupar en dos grandes categorías:	
+	
+		El \emph{ruido extrínseco} es producto de la recepción de señales indeseables generadas en el exterior del dispositivo, y se manifiesta como una perturbación en la repuesta de corriente o voltaje del mismo. Este ruido puede se generado por el hombre cuando tiene su origen en la radiación de artefactos eléctricos o electrónicos. También es producto de fenómenos naturales como lo son relámpagos, tormentas eléctricas, ruido intergaláctico o disturbios atmosféricos en general.
+		
+		El \emph{ruido intrínseco} es generado el interior del dispositivo, no es producto de la detección de señales externas. Existen diversos tipos de ruido intrínseco mencionados en la literatura, como lo son el \emph{ruido de metralla}, el \emph{ruido de centelleo}, el \emph{ruido ráfaga} y el \emph{ruido térmico}. Este tipo de ruido se debe básicamente al hecho de que la carga eléctrica no es continua, sino que es llevada en cantidades discretas iguales a la carga del electrón.
+			
+	\subsection{Ruido térmico}
+		
+		El \emph{ruido térmico} encuentra su origen en el movimiento y colisiones aleatorias de los portadores de carga dentro de los materiales conductores o semiconductores, es uno de los tipos de ruido de mayor importancia en sistemas RF y de microondas. Al ser producto del movimiento térmico de los electrones, guarda relación con la temperatura absoluta T: el ruido térmico es directamente proporcional a T, conforme T se acerque a cero, el ruido térmico también se acercará a cero. Es generado por cualquier elemento de circuito que presente perdidas de energía, como lo son resistores o líneas de transmisión. 
+		
+		Existen otras fuentes de ruido, externas a un dispositivo, generadas por la absorción atmosférica y la radiación cósmica de fondo, que puede considerarse de origen térmico ya que es producto del movimiento aleatorio de partículas cargadas.
+		
+	\subsubsection{Voltaje y potencia de ruido}
+		
+		Todo dispositivo o elemento de circuito que presente perdidas genera ruido térmico. En el caso de un elemento de circuito básico, el resistor, el movimiento aleatorio de los electrones con una energía cinética proporcional a la temperatura se manifiesta como ligeras fluctuaciones de voltaje a través de las terminales del resistor, como se ilustra en la figura \ref{F:RESISTOR_RUIDO}.		
+		
+		\begin{figure}[h!]			
+			\begin{minipage}{0.5\textwidth}		
+				\centering	
+				\begin{circuitikz}
+					\draw 
+						(0, 0) to[R, l_=$R$] (0, 2)
+						to [short, -o] (2, 2)
+						to [open, v^=$v_{N}(t)$] (2, 0)
+						to [short, o-] (0, 0);
+				\end{circuitikz}
+			\end{minipage}	
+			\begin{minipage}{0.2\textwidth}	
+				\centering					
+				\begin{tikzpicture}
+					% Esconde marcas de los ejes
+					\pgfplotsset{ticks=none} 			
+					\begin{axis}[
+						black,
+						xlabel=$t (\si{\second})$,
+						ylabel={$v_N(t) (\si{\volt})$}, 
+						domain = 0:10,
+						samples = 100,
+						xmin = 0, xmax = 10,
+						ymin = -1, ymax = 1,
+						no markers,
+						% Esconde marcas de los ejes
+						% yticklabels={,,}
+						%,hide axis
+						]
+						\pgfmathsetseed{1}
+						\addplot[color = black] {0.1 * rand }; 										
+					\end{axis}
+				\end{tikzpicture}	
+			\end{minipage}	
+			\caption{Fuente de ruido térmico}
+			\label{F:RESISTOR_RUIDO}				
+		\end{figure}	
+		
+		No se puede dar una expresión matemática del valor de $v_n(T)$ en forma cerrada: el valor instantáneo de $v_{n}(t)$ no puede ser precisado debido a su naturaleza aleatoria de esta señal.
+		
+		En su lugar la señal de ruido térmico en un resistor se modela por medio de sus valores estadísticos. El valor medio de la tensión de ruido es cero y su valor cuadrático medio, en un ancho de banda estrecho $B$, viene dado por la aproximación de \emph{Rayleight-Jeans}. Esta puede ser modelado con una fuente de voltaje en serie con un resistor no ruidoso, el equivalente de Thevenin, cuya tensión rms es viene dada por 
+		
+		\begin{equation}
+			V_N = \sqrt{4{\kappa}TBR}
+		\end{equation}
+		
+		\begin{equation}
+			\bar{{v_{N}^2}} = 4{\kappa}TBR	
+			\label{Ec:VoltajeRuido}	
+		\end{equation}
+		
+		\noindent donde 
+		
+		\noindent $\kappa = 1.380\cdot10^{-23} \frac{\si{J}}{\si{K}}$ es la constante de Boltzmann.
+		
+		\noindent $T$ es la temperatura, en grados Kelvin(\si{\K}).
+		
+		\noindent $B$ es el ancho de banda en \si{\hertz}.
+		
+		\noindent $R$ es la resistencia, en \si{\ohm}.
+		
+		De la misma forma, el resistor ruidoso puede modelarse mediante un equivalente de Norton por medio de un resistor no ruidoso en paralelo con una fuente de corriente para modelar la señal de ruido, de valor cuadrático medio
+		
+		\begin{equation}
+			\label{Ec:CorrienteRuido}
+			\bar{i_{N}^2} = \frac{4{\kappa}TB}{R}
+			\text{$\quad{\kappa}=1.380\dot10^{-23} \, {\si{\joule}}{\si{\kelvin}}$} 	
+		\end{equation}
+		
+		\begin{figure}[h!]
+			\begin{minipage}{0.5\textwidth}
+				\centering				
+				\begin{circuitikz}
+					\draw 
+					(0, 0) to[R, l_=$R$] (0, 2)
+					(0, 4) to [V^=$\bar{i_{N}^2}$] (0, 2) 
+					(0, 4) to [short, -o] (2, 4)				
+	     		 	(0, 0) to [short, -o] (2, 0);     		 	
+	 				
+				\end{circuitikz}	
+				
+				\caption{Modelo de resistor ruidoso}
+				\label{Fig:ModeloResistorVoltaje}		
+			\end{minipage}
+			\quad
+			\begin{minipage}{0.5\textwidth}
+				\centering				
+				\begin{circuitikz}
+					\draw 
+					(0, 0) to[R, l_=$R$, o-o] (0, 4)
+					(0, 1) to [short] (2, 1) 
+					(0, 3) to [short] (2, 3)				
+					(2, 1) to [I, l=$\bar{v_{N}^2}$] (2, 3);				
+				\end{circuitikz}			
+				\caption{Modelo de resistor ruidoso}
+				\label{Fig:ModeloResistorCorriente}	
+			\end{minipage}		
+		\end{figure}	
+			
+		
+		\noindent donde $R$ es la resistencia en \si{\ohm}, ${\Delta}f$ es el ancho de banda en \si{\hertz} sobre el cual el ruido es medido. Las expresiones anteriores son validas hasta frecuencias de microondas. El ruido térmico en un resistor es \emph{independiente} de su composición.
+		
+	\subsubsection{Máxima potencia de ruido disponible}
+		
+		Los valores de tensión y corriente de los modelos son útiles para fines teóricos. En la practica, es común especificar las características de una señal de ruido por medio de su \emph{potencia de ruido disponible}, la cual se define como la máxima potencia entregada por la fuente de ruido a un resistor de carga. Se sabe que la máxima potencia que puede entregar un generador con impedancia interna $Z_S$ ocurre cuando se la impedancia de carga es igual al complejo conjugado del generador, $Z_L = Z_S$
+		
+		\begin{figure}[h!]
+			\centering		
+			\begin{circuitikz}
+			\draw
+				(4, 0) rectangle ++(2, 2)
+				(5, 1) node[below] {Ancho de banda B}	
+				(6, 1.8) to[short, -o] 
+				(7, 1.8) to[short] (8, 1.8)
+				to[R, l^=$R$] (8, 0.2)
+				to[short] (7, 0.2)
+				to[short, o-] (6, 0.2)
+				(0, 1.8) to[V, l=$V_n$] (0, 0.2)
+				(0, 1.8) to[R = $R$, -o] (2, 1.8) 
+				to[short] (4, 1.8) 
+				(0, 0.2) to[short, -o] (2, 0.2)
+				to[short] (4, 0.2);				
+			\end{circuitikz}
+			\caption{Máxima transferencia de potencia desde un resistor ruidoso a una carga sobre un ancho de banda B.}
+			\label{Fig:MaximaTransferenciaPotencia}
+		\end{figure}		
+	
+		Así pues, la máxima potencia de ruido disponible puede ser calculada como
+		
+		\begin{equation}
+			P_n = \left(\frac{V_N}{2}\right)^2\frac{1}{R} = \frac{V_n^2}{4R} = {\kappa}TB
+			\label{Ec:PotenciaRuidoDisponible}
+		\end{equation}		
+		
+		\noindent donde $V_N$ es el voltaje de ruido rms del resistor. De la ecuación \eqref{Ec:PotenciaRuidoDisponible} se infiere que
+		
+		\begin{itemize}
+			\item La potencia de ruido se decrementa en la medida que el ancho de banda del sistema se decrementa.
+			\item Los sistemas con ancho de banda pequeños colectan menos ruido.
+			\item La potencia de ruido disminuye a medida que la temperatura desciende. 
+			\item La potencia de ruido depende del ancho de banda absoluto, pero no de la frecuencia central de la banda.
+						
+		\end{itemize}
+	
+		Como el ruido térmico resulta independiente de la frecuencia, se le conoce como \emph{ruido blanco}, en analogía a la luz blanca la cual esta compuesta de múltiples frecuencias de luz visible. Experimentalmente y verificado por la mecánica cuántica, el ruido térmico es independiente de la frecuencia para $0 < f < 1000\si{\giga\hertz}$.
+		
+	\subsubsection{Densidad espectral}
+		
+		La potencia de ruido de la ecuación \eqref{Ec:PotenciaRuidoDisponible} puede ser representada en términos de la densidad espectral. Como la ecuación \eqref{Ec:PotenciaRuidoDisponible} es independiente de la frecuencia, la densidad espectral también ser independiente de la frecuencia, esta viene dada por
+		
+		La potencia de ruido por unidad de ancho de banda $S$ que un resistor en equilibrio térmico a una una temperatura T entrega a través de sus terminales viene dada por. La densidad de potencia de ruido para el modelo Thevenin del resistor viene dada por
+				
+		\begin{equation}
+			S_N(\omega) = \frac{P_N}{2B} = \frac{{\kappa}T}{2} = \frac{{\eta}_0}{2}
+		\end{equation}	
+		
+		\noindent donde se ha tomado $\frac{{\eta}_0}{2} = \frac{{\kappa}T}{2}$. Esta última ecuación es conocida como la \emph{potencia de ruido bilateral} para el ruido blanco, el factor $1/2$ es para tomar en cuenta el ancho de banda de $-B$ a $B$ (\si{\Hz})
+		
+	\subsubsection{Temperatura de ruido equivalente}
+		
+		Para una fuente de ruido blanca como la densidad espectral de ruido no depende de la frecuencia (al menos en el rango de frecuencia de interés), puede ser modelada por una \emph{fuente equivalente de ruido térmico} la cual se caracteriza por una \emph{temperatura de ruido equivalente}. En la figura \ref{Fig:FuenteRuidoBlanco} una fuente arbitraria de ruido blanco con impedancia interna $R$ alimenta una impedancia de carga R con una potencia de ruido $N_O$. La fuente de ruido puede ser reemplazada por un resistor ruidoso de valor R a una temperatura $T_e$, la cual es la temperatura a la cual debe someterse el resistor $R$ para que entregue una densidad de potencia espectral igual a $N_0$. Se tiene entonces que 
+		
+		\begin{equation}
+			N_O = {\kappa}BT_e
+			\label{Ec:DensidadPotenciaEspectral2}
+		\end{equation}
+		
+		\begin{equation}
+			T_e = \frac{N_O}{{\kappa}B}
+			\label{Ec:TemperaturaEquivalenteRuido}
+		\end{equation}	
+		
+		
+		\begin{figure}[h!]
+			\centering
+			\begin{circuitikz}
+				\draw
+				(0, 0) rectangle ++(2, 2)
+				(1, 1) node[below] {Fuente de ruido blanco}	
+				(2, 1.8) to[short, -o] (3, 1.8)
+				to[short,  i=$N_{O}$] (4, 1.8)
+				to[R, l^=$R$] (4, 0.2)
+				to[short] (3, 0.2)
+				to[short, o-] (2, 0.2);
+ 
+			\end{circuitikz}	
+			\qquad
+			\begin{circuitikz}	
+				\draw[dotted]
+				(0, 0) rectangle ++(2, 2);	
+				\draw
+				(1, 0.2) to[R, l_=$R$] (1, 1.8)
+				to[short, -o] (3, 1.8)
+				to[short,  i=$N_{O}$] (4, 1.8)
+				to[R, l^=$R(T_E)$] (4, 0.2)
+				to[short, -o] (3, 0.2)
+				to[short] (1, 0.2);
+			\end{circuitikz}	
+			\caption{Red ruidosa remplazada por resistor a temperatura equivalente}
+			\label{Fig:RED_SIN_RUIDO}
+		\end{figure}		
+	
+	\subsubsection{Figura de ruido}
+	
+	La \emph{figura de ruido} permite medir la degradación de la relación señal a ruido entre la entrad y salida de un componente. De la misma forma que la temperatura de ruido equivalente, permite caracterizar un dispositivo de RF o de microondas. La figura de ruido como figura de merito indica que tan eficaz es un dispositivo para discriminar señales en presencia de ruido, el cual puede ser externo o generado por el propio dispositivo en cuestión.
+	
+	La figura de ruido es definida como
+	
+	\begin{equation}
+		F = \frac{Relación señal ruido entrada}{Relación señal ruido salida} = \frac{\frac{S_i}{N_i}}{\frac{S_o}{N_o}}
+		\label{Ec:FiguraRuido1}
+	\end{equation}
+	
+	\noindent donde $S_i$ y $N_i$ son la potencia de señal y ruido a la entrada del dispositivo respectivamente, $S_o$ y $N_o$ son la potencia de señal y ruido a la salida del dispositivo. La definición de figura de ruido exige que la potencia de ruido a la entrada provenga de un carga acoplada a una temperatura de TO = 290 K.
+	
+	\begin{figure}[h!]
+		\centering		
+		\begin{circuitikz}
+			\draw
+			(0, 3) to [V, l=$S_i$] (0, 0.5) 
+			(0, 3) to[R=$R$] (2, 3)
+			(0, 0.5) to[short, i=$ $] (2, 0.5)
+			(2, 0) rectangle ++(3, 3.5)
+			(5, 3)to[short] (7, 3)
+			to[R=$R$] (7, 0.5)
+			(5, 0.5) to[short, i = $ $] (7, 0.5)
+			(4, 2) node[below] {Red ruidosa $G, B, T_e$};			
+		\end{circuitikz}
+		\caption{Máxima transferencia de potencia desde un resistor ruidoso a una carga sobre un ancho de banda B.}
+		\label{Fig:SistemaFiguraRuido}
+	\end{figure}		
+	
+	En la figura \ref{Fig:SistemaFiguraRuido} una red ruidosa caracterizada por una ganancia $G$, que posee un ancho de banda $B$ y una temperatura equivalente de ruido $T_e$, es alimentada con una señal de potencia $S_i$ y una señal de ruido $N_i$. Este ruido es modelado por un resistor de fuente $R$, el cual debe estar encontrarse a una temperatura $T_0 = 290\si{\kelvin}$ para cumplir con la definición de figura de ruido. La potencia de ruido en la entrada de la red es entonces
+	
+	\begin{equation}
+		N_i = {\kappa}T_0B
+		\label{Ec:RuidoEntrada}
+	\end{equation}	
+	
+	La potencia de señal a la salida de la red resulta
+	
+	\begin{equation}
+		S_o = GS_i
+		\label{Ec:SeñalSalida}
+	\end{equation}		
+	
+	La señal de ruido presente en la salida de la red se debe tanto a la señal de ruido en su entrada $N_i$ y al ruido intrínseco que genera la propia red en su interior y lo agrega en la salida. Si se define este ruido como $N_a$, la potencia de ruido total a la salida para esta red es la suma del ruido amplificado a la entrada y del ruido generado internamente por la propia red	
+
+	\begin{equation}
+		N_o = GN_i + N_a
+		\label{Ec:RuidoSalida}
+	\end{equation}		
+	
+	La figura de ruido para la red de la figura \ref{Fig:SistemaFiguraRuido} 
+	
+	\begin{equation}
+		F = \frac{\frac{S_i}{N_i}}{\frac{S_o}{N_o}} = \frac{\frac{S_i}{N_i}}{\frac{GS_i}{GN_i+N_a}} = \frac{(GN_i+N_a)S_i}{GS_iN_i}
+		\label{Ec:FiguraRuido2}
+	\end{equation}		
+	
+	Simplificando se obtiene
+	
+	\begin{equation}
+		F = 1  + \frac{N_A}{GN_i}
+		\label{Ec:FiguraRuido3}
+	\end{equation}			
+	
+	De la ecuación anterior, para una red determinada con $N_a$ fijo, el valor de F dependerá del valor de $N_i$. Debido a que $N_a$ no depende de ni guarda correlación $N_i$, se debe fijar $N_i$ como valor de referencia en base a un estándar (IEEE).		
+	
+	La cantidad $\frac{N_a}{G}$ dentro de la ecuación \eqref{Ec:FiguraRuido3} puede considerarse como el ruido generado por la propia red referido a su entrada. 
+	
+	Para la red de la figura \ref{Fig:SistemaFiguraRuido} se puede reescribir la ecuación \eqref{Ec:FiguraRuido1} en función de la temperatura equivalente de ruido de la red. El ruido generado por esta en función de $T_e$ es $N_i = {\kappa}BT_e$ y esta referido a su entrada. Sustituyendo este valor en la ecuación \eqref{Ec:FiguraRuido1}
+	
+	\begin{equation}
+		F = \frac{\frac{S_i}{{\kappa}T_0B}}{\frac{GS_i}{{\kappa}GB(T_0 + T_e)}}=\frac{S_i}{GS_i}\frac{{\kappa}GB(T_0 + T_e)}{{\kappa}T_0B}
+	\end{equation}
+	
+	Simplificando resulta
+	
+	\begin{equation}
+		F = 1 + \frac{T_e}{T_0}
+		\label{Ec:FiguraRuido4}
+	\end{equation}	
+	
+	\subsubsection{Razón de ruido en exceso y fuentes de ruido}
+	
+	Una forma directa para medir la temperatura equivalente de ruido es alimentar el dispositivo con una fuente de ruido con valores de potencia conocidos y medir el incremento de la potencia de ruido a la salida. Debido a que la potencia de ruido generada por un resistor es muy pequeña, existen fuentes de ruido activas para este propósito. Las fuentes de ruido activas están basadas en tubos de vacío o diodos semiconductores.
+	
+	Los generadores de ruido activos pueden ser caracterizados a través de la temperatura equivalente, pero  una medida común de la potencia de ruido de esto dispositivos es la razón de ruido en exceso
+	
+	\begin{equation}
+		ENR = \frac{N_G-N_0}{N_0} = \frac{T_G - T_0}{T_0}
+	\end{equation}
+	
+	\begin{equation}
+		ENR(\si{\decibel}) = 10\log(ENR)
+	\end{equation}	
+	
+	\noindent donde $N_G$ y $T_E$ son la potencia de ruido y la temperatura equivalente del generador de ruido, y $N_O = {\kappa}T_0B$ con $T_0 = 290\si{\kelvin}$ son la potencia de ruido y la temperatura asociada a una fuente pasiva (considerando una carga acoplada) a temperatura ambiente.
+	
+	\subsubsection{Medición de figura de ruido. El factor Y.}	
+	
+	La mayoría de los dispositivos de RF y microondas generan muy bajos niveles de ruido, resulta difícil aplicar el método de medición directa de esta potencia de ruido de manera precisa. En cambio, una técnica que vence esta dificultad utilizando una razón de medidas de potencia  es llamada el factor Y.  La técnica se resume en la figura , en donde un dispositivo bajo prueba -el DUT- se alimenta desde una de dos fuentes de ruido acopladas a distintas temperaturas. La temperatura $T_C$ es la temperatura de la carga fría y la temperatura $T_H$ es la temperatura de la carga caliente, la potencia que genera la fuente fría es $N_1$  y la potencia que genera la fuente caliente es $N_2$.  
+	
+	\begin{center}				
+		\begin{tikzpicture}
+		% Esconde marcas de los ejes
+		\pgfplotsset{ticks=none} 			
+		\begin{axis}[
+		black,
+		xlabel=$T_S (\si{\kelvin})$,
+		ylabel={$N_O (\si{\watt}/\si{\hertz})$}, 
+		domain = 0:10,
+		samples = 100,
+		xmin = 0, xmax = 10,
+		ymin = 0, ymax = 10,
+		no markers,
+		% Esconde marcas de los ejes
+		% yticklabels={,,}
+		%,hide axis
+		]
+		\pgfmathsetseed{1}
+		\addplot[color = black] {2 + 6 * x / 10}; 		
+		\addplot[color = black, domain = 3:6, dotted] {3.8}; 		
+		\addplot[color = black, dotted] coordinates {(6,3.8) (6,5.6)};		
+		\node at (axis cs:1, 2) [anchor=north east] {$N_A$};		
+		\node at (axis cs:6, 3.8) [anchor=north east] {$G = {\kappa}RT_SB$};		
+		\end{axis}
+		\end{tikzpicture}
+	\end{center}	
+	
+	Ya que el ruido generado por las fuentes no esta correlacionado con el ruido generado por el DUT, el ruido es aditivo y el ruido total a la salida del DUT es la suma de la potencia de ruido de la fuente y la potencia de ruido generada por el propio DUT.	
+	
+	\begin{equation}
+		\begin{align}
+			N_1 &= N_a+{\kappa}GBT_C \\
+			N_2 &= N_a+{\kappa}GBT_H 
+		\end{align}
+	\end{equation}
+	
+	El \emph{factor Y} se define como	
+	
+	\begin{equation} 
+		Y = \frac{N_1}{N_2} = \frac{N_a+{\kappa}GBT_C}{N_a+{\kappa}GBT_H}
+	\end{equation}
+	
+	De esta ecuación se puede resolver para encontrar la potencia de ruido generada por el dispositivo.
+	
+	\begin{equation} 
+		N_a = {\kappa}GB\left[\frac{T_0ENR}{Y-1}-T_C\right]
+	\end{equation}
+	
+	El factor Y puede ser expresado en función de la temperatura equivalente de ruido $T_e$ del dispositivo, resulta
+	
+	\begin{equation} 
+		Y = \frac{N_1}{N_2} = \frac{T_C + T_e}{T_H + T_e}		
+	\end{equation}	
+	
+	De esta ecuación se puede resolver la temperatura de ruido equivalente del dispositivo.
+	
+	\begin{equation} 
+		T_e = \frac{T_C + YT_2}{Y - 1}
+	\end{equation}
+	
+	\begin{figure}[h!]
+		\centering
+		\begin{circuitikz}
+			\ctikzset{bipoles/amp/width=1.2}
+			\draw
+			(0, 3) to [V, l=$S_i$] (0, 0) 
+			(0, 3) to[R=$R$] (2, 3)
+			to[amp, t=$DUT$] (6, 3)							
+			to[R=$R$] (6, 0)
+			to[short] (3, 0);							
+			\draw 
+			(1.0, 2.8) node[below] {$T_0 = 290\si{\kelvin}$}	
+			(6.5, 1.5) node[below] {$N_{O}$};
+		\end{circuitikz}
+		\caption{Respuesta al ruido DUT}\label{Fig:AmpFiguraRuido} 
+	\end{figure}		
+		
+	\begin{figure}[h!]
+		\centering
+		\begin{circuitikz}
+			\ctikzset{bipoles/amp/width=1.2}
+			\draw 
+			(0, 0) to[R, l=$2{\kappa}T_{S}B\si{\watt}$] (0, 3)
+			to[short, -o] (1,3)
+			to[amp, t=$DUT$, -o] (3, 3)				
+			to[short, l=$Z_{0}$, -o] (4, 3)
+			to[R, l=$R$] (4, 0)
+			to[short] (3, 0)
+			to[short, o-o] (1, 0)
+			to[short] (0, 0)
+			node[ground] {};				
+			\draw 
+			(2.5, 1.8) node[below] {${\kappa}T_{S}B$}	
+			(6.5, 1.5) node[below] {$N_{O}$};
+		\end{circuitikz}
+		\caption{Respuesta al ruido DUT}\label{F:RESPUESTA_RUIDO_DUT} 
+	\end{figure}
+		
+
+		
+		\begin{center}				
+			\begin{tikzpicture}
+				% Esconde marcas de los ejes
+				\pgfplotsset{ticks=none} 			
+				\begin{axis}[
+					black,
+					xlabel=$x$,
+					ylabel={$f(x)$}, 
+					domain = 0:10,
+					samples = 100,
+					xmin = 0, xmax = 10,
+					ymin = -1, ymax = 1,
+					no markers,
+					% Esconde marcas de los ejes
+					% yticklabels={,,}
+					%,hide axis
+				]
+				\pgfmathsetseed{1}
+				\addplot[color = black] {0.1 * rand }; 		
+				\node at (axis cs:0,0) [anchor=north east] {test};		
+				\node at (axis cs:1,1) [anchor=north east] {test};		
+				\node at (axis cs:1,0) [anchor=north east] {test};						
+				\node at (axis cs:10,1) [anchor=north east] {test};										
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
+	
+		\begin{center}				
+			\begin{tikzpicture}
+				% Esconde marcas de los ejes
+				\pgfplotsset{ticks=none} 			
+				\begin{axis}[
+				black,
+				xlabel=$T_S (\si{\kelvin})$,
+				ylabel={$N_O (\si{\watt}/\si{\hertz})$}, 
+				domain = 0:10,
+				samples = 100,
+				xmin = 0, xmax = 10,
+				ymin = 0, ymax = 10,
+				no markers,
+				% Esconde marcas de los ejes
+				% yticklabels={,,}
+				%,hide axis
+				]
+				\pgfmathsetseed{1}
+				\addplot[color = black] {2 + 6 * x / 10}; 		
+				\addplot[color = black, domain = 3:6, dotted] {3.8}; 		
+				\addplot[color = black, dotted] coordinates {(6,3.8) (6,5.6)};		
+				\node at (axis cs:1, 2) [anchor=north east] {$N_A$};		
+				\node at (axis cs:6, 3.8) [anchor=north east] {$G = {\kappa}RT_SB$};		
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}	
+		
+		
+		
+		%	\begin{circuitikz} [american voltages, baseline=(current bounding box.center)]
+		%		\ctikzset {label/align = straight}
+		%		\draw (0, 0)
+		%		to[V=$V_{Th}$]  (0, 2)
+		%		to[R=$R_{Th}$] (2.5, 2)
+		%		to[short, i=$I$, -o] (4, 2)
+		%		to[short] (4.5, 2)
+		%		(0,0) to[short, -o] (4, 0)
+		%		to[short] (4.5, 0)
+		%		node[draw, minimum width=2cm, minimum height=2.4cm, anchor=south west] at (4.5, -0.2){Load};
+		%	\end{circuitikz}
+		%
+		%	\begin{circuitikz} [american voltages, baseline=(current bounding box.center)]
+		%		\draw
+		%		(0, 0) to [V=$V_{n}$] (0, 3)
+		%		to[R=$R_{n}$] (3, 3)
+		%		to[short, i_<=$I$, -o] (6, 3)
+		%		to[short] (9, 3)
+		%		(0, 0) to[short, -o] (6, 0)
+		%		to[short] (9, 0)
+		%		node[draw, minimum width=3cm, minimum height=4cm, anchor=south west] at (9, -0.4){Source};
+		%	\end{circuitikz}
+		%
+		%	\begin{circuitikz}
+		%		\draw
+		%		(0, 0) node[mixer] (m) {}
+		%		(m.1) to[short, -o] ++(-1, 0)
+		%		(m.2) to[short, -o] ++(0, -1)
+		%		(m.3) to[short, -o] ++(1, 0);
+		%		(m.1) node[inputarrow] {}
+		%		(m.2) node[inputarrow, rotate=90] {};
+		%	\end{circuitikz}
+		%
+		%
+		%
+		%	\begin{tikzpicture}		
+		%		\coordinate (SolarCellP) at (0.5, 0);
+		%		\coordinate (ChopperP) at (4, 0);
+		%		\coordinate (InverterP) at (8, 0);
+		%		
+		%		\begin{scope}[every node/.style={draw,ultra thick, fill=AlleeRed!30, rectangle,text width=1.5cm, minimum height=2cm, text badly centered}]
+		%		
+		%			\node[name=pv, pattern=grid, pattern color=AlleeRed!30]	at (SolarCellP) {\bfseries Solar Panel};	
+		%			\node[name=chopper] at (ChopperP){DC-DC};
+		%			\node[name=inverter] at (InverterP){DC-AC};
+		%
+		%		\end{scope}
+		%
+		%		\draw
+		%			% PV to chopper
+		%			(pv.30) -- (chopper.150)
+		%			(pv.330) -- (chopper.210)
+		%			% DC link and cap
+		%			(chopper.30) -- (inverter.150)
+		%			(chopper.330) -- (inverter.210)
+		%			($(chopper.330)!0.4!(inverter.210)$) to[battery, l=\SI{60}{\volt}, mirror] ($(chopper.30)!0.4!(inverter.150)$)
+		%   			%AC side
+		%			(inverter.30)
+		%			to[short] ++(1, 0)
+		%			to[L] ++(1.1, 0)
+		%			to[R] ++(1.1, 0)
+		%			to[short] ++(1, 0) coordinate(N1)
+		%			to[L, bipoles/length=0.8cm] ++(0, -1)
+		%			|- (inverter.330);
+		%
+		%	\end{tikzpicture}
+		%
+		%	\begin{tikzpicture}
+		%		\draw
+		%			 plot coordinates{(0,0) (6,6)}
+		%			[->] (0, -3.5) node[below]{$M$} -- (0, 2) node[above, scale = 1.3]{$\varepsilon$};
+		%			\path (0, 0) node[draw, shape=rectangle](v0) {$v_0$};
+		%	\end{tikzpicture}
+		%
+		%	\begin{tikzpicture}[scale=2]
+		%		\tikzstyle{every node} = [draw, shape=rectangle];
+		%		\path(0:0cm)			node (v0) {$v_0$};
+		%		\path(0:1cm)			node (v1) {$v_1$};
+		%		\path(72:1cm)		node (v2) {$v_2$};
+		%		\path(2*72:1cm)		node (v3) {$v_3$};
+		%		\path(3*72:1cm)		node (v4) {$v_4$};
+		%		\path(4*72:1cm)		node (v5) {$v_4$};
+		%
+		%		\draw [->]  (v0) -- (v1)
+		%			[<-] (v0) -- (v2)
+		%			[->] (v0) -- (v3)
+		%			[<-] (v0) -- (v4)
+		%			[->] (v0) -- (v5);
+		%			
+		%	\end{tikzpicture}
+		%
+		%		\begin{tikzpicture}
+		%			\draw (0,0) 	rectangle ++(2, 2) (1, 1) node[below] {$sin(x)$}
+		%				(1, 3)	rectangle ++(3, 2) node[below] {$cos(x)$}
+		%					rectangle (4, 3) node[below] {$tan(x)$};		
+		%		\end{tikzpicture}	
+		%
+		
+		\section{Potencia de ruido disponible desde el DUT}
+		
+		\begin{figure}
+		\centering
+		\begin{circuitikz}
+			\ctikzset{bipoles/amp/width=1.2}
+			\draw 
+				(0, 0) to[sV, l=$2{\kappa}T_{S}B\SI{}{\watt}$] (0, 2)				
+				(0, 2) to[generic, l=$Z_{0}$, -o] (2, 2)
+				to[amp, t=DUT, -o] (6, 2) 
+				to[short] (7, 2)
+				to[generic, l=$Z_{0}$] (7, 0)
+				to[short] (6, 0)
+				to[short, o-o] (2, 0)
+				to[short] (0, 0)
+				node[ground] {};
+		
+			\draw 
+				(2.5, 1.8) node[below] {${\kappa}T_{S}B$}	
+				(6.5, 1.5) node[below] {$N_{O}$};
+		\end{circuitikz}
+		\caption{Respuesta al ruido DUT}\label{F:RESPUESTA_RUIDO_DUT} 
+		\end{figure}
+		
+		\begin{equation}
+		N_O = {\kappa}BGT_S + N_A
+		\label{E:RUIDO_SALIDA_DUT}
+		\end{equation}
+		
+		\begin{figure}
+			\centering
+			\begin{circuitikz}
+				\draw [-] (-0.5, 0) -- (4, 0); 
+			\end{circuitikz};
+			\caption{Potencia disponible del DUT}
+		
+		\end{figure}
+		
+		
+		\begin{figure}
+		\centering
+		\begin{circuitikz}
+			\draw 
+				(0, 0) to[R, l=${\kappa}T_{S}$] (0, 4)
+				(0, 4) to[short, -o] (1, 4)
+				(1, 4) to[amp, t=$A_{1}$] (4, 4)
+				(4, 4) to[amp, t=$A_{2}$] (7, 4)
+				(7, 4) to[amp, t=$A_{3}$, -o] (10, 4)
+				(10, 4) to[short] (12, 4)
+				(12, 4) to[R, l=$R_{L}$] (12, 0)
+				(12, 0) to[short] (11, 0)
+				(11, 0) to[short, o-o] (1, 0)
+				(1, 0) to[short] (0, 0)
+				node[ground] {};
+		
+			\draw
+				(2.5, 4.5) node[above] {$N_{A1}, G_{1}, B$}
+				(5.5, 4.5) node[above] {$N_{A2}, G_{2}, B$}
+				(8.5, 4.5) node[above] {$N_{A3}, G_{3}, B$};
+		
+			\draw
+				(1, 2.8) node[below] {${\kappa}T_{O}B$}
+		
+				(4, 2.8) node[below] {${\kappa}T_{O}BG_{1}$}
+				(4, 2.3) node[below] {$N_{A1}$}
+			
+				(7, 2.8) node[below] {${\kappa}T_{O}BG_{1}G_{2}$}
+				(7, 2.3) node[below] {$BG_{2}N_{A1}$}
+				(7, 1.8) node[below] {$N_{A2}$}
+		
+				(10, 2.8) node[below] {${\kappa}T_{O}BG_1{1}G_{2}G_{3}$}
+				(10, 2.3) node[below] {$BG_{3}G_{2}G_{1}N_{A1}$}
+				(10, 1.8) node[below] {$BG_{3}G_{2}N_{A2}$}
+				(10, 1.3) node[below] {$N_{A3}$};
+		
+		\end{circuitikz}
+		\caption{Dispositivos en cascada}\label{F:AMPLIFICADORES_CASCADA} 
+		\end{figure}
+		
+		
+		%	\begin{circuitikz}
+		%		\draw	(0, 0) to[amp, l=\SI{10}{dB}] ++(2.5, 0);
+		%		\draw	(2.5, 0) to[lowpass, l=opt.] ++(2.5, 0);			
+		%	\end{circuitikz}
+		
+		
+		%	\begin{figure}
+		%		\centering
+		%		\begin{circuitikz}
+		%			\ctikzset{bipoles/amp/width=0.9}
+		%			\draw (0, 0) to[amp, t=LNA, l_=$F{=}0.9\,$dB, o-o] ++(3, 0);
+		%		\end{circuitikz}
+		%		\caption{Un LNA.} \label{F:LNA}
+		%	\end{figure}
+		
+		\begin{figure}Red ruidosa
+		\centering
+		\begin{circuitikz}
+			\ctikzset{bipoles/amp/width=1.5}
+			\draw
+				(0, 0) to[amp, t=$DUT_{k}$, o-o] (4, 0)
+				to[amp, t=$DUT_{k+1}$, o-o] (8, 0);
+				
+		\end{circuitikz}
+		\end{figure}	
+
+\end{document}
