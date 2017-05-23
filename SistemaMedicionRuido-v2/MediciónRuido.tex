@@ -68,7 +68,7 @@ bindingoffset=5mm]{geometry}
 		
 	\subsubsection{Voltaje y potencia de ruido}
 		
-		Todo dispositivo o elemento de circuito que presente perdidas genera ruido térmico. En el caso de un elemento de circuito básico, el resistor, el movimiento aleatorio de los electrones con una energía cinética proporcional a la temperatura se manifiesta como ligeras fluctuaciones de voltaje a través de las terminales del resistor, como se ilustra en la figura \ref{F:RESISTOR_RUIDO}.		
+		Todo dispositivo o elemento de circuito que presente perdidas genera ruido térmico. En el caso de un elemento de circuito básico, el resistor, el movimiento aleatorio de los electrones con una energía cinética proporcional a la temperatura se manifiesta como ligeras fluctuaciones de voltaje a través de las terminales del resistor, como se ilustra en la figura \ref{Fig:ResistorRuido}.		
 		
 		\begin{figure}[h!]			
 			\begin{minipage}{0.5\textwidth}		
@@ -452,19 +452,21 @@ bindingoffset=5mm]{geometry}
 	El \emph{factor Y} se define como	
 	
 	\begin{equation} 
-		Y = \frac{N_2}{N_1} = \frac{N_a+{\kappa}GBT_C}{N_a+{\kappa}GBT_H}
+		Y = \frac{N_2}{N_1} = \frac{N_a+{\kappa}GBT_H}{N_a+{\kappa}GBT_C}
 	\end{equation}
 	
 	De esta ecuación se puede resolver para encontrar la potencia de ruido generada por el dispositivo.
 	
 	\begin{equation}
 		N_a = \frac{{\kappa}GB(T_H - T_C) + (1 - Y)T_C}{Y - 1}
+		\label{Ec:PotenciaRuido1}
 	\end{equation}
 	
 	Al emplear la expresión para ENR de la ecuación \eqref{Ec:EnrFactorY}
 	
 	\begin{equation} 
-		N_a = {\kappa}GB\left(\frac{T_0ENR}{Y-1}-T_C\right)
+		N_a = {\kappa}GB\left(\frac{T_0ENR}{Y - 1}-T_C\right)
+		\label{Ec:PotenciaRuido2}
 	\end{equation}
 	
 	El factor Y puede ser expresado en función de la temperatura equivalente de ruido $T_e$ del dispositivo, resulta
@@ -478,6 +480,28 @@ bindingoffset=5mm]{geometry}
 	\begin{equation} 
 		T_e = \frac{T_0ENR}{Y - 1} - T_C
 	\end{equation}
+	
+	En función de las potencia de ruido del amplificador y de la fuente de ruido, la figura de ruido es
+	
+	\begin{equation}
+		F = 1 + \frac{N_a}{{\kappa}GBT_0}
+		\label{Ec:FiguraRuido5}
+	\end{equation}
+	
+	Sustituyendo el valor para $N_a$ de la ecuación \eqref{Ec:PotenciaRuido2} se obtiene la figura de ruido, expresada en un parámetro de medición ($Y$) y un parámetro de calibración de la fuente de ruido ($ENR$) 
+	
+	\begin{equation}
+		F =  1 + \frac{ENR}{Y - 1} - \frac{T_C}{T_0}
+		\label{Ec:FiguraRuido6}
+	\end{equation}
+	
+	Es practica común asumir que la temperatura fría de la fuente de ruido es la temperatura de referencia $T_0 = 290 \si{\kelvin}$, de esta forma la ecuación \eqref{Ec:FiguraRuido6} se simplifica a
+	
+	\begin{equation}
+		F = \frac{ENR}{Y - 1}
+		\label{Ec:FiguraRuido7}
+	\end{equation}
+	
 	
 	\subsubsection{Medición de figura de ruido dispositivos en cascada.}
 			
@@ -535,38 +559,87 @@ bindingoffset=5mm]{geometry}
 		F &= F_1 + \frac{F_2 - 1}{G_1} + \frac{F_3 - 1}{G_1G_2}		
 	\end{align} 		
 	
-	\subsubsection{Medición de figura de ruido empleando el factor Y.}	
+	\subsubsection{Medición de figura de ruido con el analizador de figura de ruido N}
+	
+	El sistema para medición de figura de ruido de la figura \ref{Fig:SistemaMedicionFiguraRuido} emplea el método del factor Y para realizar la medición de figura de ruido.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=7cm]{Imagenes/BancoPruebasFuenteRuido.png}
+		\caption{Sistema para medición de figura de ruido, propuesto por Agilent Technologies}
+		\label{Fig:SistemaMedicionFiguraRuido}
+	\end{figure}
 	
 	\begin{figure}[h!]
 		\centering
 		\includegraphics[width=10cm]{Imagenes/InstrumentacionFactorY.pdf}
 		\caption{Montaje para medición de figura de ruido con el factor Y}
 	\end{figure}
+	
+	El proceso de edición de figura de ruido en un \emph{dispositivo bajo prueba (DUT - Device Under Test)} procede en dos fases
+	
+	\begin{itemize}
+		\item Calibración.
+		\item Medición. 
+	\end{itemize}
 
+	\noindent \textbf{Calibración}
+	
+	Durante esta fase el NFA determina su contribución de ruido en el sistema: calcula de manera interna la figura de ruido $F_2$ producto de los elementos de acople y dispositivos internos. Las conexiones del equipo se muestran en la figura \ref{Fig:InstrumentacionCalibracionSMFR}.
+	
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=16cm]{Imagenes/InstrumentacionCalibracionMedicion.pdf}
+		\includegraphics[width=10cm]{Imagenes/InstrumentacionCalibracionFiguraRuido.pdf}
+		\caption{Instrumentación para la calibración del sistema de medición de figura de ruido}
+		\label{Fig:InstrumentacionCalibracionSMFR}
+	\end{figure}
+
+	\noindent \textbf{Medición}
+	
+	Se inserta el DUT en el camino de señal, el esquema de la figura \ref{Fig:InstrumentacionMedicionSMFR} señala las conexiones del sistema. En esta fase se mide la figura de ruido del sistema completo, $F_{SYS}$, la cual viene dada por
+	
+	\begin{equation}
+		F_{SYS} = F_1 + \frac{F_2}{G_1}
+		\label{Ec:FiguraRuidoSistema}
+	\end{equation}
+	
+	\noindent donde
+	
+	\noindent $F_{SYS}$ es la figura de ruido del sistema, toma en cuenta el ruido introducido por el NFA, los elementos de acople y el DUT.
+	
+	\noindent $F_1$ es la figura de ruido del DUT, es el valor a medir.
+	
+	\noindent $F_2$ es la figura de ruido. 	
+	
+	\noindent $G_1$ es la ganancia de potencia disponible del DUT.
+	
+	La figura de ruido deseada, $F1$ del DUT, se obtiene de la ecuación \ref{Ec:FiguraRuidoSistema}
+	
+	\begin{equation}
+		F_1 =  F_{SYS} - \frac{F_2}{G_1}
+	\end{equation}	
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=10cm]{Imagenes/InstrumentacionMedicionFiguraRuido.pdf}
+		\caption{Instrumentación para medición de figura de ruido}
+		\label{Fig:InstrumentacionMedicionSMFR}		
 	\end{figure}
 
 	\begin{figure}[h!]
 		\centering
-		\begin{circuitikz}
-			\ctikzset{bipoles/amp/width=1.2}
-			\draw 
-			(0, 0) to[R, l=$2{\kappa}T_{S}B\si{\watt}$] (0, 3)
-			to[short, -o] (1,3)
-			to[amp, t=$DUT$, -o] (3, 3)				
-			to[short, l=$Z_{0}$, -o] (4, 3)
-			to[R, l=$R$] (4, 0)
-			to[short] (3, 0)
-			to[short, o-o] (1, 0)
-			to[short] (0, 0)
-			node[ground] {};				
-			\draw 
-			(2.5, 1.8) node[below] {${\kappa}T_{S}B$}	
-			(6.5, 1.5) node[below] {$N_{O}$};
-		\end{circuitikz}
-		\caption{Respuesta al ruido DUT}\label{Fig:RespuestaRuidoDut} 
+		\includegraphics[width=10cm]{Imagenes/InstrumentacionCalibracionMedicion.pdf}
+	\end{figure}
+
+	\subsubsection{Formato del archivo ENR}
+	
+	Las fuentes de ruido inteligentes de la serie N4000 de Agilent Technologies incluyen en su interior una memoria no volátil en la cual se almacenan los datos de calibración de la misma al salir de la fabrica. Estos datos se conocen como el archivo ENR, el NFA N8975 cuenta con la capacidad para leer, descargar y editar estos archivos. 
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=18cm]{Imagenes/FormatoArchivoENR.pdf}
+		\caption{Formato de un archivo ENR}
+		\label{Fig:FormatoArchivoENR}
 	\end{figure}
 
 \end{document}
