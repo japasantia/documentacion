@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=3.5cm,bottom=3.0cm,
+bindingoffset=5mm, headheight=3.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Fuente escalable
+\usepackage{lmodern}
+\usepackage[english,spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,textcomp}
+\usepackage{array}
+\usepackage{supertabular}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{hhline}
+\usepackage[pdftex]{graphicx}
+%Figuras al lado del texto
+\usepackage{wrapfig} 
+%Figuras flotantes alrededor del texto
+%por defecto a la derecha del texto
+\usepackage[rflt]{floatflt}
+
+\usepackage{microtype}
+
+% Bibliografia
+%\usepackage{bibtex}
+\usepackage{biblatex}
+\bibliographystyle{amsplain}
+\bibliography{Bibliografia.bib}
+% Formato de unidades
+\usepackage{siunitx}
+
+% Graficos
+\usepackage{tikz}
+% Esquematicos
+\usepackage[siunitx, american, cuteinductors, smartlabels]{circuitikz}
+% Tablas con ancho establecido por usuario
+\usepackage{tabularx}
+% Agrega comandos extra al comando tabular
+% \toprule, \midrule, \bottomrule
+\usepackage{booktabs}
+% Permite unir varias filas en tablas
+\usepackage{multirow}
+% Encabezados personalizados
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+% Permite obtener el numero de la ultima pagina
+\usepackage{lastpage}
+
+% Cabeceras
+\pagestyle{fancy}
+% Borra cabecera y pie actuales
+\fancyhead{}
+% Cintillo cabecera
+%\chead{
+%	\includegraphics[width=150mm]{Imagenes/Cabecera.png}
+%}
+\fancyhead[L]{\includegraphics[width=150mm]{Imagenes/Cabecera.png}}
+\fancyfoot[C]{
+	\begin{tabular}{|m{2.0cm}|m{10.0cm}|m{2.0cm}|}
+		\hline
+		\centering Versión 0.2	& 
+		\centering \includegraphics[height=0.8cm]{Imagenes/Pie.png} & 
+		{\centering  \thepage / \pageref{LastPage}} \\			
+		\hline 
+	\end{tabular}
+}
+
+% Numeracion de paginas
+% numeros arabigos
+\pagenumbering{arabic}
+% numeros romanos
+%\pagenumbering{roman}
+
+\begin{document}
+	\title{\textsc{Sistema para Medición de Figura de Ruido}} 
+	\author{Jose A. Arias B.}
+	\date{28-03-2017}
+	% Comando para imprimir el encabezado(titulo, subtitulo, autor, fecha=
+	\maketitle
+	\clearpage
+	
+	% Crea pagina de titulo
+%	\begin{titlepage}
+%		% \vspace Inserta espacio vertical 
+%		% \vspace*{dimnesion} fuerza insercion espacio vertical
+%		\vspace*{1cm}
+%		% \par Finaliza parrafo
+%		{\huge\raggedright \textsc{Sistema para Medicion de Figura de Ruido}\par}
+%		% \hrule crea linea horizontal
+%		% \noindent elimina sangria primera linea
+%		\noindent\hrulefill\par
+%		{\LARGE\raggedleft Jose Arias\par} 
+%		% Inserta espacio vertical comprimible
+%		\vfill 
+%		{\Large\raggedleft Cendit\par}		
+%	\end{titlepage}	
+	
+	% Genera la tabla de contenidos
+	\tableofcontents
+	
+	\clearpage
+	
+\section{Informe descriptivo del banco para pruebas con fuente de ruido}
+	
+	% Se incluyen todas las secciones
+	\input{Introduccion}
+	\input{AnalizadorFiguraRuidoN8975}		
+	\input{BancoAtenuadoresN2002}	
+	\input{ControladorAtenuadoresAisladores11713}	
+	\input{FuentesRuidoN4000}
+	\input{PuenteLanE5810}
+	%\input{Conectores}		
+	
+	\section{Referencias bibliográficas}
+		
+	\printbibliography
+
+\end{document}
