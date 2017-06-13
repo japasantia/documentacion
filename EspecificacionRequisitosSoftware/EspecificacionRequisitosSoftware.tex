@@ -1,0 +1,331 @@
+% Para documento texto corto
+%\documentclass[paper=a4,oneside,fontsize=12pt]{scrartcl}
+\documentclass[paper=letter,oneside,fontsize=12pt, parskip=full]{scrartcl}
+
+% Establecer dimensiones de los margenes
+%\ usepackage[inner=1.5cm,outer=3cm,top=2cm,bottom=4cm,
+%	bindingoffset=5mm]{geometry}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm,
+bindingoffset=0cm]{geometry}
+
+% Permite ingresar caracteres acentuados y especiales 
+% sin necesidad de emplear comando
+% utf8 codificacion de entrada Unicode (mas simbolos que ASCII)
+\usepackage[utf8]{inputenc}
+
+% T1 encoding for European, English, American text
+\usepackage[T1]{fontenc}
+% Fuente escalable
+\usepackage{lmodern}
+
+% Carga babel, idioma ingles
+\usepackage[english,spanish]{babel}
+
+% Mejor jsutificacion, tipografia alta calidad.
+\usepackage{microtype}
+
+% Agrega comandos extra al comando tabular
+% \toprule, \midrule, \bottomrule
+\usepackage{booktabs}
+% Tablas con ancho establecido por usuario
+\usepackage{tabularx}
+% Para posicionamiento preciso de tablas dentro del texto
+\usepackage{float}
+
+% Encabezados personalizados
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+% Permite obtener el numero de la ultima pagina
+\usepackage{lastpage}
+
+% Cabeceras
+\pagestyle{fancy}
+% Borra cabecera y pie actuales
+\fancyhead{}
+% Cintillo cabecera
+%\chead{
+%	\includegraphics[width=150mm]{Imagenes/Cabecera.png}
+%}
+\fancyhead[L]{\includegraphics[width=150mm]{Imagenes/Cabecera.png}}
+\fancyfoot[C]{
+	\begin{tabular}{|m{2.0cm}|m{10.0cm}|m{2.0cm}|}
+		\hline
+		\centering Versión 0.1	& 
+		\centering \includegraphics[height=0.8cm]{Imagenes/Pie.png} & 
+		{\centering  \thepage / \pageref{LastPage}} \\			
+		\hline 
+	\end{tabular}
+}
+
+% Numeracion de paginas
+% numeros arabigos
+\pagenumbering{arabic}
+
+% Comando que define el nombre la aplicacion
+\newcommand{\AppName}{\textsc{CenditLab}\ }
+
+% Comando que define el nombre del sistema de medición de figura de ruido
+\newcommand{\smr}{sistema de medición de ruido}
+\newcommand{\SMR}{SMR}
+
+% Comando que define el nombre del Cendit
+\newcommand{\cendit}{Cendit}
+
+\begin{document}
+	
+	\begin{titlepage}
+				
+		\begin{center}	
+			
+			\vspace{10cm}
+			
+			\begin{Large}			
+				Especificación de Requisitos de Software
+			\end{Large}
+		
+			\begin{Huge}
+				\textsc{\AppName}
+			\end{Huge}
+			
+		\end{center}
+		
+	\end{titlepage}
+
+	\tableofcontents
+	
+	\section{Introducción}
+	Esta sección brinda un panorama general del contenido del presente documento de especificaciones de requisitos de software. Se da al final una lista de abreviaturas.
+	
+	\subsection{Propósito}
+	El propósito de este documento es dar una descripción detallada de los requerimientos para el software \AppName. Ilustrará el propósito y sentará de manera formal y completa la base inicial para el proceso de desarrollo. Explicará la restricciones del sistema, interfaces e interacciones con aplicaciones externas. 
+	
+	Este documento se dirige principalmente a los futuros usuarios de la software \AppName para fines de aprobación y para desarrolladores, que en el futuro se encarguen de mantener o ampliar la aplicación.
+	
+	\subsection{Alcance}
+	
+	El software \AppName es una aplicación de escritorio que brinda a los usuarios del \emph{\smr} un entorno de trabajo o laboratorio virtual 
+	
+	El software \AppName es una aplicación para PC de escritorio que sirve como interfaz de software para el \emph{\smr} presente en el \cendit. Permite realizar muchas de las tareas propias de los equipos de un \smr dentro de un entorno de trabajo en una aplicación centralizada, o laboratorio virtual. 
+	
+	\AppName permite a los usuarios realizar mediciones de manera automatizada y remota, configuración los instrumentos instrumentos del \smr, capturar y visualizar de datos además de generar reportes en formatos digitales, como pdf o html.
+	
+	\AppName utiliza la capacidad de transferencia de datos a través de buses de comunicaciones que disponen los instrumentos del \smr, como GPIB, USB o LAN. Para ello el PC donde se ejecute la aplicación debe disponer de los aditamentos de hardware apropiado que permitan acceder a estos buses, asi como también el respectivo soporte de software en forma de librerías o controladores de dispositivo, que permitan a un PC el acceso a estos buses.
+	
+	\subsection{Definiciones, acronimos y abreviaturas}
+	
+	\begin{table}[h!]
+		\begin{tabular}{|p{4cm}|p{10cm}|} 
+			\hline
+			Termino & Definición \\
+			\hline
+		\end{tabular}	
+	\end{table}
+
+	\subsection{Referencias}
+	% 	\bibliographystyle{acm}	
+	% 	\bibliographystyle{abbrv}	
+	% 	\bibliographystyle{apalike}
+	
+	%\bibliographystyle{ieeetr}
+	%\bibliography{Bibliografia}
+	
+	\begingroup
+		\renewcommand{\section}[2]{}
+		\begin{thebibliography}{9}
+			\bibitem{iso-29148} 
+			ISO/IEC/IEEE 29148. 
+			\textit{Systems and software engineering - Lyfe cycle processes - Requirements enginering}. 
+			ISO/IEC/IEEE, 2011.
+			
+			\bibitem{iso-42010} 
+			ISO/IEC/IEEE 42010. 
+			\textit{Systems and software engineering - Architecture description}. 
+			ISO/IEC/IEEE, 2011.		
+			
+			\bibitem{softwareengineering-narang} 
+			Rajesh Narang. 
+			\textit{Software Engineering Principles and Practices}. 
+			Mc Graw Hill, New Delhi, India, 2015.			
+			
+			\bibitem{softwareengineering-sommerville} 
+			Ian Sommerville. 
+			\textit{Software Engineering}. 
+			Addison-Wesley, Boston, Massachusetts, 2011.					
+			
+			\bibitem{latexcompanion} 
+			Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
+			\textit{The \LaTeX\ Companion}. 
+			Addison-Wesley, Boston, Massachusetts, 2011.		
+			
+			\bibitem{einstein} 
+			Albert Einstein. 
+			\textit{Zur Elektrodynamik bewegter K{\"o}rper}. (German) 
+			[\textit{On the electrodynamics of moving bodies}]. 
+			Annalen der Physik, 322(10):891–921, 1905.
+			
+			\bibitem{knuthwebsite} 
+			Knuth: Computers and Typesetting,
+			\\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}
+		\end{thebibliography}
+	\endgroup
+
+	
+	\subsection{Visión general}
+	
+	El resto de este documento incluye tres capítulos y un apéndice. El segundo provee un panorama de la funcionalidad del sistema y su interacción con el \smr. Este capitulo además introduce los diferentes tipos de \emph{stakeholders} y su interacción con el sistema. Más adelante, el capitulo menciona las restricciones del sistema y las suposiciones de la aplicación.
+	
+	El tercer capitulo describe la especificación de requerimientos al detalle y describe las diferentes interfaces del sistema. Se emplean diferentes técnicas de especificación con el objeto de mostrar los requerimientos de manera precisa para distintas audiencias.
+	
+	El cuarto capitulo trata con la priorización de los requerimientos. Este incluye una motivación. Expone los motivos para los métodos de prioridad escogidos y el por que de las alternativas rechazadas.  
+	
+	El apéndice al final de este documento incluye los resultados de la priorización de requerimientos y el plan de entrega basado en las prioridades.
+	
+	\section{Descripción general}
+	
+	Esta sección brindará una perspectiva general de todo el sistema. El sistema será explicado en su contexto para mostrar como el sistema interactúa con otros sistemas y su funcionalidad básica. Describirá además que tipo de participantes <stakeholders> usarán el sistema y que funcionalidad estará disponible para cada tipo de ellos. Al final, se presentan las restricciones y suposiciones para el sistema.
+	
+	\subsection{Perspectiva de producto}
+	
+	\AppName será un aplicación de escritorio que servirá como interfaz de usuario de software para el \smr. El software del sistema consiste de tres partes: el soporte para interfaz gráfica, la capa de abstracción de comunicaciones y la automatizador de mediciones.	
+	
+	\subsection{Funciones de producto}
+	
+	\subsection{Características de los usuarios}
+	
+	La aplicación \AppName está dirigida a usuarios con formación técnica en el tarea de radio frecuencia, comunicaciones, antenas, electrónica y afines. En estos campos se  consideran Ingenieros y Técnicos Universitarios como \emph{usuarios técnicos} en este documento.
+	
+	\subsection{Restricciones}
+	
+	\subsection{Suposiciones y dependencias}	
+	
+	\section{Requerimientos específicos}
+	
+	\subsection{Interfaces de usuario}
+	
+	\subsubsection{Interfaces de hardware}
+	
+	\subsubsection{Interfaces de software}
+	
+	\subsubsection{Interfaces de comunicaciones}
+	
+		% -----------------------------------------------------
+		% Comando para generar formato con requisitos funcionales
+		\newcommand{\funcreq}[7]{
+			\subsubsection{Requerimiento funcional {#1}}
+
+			\begin{table}[H]			
+			%\begin{table}[!htbp]
+				\begin{tabularx}{\textwidth}{rX}			
+					\textbf{ID:} 	&	{#2}		\\
+					Titulo:			&  	{#3}. 		\\
+					Descripción:	&	{#4}.		\\
+					Justificación: 	&	{#5}.		\\
+					Dependencias:	& 	{#6}.		\\
+					Usuario:		&	{#7}.		\\
+				\end{tabularx}				
+			\end{table}
+		}
+		% -----------------------------------------------------		
+		
+		% -----------------------------------------------------
+		% Comando para generar formato con requisitos de desempeño
+		\newcommand{\perfreq}[6]{
+			\subsubsection{{Requerimiento de desempeño #1}}
+			
+			\begin{table}[H]%[!htbp]
+				\begin{tabular}{rl}			
+					\textbf{ID:} 	&	{#2}		\\
+					Titulo:			&  	{#3}. 		\\
+					Descripción:	&	{#4}.		\\
+					Justificación: 	&	{#5}.		\\
+					Dependencias:	& 	{#6}.		\\
+				\end{tabular}				
+			\end{table}
+		}
+		% -----------------------------------------------------				
+	
+	\subsection{Requerimientos funcionales}	
+	
+	A continuación los requerimientos funcionales
+		
+	\funcreq{1}
+		{FR1}
+			{Programar tareas de medición}
+			{Los usuarios pueden programar los instrumentos y generar tareas de medición para sus posterior ejecución, de forma automatizada y remota}
+			{Programar y automatizar las mediciones}
+			{Ninguna}
+			{Técnico}
+	\funcreq{2}
+		{FR2}
+			{Explorador de instrumentos conectados a los buses}
+			{El usuario podrá visualizar los instrumentos conectados a los buses, al cual el PC tiene acceso}
+			{Con el fin de mostrar un listado de instrumentos en línea}
+			{Ninguna}
+			{Técnico}
+	\funcreq{3}
+		{FR3}
+			{Configurar los instrumentos de medición}
+			{Al usuario se le presentara una interfaz gráfica en donde podrá establecer la configuración de cada instrumento en linea}
+			{Los instrumentos requieren una configuración previa antes de iniciar la medición}
+			{FR2}
+			{Técnico}
+	\funcreq{4}
+		{FR4}
+			{Capacidad de programar el proceso medición}
+			{El usuario puede elegir un conjunto de instrumentos y establecer una secuencia de comandos para estos, que podrá almacenar en disco y ejecutar en el futuro}
+			{Con el objeto de automatizar los procesos de medición}
+			{FR2, FR3}
+			{Técnico}			
+	\funcreq{5}
+		{FR5}
+			{Capacidad para almacenar y cargar datos de calibración de instrumentos}
+			{El usuario puede guardar almacenar los datos de calibración y cargarlos nuevamente antes de cada proceso de medición}
+			{Con el objeto de automatizar los procesos de medición}
+			{FR3}
+			{Técnico}
+	\funcreq{6}
+		{FR5}
+			{Capacidad de programar la secuencia de pasos en el proceso de medición}
+			{El usuario podrá programar la secuencia de pasos a realizar en un proceso de medición dado}
+			{Con el objecto de automatizar el proceso de medición}
+			{FR2, FR3}	
+			{Técnico}		
+	\funcreq{6}
+		{FR6}
+			{Capacidad programar la presentación gráfica reporte con resultados de medición}
+			{El usuario podrá escoger los datos resultado de la medición y configurar su presentación y disposición en el documento de salida}
+			{Con el objeto de configurar el documento que presenta los resultados de medición}
+			{FR3,FR4}
+			{Técnico}
+	\funcreq{7}
+		{FR7}
+			{Interfaz gráfica orientada a diagrama de bloques}
+			{El usuario puede programar las tareas de medición por medio de la creación de diagramas de bloques, que representan funcionalidades diversas}
+			{Con el objeto de automatizar el proceso de medición}	
+			{}		
+			{Técnico}			
+			
+	\subsection{Requerimientos de desempeño}	
+			
+	\subsection{Restricciones de diseño}
+	
+	\subsection{Atributos del sistema de software}
+	
+	\perfreq{1}
+		{QR1}
+			{Diseño de interfaz gráfica limpio, descongestionado y ordenado}
+			{La interfaz gráfica deberá presentar un diseño limpio y estructurado, con funcionalidad común agrupada en pantallas y el anidamiento de menús no sobrepasará de 2 niveles. Evitar la congestión de la interfaz gráfica.}
+			{Con el objeto de facilitar la navegación por las pantallas de la aplicación}
+			{Ninguna}
+		
+	\perfreq{2}
+		{QR2}
+			{La aplicación para PC deberá ser portable entre los SO Windows y Linux}
+			{La aplicación debe ejecutarse de manera uniforme en los sistemas operativos Windows y Linux}
+			{Facilitar al usuario el uso de la aplicación en ambos sistemas operativos.}
+			{Ninguna}		
+	
+	
+	
+\end{document}
