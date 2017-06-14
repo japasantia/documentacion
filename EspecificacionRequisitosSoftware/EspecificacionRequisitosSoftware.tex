@@ -1,6 +1,7 @@
 % Para documento texto corto
-%\documentclass[paper=a4,oneside,fontsize=12pt]{scrartcl}
-\documentclass[paper=letter,oneside,fontsize=12pt, parskip=full]{scrartcl}
+\documentclass[paper=a4,oneside,fontsize=12pt]{scrartcl}
+%\documentclass[paper=letter,oneside,fontsize=12pt, 
+% parskip=full]{scrartcl}
 
 % Establecer dimensiones de los margenes
 %\ usepackage[inner=1.5cm,outer=3cm,top=2cm,bottom=4cm,
@@ -39,6 +40,12 @@ bindingoffset=0cm]{geometry}
 % Permite obtener el numero de la ultima pagina
 \usepackage{lastpage}
 
+% Paquetes para figuras
+% Paquete caption para titulos figuras
+% Paquete subcaption para subfiguras
+\usepackage{caption}
+\usepackage{subcaption}
+
 % Cabeceras
 \pagestyle{fancy}
 % Borra cabecera y pie actuales
@@ -55,8 +62,7 @@ bindingoffset=0cm]{geometry}
 		\centering \includegraphics[height=0.8cm]{Imagenes/Pie.png} & 
 		{\centering  \thepage / \pageref{LastPage}} \\			
 		\hline 
-	\end{tabular}
-}
+	\end{tabular}}
 
 % Numeracion de paginas
 % numeros arabigos
@@ -100,7 +106,7 @@ bindingoffset=0cm]{geometry}
 	\subsection{Propósito}
 	El propósito de este documento es dar una descripción detallada de los requerimientos para el software \AppName. Ilustrará el propósito y sentará de manera formal y completa la base inicial para el proceso de desarrollo. Explicará la restricciones del sistema, interfaces e interacciones con aplicaciones externas. 
 	
-	Este documento se dirige principalmente a los futuros usuarios de la software \AppName para fines de aprobación y para desarrolladores, que en el futuro se encarguen de mantener o ampliar la aplicación.
+	Este documento se dirige principalmente a los futuros usuarios de la software \AppName para fines de aprobación, y para desarrolladores, que se involucren en un futuro en el soporte y mejoras de la base de código.
 	
 	\subsection{Alcance}
 	
@@ -173,35 +179,109 @@ bindingoffset=0cm]{geometry}
 	
 	\subsection{Visión general}
 	
-	El resto de este documento incluye tres capítulos y un apéndice. El segundo provee un panorama de la funcionalidad del sistema y su interacción con el \smr. Este capitulo además introduce los diferentes tipos de \emph{stakeholders} y su interacción con el sistema. Más adelante, el capitulo menciona las restricciones del sistema y las suposiciones de la aplicación.
+	El resto de este documento incluye tres capítulos y un apéndice. El segundo provee un panorama de la funcionalidad del sistema y su interacción con el \smr. Este capitulo además introduce los diferentes tipos de \emph{participantes} y su interacción con el sistema. Más adelante, el capitulo menciona las restricciones del sistema y las suposiciones de la aplicación.
 	
 	El tercer capitulo describe la especificación de requerimientos al detalle y describe las diferentes interfaces del sistema. Se emplean diferentes técnicas de especificación con el objeto de mostrar los requerimientos de manera precisa para distintas audiencias.
 	
-	El cuarto capitulo trata con la priorización de los requerimientos. Este incluye una motivación. Expone los motivos para los métodos de prioridad escogidos y el por que de las alternativas rechazadas.  
+	El cuarto capitulo trata con el establecimiento de la prioridad de los requerimientos. Este incluye una motivación. Expone los motivos para los métodos de prioridad escogidos y el por que de las alternativas rechazadas.  
 	
 	El apéndice al final de este documento incluye los resultados de la priorización de requerimientos y el plan de entrega basado en las prioridades.
 	
 	\section{Descripción general}
 	
-	Esta sección brindará una perspectiva general de todo el sistema. El sistema será explicado en su contexto para mostrar como el sistema interactúa con otros sistemas y su funcionalidad básica. Describirá además que tipo de participantes <stakeholders> usarán el sistema y que funcionalidad estará disponible para cada tipo de ellos. Al final, se presentan las restricciones y suposiciones para el sistema.
+	Esta sección brindará una perspectiva general de todo el sistema de software, \AppName. El sistema será explicado dentro de su contexto para mostrar como éste interactúa con el \smr por medio de su funcionalidad básica. Describirá además que tipo de participantes \textendash \emph{stakeholders} \textendash usarán el sistema y que funcionalidad estará disponible para cada tipo de ellos. Al final, se presentan las restricciones y suposiciones para el sistema.
 	
 	\subsection{Perspectiva de producto}
 	
-	\AppName será un aplicación de escritorio que servirá como interfaz de usuario de software para el \smr. El software del sistema consiste de tres partes: el soporte para interfaz gráfica, la capa de abstracción de comunicaciones y la automatizador de mediciones.	
+	\AppName será un aplicación de escritorio que servirá como interfaz de usuario de software para el \smr. El software del sistema consiste de tres partes: el soporte para interfaz gráfica, la capa de abstracción de comunicaciones y la automatizador de mediciones.
+	
+	\AppName será una aplicación dirigida inicialmente a PC que ejecute un sistema operativo propietario (Windows) o alguna distribución en software libre (Linux). Esto garantiza que \AppName será una aplicación portable, podrá ser ejecutada por cualquier equipo o dispositivo que posea una \emph{maquina virtual} apropiada, como JVM en Java o el entorno .NET de Microsoft, tecnologías que se encuentran disponibles bajo licencias de software libre.
+	
+	La aplicación resultará en una interfaz de software para los tres equipos principales que componen el \smr. En si resultará en un \emph{instrumento virtual} que concentra toda la funcionalidad del \SMR en un solo sitio: el dispositivo o PC que ejecute la aplicación.
+	
+	Conceptualmente se ha dividido la aplicación en cuatro grandes paquetes, como ilustra el diagrama UML de la figura \ref{Fig:DiagramaPaquetesprincipalUml}
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=10cm]{Imagenes/DiagramaPaquetesPrincipalUml.png}
+		\label{Fig:DiagramaPaquetesprincipalUml}
+		\caption{Diagrama de paquetes UML que describe la organización del software}
+	\end{figure}
+
+	La aplicación necesita establecer comunicación de datos con los instrumentos, por medio de los buses GPIB o USB, red LAN o un puerto de comunicaciones RS232. La capa en la figura \ref{Fig:DiagramaPaquetesprincipalUml} conocida como \emph{Capa de Abstracción de Comunicaciones} es la encargada de gestionar todo lo relativo a la comunicación de datos a través de múltiples interfaces o buses disponibles, mientras brinda una interfaz uniforme a las capas de software superiores.
+	
+	La funcionalidad de los instrumentos que componen el \SMR sera representada en software por unidades funcionales que se llamarán  \emph{bloques de tareas}. El usuario, por medio de la interfaz gráfica, podrá configurar la instrumentación agregando, conectando y programando bloques de tareas. Es responsabilidad del paquete \emph{Procesamiento de Bloques de Tareas} la compilación y ejecución de la programación hecha por el usuario.
+	
+	Los instrumentos presentes en el \SMR serán representados en la interfaz gráfica de la aplicación mediante diagrama de bloques. Es responsabilidad del paquete \emph{Interfaz de Usuario} la gestión de la presentación de diagramas de bloques.
+	
+	La aplicación \AppName presentará los resultados de una tarea de medición en pantalla o en documentos digitales en formato de documento portable (pdf), en lenguaje de marcado de hipertexto (html) o en formato de texto plano, como valores separados por comas (csv). El paquete \emph{DocumentGenerator} se encargará de cubrir esta funcionalidad.
 	
 	\subsection{Funciones de producto}
 	
+	Las tareas de medición que realizaría un usuario por medio de las interfaces físicas empleando de los instrumentos que conforman \SMR 
+	podrán realizarse a través \AppName, la cual brindará una única interfaz de software al \SMR. 
+	
+	A través de \AppName no se necesita presencia física del usuario en el \SMR, la aplicación brindará acceso remoto a través de buses de comunicación de datos o por red LAN. 
+	
+	La aplicación se encargará de buscar y presentar al usuario los instrumentos que forman \SMR que se encuentren en linea, es decir, conectados a un bus de datos o a una red LAN, a la cual la PC donde se ejecute la aplicación tenga la facilidad de acceso.
+	
+	La funcionalidad principal de \AppName será la de automatizar el proceso de medición con el  \SMR. 
+	
+	La interfaz gráfica de la aplicación permitirá al usuario seleccionar los instrumentos en linea y así configurar la instrumentación adecuada para la tarea de medición, por medio de la representación gráfica de los instrumentos en forma de diagrama de bloques. Estos bloques admiten programación en forma de comandos SCPI,  estándar para instrumentos programables.
+	
+	El usuario podrá ejecutar la secuencia de comandos y observar los resultados en tiempo real en pantalla. La aplicación podrá además guardar los resultados de la mediciones en formatos de documento digital como pdf, html o texto plano.		
+	
 	\subsection{Características de los usuarios}
 	
-	La aplicación \AppName está dirigida a usuarios con formación técnica en el tarea de radio frecuencia, comunicaciones, antenas, electrónica y afines. En estos campos se  consideran Ingenieros y Técnicos Universitarios como \emph{usuarios técnicos} en este documento.
+	La aplicación \AppName está dirigida a usuarios con formación técnica en el tarea de radio frecuencia, comunicaciones, antenas, electrónica y afines. En estos campos se  consideran ingenieros y técnicos universitarios como \emph{usuarios técnicos} en este documento.
 	
-	\subsection{Restricciones}
+	\subsection{Restricciones}	
 	
+	La aplicación \AppName requiere que en el PC o dispositivo donde se ejecute se encuentre instalada la \emph{maquina virtual} adecuada y con la versión correcta (Java Virtual Machine, JVM para Java o el entorno .NET ). 
+	
+	\AppName hace uso intensivo de las comunicaciones a través de los buses GPIB, USB o través de una red LAN. Por ello en el dispositivo o PC donde se ejecuta la aplicación se requiere de los periféricos de hardware apropiados, como adaptadores USB a GPIB o puente LAN a GPIB. En software también se necesita el soporte apropiado para las comunicaciones de datos, requiere de las librerías VISA de National Instruments, Linux-GPIB, VXI-11 y libUSB.	
+
 	\subsection{Suposiciones y dependencias}	
+	
+	Se parte del supuesto de que el dispositivo donde se ejecute la aplicación posee la cantidad de memoria adecuada y la capacidad de procesamiento necesario para que la maquina virtual ejecute la aplicación, sin una degradación del desempeño apreciable.
 	
 	\section{Requerimientos específicos}
 	
-	\subsection{Interfaces de usuario}
+	Esta sección presenta todos los requerimientos funcionales y de calidad para la aplicación \AppName. Muestra un descripción detallada del sistema y de todas sus características.
+	
+	\subsection{Requerimientos de interfaces de usuario}
+	
+	\subsubsection{Interfaces de usuario}
+	
+	Cuando el usuario inicia la aplicación, se mostrará la pantalla inicial de la figura \ref{Fig:MainWndowUI}. Esta ventana principal de la aplicación, representa el centro de control de la aplicación ya que concentra multiples funciones en forma de controles de ventana, comúnmente llamados \emph{widgets}, que el usuario debe seleccionar para ejecutar la acción asociada este control. 
+	
+	En la pantalla un control en la ventana principal de la aplicación, sera llevado a otra ventana con la funcionalidad asociada al control. Por ejemplo, al seleccionar el control \emph{Buscar Instrumentos} se le presentará la ventana de \emph{Explorador de Instrumentos}. 
+	
+	Al seleccionar \emph{Crear tarea} el usuario sera llevado a la ventana de programación de tareas de la figura \ref{Fig:ProgramWindowUI}. Por medio del control \emph{Abrir tarea} el usuario puede cargar una tarea de medición, previamente almacenada, a la ventana de programación. Presionando el control \emph{Configurar aplicación} se presentará la ventana en donde el usuario puede ajustar la configuración global de la aplicación. Presionando el control \emph{Obtener ayuda} se presentará una ventana en donde el usuario podrá indagar por ayuda.	
+	
+	
+	\begin{figure}[h!]
+		\centering 
+		\includegraphics[width=12cm]{Imagenes/MainWindowUI.pdf}
+		\label{Fig:MainWndowUI} 
+		\caption{Sketch para la ventana principal de la aplicación}
+	\end{figure}
+
+	
+
+	\begin{figure}[h!]
+		\centering 
+		\includegraphics[width=12cm]{Imagenes/ProgramWindowUI.pdf}
+		\label{Fig:ProgramWindowUI} 
+		\caption{Sketch para la ventana de programación de tareas}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering 
+		\includegraphics[width=\textwidth]{Imagenes/ExecutionWindowUI.pdf}
+		\label{Fig:ExecutionWindowUi} 
+		\caption{Sketch para la ventana de ejecución de tareas}
+	\end{figure}
 	
 	\subsubsection{Interfaces de hardware}
 	
