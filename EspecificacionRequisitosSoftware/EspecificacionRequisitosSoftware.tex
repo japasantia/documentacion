@@ -1,5 +1,5 @@
 % Para documento texto corto
-\documentclass[paper=a4,oneside,fontsize=12pt]{scrartcl}
+\documentclass[paper=a4,oneside,fontsize=12pt]{article}
 %\documentclass[paper=letter,oneside,fontsize=12pt, 
 % parskip=full]{scrartcl}
 
@@ -100,6 +100,11 @@ bindingoffset=0cm]{geometry}
 
 	\tableofcontents
 	
+	\clearpage
+	
+	% Espaciado entre parrafos
+	\setlength{\parskip}{1em}
+	
 	\section{Introducción}
 	Esta sección brinda un panorama general del contenido del presente documento de especificaciones de requisitos de software. Se da al final una lista de abreviaturas.
 	
@@ -157,22 +162,8 @@ bindingoffset=0cm]{geometry}
 			\bibitem{softwareengineering-sommerville} 
 			Ian Sommerville. 
 			\textit{Software Engineering}. 
-			Addison-Wesley, Boston, Massachusetts, 2011.					
-			
-			\bibitem{latexcompanion} 
-			Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
-			\textit{The \LaTeX\ Companion}. 
-			Addison-Wesley, Boston, Massachusetts, 2011.		
-			
-			\bibitem{einstein} 
-			Albert Einstein. 
-			\textit{Zur Elektrodynamik bewegter K{\"o}rper}. (German) 
-			[\textit{On the electrodynamics of moving bodies}]. 
-			Annalen der Physik, 322(10):891–921, 1905.
-			
-			\bibitem{knuthwebsite} 
-			Knuth: Computers and Typesetting,
-			\\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}
+			Addison-Wesley, Boston, Massachusetts, 2011.				
+
 		\end{thebibliography}
 	\endgroup
 
@@ -199,13 +190,13 @@ bindingoffset=0cm]{geometry}
 	
 	La aplicación resultará en una interfaz de software para los tres equipos principales que componen el \smr. En si resultará en un \emph{instrumento virtual} que concentra toda la funcionalidad del \SMR en un solo sitio: el dispositivo o PC que ejecute la aplicación.
 	
-	Conceptualmente se ha dividido la aplicación en cuatro grandes paquetes, como ilustra el diagrama UML de la figura \ref{Fig:DiagramaPaquetesprincipalUml}
+	Conceptualmente se ha dividido la aplicación en cuatro grandes paquetes, como ilustra el diagrama UML de la figura \ref{Fig:DiagramaPaquetesPrincipalUml}
 	
-	\begin{figure}[!h]
+	\begin{figure}[H]
 		\centering
 		\includegraphics[width=10cm]{Imagenes/DiagramaPaquetesPrincipalUml.png}
-		\label{Fig:DiagramaPaquetesprincipalUml}
 		\caption{Diagrama de paquetes UML que describe la organización del software}
+		\label{Fig:DiagramaPaquetesPrincipalUml}
 	\end{figure}
 
 	La aplicación necesita establecer comunicación de datos con los instrumentos, por medio de los buses GPIB o USB, red LAN o un puerto de comunicaciones RS232. La capa en la figura \ref{Fig:DiagramaPaquetesprincipalUml} conocida como \emph{Capa de Abstracción de Comunicaciones} es la encargada de gestionar todo lo relativo a la comunicación de datos a través de múltiples interfaces o buses disponibles, mientras brinda una interfaz uniforme a las capas de software superiores.
@@ -253,41 +244,83 @@ bindingoffset=0cm]{geometry}
 	
 	\subsubsection{Interfaces de usuario}
 	
-	Cuando el usuario inicia la aplicación, se mostrará la pantalla inicial de la figura \ref{Fig:MainWndowUI}. Esta ventana principal de la aplicación, representa el centro de control de la aplicación ya que concentra multiples funciones en forma de controles de ventana, comúnmente llamados \emph{widgets}, que el usuario debe seleccionar para ejecutar la acción asociada este control. 
+	Cuando el usuario inicia la aplicación, se mostrará la pantalla inicial de la figura \ref{Fig:MainWndowUI}. Esta ventana principal de la aplicación, representa el centro de control de la aplicación ya que concentra múltiples funciones en forma de controles de ventana, comúnmente llamados \emph{widgets}, que el usuario debe seleccionar para ejecutar la acción asociada este control. 
+	
+	\begin{figure}[]
+		\centering 
+		\includegraphics[width=10cm]{Imagenes/MainWindowUI.pdf}
+		\label{Fig:MainWndowUI} 
+		\caption{Sketch para la ventana principal de la aplicación}
+	\end{figure}		
 	
 	En la pantalla un control en la ventana principal de la aplicación, sera llevado a otra ventana con la funcionalidad asociada al control. Por ejemplo, al seleccionar el control \emph{Buscar Instrumentos} se le presentará la ventana de \emph{Explorador de Instrumentos}. 
 	
-	Al seleccionar \emph{Crear tarea} el usuario sera llevado a la ventana de programación de tareas de la figura \ref{Fig:ProgramWindowUI}. Por medio del control \emph{Abrir tarea} el usuario puede cargar una tarea de medición, previamente almacenada, a la ventana de programación. Presionando el control \emph{Configurar aplicación} se presentará la ventana en donde el usuario puede ajustar la configuración global de la aplicación. Presionando el control \emph{Obtener ayuda} se presentará una ventana en donde el usuario podrá indagar por ayuda.	
-	
-	
-	\begin{figure}[h!]
+	\begin{figure}[H]
 		\centering 
-		\includegraphics[width=12cm]{Imagenes/MainWindowUI.pdf}
-		\label{Fig:MainWndowUI} 
-		\caption{Sketch para la ventana principal de la aplicación}
-	\end{figure}
-
-	
-
-	\begin{figure}[h!]
-		\centering 
-		\includegraphics[width=12cm]{Imagenes/ProgramWindowUI.pdf}
-		\label{Fig:ProgramWindowUI} 
+		\includegraphics[width=10cm]{Imagenes/ProgramWindowUI.pdf}
 		\caption{Sketch para la ventana de programación de tareas}
+		\label{Fig:ProgramWindowUI} 		
+	\end{figure}
+	
+	Al seleccionar \emph{Crear tarea} el usuario sera llevado a la ventana de programación de tareas de la figura \ref{Fig:ProgramWindowUI}. Por medio del control \emph{Abrir tarea} el usuario puede cargar una tarea de medición, previamente almacenada, a la ventana de programación. Presionando el control \emph{Configurar aplicación} se presentará la ventana en donde el usuario puede ajustar la configuración global de la aplicación. Presionando el control \emph{Obtener ayuda} se presentará una ventana en donde el usuario podrá indagar por ayuda.
+
+	\begin{figure}[H]
+		\centering 
+		\includegraphics[width=12cm]{Imagenes/ExecutionWindowUI.pdf}
+		\caption{Sketch para la ventana de ejecución de tareas}
+		\label{Fig:ExecutionWindowUI} 		
 	\end{figure}
 
-	\begin{figure}[h!]
-		\centering 
-		\includegraphics[width=\textwidth]{Imagenes/ExecutionWindowUI.pdf}
-		\label{Fig:ExecutionWindowUi} 
-		\caption{Sketch para la ventana de ejecución de tareas}
-	\end{figure}
+	Dentro de la ventana de programación de tareas de la figura \ref{Fig:ProgramWindowUI} el usuario puede seleccionar los bloques que representan a los instrumentos y arrastrar cada bloque al panel de esquema (parte superior derecha), en donde puede configurar un diagrama de bloques con la instrumentación a utilizar para el proceso de medición. El panel de programación,  ubicado en la parte inferior derecha, permite realizar la programación de los instrumentos. El usuario selecciona bloques de instrucciones del panel inferior izquierdo a panel de programación. El usuario edita los comandos IEEE488 o SCPI dentro de los bloques de instrucciones. 
+
+	Al presionar el botón \emph{start} en la ventana de la figura \ref{Fig:ProgramWindowUI} se procederá a ejecutar el programa y se mostrará la ventana de la figura \ref{Fig:ExecutionWindowUI}. En  esta ventana se muestran los resultados de las mediciones en timepo real.
 	
 	\subsubsection{Interfaces de hardware}
 	
+	La aplicación \AppName requiere un intercambio de datos continuo y confiables con el \smr. En la figura \ref{Fig:MainSystemPackagesUML} se muestra un diagrama compuesto UML que indica muestra los \emph{paquetes} de software (\AppName) y de hardware (\smr) y el \emph{canal de datos}, puente de comunicación entre estos dos paquetes.
+	
+	Se tiene una interfaz de hardware, el bus de datos, representada en la figura \ref{Fig:MainSystemPackagesUML} por los circulos y semicirculos con la etiqueta \texttt{Bus Datos}. Esta puede tomar la forma de buses Usb, Gpib, Rs232 o de una red Lan. Las interfaces de hardware la constituyen todos los dispositivos físico que deben estar presentes en el canal de datos, entre el computador que ejecuta la aplicación y los instrumentos que integran el \SMR.	
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/MainSystemPackagesUML.pdf}
+		\caption{Vista general de interfaces de software y hardware}
+		\label{Fig:MainSystemPackagesUML}
+	\end{figure}
+	
 	\subsubsection{Interfaces de software}
 	
+	Dentro del \emph{marco de paquetes} etiquetado como \AppName de la figura \ref{Fig:MainSystemPackagesUML} se encuentra la principal interfaz de software, llamada \texttt{IConnection}. Esta interfaz representa una abstracción de alto nivel del canal de comunicaciones físicos, bien sea un bus Gpib, Usb, Rs232 o una conexión a red Lan. La interfaz \texttt{IConnection} es provista por una capa de sofware que se ha llamado como \texttt{Communication~Abstraction~Layer} y se indica en la figura \ref{Fig:MainSystemPackagesUML}, interfaz que será utilizada o consumida por niveles superiores dentro del software de \AppName.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.45\textwidth]{Imagenes/CommunicationAbstractionLayerPackages1.pdf}
+		\caption{Principales interfaces de software}
+		\label{Fig:CalPackagesMain}
+	\end{figure}
+	
+	El paquete de software \texttt{Communication~Abstraction~Layer}, como se muestra en la figura \ref{Fig:CalPackagesMain}, necesita consumir las interfaces \texttt{IGpibConnection}, \texttt{IUsbConnection}, \texttt{ILanConnection}, \texttt{IRs232Connection} que presentan funcionalidad de software para acceso a los respectivos buses de datos. 
+	
+	Cada una de las interfaces mencionadas requieren el uso de librerías nativas, instaladas en el sistema operativo donde se ejecute la aplicación. Estas representan interfaces de software que permiten el intercambio de datos a bajo nivel. La dependencia entre las librerías de alto nivel con sus respectivas librerias nativas se indica en las figuras \ref{Fig:CalPackages1} y \ref{Fig:CalPackages2}.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/CommunicationAbstractionLayerPackages2.pdf}
+		\caption{Interfaces de software y sus dependencias, para conexión con buses Gpib y redes Lan}
+		\label{Fig:CalPackages1}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/CommunicationAbstractionLayerPackages3.pdf}
+		\caption{Interfaces de software y sus dependencias, para conexión con buses Usb o Rs232}
+		\label{Fig:CalPackages2}		
+	\end{figure}
+	
 	\subsubsection{Interfaces de comunicaciones}
+	
+	Las interfaces de comunicaciones para la aplicación \AppName están representadas por el software de interfaz para los buses Gpib, Usb, Rs232 y el software de interfaz para acceso a redes Lan.
+	
 	
 		% -----------------------------------------------------
 		% Comando para generar formato con requisitos funcionales
@@ -295,7 +328,7 @@ bindingoffset=0cm]{geometry}
 			\subsubsection{Requerimiento funcional {#1}}
 
 			\begin{table}[H]			
-			%\begin{table}[!htbp]
+			%\begin{table}[!h]
 				\begin{tabularx}{\textwidth}{rX}			
 					\textbf{ID:} 	&	{#2}		\\
 					Titulo:			&  	{#3}. 		\\
@@ -313,7 +346,8 @@ bindingoffset=0cm]{geometry}
 		\newcommand{\perfreq}[6]{
 			\subsubsection{{Requerimiento de desempeño #1}}
 			
-			\begin{table}[H]%[!htbp]
+			\begin{table}[H]
+			%\begin{table}[!h]
 				\begin{tabular}{rl}			
 					\textbf{ID:} 	&	{#2}		\\
 					Titulo:			&  	{#3}. 		\\
