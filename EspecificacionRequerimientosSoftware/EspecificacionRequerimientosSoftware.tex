@@ -24,6 +24,8 @@ bindingoffset=0cm]{geometry}
 
 % Mejor jsutificacion, tipografia alta calidad.
 \usepackage{microtype}
+% Para unir columnas y filas en tablas
+\usepackage{array}
 
 % Agrega comandos extra al comando tabular
 % \toprule, \midrule, \bottomrule
@@ -46,6 +48,9 @@ bindingoffset=0cm]{geometry}
 \usepackage{caption}
 \usepackage{subcaption}
 
+% Espaciado inteligente
+\usepackage{xspace} 
+
 % Cabeceras
 \pagestyle{fancy}
 % Borra cabecera y pie actuales
@@ -54,56 +59,83 @@ bindingoffset=0cm]{geometry}
 %\chead{
 %	\includegraphics[width=150mm]{Imagenes/Cabecera.png}
 %}
-\fancyhead[L]{\includegraphics[width=150mm]{Imagenes/Cabecera.png}}
-\fancyfoot[C]{
-	\begin{tabular}{|m{2.0cm}|m{10.0cm}|m{2.0cm}|}
+\fancyhead[L]{\includegraphics[width=\textwidth]{Imagenes/Cabecera.png}}
+\fancyfoot[C]{ 
+	\begin{tabularx}{\textwidth}{|X|m{10cm}|X|}
 		\hline
 		\centering Versión 0.1	& 
 		\centering \includegraphics[height=0.8cm]{Imagenes/Pie.png} & 
-		{\centering  \thepage / \pageref{LastPage}} \\			
+		\begin{centering}
+			\thepage~/~\pageref{LastPage}
+		\end{centering} \\			
 		\hline 
-	\end{tabular}}
+	\end{tabularx}	
+}
 
 % Numeracion de paginas
 % numeros arabigos
 \pagenumbering{arabic}
 
 % Comando que define el nombre la aplicacion
-\newcommand{\AppName}{\textsc{CenditLab}\ }
+\newcommand{\AppName}{\textsc{CenditLab}\xspace}
 
 % Comando que define el nombre del sistema de medición de figura de ruido
 \newcommand{\smr}{sistema de medición de ruido}
-\newcommand{\SMR}{SMR}
+\newcommand{\SMR}{SMR\xspace}
 
 % Comando que define el nombre del Cendit
-\newcommand{\cendit}{Cendit}
+\newcommand{\cendit}{Cendit\xspace}
 
 \begin{document}
 	
-	\begin{titlepage}
+	%\begin{titlepage}		
 				
-		\begin{center}	
+		\begin{center} 
 			
-			\vspace{10cm}
-			
-			\begin{Large}			
-				Especificación de Requisitos de Software
+			\begin{Large} 
+				\textsc{Dirección de Servicios de Certificación}
+				\\[5pt]
+				\textsc{Laboratorio de Ensayos de Compatibilidad Electromagnética Radiada}
 			\end{Large}
+				
+				\vspace{10cm}
+			
+			\begin{LARGE}			
+				\textsc{Especificación de Requerimientos de Software}
+			\end{LARGE}
+		
+			\vspace{8pt}
 		
 			\begin{Huge}
 				\textsc{\AppName}
 			\end{Huge}
-			
+		
+			\begin{table}[!b]
+				\begin{tabularx}{\linewidth}{|X|X|X|X|}	
+					\hline				
+					\multicolumn{2}{|l|}{\textbf{FORMATO}: } & \multicolumn{2}{|l|}{\textbf{N DOC:}} \\
+					\hline
+					Originado por:	& Elaborado por: & Revisado por: & Aprobado por: \\
+					\hline
+					Br. Arias B., Jose A. & Br. Arias B., Jose A. & - & - \\
+					\hline
+					\textbf{Fecha: 16/06/2017} & \textbf{Fecha: 16/06/2017} & & \\				
+					\hline
+				\end{tabularx}	
+			\end{table}		
+		
 		\end{center}
 		
-	\end{titlepage}
+	%\end{titlepage}
+	
+	\clearpage
 
 	\tableofcontents
 	
 	\clearpage
 	
 	% Espaciado entre parrafos
-	\setlength{\parskip}{1em}
+	\setlength{\parskip}{0.5em}
 	
 	\section{Introducción}
 	Esta sección brinda un panorama general del contenido del presente documento de especificaciones de requisitos de software. Se da al final una lista de abreviaturas.
@@ -126,11 +158,21 @@ bindingoffset=0cm]{geometry}
 	\subsection{Definiciones, acronimos y abreviaturas}
 	
 	\begin{table}[h!]
-		\begin{tabular}{|p{4cm}|p{10cm}|} 
+		\begin{tabularx}{\textwidth}{|c|X|} 
 			\hline
-			Termino & Definición \\
+			\textbf{Término} & \textbf{Definición} \\
 			\hline
-		\end{tabular}	
+			Stakeholder & Participante \\
+			\hline
+			VM	& Virtual Machine, maquina virtual que se encarga de ejecutar una aplicación \\
+			\hline
+			JVM & Java Virtual Machine \\
+			\hline
+			UML & Unified Modeling Language, lenguaje unificado de modelado, permite modelar gráficamente la estructura y comportamiento de unidades de software \\
+			\hline
+			SO & Sistema Operativo \\
+			\hline
+		\end{tabularx}	
 	\end{table}
 
 	\subsection{Referencias}
@@ -146,12 +188,12 @@ bindingoffset=0cm]{geometry}
 		\begin{thebibliography}{9}
 			\bibitem{iso-29148} 
 			ISO/IEC/IEEE 29148. 
-			\textit{Systems and software engineering - Lyfe cycle processes - Requirements enginering}. 
+			\textit{Systems and Software Engineering - Lyfe Cycle Processes - Requirements Enginering}. 
 			ISO/IEC/IEEE, 2011.
 			
 			\bibitem{iso-42010} 
 			ISO/IEC/IEEE 42010. 
-			\textit{Systems and software engineering - Architecture description}. 
+			\textit{Systems and Software Engineering - Architecture Description}. 
 			ISO/IEC/IEEE, 2011.		
 			
 			\bibitem{softwareengineering-narang} 
@@ -240,7 +282,7 @@ bindingoffset=0cm]{geometry}
 	
 	Esta sección presenta todos los requerimientos funcionales y de calidad para la aplicación \AppName. Muestra un descripción detallada del sistema y de todas sus características.
 	
-	\subsection{Requerimientos de interfaces de usuario}
+	\subsection{Requerimientos de interfaces externas}
 	
 	\subsubsection{Interfaces de usuario}
 	
@@ -294,7 +336,7 @@ bindingoffset=0cm]{geometry}
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.45\textwidth]{Imagenes/CommunicationAbstractionLayerPackages1.pdf}
+		\includegraphics[width=0.4\textwidth]{Imagenes/CommunicationAbstractionLayerPackages1.pdf}
 		\caption{Principales interfaces de software}
 		\label{Fig:CalPackagesMain}
 	\end{figure}
@@ -348,13 +390,13 @@ bindingoffset=0cm]{geometry}
 			
 			\begin{table}[H]
 			%\begin{table}[!h]
-				\begin{tabular}{rl}			
+				\begin{tabularx}{\textwidth}{rl}			
 					\textbf{ID:} 	&	{#2}		\\
 					Titulo:			&  	{#3}. 		\\
 					Descripción:	&	{#4}.		\\
 					Justificación: 	&	{#5}.		\\
 					Dependencias:	& 	{#6}.		\\
-				\end{tabular}				
+				\end{tabularx}				
 			\end{table}
 		}
 		% -----------------------------------------------------				
@@ -365,66 +407,97 @@ bindingoffset=0cm]{geometry}
 		
 	\funcreq{1}
 		{FR1}
-			{Programar tareas de medición}
+			{Automatizar tareas de medición}
 			{Los usuarios pueden programar los instrumentos y generar tareas de medición para sus posterior ejecución, de forma automatizada y remota}
-			{Programar y automatizar las mediciones}
+			{Programar y automatizar las mediciones con el\SMR}
 			{Ninguna}
 			{Técnico}
-	\funcreq{2}
+	\funcreq{2} 
 		{FR2}
+			{Presentar una interfaz gráfica para el \SMR}
+			{La aplicación servirá como una representación integral en software de los tres instrumentos principales que componen el \SMR, será un instrumento virtual}
+			{Simplificar las tares de medición con el \SMR}
+			{FR1}
+			{Técnico}
+	\funcreq{3}
+		{FR3}
+			{Gestión de las comunicaciones con los instrumentos del \SMR de manera simple y uniforme desde la perspectiva de usuario}
+			{La aplicación facilitará el intercambio de datos con los instrumentos del \SMR}
+			{Simplificar la adquisición de datos del \SMR}
+			{FR1, FR2}
+			{Técnico}			
+	\funcreq{4}
+		{FR4}
 			{Explorador de instrumentos conectados a los buses}
 			{El usuario podrá visualizar los instrumentos conectados a los buses, al cual el PC tiene acceso}
 			{Con el fin de mostrar un listado de instrumentos en línea}
 			{Ninguna}
 			{Técnico}
-	\funcreq{3}
-		{FR3}
+	\funcreq{5}
+		{FR5}
 			{Configurar los instrumentos de medición}
 			{Al usuario se le presentara una interfaz gráfica en donde podrá establecer la configuración de cada instrumento en linea}
 			{Los instrumentos requieren una configuración previa antes de iniciar la medición}
 			{FR2}
 			{Técnico}
-	\funcreq{4}
-		{FR4}
-			{Capacidad de programar el proceso medición}
-			{El usuario puede elegir un conjunto de instrumentos y establecer una secuencia de comandos para estos, que podrá almacenar en disco y ejecutar en el futuro}
-			{Con el objeto de automatizar los procesos de medición}
-			{FR2, FR3}
-			{Técnico}			
-	\funcreq{5}
-		{FR5}
-			{Capacidad para almacenar y cargar datos de calibración de instrumentos}
-			{El usuario puede guardar almacenar los datos de calibración y cargarlos nuevamente antes de cada proceso de medición}
-			{Con el objeto de automatizar los procesos de medición}
-			{FR3}
-			{Técnico}
-	\funcreq{6}
-		{FR5}
-			{Capacidad de programar la secuencia de pasos en el proceso de medición}
-			{El usuario podrá programar la secuencia de pasos a realizar en un proceso de medición dado}
-			{Con el objecto de automatizar el proceso de medición}
-			{FR2, FR3}	
-			{Técnico}		
 	\funcreq{6}
 		{FR6}
-			{Capacidad programar la presentación gráfica reporte con resultados de medición}
-			{El usuario podrá escoger los datos resultado de la medición y configurar su presentación y disposición en el documento de salida}
-			{Con el objeto de configurar el documento que presenta los resultados de medición}
-			{FR3,FR4}
+			{Mostrar una representación gráfica del montaje a utilizar para una tarea de medición, orientada a diagrama de bloques}
+			{La aplicación permitirá al usuario describir de forma gráfica la interconexión de instrumentos para una tarea de medición}
+			{Servir de ayuda gráfica al usuario para una tarea de medición}
+			{FR2}
 			{Técnico}
 	\funcreq{7}
 		{FR7}
 			{Interfaz gráfica orientada a diagrama de bloques}
 			{El usuario puede programar las tareas de medición por medio de la creación de diagramas de bloques, que representan funcionalidades diversas}
 			{Con el objeto de automatizar el proceso de medición}	
-			{}		
+			{Ninguna}		
+			{Técnico}				
+	\funcreq{8}
+		{FR8}
+			{Capacidad de programar el proceso medición}
+			{El usuario puede elegir un conjunto de instrumentos y establecer una secuencia de comandos para estos, que podrá almacenar en disco y ejecutar en el futuro}
+			{Con el objeto de automatizar los procesos de medición}
+			{FR2, FR3, FR4 FR5}
+			{Técnico}	
+	\funcreq{9} 
+		{FR9}
+			{Capacidad para simular el proceso medición}
+			{El usuario puede simular una tarea de instrumentación dada, sin necesidad de conexión con el \SMR}
+			{Con el objeto de automatizar los procesos de medición}
+			{FR2, FR3, FR4 FR5}
 			{Técnico}			
+	\funcreq{10}
+		{FR11}
+			{Capacidad para el montaje y configuración de tareas de medición}
+			{El usuario puede salvar la configuración y programación que haya hecho sobre una tarea de medición}
+			{Con el objeto de automatizar los procesos de medición}
+			{FR3}
+			{Técnico}								
+	\funcreq{11}
+		{FR11}
+			{Capacidad para almacenar y cargar datos de calibración de instrumentos}
+			{El usuario puede guardar almacenar los datos de calibración y cargarlos nuevamente antes de cada proceso de medición}
+			{Con el objeto de automatizar los procesos de medición}
+			{FR3}
+			{Técnico}
+	\funcreq{12}
+		{FR12}
+			{Capacidad de programar la secuencia de pasos en el proceso de medición}
+			{El usuario podrá programar la secuencia de pasos a realizar en un proceso de medición dado}
+			{Con el objecto de automatizar el proceso de medición}
+			{FR2, FR3}	
+			{Técnico}		
+	\funcreq{13}
+		{FR13}
+			{Capacidad programar la presentación gráfica reporte con resultados de medición}
+			{El usuario podrá escoger los datos resultado de la medición y configurar su presentación y disposición en el documento de salida}
+			{Con el objeto de configurar el documento que presenta los resultados de medición}
+			{FR3,FR4}
+			{Técnico}		
 			
 	\subsection{Requerimientos de desempeño}	
-			
-	\subsection{Restricciones de diseño}
-	
-	\subsection{Atributos del sistema de software}
 	
 	\perfreq{1}
 		{QR1}
@@ -433,13 +506,33 @@ bindingoffset=0cm]{geometry}
 			{Con el objeto de facilitar la navegación por las pantallas de la aplicación}
 			{Ninguna}
 		
-	\perfreq{2}
-		{QR2}
-			{La aplicación para PC deberá ser portable entre los SO Windows y Linux}
-			{La aplicación debe ejecutarse de manera uniforme en los sistemas operativos Windows y Linux}
-			{Facilitar al usuario el uso de la aplicación en ambos sistemas operativos.}
-			{Ninguna}		
+		\perfreq{2}
+			{QR2}
+				{La aplicación para PC deberá ser portable entre los SO Windows y Linux}
+				{La aplicación debe ejecutarse de manera uniforme en los sistemas operativos Windows y Linux}
+				{Facilitar al usuario el uso de la aplicación en ambos sistemas operativos.}
+				{Ninguna}		
 	
+			
+	\subsection{Restricciones de diseño}
 	
+	[Por completar]
+	
+	\subsection{Atributos del sistema de software}
+	
+	[Por completar]
+	
+	\section{Asignación de prioridades y plan de entregas}
+
+	[Por completar]
+	
+	\subsection{Elección del método para asignar prioridades}
+	
+	[Por completar]
+		
+		
+	\subsection{Plan de entregas}
+	
+	[Por completar]	
 	
 \end{document}
