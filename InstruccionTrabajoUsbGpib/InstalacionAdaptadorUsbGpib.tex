@@ -1,0 +1,214 @@
+% Para documento texto corto
+\documentclass[paper=letter,oneside,fontsize=12pt]{article}
+%\documentclass[paper=letter,oneside,fontsize=12pt, 
+% parskip=full]{scrartcl}
+
+% Establecer dimensiones de los margenes
+%\ usepackage[inner=1.5cm,outer=3cm,top=2cm,bottom=4cm,
+%	bindingoffset=5mm]{geometry}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm,
+bindingoffset=0cm, footskip=0cm, headheight=2cm]{geometry}
+
+% Permite ingresar caracteres acentuados y especiales 
+% sin necesidad de emplear comando
+% utf8 codificacion de entrada Unicode (mas simbolos que ASCII)
+\usepackage[utf8]{inputenc}
+
+% T1 encoding for European, English, American text
+\usepackage[T1]{fontenc}
+% Fuente escalable
+\usepackage{lmodern}
+
+% Carga babel, idioma ingles
+\usepackage[english,spanish]{babel}
+
+% Mejor jsutificacion, tipografia alta calidad.
+\usepackage{microtype}
+% Para unir columnas y filas en tablas
+\usepackage{array}
+
+% Agrega comandos extra al comando tabular
+% \toprule, \midrule, \bottomrule
+\usepackage{booktabs}
+% Tablas con ancho establecido por usuario
+\usepackage{tabularx}
+% Para posicionamiento preciso de tablas dentro del texto
+\usepackage{float}
+
+% Encabezados personalizados
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+% Permite obtener el numero de la ultima pagina
+\usepackage{lastpage}
+
+% Paquetes para figuras
+% Paquete caption para titulos figuras
+% Paquete subcaption para subfiguras
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Espaciado inteligente
+\usepackage{xspace} 
+
+% Formato direccione URL
+% \usepackage{hyperref}
+
+% Cabeceras
+\pagestyle{fancy}
+% Borra cabecera y pie actuales
+\fancyhead{}
+% Cintillo cabecera
+%\chead{
+%	\includegraphics[width=150mm]{Imagenes/Cabecera.png}
+%}
+\fancyhead[L]{\includegraphics[width=0.3\textwidth]{Imagenes/cabecera.pdf}}
+\fancyfoot[C]{ 
+	\begin{center}
+		\begin{tabularx}{\textwidth}{|X|m{10cm}|X|}
+			\hline		
+			\begin{center}
+				\includegraphics[height=0.8cm]{Imagenes/pie-izq.pdf}
+			\end{center} &	
+			\begin{center}
+				 Caracter Confidencial 
+			\end{center} &
+			\begin{center}
+				\includegraphics[height=0.8cm]{Imagenes/pie-der.pdf} 			 
+				\thepage~/~\pageref{LastPage} 
+			 \end{center} \\	
+			\hline 
+		\end{tabularx}	 
+	\end{center}
+}
+
+% Numeracion de paginas
+% numeros arabigos
+\pagenumbering{arabic}
+
+\begin{document}
+	
+	%\begin{titlepage}		
+	
+	\begin{center} 
+		
+		\vspace{10cm}
+		
+		\begin{Large} 
+			\textsc{Dirección de Servicios de Certificación}
+			\\[5pt]
+			\textsc{Laboratorio de Ensayos de Compatibilidad~Electromagnética~Radiada}
+		\end{Large}
+		
+		\vspace{10cm}
+		
+		
+		\begin{LARGE}			
+			\textsc{Instalación del adaptador USB/GPIB~Agilent~82357B en linux}
+		\end{LARGE}			
+		
+		\begin{large}			
+			\textsc{Construcción de la librería \emph{linux-gpib} y carga de firmware}
+		\end{large}	
+
+		
+		\begin{table}[!b]
+			\begin{tabularx}{\linewidth}{|X|X|X|X|}	
+				\hline				
+				\multicolumn{2}{|l|}{\textbf{CÓDIGO}: FO-IT-002} & \multicolumn{2}{l|}{\textbf{N DOC:}} \\
+				\hline
+				Originado por:	& 	Elaborado por: & 
+				Revisado por: 	& 	Aprobado por: \\
+				\hline
+				Br. Arias B., Jose A. & Br. Arias B., Jose A. & - & - \\
+				\hline
+				\textbf{Fecha: 20/06/2017 } & 
+				\textbf{Fecha: 20/06/2016} & 
+				\textbf{Fecha: } &
+				\textbf{Fecha: } \\				
+				\hline
+			\end{tabularx}	
+		\end{table}	
+		
+	\end{center}
+	
+	%\end{titlepage}
+	
+	\clearpage
+	
+	\tableofcontents
+	
+	\section{Objetivos}
+		\begin{itemize}
+			\item  Describir el proceso de instalación adaptador USB/GPIB Agilent 82357B.
+			\item Instalar y construir, a partir del código fuente, la librería c de soporte (linux-gpib).
+			\item Obtener y cargar el firmware para el adaptador.
+		\end{itemize}
+		
+	\section{Alcance}
+		Describe el proceso de instalación adaptador USB/GPIB Agilent 82357B, la instalación y construcción de la librería c de soporte (linux-gpib) a partir del código fuente y la obtención y carga del firmware para el adaptador.
+	
+		
+	\section{Documentos de referencia}
+	\subsection{Enlace para código fuente linux-gpib}
+	A la fecha de este documento, se encuentra el código fuente para la libreria linux-gpib en la versión 4.0.4 
+	
+	\texttt{https://sourceforge.net/projects/linux-gpib/files/linux-gpib\%20for\%203.x.x\%20and\%202.6.x\%20kernels/}
+	
+	\texttt{http://linux-gpib.sourceforge.net/}
+	
+	\texttt{http://linux-gpib.sourceforge.net/doc\_html/x263.html\#AGILENT-82357A}
+	
+	Descripción del proceso para obtención y carga del firmware para el adaptador USB/GPIB 82357B
+	
+	\texttt{https://gist.github.com/turingbirds/6eb05c9267a6437183a9567700e8581a}
+	
+	Instalación de los  archivos de cabecera para el núcleo (kernel) apropiado al numero de versión de la distribución de linux que se utilice
+	
+	\texttt{https://www.cyberciti.biz/faq/howto-install-kernel-headers-package/}
+	
+	\texttt{http://git.net/ml/linux.hardware.gpib.general/2008-02/msg00001.html}
+	
+	\section{Términos y definiciones}
+	
+	\section{Personal autorizado}
+		Personal técnico Cendit con interés en el uso del dispositivo
+		
+	\section{Personal requerido}
+		Todo aquel personal técnico Cendit con interés en el uso del dispositivo
+		
+	\section{Materiales}
+		
+		
+	\section{Herramientas y equipos}
+		
+		\begin{itemize}
+			\item Adaptador USB/GPIB Agilent 82357B
+			\item Computador personal con puerto USB.
+		\end{itemize}
+	
+	\section{Equipos de protección personal}
+		No se requieren equipos protección personal
+		
+	\section{Precauciones de seguridad}
+		Para ejecutar esta actividad no se preveen precauciones de seguridad
+		
+	\section{Descripción de la actividad}	
+		
+		Instalar archivos de cabecera para el núcleo de linux, de acuerdo a su versión.
+		
+		Descargar código fuente de linux-gpib, seleccionar version acorde a versión de kernel de linux en uso
+		
+		Construir este código fuente
+		
+		Descargar el firmware para el adaptador USB/GPIB
+		
+		Instalar la utilidad fxload
+		
+		Usar fxload para cargar el firmware.	
+		
+	
+	\section{Anexos}	
+
+	
+\end{document}
