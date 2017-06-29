@@ -89,9 +89,9 @@ bindingoffset=0cm]{geometry}
 \begin{document}
 	
 	%\begin{titlepage}		
-				
-		\begin{center} 
-			
+		%Pagina de titulo		
+		\begin{center} 			
+			% Titulo parte superior
 			\begin{Large} 
 				\textsc{Dirección de Servicios de Certificación}
 				\\[5pt]
@@ -99,7 +99,7 @@ bindingoffset=0cm]{geometry}
 			\end{Large}
 				
 				\vspace{10cm}
-			
+			% Titulo central
 			\begin{LARGE}			
 				\textsc{Especificación de Requerimientos de Software}
 			\end{LARGE}
@@ -110,6 +110,7 @@ bindingoffset=0cm]{geometry}
 				\textsc{\AppName}
 			\end{Huge}
 		
+			% Tabla para revisores
 			\begin{table}[!b]
 				\begin{tabularx}{\linewidth}{|X|X|X|X|}	
 					\hline				
@@ -128,10 +129,13 @@ bindingoffset=0cm]{geometry}
 		
 	%\end{titlepage}
 	
+	% Salto de pagina
 	\clearpage
-
+	
+	% Indice 
 	\tableofcontents
 	
+	% Salto de pagina
 	\clearpage
 	
 	% Espaciado entre parrafos
@@ -141,21 +145,29 @@ bindingoffset=0cm]{geometry}
 	Esta sección brinda un panorama general del contenido del presente documento de especificaciones de requisitos de software. Se da al final una lista de abreviaturas.
 	
 	\subsection{Propósito}
-	El propósito de este documento es dar una descripción detallada de los requerimientos para el software \AppName. Ilustrará el propósito y sentará de manera formal y completa la base inicial para el proceso de desarrollo. Explicará la restricciones del sistema, interfaces e interacciones con aplicaciones externas. 
+	El propósito de este documento es dar una descripción detallada de los requerimientos para el software \AppName. Ilustrará el propósito y sentará de manera formal y completa los requerimientos que debe poseer el software \AppName establecido por los usuarios de \smr en el \cendit. Este documento servirá como base inicial para el proceso de desarrollo. Explicará la restricciones del sistema, interfaces e interacciones con aplicaciones externas. 
 	
 	Este documento se dirige principalmente a los futuros usuarios de la software \AppName para fines de aprobación, y para desarrolladores, que se involucren en un futuro en el soporte y mejoras de la base de código.
 	
 	\subsection{Alcance}
 	
-	El software \AppName es una aplicación de escritorio que brinda a los usuarios del \emph{\smr} un entorno de trabajo o laboratorio virtual 
+	El software \AppName es una aplicación para PC de escritorio que servirá que reunirá la funcionalidad que brindan los tres equipos principales que conforman el \smr en una interfaz de software única y centralizada.  
 	
-	El software \AppName es una aplicación para PC de escritorio que sirve como interfaz de software para el \emph{\smr} presente en el \cendit. Permite realizar muchas de las tareas propias de los equipos de un \smr dentro de un entorno de trabajo en una aplicación centralizada, o laboratorio virtual. 
+	\AppName permitirá realizar las tareas propias de medición que comúnmente un usuario ejecuta frente al \SMR físico pero ahora desde una aplicación de software: un entorno de software o laboratorio virtual que permitirá replicar la funcionalidad de los instrumentos del \SMR y aumentar sus capacidades.	
+
+	El proceso de medición puede necesitar de la ejecución múltiples etapas que, desde el punto de vista de la aplicación, pueden resumirse en dos: calibración de los instrumentos y realización de la medición. Así que el principal objetivo de \AppName será el de asistir al usuario en la configuración de la instrumentación y automatizar el proceso de inicio a fin, en todas sus etapas.		
 	
+	El principal objetivo para el diseño de la aplicación \AppName es el de automatizar el proceso de medición con los instrumentos del \SMR de inicio a fin. 
+	
+	Por medio de \AppName el usuario podrá inspeccionar que instrumentos se encuentran conectados a los buses de datos, conocer cuales de ellos se encuentran activos o inactivos, establecer su configuración, realizar mediciones, captura y visualización datos, programar tareas de medición empleado comandos SCPI además de generar reportes con resultados en formatos digitales, como pdf o html. 
+	
+	% BEGIN review	
 	\AppName permite a los usuarios realizar mediciones de manera automatizada y remota, configuración los instrumentos instrumentos del \smr, capturar y visualizar de datos además de generar reportes en formatos digitales, como pdf o html.
+	% END review
 	
-	\AppName utiliza la capacidad de transferencia de datos a través de buses de comunicaciones que disponen los instrumentos del \smr, como GPIB, USB o LAN. Para ello el PC donde se ejecute la aplicación debe disponer de los aditamentos de hardware apropiado que permitan acceder a estos buses, asi como también el respectivo soporte de software en forma de librerías o controladores de dispositivo, que permitan a un PC el acceso a estos buses.
+	\AppName utiliza la capacidad de transferencia de datos a través de buses de comunicaciones que disponen los instrumentos del \smr, como GPIB, USB o LAN. Para ello el PC donde se ejecute la aplicación debe disponer de los aditamentos de hardware apropiados que permitan acceder a estos buses, así como también el respectivo soporte de software en forma de librerías o controladores de dispositivo, que permitan a un PC el acceso a estos buses.
 	
-	\subsection{Definiciones, acronimos y abreviaturas}
+	\subsection{Definiciones, acrónimos y abreviaturas}
 	
 	\begin{table}[h!]
 		\begin{tabularx}{\textwidth}{|c|X|} 
@@ -208,11 +220,10 @@ bindingoffset=0cm]{geometry}
 
 		\end{thebibliography}
 	\endgroup
-
 	
 	\subsection{Visión general}
 	
-	El resto de este documento incluye tres capítulos y un apéndice. El segundo provee un panorama de la funcionalidad del sistema y su interacción con el \smr. Este capitulo además introduce los diferentes tipos de \emph{participantes} y su interacción con el sistema. Más adelante, el capitulo menciona las restricciones del sistema y las suposiciones de la aplicación.
+	El resto de este documento incluye tres capítulos y un apéndice. El segundo provee un panorama de la funcionalidad de la aplicación de software y su interacción con el \smr. Este capitulo además introduce los diferentes tipos de \emph{participantes} y su interacción con el sistema. Más adelante, el capitulo menciona las restricciones del sistema y las suposiciones de la aplicación.
 	
 	El tercer capitulo describe la especificación de requerimientos al detalle y describe las diferentes interfaces del sistema. Se emplean diferentes técnicas de especificación con el objeto de mostrar los requerimientos de manera precisa para distintas audiencias.
 	
@@ -222,43 +233,60 @@ bindingoffset=0cm]{geometry}
 	
 	\section{Descripción general}
 	
-	Esta sección brindará una perspectiva general de todo el sistema de software, \AppName. El sistema será explicado dentro de su contexto para mostrar como éste interactúa con el \smr por medio de su funcionalidad básica. Describirá además que tipo de participantes \textendash \emph{stakeholders} \textendash usarán el sistema y que funcionalidad estará disponible para cada tipo de ellos. Al final, se presentan las restricciones y suposiciones para el sistema.
+	Esta sección brindará una perspectiva general de todo el sistema de software \AppName. El sistema será explicado dentro de su contexto para mostrar como éste interactúa con el \smr por medio de su funcionalidad básica. Describirá además que tipo de participantes \textendash \emph{stakeholders} \textendash usarán el sistema y que funcionalidad estará disponible para cada tipo de ellos. Al final, se presentan las restricciones y suposiciones para el sistema.
 	
 	\subsection{Perspectiva de producto}
 	
-	\AppName será un aplicación de escritorio que servirá como interfaz de usuario de software para el \smr. El software del sistema consiste de tres partes: el soporte para interfaz gráfica, la capa de abstracción de comunicaciones y la automatizador de mediciones.
+	\AppName será un aplicación de escritorio que brindará una interfaz de software de la funcionalidad que proporcionan los instrumentos físicos presentes en el \smr.
 	
-	\AppName será una aplicación dirigida inicialmente a PC que ejecute un sistema operativo propietario (Windows) o alguna distribución en software libre (Linux). Esto garantiza que \AppName será una aplicación portable, podrá ser ejecutada por cualquier equipo o dispositivo que posea una \emph{maquina virtual} apropiada, como JVM en Java o el entorno .NET de Microsoft, tecnologías que se encuentran disponibles bajo licencias de software libre.
+	% Revisar
+	\AppName será un aplicación de escritorio que servirá como interfaz de usuario de software para el \smr.
+	% Revisar
 	
-	La aplicación resultará en una interfaz de software para los tres equipos principales que componen el \smr. En si resultará en un \emph{instrumento virtual} que concentra toda la funcionalidad del \SMR en un solo sitio: el dispositivo o PC que ejecute la aplicación.
+	En la figura \ref{Fig:SystemMainDiagram} se muestra como la aplicación de software \AppName de la izquierda se integra a los instrumentos de hardware que conforman el \smr en la derecha, dando como resultado un sistema de mayores prestaciones. 
 	
-	Conceptualmente se ha dividido la aplicación en cuatro grandes paquetes, como ilustra el diagrama UML de la figura \ref{Fig:DiagramaPaquetesPrincipalUml}
+	La aplicación \AppName consta de cinco módulos de software principales. El módulo \emph{IO} se encarga de la gestión de la comunicación bidireccional de datos entre la aplicación y los instrumentos de medición. El módulo \emph{GUI} se encarga de la interfaz de usuario. \emph{EJECUCIÓN} es el módulo destinado a realizar las tareas de medición. El soporte en software para los instrumentos del \SMR lo brinda el módulo \emph{INSTRUMENTOS}. El módulo \emph{REPORTES} tiene la misión de generar documentos digitales que contengan los resultados del proceso de medición.		
+
+
+	% Revisar
+		Conceptualmente se ha dividido la aplicación en cuatro grandes paquetes, como ilustra el diagrama UML de la figura \ref{Fig:SystemMainDiagram}
+	% Revisar
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=10cm]{Imagenes/DiagramaPaquetesPrincipalUml.png}
-		\caption{Diagrama de paquetes UML que describe la organización del software}
-		\label{Fig:DiagramaPaquetesPrincipalUml}
+		\includegraphics[width=15cm]{Imagenes/SystemMainDiagram.pdf}
+		\caption{Diagrama bloques del sistema}
+		\label{Fig:SystemMainDiagram}
 	\end{figure}
 
-	La aplicación necesita establecer comunicación de datos con los instrumentos, por medio de los buses GPIB o USB, red LAN o un puerto de comunicaciones RS232. La capa en la figura \ref{Fig:DiagramaPaquetesprincipalUml} conocida como \emph{Capa de Abstracción de Comunicaciones} es la encargada de gestionar todo lo relativo a la comunicación de datos a través de múltiples interfaces o buses disponibles, mientras brinda una interfaz uniforme a las capas de software superiores.
+	\begin{figure}[H]
+		\centering 
+		\includegraphics[width=15cm]{Imagenes/MainSystemPackagesUML.pdf}
+		\caption{Diagrama UML del sistema}
+		\label{Fig:MainSystemPackagesUML}
+ 	\end{figure}
+ 
+ 	La interfaz de usuario mostrará una representación visual de la configuración de instrumentos presentes en el \SMR para cada tarea de medición disponible en el software. Estará orientada a un formato de diagrama de bloques, donde cada instrumento estar representado por un bloque. El usuario podrá interactuar con cada uno de ellos para configurar el instrumento respectivo. La GUI servirá como guía de los pasos a seguir durante toda la secuencia de pasos a ejecutar durante la medición. En la figura \ref{Fig:SystemMainDiagram} el módulo \emph{GUI} dentro de la aplicación contiene el soporte de software para la interfaz de usuario.
+ 	
+	La funcionalidad de los instrumentos que componen el \SMR sera representada en software por unidades funcionales que se llamarán  \emph{bloques de tareas}. El usuario, por medio de la interfaz gráfica, podrá configurar la instrumentación agregando, conectando y programando bloques de tareas. Es responsabilidad del paquete \emph{Procesamiento de Bloques de Tareas} la compilación y ejecución de la programación hecha por el usuario. 	
+
+	En la \ref{Fig:SystemMainDiagram} el vinculo entre la aplicación de software y el hardware lo constituye el canal de \emph{Comunicación de Datos}. Es un enlace bidireccional que le permite a la aplicación intercambiar datos y comandos con los instrumentos. Este canal puede tomar la forma de bus de datos GPIB, USB, RS232 o una red LAN. El módulo \emph{IO} es la encargado de gestionar todo lo relativo a la comunicación de datos a través de múltiples interfaces o buses disponibles, mientras brinda una interfaz uniforme a las capas de software superiores.
 	
-	La funcionalidad de los instrumentos que componen el \SMR sera representada en software por unidades funcionales que se llamarán  \emph{bloques de tareas}. El usuario, por medio de la interfaz gráfica, podrá configurar la instrumentación agregando, conectando y programando bloques de tareas. Es responsabilidad del paquete \emph{Procesamiento de Bloques de Tareas} la compilación y ejecución de la programación hecha por el usuario.
+	La aplicación \AppName presentará los resultados de una tarea de medición en pantalla o en documentos digitales, en formato de documento portable (pdf), en lenguaje de marcado de hipertexto (html) o en formato de texto plano, como valores separados por comas (csv). El módulo \emph{REPORTES} se encargará de cubrir esta funcionalidad.
 	
-	Los instrumentos presentes en el \SMR serán representados en la interfaz gráfica de la aplicación mediante diagrama de bloques. Es responsabilidad del paquete \emph{Interfaz de Usuario} la gestión de la presentación de diagramas de bloques.
+	\AppName será una aplicación dirigida inicialmente a PC de escritorio que ejecute en una distribución de software libre, Linux principalmente, o un sistema operativo propietario, como Windows de Microsoft. Esto garantiza que \AppName será una aplicación portable, podrá ser ejecutada por cualquier equipo o dispositivo que posea una \emph{maquina virtual} apropiada, como JVM en Java o el entorno .NET de Microsoft, tecnologías que se encuentran disponibles bajo licencias de software libre.
 	
-	La aplicación \AppName presentará los resultados de una tarea de medición en pantalla o en documentos digitales en formato de documento portable (pdf), en lenguaje de marcado de hipertexto (html) o en formato de texto plano, como valores separados por comas (csv). El paquete \emph{DocumentGenerator} se encargará de cubrir esta funcionalidad.
+	La aplicación resultará en una interfaz de software para los tres equipos principales que componen el \smr. En si resultará en un \emph{instrumento virtual} que concentra toda la funcionalidad del \SMR en un solo sitio: el dispositivo o PC que ejecute la aplicación.
 	
 	\subsection{Funciones de producto}
 	
-	Las tareas de medición que realizaría un usuario por medio de las interfaces físicas empleando de los instrumentos que conforman \SMR 
-	podrán realizarse a través \AppName, la cual brindará una única interfaz de software al \SMR. 
+	Las tareas de medición que realizaría un usuario por medio de las interfaces físicas empleando de los instrumentos que conforman \SMR podrán realizarse a través \AppName, la cual brindará una única interfaz de software al \SMR. 
 	
 	A través de \AppName no se necesita presencia física del usuario en el \SMR, la aplicación brindará acceso remoto a través de buses de comunicación de datos o por red LAN. 
 	
 	La aplicación se encargará de buscar y presentar al usuario los instrumentos que forman \SMR que se encuentren en linea, es decir, conectados a un bus de datos o a una red LAN, a la cual la PC donde se ejecute la aplicación tenga la facilidad de acceso.
 	
-	La funcionalidad principal de \AppName será la de automatizar el proceso de medición con el  \SMR. 
+	La funcionalidad principal de \AppName será la de automatizar el proceso de medición con el \SMR. 
 	
 	La interfaz gráfica de la aplicación permitirá al usuario seleccionar los instrumentos en linea y así configurar la instrumentación adecuada para la tarea de medición, por medio de la representación gráfica de los instrumentos en forma de diagrama de bloques. Estos bloques admiten programación en forma de comandos SCPI,  estándar para instrumentos programables.
 	
@@ -327,7 +355,7 @@ bindingoffset=0cm]{geometry}
 		\centering
 		\includegraphics[width=0.8\textwidth]{Imagenes/MainSystemPackagesUML.pdf}
 		\caption{Vista general de interfaces de software y hardware}
-		\label{Fig:MainSystemPackagesUML}
+		\label{Fig:MainSystemPackagesUML2}
 	\end{figure}
 	
 	\subsubsection{Interfaces de software}
@@ -404,6 +432,14 @@ bindingoffset=0cm]{geometry}
 	\subsection{Requerimientos funcionales}	
 	
 	A continuación los requerimientos funcionales
+	
+	\funcreq{1}
+		{FR1}
+			{Instalar aplicación}
+			{La aplicación requiere de una aplicación instalador}
+			{Facilitar el proceso de instalación para el usuario}
+			{Ninguna}
+			{Técnico}
 		
 	\funcreq{1}
 		{FR1}
@@ -425,13 +461,20 @@ bindingoffset=0cm]{geometry}
 			{La aplicación facilitará el intercambio de datos con los instrumentos del \SMR}
 			{Simplificar la adquisición de datos del \SMR}
 			{FR1, FR2}
-			{Técnico}			
+			{Técnico}				
 	\funcreq{4}
 		{FR4}
-			{Explorador de instrumentos conectados a los buses}
-			{El usuario podrá visualizar los instrumentos conectados a los buses, al cual el PC tiene acceso}
-			{Con el fin de mostrar un listado de instrumentos en línea}
+			{Gerencia de los instrumentos conectados a los buses}
+			{La aplicación debe descubrir y enumerar los instrumentos conectados a los buses a los cuales el PC disponga de acceso}
+			{Presentar al usuario los instrumentos disponibles en los buses}
 			{Ninguna}
+			{Técnico}
+	\funcreq{5}			
+		{FR5}
+			{Presentar explorador y buscador de instrumentos al usuario}
+			{Por medio de un control de GUI se presenta al usuario una lista visual de los instrumentos disponibles y en que bus se encuentran}
+			{Presentar al usuario los instrumentos disponibles en los buses}
+			{FR4}
 			{Técnico}
 	\funcreq{5}
 		{FR5}
@@ -440,6 +483,11 @@ bindingoffset=0cm]{geometry}
 			{Los instrumentos requieren una configuración previa antes de iniciar la medición}
 			{FR2}
 			{Técnico}
+	\funcreq{6}
+		{FR6}
+			{Presentar al usuario las fases de cada tarea de medición}
+			{Las tareas de medición se dividen en fases: busqueda de instrumentos, configuración de la tarea de medición, ejecución de la tarea de medición, configuración de presentación de resultados y presentación de resultados}
+			{La aplicación guía al usuario desde el inicio hasta el final de la tarea de medición}
 	\funcreq{6}
 		{FR6}
 			{Mostrar una representación gráfica del montaje a utilizar para una tarea de medición, orientada a diagrama de bloques}
@@ -492,7 +540,7 @@ bindingoffset=0cm]{geometry}
 	\funcreq{13}
 		{FR13}
 			{Capacidad programar la presentación gráfica reporte con resultados de medición}
-			{El usuario podrá escoger los datos resultado de la medición y configurar su presentación y disposición en el documento de salida}
+			{El usuario podrá escoger cuales de datos de las mediciones incluir en el reporte de salida. El usuario podrá configurar su presentación y disposición en el documento de salida}
 			{Con el objeto de configurar el documento que presenta los resultados de medición}
 			{FR3,FR4}
 			{Técnico}		
