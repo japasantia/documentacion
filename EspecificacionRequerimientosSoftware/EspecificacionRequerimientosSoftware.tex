@@ -61,13 +61,11 @@ bindingoffset=0cm]{geometry}
 %}
 \fancyhead[L]{\includegraphics[width=\textwidth]{Imagenes/Cabecera.png}}
 \fancyfoot[C]{ 
-	\begin{tabularx}{\textwidth}{|X|m{10cm}|X|}
+	\begin{tabularx}{\textwidth}{|X|m{10cm}|m{1.2cm}|}
 		\hline
 		\centering Versión 0.1	& 
-		\centering \includegraphics[height=0.8cm]{Imagenes/Pie.png} & 
-		\begin{centering}
-			\thepage~/~\pageref{LastPage}
-		\end{centering} \\			
+		\centering \includegraphics[height=0.8cm]{Imagenes/Pie.png} & 	
+		\thepage~/~\pageref{LastPage} \\			
 		\hline 
 	\end{tabularx}	
 }
@@ -488,6 +486,8 @@ bindingoffset=0cm]{geometry}
 			{Presentar al usuario las fases de cada tarea de medición}
 			{Las tareas de medición se dividen en fases: busqueda de instrumentos, configuración de la tarea de medición, ejecución de la tarea de medición, configuración de presentación de resultados y presentación de resultados}
 			{La aplicación guía al usuario desde el inicio hasta el final de la tarea de medición}
+			{Ninguno}
+			{Técnico}
 	\funcreq{6}
 		{FR6}
 			{Mostrar una representación gráfica del montaje a utilizar para una tarea de medición, orientada a diagrama de bloques}

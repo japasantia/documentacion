@@ -3,11 +3,22 @@
 \documentclass[paper=letter,oneside,fontsize=11pt, parskip=full]{scrartcl}
 %\documentclass[paper=letter,oneside,fontsize=12pt]{scrartcl}
 
-% Establecer dimensiones de los margenes
-%\ usepackage[inner=1.5cm,outer=3cm,top=2cm,bottom=4cm,
-%	bindingoffset=5mm]{geometry}
+% Establece dimensiones de los margenes
+% \usepackage[inner=1.5cm,outer=3cm,top=2cm,bottom=4cm,
+% bindingoffset=5mm]{geometry}
 \usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm,
 bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
+
+% Elimina sangrias y aumenta espacio entre parrafos
+\usepackage{parskip}
+
+% Permite cambiar margenes derecho e izquierdo
+% de secciones de texto con el entorno
+% adjustwidth
+\usepackage{changepage}
+
+% Permite establecer el espaciado entre lineas
+\usepackage{setspace}
 
 % Permite ingresar caracteres acentuados y especiales 
 % sin necesidad de emplear comando
@@ -20,7 +31,12 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 % T1 encoding for European, English, American text
 \usepackage[T1]{fontenc}
 % Fuente escalable
-\usepackage{lmodern}
+% \usepackage{lmodern}
+
+% Reemplazo para fuente Arial
+\usepackage{helvet}
+% Usa la fuente sans-serif por defecto
+\renewcommand{\familydefault}{\sfdefault}
 
 % Carga babel, idioma ingles
 \usepackage[english,spanish]{babel}
@@ -72,80 +88,99 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 %}
 \fancyhead[L]{\includegraphics[width=0.3\textwidth]{Imagenes/cabecera.pdf}}
 \fancyfoot[C]{ 
-	%\begin{center}
-		\begin{tabularx}{\textwidth}{|X|m{10cm}|X|}
-			\hline	
-			%\begin{figure}
-				\centering
-				\includegraphics[height=0.8cm]{Imagenes/pie-izq.pdf} &
-			%\end{figure}				
-			%\begin{center}
-				 Caracter Confidencial &
-			%\end{center}			
-			%\begin{center}
-				\includegraphics[height=0.8cm]{Imagenes/pie-der.pdf} 			 
-			\begin{center}
-				\thepage~/~\pageref{LastPage} 
-			 \end{center} \\
-			\hline 
-		\end{tabularx}	 
-	%\end{center}
+	\begin{tabularx}{\textwidth}{|m{3.0cm}|X|m{2.5cm}|m{1.0cm}|}
+		\hline			
+			\centering
+			\includegraphics[height=0.8cm]{Imagenes/pie-izq.pdf} &			
+			\centering
+			Confidencial &
+			\centering
+			\includegraphics[height=0.8cm]{Imagenes/pie-der.pdf}  &			
+			\thepage~/~\pageref{LastPage} \\
+		\hline 
+	\end{tabularx}	 
 }
+
+% Comando para formatear y justificar parrafos de código y 
+% comandos de shell
+% \newcommand{\code}[1]{
+%	\begin{adjustwidth}{1.5cm}{0.0cm}
+%		\ttfamily
+%		#1
+%	\end{adjustwidth}}	
+
+% Entorno para formato de secciones de codigo
+\newenvironment{code}
+	{\begin{adjustwidth}{1.5cm}{0.0cm}\ttfamily}
+	{\end{adjustwidth}}
+
+% Entorno para formato de secciones de enlaces
+\newenvironment{link}
+	{\ttfamily}{}
 
 % Numeracion de paginas
 % numeros arabigos
 \pagenumbering{arabic}
 
-% Definicion de comando para formato de código
-\newcommand{\code}[1]{{\ttfamily #1}}
-
-
-
-\begin{document}
-	
-	%\begin{titlepage}		
-	
-	\begin{center} 
+	\begin{document}
+			
+		%\begin{titlepage}
 		
-		\vspace{10cm}
+		\begin{center}		
+			
+			\vspace{10cm}
+			% 12 puntos = fuente large
+			\begin{large}
+				\bfseries
+				\uppercase{Dirección de Servicios de Certificación}			
+				\vspace{5pt}
+				\begin{spacing}{0.9}
+					\uppercase{Laboratorio de Ensayos de Compatibilidad~Electromagnética~Radiada}
+				\end{spacing}
+			\end{large}
+			
+			%\vspace{10cm}
+			\vfill
+			
+			% 16 puntos = fuente Large de 14 puntos			
+			\begin{Large}
+				\bfseries				
+				\begin{spacing}{0.9}		
+					\uppercase{Instalación del adaptador USB/GPIB Agilent~82357B en linux}
+				\end{spacing}
+			\end{Large}	
+				
+			\vspace{5pt}
+			
+			% 12 puntos fuente large
+			\begin{large}						
+				\uppercase{Construcción de la librería linux-gpib y carga de firmware}
+			\end{large}	
+			
+			\vfill
+			
+			\begin{table}[!h]
+				\begin{tabularx}{\linewidth}{|X|X|X|X|}	
+					\hline				
+					\multicolumn{2}{|l|}{\textbf{CÓDIGO}: FO-IT-002} & \multicolumn{2}{l|}{\textbf{N DOC:}} \\
+					\hline
+					Originado por:	& 	Elaborado por: & 
+					Revisado por: 	& 	Aprobado por: \\
+					\hline
+					Br. Arias B., Jose A. & Br. Arias B., Jose A. & - & - \\
+					\hline
+					\textbf{Fecha: 20/06/2017 } & 
+					\textbf{Fecha: 20/06/2016} & 
+					\textbf{Fecha: } &
+					\textbf{Fecha: } \\				
+					\hline
+				\end{tabularx}	
+			\end{table}	
+			
+			%\vspace{10mm}			
+			\vfill
 		
-		\begin{Large} 
-			\textsc{Dirección de Servicios de Certificación}
-			\\[5pt]
-			\textsc{Laboratorio de Ensayos de Compatibilidad~Electromagnética~Radiada}
-		\end{Large}
-		
-		\vspace{10cm}
-		
-		
-		\begin{LARGE}			
-			\textsc{Instalación del adaptador USB/GPIB~Agilent~82357B en linux}
-		\end{LARGE}			
-		
-		\begin{large}			
-			\textsc{Construcción de la librería \emph{linux-gpib} y carga de firmware}
-		\end{large}	
-
-		
-		\begin{table}[!b]
-			\begin{tabularx}{\linewidth}{|X|X|X|X|}	
-				\hline				
-				\multicolumn{2}{|l|}{\textbf{CÓDIGO}: FO-IT-002} & \multicolumn{2}{l|}{\textbf{N DOC:}} \\
-				\hline
-				Originado por:	& 	Elaborado por: & 
-				Revisado por: 	& 	Aprobado por: \\
-				\hline
-				Br. Arias B., Jose A. & Br. Arias B., Jose A. & - & - \\
-				\hline
-				\textbf{Fecha: 20/06/2017 } & 
-				\textbf{Fecha: 20/06/2016} & 
-				\textbf{Fecha: } &
-				\textbf{Fecha: } \\				
-				\hline
-			\end{tabularx}	
-		\end{table}	
-		
-	\end{center}
+		\end{center}
 	
 	%\end{titlepage}
 	
@@ -156,35 +191,44 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	\section{Objetivos}
 		\begin{itemize}
 			\item  Describir el proceso de instalación adaptador USB/GPIB Agilent 82357B en Ubuntu LTS 14.
-			\item Instalar y construir, a partir del código fuente, la librería c de soporte (linux-gpib).
-			\item Obtener los archivos de código fuente y contruir la utilidad de linx \texttt{fxload}, cargador de firmware para dispositivos USB.
+			\item Instalar y construir, a partir del código fuente, la librería c de soporte (\texttt{linux-gpib}).
+			\item Obtener los archivos de código fuente y construir la utilidad de linx \texttt{fxload}, cargador de firmware para dispositivos USB.
 			\item Obtener los archivos binarios y cargar el firmware para el dispositivo 82357B.
 		\end{itemize}
 		
 	\section{Alcance}
-		Describe el proceso de instalación adaptador USB/GPIB Agilent 82357B, la instalación y construcción de la librería c de soporte (linux-gpib) a partir del código fuente y la obtención y carga del firmware para el adaptador.
+		Describe el proceso de instalación adaptador USB/GPIB Agilent 82357B, la instalación y construcción de la librería c de soporte (\texttt{linux-gpib}) a partir del código fuente y la obtención y carga del firmware para el adaptador.
 	
 		
 	\section{Documentos de referencia}
-	\subsection{Enlace para código fuente linux-gpib}
-	A la fecha de este documento, se encuentra el código fuente para la libreria linux-gpib en la versión 4.0.4 
+	\subsection{Código fuente para librería linux-gpib}
+	A la fecha de edición de este documento, se encuentra el código fuente para la librería \texttt{linux-gpib} en la versión 4.0.4 
 	
-	\code{
-		https://sourceforge.net/projects/linux-gpib/files/linux-gpib\%20for\%203.x.x\%20and\%202.6.x\%20kernels/ 	\\	
+	\begin{link}
+		https://sourceforge.net/projects/linux-gpib/files/	\\	
+		https://sourceforge.net/projects/linux-gpib/files/latest/download? \\ 
+		source=files \\
 		http://linux-gpib.sourceforge.net/ 	\\	
-		http://linux-gpib.sourceforge.net/doc\_html/x263.html\#AGILENT-82357A 	
-	}
+		http://linux-gpib.sourceforge.net/doc\_html/x263.html\#AGILENT-82357A
+	\end{link}	
 	
-	Descripción del proceso para obtención y carga del firmware para el adaptador USB / GPIB 82357B
+	\subsection{Actualización de firmware para el adaptador USB/GPIB 82357B}
 	
-	\texttt{https://gist.github.com/turingbirds/6eb05c9267a6437183a9567700e8581a}
+	En el primer enlace se describe paso a paso el proceso de actualización del firmware para el dispositivo 82357B.
 	
-	Instalación de los  archivos de cabecera para el núcleo (kernel) apropiado al numero de versión de la distribución de linux que se utilice
+	\begin{link}
+		https://gist.github.com/turingbirds/6eb05c9267a6437183a9567700e8581a \\
+		https://twiki.cern.ch/twiki/bin/view/Main/GpibLinux
+	\end{link}
 	
-	\code{
+	\subsection{Instalación de los archivos de cabecera para linux}
+	
+	En los enlaces citados abajo se encuentra información acerca de como instalar los archivos de cabecera para el núcleo (kernel) de linux,  de acuerdo al número de versión de la distribución de linux que se utilice.
+	
+	\begin{link}
 		https://www.cyberciti.biz/faq/howto-install-kernel-headers-package \\	
 		http://git.net/ml/linux.hardware.gpib.general/2008-02/msg00001.html
-	}
+	\end{link}
 	
 	\section{Términos y definiciones}
 	
@@ -196,16 +240,16 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	\section{Personal autorizado}
 	
-		Personal técnico Cendit con interés en el uso del dispositivo
+		Personal técnico Cendit con interés en el uso del dispositivo.
 		
 	\section{Personal requerido}
 	
-		Todo aquel personal técnico Cendit con interés en el uso del dispositivo
+		Todo aquel personal técnico Cendit con interés en el uso del dispositivo.
 		
 	\section{Materiales}
 		\label{Sec:SeccionMateriales}
 		\begin{itemize}
-			\item Adaptador USB / GPIB Agilent 82357B.
+			\item Adaptador USB/GPIB Agilent 82357B.
 			\item Computador personal con puerto USB y acceso a internet.
 		\end{itemize}	
 			
@@ -226,7 +270,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 		\subsection{Generalidades}
 	
-		El adaptador USB / GPIB modelo 82357B, de Agilent Technologies como el mostrado en la figura \ref{Fig:AdaptadorGpibUsb} permite conectar un computador a un bus GPIB. Para poder utilizar este dispositivo se requiere que en el computador este instalado el software que le sirve de soporte, como lo son el modulo de kernel y las librerias de usuario.	
+		El adaptador USB/GPIB modelo 82357B, de Agilent Technologies como el mostrado en la figura \ref{Fig:AdaptadorGpibUsb} permite conectar un computador a un bus GPIB. Para poder utilizar este dispositivo se requiere que en el computador este instalado el software que le sirve de soporte, como lo son el modulo de kernel y las librerías de usuario.	
 		
 		\begin{figure}[!h]
 			\begin{center}
@@ -236,7 +280,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			\end{center}
 		\end{figure}	
 		
-		La empresa \emph{Keysight Technologies} (antigua Agilent) proporciona un conjunto de herramientas de software, conocido bajo el nombre de \emph{IO Libraries Suite}, de libre descarga en el sitio web de esta empresa en la version 6.2017, a la fecha de redactar esta nota.
+		La empresa \emph{Keysight Technologies} (antigua Agilent) proporciona un conjunto de herramientas de software, conocido bajo el nombre de \emph{IO Libraries Suite}, de libre descarga en el sitio web de esta empresa en la versión 6.2017, a la fecha de redactar esta nota.
 		
 		IO Libraries Suite proporciona el software necesario para el intercambio de datos con instrumentos programables a través de buses RS232, GPIB, USB y redes LAN. El software se presenta en forma de utilidades ejecutables que permiten enviar comandos a los instrumentos y recibir sus respuesta, resolución de problemas así como también un librerías para desarrollo de aplicaciones.
 		
@@ -256,245 +300,308 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 		\subsection{Instalación de linux-gpib y módulos de núcleo}
 		
-		La librería \emph{linux-gpib} se construirá a partir de su código fuente, el cual puede descargarse de forma libre en el siguiente enlace,
+		La librería \texttt{linux-gpib} se construirá a partir de su código fuente, el cual puede descargarse de forma libre en el siguiente enlace,
 		
-		\texttt{https://sourceforge.net/projects/linux-gpib/?source=dlp}
+		\begin{link}
+			https://sourceforge.net/projects/linux-gpib/?source=dlp
+		\end{link}
 		
 		Como requisito para construir esta librería, en el sistema deben estar instalados los archivos de cabecera del núcleo, apropiado para la versión de núcleo de linux que se este utilizando. El comando \texttt{uname} de shell de linux permite obtener la versión de núcleo que se este utilizando,
 		
-		\texttt{uname -r}
+		\begin{code}
+			uname -r
+		\end{code}
 		
 		Por medio del siguiente comando de shell se instalan los archivos de cabecera, acordes a la versión de linux,
 		
-		\code{
+		\begin{code}
 			sudo apt-get update		\\
 			sudo apt-get install linux-headers-\$(uname -r)
-		}
+		\end{code}
 		
 		Si se desea tener acceso a esta librería por medio de Python, se debe instalar el paquete \texttt{python-setuptools},
-		
-		\texttt{sudo apt-get install python-dev libboost-python-dev python-setuptools --yes}
-		
+		\begin{code}		
+			sudo apt-get install python-dev libboost-python-dev python-setuptools --yes
+		\end{code}
+			
 		Ahora se procede a la descarga de los archivos fuente para la librería \texttt{linux-gpib}, puede hacerse sin salir del shell por medio del comando \texttt{wget}. Se puede crear un directorio nuevo para almacenar los archivos descargados, ejecutando previamente \texttt{mkdir nombre\_directorio}.
 		
-		\texttt{wget --content-disposition --no-check-certificate https://sourceforge.net/projects/linux-gpib/files/latest/download?source=dlp}
+		\begin{code}
+			wget --content-disposition --no-check-certificate \\
+			https://sourceforge.net/projects/linux-gpib/files/latest/download?source=dlp
+		\end{code}
 		
 		El paso siguiente es descomprimir el archivo mediante el comando de shell \texttt{tar}, como se indica a continuación, en donde se debe introducir el nombre del archivo comprimido el cual indica la versión, en este caso se trata de la versión 3.2.20,
-		
-		\texttt{tar xvfz tar xvfz linux-gpib-3.2.20.tar.gz}
-		
+
+		\begin{code}		
+			tar xvfz tar xvfz linux-gpib-3.2.20.tar.gz
+		\end{code}
+			
 		Ahora se procede a construir la librería, por medio de la secuencia de comandos,
 		
-		\code{		
+		\begin{code}		
 			./configure \\		
 			make -j8 	\\		
 			make install
-		}
-		
+		\end{code}
+					
 		Para comprobar que la librería ha sido instalada correctamente, el comando de shell \texttt{whereis} nos reporta la ubicación del la librería \texttt{libgpib.so}.
 		
-		\texttt{whereis libgpib.so}
+		\begin{code}
+			whereis libgpib.so
+		\end{code}
 		
 		La repuesta del comando debe indicar la ruta en donde se encuentra la librería. En Debian:
-		
-		\texttt{libgpib: /usr/local/lib/libgpib.so /usr/local/lib/libgpib.la}	
-		
+
+		\begin{code}		
+			libgpib: /usr/local/lib/libgpib.so /usr/local/lib/libgpib.la
+		\end{code}
+	
 		\subsection{Instalación de módulos de núcleo}
 		
 		El módulo de núcleo llamado \texttt{agilent\_82357a.ko} también fue instalado durante el procedimiento de construcción e instalación del código fuente en el paso anterior. Para proceder a su carga, se debe ubicar este módulo dentro del sistema de archivos. Por ejemplo, en Debian, se encuentra en \texttt{/lib/modules/3.16.0-4-amd64/gpib/agilent\_82357a}. En esta ruta el subdirectorio con nombre \texttt{3.16.0-4-amd64} indica la versión de núcleo del PC (3.14) y su arquitectura (amd64). 
 		
-		Nos ubicaos dentro de la carpeta que contiene este módulo, para proceder a su carga con el comando de shell \texttt{modprobe}, de la siguiente forma:
+		Nos ubicaos dentro de la carpeta que contiene este módulo, para proceder a su carga con el comando de shell \texttt{modprobe}, de la siguiente forma,
 		
-		\texttt{sudo modprobe agilent\_82357a}
+		\begin{code}
+			sudo modprobe agilent\_82357a
+		\end{code}
 		
-		Si la carga ocurre de forma correcta, el comando no genera ninguna repuesta. Así que se debe revisar si el módulo ha sido cargado de forma adecuada, por medio de los siguientes comandos de shell:
+		Si la carga ocurre de forma correcta, el comando no genera ninguna repuesta. Así que se debe revisar si el módulo ha sido cargado de forma adecuada, por medio de los siguientes comandos de shell,
 		
-		\texttt{lsmod | grep agilent}
-		
-		Este comando emite una repuesta similar a la siguiente:
+		\begin{code}		
+			lsmod | grep agilent
+		\end{code}
+	
+		Este comando emite una repuesta similar a la siguiente,
 
-		\code{	
+		\begin{code}
 			agilent\_82357a	22661  0 \\				
 			gpib\_common	35582  1 agilent\_82357a  \\				
 			usbcore	195468  4 uhci\_hcd,agilent\_82357a,ehci\_hcd,ehci\_pci \\
-		}
+		\end{code}
 		
 		La primera línea de la salida del comando \texttt{lsmod} indica que el módulo \texttt{agilent\_82357a} se ha cargado correctamente. 	
 		
-		El comando de shell \texttt{modinfo} 
+		El comando de shell \texttt{modinfo} permite obtener información sobre un módulo, se puede utilizar para verificar que el modulo \texttt{agilent\_82357a} ha sido cargado, 
 		
-		https://twiki.cern.ch/twiki/bin/view/Main/GpibLinux
+		\begin{code}
+			modinfo agilent_82357a 			
+		\end{code}
 		
-		\subsection{Instalación de archivos binarios de firmware para el 82357B}
+		Al ejecutar el comando anterior, se obtiene un respuesta similar a la siguiente,
 		
-		https://gist.github.com/turingbirds/6eb05c9267a6437183a9567700e8581a
+		\begin{code}
+			filename:    /lib/modules/3.13.0-110-generic/gpib/agilent\_82357a/ \\ agilent\_82357a.ko \\
+			license:        GPL \\
+			srcversion:     BAB8466E207C02D6E8023B3 \\
+			alias:          usb:v0957p0718d*dc*dsc*dp*ic*isc*ip*in* \\
+			alias:          usb:v0957p0107d*dc*dsc*dp*ic*isc*ip*in* \\
+			depends:        gpib\_common \\
+			vermagic:       3.13.0-110-generic SMP mod\_unload  modversions 686 
+		\end{code}
+	
+		La cual indica que el módulo ha sido cargado correctamente.
 		
-		Para que el dispositvo 82357B funcione correctamente debe actualizarse su firmware. Los archivo binarios para el firmware se pueden descargar en el siguiente enlace, 
+		\subsection{Instalación de archivos binarios de firmware para el 82357B}	
 		
-		\texttt{http://linux-gpib.sourceforge.net/firmware/gpib\_firmware-2008-08-10.tar.gz}
+		Para que el dispositivo 82357B funcione correctamente debe actualizarse su firmware. Los archivo binarios para el firmware se pueden descargar en el siguiente enlace, 
 		
-		Se descargan los binarios comprimidos y se descomprimen, con los acostumbrados comandos \texttt{wget} y \texttt{tar} respectivamente,
+		\begin{link}
+			http://linux-gpib.sourceforge.net/firmware/gpib\_firmware-2008-08-10.tar.gz
+		\end{link}
+	
+		Se descargan los binarios comprimidos, se descomprimen con los acostumbrados comandos \texttt{wget} y \texttt{tar} respectivamente,
 		
-		\code{
-			wget 		https://gist.github.com/turingbirds/6eb05c9267a6437183a9567700e8581a \\ 		
+		\begin{code}
+			wget https://gist.github.com/turingbirds/6eb05c9267a6437183a9567700e8581a \\ 		
 			tar xvfz gpib\_firmware-2008-08-10.tar.gz 
-		}
+		\end{code}
 		
-		Se necesita la utilidad de linux \texttt{fxload} que permite cargar en un dispositivo USB un archivo de firmware con extensión \texttt{.hex}. La utilidad \texttt{fxload} se construirá a partir de su código fuente, éste se descarga en el siguiente enlace,
+		Se necesita la utilidad de linux \texttt{fxload} que permite cargar en un dispositivo USB un archivo de firmware con extensión \texttt{.hex}. La utilidad \texttt{fxload} se construirá a partir de su código fuente, éste se descarga mediante el siguiente enlace,
 		
-		\texttt{https://downloads.sourceforge.net/project/linux-hotplug/fxload/2008\_10\_13/fxload-2008\_10\_13.tar.gz}		
+		\begin{link}		
+			https://downloads.sourceforge.net/project/linux-hotplug/fxload/ \\ 2008\_10\_13/fxload-2008\_10\_13.tar.gz		
+		\end{link}
 		
  		Siguiendo un procedimiento similar al mostrados anteriormente, se descarga el archivo comprimido, se descomprime para luego construir el código fuente de la forma acostumbrada en entornos linux. 
 		
 		Se descarga de este enlace el código fuente con el comando de shell \texttt{wget},
 		
-		\texttt{wget --content-disposition --no-check-certificate https://downloads.sourceforge.net/project/linux-hotplug/fxload/2008\_10\_13/fxload-2008\_10\_13.tar.gz}
+		\begin{code}			
+			wget --content-disposition --no-check-certificate \\ https://downloads.sourceforge.net/project/linux-hotplug \\ /fxload/2008\_10\_13/fxload-2008\_10\_13.tar.gz
+		\end{code}
 		
 		Se descomprime el archivo con el comando de shell \texttt{tar},
-		
-		\texttt{tar xvfz fxload-2008\_10\_13.tar.gz}
-		
+
+		\begin{code}				
+			tar xvfz fxload-2008\_10\_13.tar.gz
+		\end{code}
+	
 		Ahora se ingresa al subdirectorio \texttt{fxload-2008\_10\_13} en donde se encuentra el códifo fuente,
-		
-		\texttt{cd fxload-2008\_10\_13}
+
+		\begin{code}			
+			cd fxload-2008\_10\_13
+		\end{code}
 		
 		Se construye el mismo por medio de los comandos,
 		
-		\code{
+		\begin{code}	
 			make	\\		
 			sudo make install
-		}
+		\end{code}
 		
 		Se deben editar tres lineas en el archivo \texttt{/etc/gpib.conf}. Se emplea el editor de archivos \texttt{nano} como super usuario, de la siguiente forma, 
 		
-		\texttt{sudo nano /etc/gpib.conf}		
+		\begin{code}			
+			sudo nano /etc/gpib.conf
+		\end{code}
 		
 		Dentro del archivo \texttt{gpib.conf} se editan las líneas que contienen las entradas para \texttt{board\_type}, \texttt{name} y \texttt{pad}. Para la entrada \texttt{name} el usuario puede introducir una cadena descriptiva, sin espacios, para identificar el adaptador. La entrada \texttt{pad} indica la dirección primaria del adaptador GPIB, el usuario puede establecer un valor numérico entre 0 y 30.
 		
-		\code{			
-			board\_type = "agilent\_82357a" \\		
-			name = "AGILENT82357B" \\		
+		\begin{code}	
+			board\_type = ``agilent\_82357a" \\		
+			name = ``AGILENT82357B" \\		
 			pad = 22
-		}
+		\end{code}
 		
 		Prosigue la carga de los módulos de núcleo que le dan soporte al adaptador 82357B, \texttt{gpib\_common} y \texttt{agilent\_82357a} se cargan por medio del comando shell \texttt{modprobe} de la siguiente forma,
 		
-		\code{
+		\begin{code}
 			sudo modprobe gpib\_common \\		
 			sudo modprobe agilent\_82357a
-		}
+		\end{code}
 		
 		Ahora se procede a insertar el dispositivo 82357B en el puerto USB del PC, en éste solo debe encontrarse iluminado en rojo el led etiquetado como LED FAIL. 
 		
 		Por medio del comando \texttt{lsusb} se encuentran los identificadores (ID) de bus (\emph{bus ID}) y de dispositivo (\emph{device ID}), dentro de la ventana de shell se ejecuta,
 		
-		\texttt{lsusb}
+		\begin{code}
+			lsusb
+		\end{code}
 		
 		El comando arroja varias entradas como respuesta, en una de ellas se debe encontrar la entrada para el adaptador de Agilent Technologies, similar a la que se muestra a continuación,
 	
-		\texttt{Bus 002 Device 005: ID 0957:0518 Agilent Technologies, Inc.}
+		\begin{code}
+			Bus 002 Device 005: ID 0957:0518 Agilent Technologies, Inc.
+		\end{code}
 		
 		De esta linea se infiere que el ID de bus es el valor 002 y el ID de dispositivo es el valor 005. Los valores de ID de bus y ID de dispositivo pueden resultar diferentes, dependiendo del equipo donde se ejecute el comando. Se requieren estos datos en los argumentos del comando \texttt{fxload}.
 		
 		Dentro de los archivos de firmware descargados se encuentra el archivo llamado \texttt{measat\_releaseX1.8.hex}, que contiene el firmware para el dispositivo. Para cargar el firmware en el dispositivo 82357B se emplea la utilidad de shell \texttt{fxload} ejecutada como superusuario, 
 		
-		\texttt{sudo fxload -D /dev/bus/usb/002/005  -t fx2 -I gpib\_firmware-2008-08-10/agilent\_82357a/measat\_releaseX1.8.hex}
+		\begin{code}
+			sudo fxload -D /dev/bus/usb/002/005  -t fx2 -I \\ gpib\_firmware-2008-08-10/agilent\_82357a/measat\_releaseX1.8.hex
+		\end{code}
 		
 		En el dispositivo 82357B el LED FAIL debe estar aún iluminado en rojo. Se debe proceder a una nueva carga del firmware. Por medio del comando \texttt{lsusb} se obtienen por segunda vez el ID de bus y el ID de dispositivo
 		
-		\texttt{lsusb}
-		
+		\begin{code}
+			lsusb
+		\end{code}
+	
 		El comando debe generar una respuesta similar a la siguiente,
 		
-		\texttt{Bus 002 Device 006: ID 0957:0518 Agilent Technologies, Inc.}
+		\begin{code}
+			Bus 002 Device 006: ID 0957:0518 Agilent Technologies, Inc.
+		\end{code}
 		
 		El ID de bus debe ser el mismo (Bus 002), el valor que debería haber cambiado es el ID de dispositivo (que ahora es Device 006). Se procede nuevamente a ejecutar la utilidad \texttt{fxload}, introduciendo en el argumento de este comando el valores de ID de bus y el nuevo valor de ID de dispositivo,
 		
-		\texttt{sudo fxload -D /dev/bus/usb/002/006  -t fx2 -I gpib\_firmware-2008-08-10/agilent\_82357a/measat\_releaseX1.8.hex}	
+		\begin{code}
+			sudo fxload -D /dev/bus/usb/002/006  -t fx2 -I \\ gpib\_firmware-2008-08-10/agilent\_82357a/measat\_releaseX1.8.hex
+		\end{code}
 		
 		Como resultado de la ejecución del comando, en el dispositivo 82357B todos los LEDs deben encontrarse encendidos.		
 		
 		Se deben cambiar los permisos sobre el archivo que representa al dispositivo USB / GPIP, ubicado en la ruta \texttt{/dev/gpib0}, por medio del comando,
 		
-		\texttt{sudo chmod 666 /dev/gpib0}
+		\begin{code}
+			sudo chmod 666 /dev/gpib0
+		\end{code}
 		
 		Resta inicializar el dispositivo 82357B por medio del comando de shell \texttt{gpib\_config}. Este comando tiene ciertos problemas en ubicar la librería \texttt{libgpib.so}, así que se debe crear un \emph{enlace simbólico} hacia ésta, de la siguiente forma,
 		
-		\texttt{sudo ln -s /usr/local/lib/libgpib.so.0 /lib/libgpib.so.0}
+		\begin{code}
+			sudo ln -s /usr/local/lib/libgpib.so.0 /lib/libgpib.so.0
+		\end{code}
 		
 		Para ahora ejecutar el comando
 			
-		\begin{ttfamily}
+		\begin{code}
 			\texttt{gpib\_config}
-		\end{ttfamily}
-
+		\end{code}
 	
 		Como resultado de procedimiento en el dispositivo 82357B se debe encontrar únicamente el LED READY iluminado en verde.
-	
+			
 	\section{Anexos}	
 		
-	\subsection{Script de bash para carga automática de firmware}
+	\subsection{Script de Bash para carga automática de firmware}
 	
 	\begin{lstlisting}[language=bash,caption={bash version}]
-		#!/bin/bash 
-		
-		# Script de Bash para actualización automatica de firmware para el adaptador
-		# USB a GPIB Agilent 82357B
-		# El se encarga de buscar el ID de BUS y el ID de DEVICE para preparar el
-		# comando de carga de fimware, por medio de <fxload>. El comando de carga 
-		# debe ejecutarse dos veces, debido a un bug en el archivo .hex de codigo 
-		# de firmware
-		
-		# Autor: 	Jose A. Arias B.
-		# Correo: 	correo@josearias.com.ve
-		# Version:	1.0
-		
-		re="Bus ([0-9]+) Device ([0-9]+): ID 0957:0518"
-		#input="Bus 001 Device 006: ID 0957:0518 Agilent Technologies, Inc. "
-		
-		input=$(lsusb)
-		
-		if [[ $input =~ $re ]] 
-		then 
-		
-		echo "Encontrado adaptador Agilent 82357B"
-		echo "Primer intento para carga de firmware"
-		
-		bus=${BASH_REMATCH[1]}
-		dev=${BASH_REMATCH[2]}
-		echo ${BASH_REMATCH[0]}
-		echo "1: Bus = $bus Device = $dev"
-		sudo fxload -D /dev/bus/usb/$bus/$dev  -t fx2 -I /etc/hotplug/usb/agilent_82357a/measat_releaseX1.8.hex
-		
-		else 
-		
-		echo "No se ha encontrado al adaptador Agilent 82357B"
-		exit
-		
-		fi
-		
-		sleep 3
-		
-		input=$(lsusb)
-		echo $input
-		
-		if [[ $input =~ $re ]]
-		then
-		
-		echo "Segundo intento para carga de firmware"
-		bus=${BASH_REMATCH[1]}
-		dev=${BASH_REMATCH[2]}
-		echo ${BASH_REMATCH[0]}
-		echo "2: Bus = $bus Device = $dev"
-		sudo fxload -D /dev/bus/usb/$bus/$dev  -t fx2 -I /etc/hotplug/usb/agilent_82357a/measat_releaseX1.8.hex
-		
-		sleep 3
-		
-		sudo gpib_config
-		
-		fi
-		
-		echo "El adaptador Agilent 82357B esta listo para usarse"
+#!/bin/bash 
+
+# Script de Bash para actualización automatica de firmware para 
+# el adaptador USB a GPIB Agilent 82357B.
+# Se encarga de buscar el ID de BUS y el ID de DEVICE para 
+# preparar el comando de carga de fimware, por medio de <fxload>. 
+# El comando de carga debe ejecutarse dos veces, debido a un bug 
+# en el archivo .hex de codigo de firmware.
+
+# Autor: 	Jose A. Arias B.
+# Correo: 	correo@josearias.com.ve
+# Version:	1.0
+
+re="Bus ([0-9]+) Device ([0-9]+): ID 0957:0518"
+#input="Bus 001 Device 006: ID 0957:0518 Agilent Technologies, Inc."
+
+input=$(lsusb)
+
+if [[ $input =~ $re ]] 
+then 
+
+	echo "Encontrado adaptador Agilent 82357B"
+	echo "Primer intento para carga de firmware"
+
+	bus=${BASH_REMATCH[1]}
+	dev=${BASH_REMATCH[2]}
+	echo ${BASH_REMATCH[0]}
+	echo "1: Bus = $bus Device = $dev"
+	sudo fxload -D /dev/bus/usb/$bus/$dev  -t fx2 -I 
+	 /etc/hotplug/usb/agilent_82357a/measat_releaseX1.8.hex
+
+else 
+
+	echo "No se ha encontrado al adaptador Agilent 82357B"
+	exit
+
+fi
+# Espera a que proceda la carga de firmware
+sleep 3
+
+input=$(lsusb)
+echo $input
+
+if [[ $input =~ $re ]]
+then
+
+echo "Segundo intento para carga de firmware"
+bus=${BASH_REMATCH[1]}
+dev=${BASH_REMATCH[2]}
+echo ${BASH_REMATCH[0]}
+echo "2: Bus = $bus Device = $dev"
+sudo fxload -D /dev/bus/usb/$bus/$dev  -t fx2 -I
+ /etc/hotplug/usb/agilent_82357a/measat_releaseX1.8.hex
+
+# Espera de nuevo a que proceda la carga de firmware
+sleep 3
+
+sudo gpib_config
+
+fi
+
+echo "El adaptador Agilent 82357B esta listo para usarse"
 	\end{lstlisting}	
+
 		
 \end{document}
