@@ -214,6 +214,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		\begin{tabular}{rl}
 			Termino 	& 	Definición \\	
 			VXI			& 	VMEbus eXtensions for Instrumentation \\
+			RPC			& 	Remote Procedure Call \\
 		\end{tabular}
 	
 	\section{Personal autorizado}	
@@ -248,26 +249,74 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		
 	\section{Descripción de la actividad}
 	
-		\subsection{Generalidades}
+		\subsection{Generalidades}		
+
+		La especificación \emph{VXI-11} fue desarrollada a comienzos de los años 90 como una parte de una especificación mayor, la del bus \emph{VXIbus}. VXI-11 define el protocolo de comunicaciones por medio del cual instrumentos de medición y controladores se comunican sobre una red TCP/IP. 
+		
+		Fue empleada en puentes LAN/GPIB antes de que existiesen los instrumentos con una interfaz LAN nativa. 	Un punto importante de la especificación VXI-11 es la de lograr la interconexión de dispositivos de manera independiente de su fabricante.			
+		
+		Las comunicación y el paradigma de  programación es similar a los soportados por los estándares IEEE-488.1 e IEEE-488.2 en el sentido de que las comunicaciones son basadas en transferencia de datos ASCII y mensajes de control IEEE-488.1, entre un controlador y un dispositivo, sobre una red de computadores. Esto se debe a que	VXI-11 fue ideada en principio para replicar ciertas características de un bus GPIB a una red LAN, incluyendo aquellas características propias del hardware (señalización del bus). 
+				
+		Esta especificación posee tres sub secciones, VXI-11.1 trata la interconexión de dispositivos VXIbus a una red. VXI-11.2 trata la conexión de instrumentos GPIB a una red por medio de puentes Lan a GPIB como el Agilent E5810A, VXI-11.3 trata de la conexión de instrumentos que cumplen con el estándar IEEE-488, y que poseen una interfaz Ethernet para conexión directa a una red Lan.
+		
+		Las comunicaciones dentro de la especificación VXI-11 se efectúan sobre el protocolo ONC Remote Procedure Call (RPC). El protocolo  RPC permite un enlace de tipo cliente-servidor, una aplicación (típicamente el cliente) efectúa llamadas a procedimientos en una aplicación remota (el servidor), como si estos procedimientos remotos fuesen ejecutado localmente. 
+		
+		RPC fue diseñado para ser independiente de un lenguaje de programación, sistema operativo o plataforma de computador en particular, el servidor RPC y el cliente RPC pueden ejecutarse en diferetes sistemas operativos y procesadores.  Esta \emph{interoperabilidad} se logra al representar los datos que viajan por la red en el formato XDR, el cual define tipos de datos estándar y el ordenamiento de los bytes de datos empleados en las llamadas RPC. 
+		
+		Cuando se realiza una llamada a un procedimiento RPC, los datos  que se pasan a una función deben traducirse del formato del lenguaje de programación utilizado al formato XDR y en el servidor se traducen de vuelta, de XDR al formato nativo del lenguaje de programación.
+		
+		Las funciones disponibles en un servidor RPC se describen por medio de un archivo RPCL (RPC Language). La definición de funciones en el archivo RPCL es muy similar a la definición de tipos  C.		
+		
+		En la figura se muestran las funciones RPC para uso con VXI-11 y se muestra una entrada que describe estas funciones en el archivo RPCL.
 				
 		\begin{figure}[!h]
 			\begin{center}
-				%\includegraphics[width=10cm]{Imagenes/AdaptadorGpibUsb.pdf}
-				\caption{Adaptador USB GPIB 82357B de Agilent Technologies}
-				\label{Fig:AdaptadorGpibUsb}
+				\includegraphics[width=10cm]{Imagenes/E5810.pdf}
+				\caption{Puente LAN/GPIB E5810 de Agilent Technologies}
+				\label{Fig:PuenteLanGpib}				
 			\end{center}
-		\end{figure}	
+		\end{figure}
+	
+		\begin{figure}
+			\begin{lstlisting}[language=c]	
+program DEVICE_CORE { 
+	version DEVICE_CORE_VERSION { 
+		Create_LinkResp create_link (Create_LinkParms) = 10; 
+		Device_WriteResp device_write (Device_WriteParms) = 11; 
+		Device_ReadResp device_read (Device_ReadParms) = 12; 
+		Device_Error destroy_link (Device_Link) = 23; 
+	} = 1; 
+} = 0x0607AF;	
+			\end{lstlisting}
+		\end{figure}
+		
+		El sistema operativo brinda el soporte necesario para la transferencia de datos sobre RPC, en forma de librerías. Por ejemplo la función clnt\_call() del sistenma operativo permite llamar a funciones RPC, aunque su uso es tedioso. Una formma de facilitar las llamadas RPC es por medio de una utilidad llamada rpcgen, la cul toma el archivo de definicion de funciones RPCL del servidor y crea un conjunto de archivos con funciones de C, los cuales crean una capa de software que facilita las llamadas a funciones y la conversion de datos a XDR.
+		
+		\subsection{Librería VXI}
+		Es una copilación de código fuente que permite establecer comunicación con instrumentos habilitados para ethernet y que usen el protocolo VXI11, para Linux. Permite la comunicación con una amplia gama de instrumentos como osciloscopios, analizadores logicos generadores de funciones. Incluye además dos utilidades interactivas para enviar y reibir comandos SCPI a los instrumentos.
+		
+		El autor del código, Steve D. Sharples,  logró conseguir los archivos RPCL originados de la especificacion del protocolo VXI-11. 
+		La librería consiste en los siguientes archivos de codigo fuente:
+		
+		\begin{description}
+			\item[\ttfamily vxi11.x] el cual es una fusión de los archivos RPCL vxi11core.rpcl y vxi11intr.rpcl. Es una base ligera para vxi11 sobre rpc. Si se ejecuta rpcgen en este archivo, se generan los archivos de C y cabeceras, a partir de los cuales se pueden escribir ptogramas de C para comunicación con instrumentos ethernet.
+			\item[\ttfamily vxi11\_user.cc y vxi11\_user.h]  incluye varias funciones, entre ellas 4 funciones clave para facilitar la programación al usuario: xi11\_open(), vxi11\_close(), vxi11\_send() and vxi11\_receive(). Incluyen funciones que encapsulan la complejidad de las llamadas nativas RPC.
+			\item[\ttfamily vxi11\_cmd.c] codigo fuente para utilidad interactiva de linea de comando que permite enviar comandos y consultas a un instrumento vxi11, el cual se localiza por medio de su dirección IP.
+			\item[\ttfamily Makefile] archivo con guio de instrucciones par la utilidad make, que permite construir el programa utilidad vxi11\_cmd. Simplemente se teclea make para compilar el codigo. Luego make clean para eliminar antiguo archivos con codigo objeto (.o) y ejecutables. Por ultio con make install se copia la utilidad vxi11\_cmd a /usr/local/bin.		
+		\end{description}
+		
 		
 	
-		
-
-	
-		\subsection{Instalación de linux-gpib y módulos de núcleo}		
-		
-		\subsection{Instalación de módulos de núcleo}	
-		
-		\subsection{Instalación de archivos binarios de firmware para el 82357B}	
-
+		\begin{table}
+			\begin{tabular}{cl}
+				\textbf{Función API} 	& \textbf{Descripción} \\
+				\texttt{create\_link}	& Establece un enlace a un dispositivo lógico dentro de un servidor VXI-11 \\
+				\texttt{device\_write}	& Envía un comando (típicamente SCPI) a un instrumento \\
+				\texttt{device\_read}	& Lee datos de un instrumento \\
+				\texttt{destroy\_link}	& Libera el enlace establecido por \texttt{create\_link} y libera los recursos utilizados.				
+			\end{tabular}
+			\caption{Funciones VXI-11 básicas}
+		\end{table}
 			
 	\section{Anexos}	
 		
