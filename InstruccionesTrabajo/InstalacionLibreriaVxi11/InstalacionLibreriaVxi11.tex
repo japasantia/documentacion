@@ -290,22 +290,25 @@ program DEVICE_CORE {
 			\end{lstlisting}
 		\end{figure}
 		
-		El sistema operativo brinda el soporte necesario para la transferencia de datos sobre RPC, en forma de librerías. Por ejemplo la función clnt\_call() del sistenma operativo permite llamar a funciones RPC, aunque su uso es tedioso. Una formma de facilitar las llamadas RPC es por medio de una utilidad llamada rpcgen, la cul toma el archivo de definicion de funciones RPCL del servidor y crea un conjunto de archivos con funciones de C, los cuales crean una capa de software que facilita las llamadas a funciones y la conversion de datos a XDR.
+		El sistema operativo brinda el soporte necesario para la transferencia de datos sobre RPC, en forma de librerías. Por ejemplo la función clnt\_call() del sistema operativo permite llamar a funciones RPC, aunque su uso es tedioso. Una forma de facilitar las llamadas RPC es por medio de una utilidad llamada rpcgen, la cul toma el archivo de definición de funciones RPCL del servidor y crea un conjunto de archivos con funciones de C, los cuales crean una capa de software que facilita las llamadas a funciones y la conversion de datos a XDR.
 		
 		\subsection{Librería VXI}
-		Es una copilación de código fuente que permite establecer comunicación con instrumentos habilitados para ethernet y que usen el protocolo VXI11, para Linux. Permite la comunicación con una amplia gama de instrumentos como osciloscopios, analizadores logicos generadores de funciones. Incluye además dos utilidades interactivas para enviar y reibir comandos SCPI a los instrumentos.
+		Es una compilación de código fuente que permite establecer comunicación con instrumentos habilitados para ethernet y que usen el protocolo VXI11, para Linux. Permite la comunicación con una amplia gama de instrumentos como osciloscopios, analizadores logicos generadores de funciones. Incluye además dos utilidades interactivas para enviar y reibir comandos SCPI a los instrumentos.
 		
-		El autor del código, Steve D. Sharples,  logró conseguir los archivos RPCL originados de la especificacion del protocolo VXI-11. 
-		La librería consiste en los siguientes archivos de codigo fuente:
+		El autor del código, Steve D. Sharples, logró conseguir los archivos RPCL originados de la especificación del protocolo VXI-11. 
+		
+		\subsubsection{Archivos componentes}
+		La librería consiste en los siguientes archivos de código fuente:
 		
 		\begin{description}
-			\item[\ttfamily vxi11.x] el cual es una fusión de los archivos RPCL vxi11core.rpcl y vxi11intr.rpcl. Es una base ligera para vxi11 sobre rpc. Si se ejecuta rpcgen en este archivo, se generan los archivos de C y cabeceras, a partir de los cuales se pueden escribir ptogramas de C para comunicación con instrumentos ethernet.
+			\item[\ttfamily vxi11.x] el cual es una fusión de los archivos RPCL vxi11core.rpcl y vxi11intr.rpcl. Es una base ligera para vxi11 sobre rpc. Si se ejecuta rpcgen en este archivo, se generan los archivos de C y cabeceras, a partir de los cuales se pueden escribir programas de C para comunicación con instrumentos ethernet. Al ejecutar la utilidad \texttt{rpcgen} sobre este archivo, se genera los archivos de C con sus respectivas cabeceras los cuales contienen las funciones necesarias (ver tabla \ref{Tab:FuncionesVXI11Basicas}) para establecer comunicación con instrumentos mediante el protocolo RPC.
+			
 			\item[\ttfamily vxi11\_user.cc y vxi11\_user.h]  incluye varias funciones, entre ellas 4 funciones clave para facilitar la programación al usuario: xi11\_open(), vxi11\_close(), vxi11\_send() and vxi11\_receive(). Incluyen funciones que encapsulan la complejidad de las llamadas nativas RPC.
-			\item[\ttfamily vxi11\_cmd.c] codigo fuente para utilidad interactiva de linea de comando que permite enviar comandos y consultas a un instrumento vxi11, el cual se localiza por medio de su dirección IP.
+			
+			\item[\ttfamily vxi11\_cmd.c] código fuente para utilidad interactiva de linea de comando llamada \texttt{vxi11\_cmd} que permite enviar comandos y consultas a un instrumento vxi11, el cual se localiza por medio de su dirección IP.
+			
 			\item[\ttfamily Makefile] archivo con guio de instrucciones par la utilidad make, que permite construir el programa utilidad vxi11\_cmd. Simplemente se teclea make para compilar el codigo. Luego make clean para eliminar antiguo archivos con codigo objeto (.o) y ejecutables. Por ultio con make install se copia la utilidad vxi11\_cmd a /usr/local/bin.		
-		\end{description}
-		
-		
+		\end{description}		
 	
 		\begin{table}
 			\begin{tabular}{cl}
@@ -316,7 +319,67 @@ program DEVICE_CORE {
 				\texttt{destroy\_link}	& Libera el enlace establecido por \texttt{create\_link} y libera los recursos utilizados.				
 			\end{tabular}
 			\caption{Funciones VXI-11 básicas}
+			\label{Tab:FuncionesVXI11Basicas}
 		\end{table}
+	
+	\subsubsection{Utilidades}
+	
+	Dentro del código fuente se encuentra el archivo de nombre \texttt{Makefile}. Este archivo sirve de entrada para el comando \texttt{make} de linux, el cual permite generar la utilidad \texttt{vxi11\_cmd}, de la siguiente manera,
+	
+	\begin{code}
+		make clean \\
+		make install		
+	\end{code}
+	
+	La primera instrucción permite remover antiguos archivos de código objeto de construcciones previas. El último comando permite construir la utilidad \texttt{vxi11\_cmd} y copiarla a la ruta \texttt{/usr/local/bin}.	
+	
+	\subsection{Construcción de la librería libvxi11.so}	
+	
+	El código fuente incluye el archivo \texttt{makefile} que le permite al comando \texttt{make} generar un ejecutable  \texttt{vxi11\_cmd} , una utilidad de depuración que sirve para enviar y recibir comandos textuales (scpi) a un instrumento.
+
+	Si se desea emplear el código fuente en una aplicación que requiere la comunicación con instrumentos LAN, el programador o 
+	desarrollador tiene dos opciones.
+	
+	\begin{enumerate}
+		\item Integrar el código fuente a la aplicación. 
+		\item Generar una librería a partir del código fuente y enlazar la librería con la aplicación.
+	\end{enumerate}	
+
+	La opción 1 es la más simple siempre y cuando se desarrolle una aplicación en leguaje C/C++. Solo requiere incluir dentro del código fuente de la aplicación a desarrollar los archivos \texttt{vxi11.h}, \texttt{vxi11\_user.h} y \texttt{vxi11\_user.cc}, que forman parte del código fuente para VXI-11. El programador podrá emplear las funciones básicas de la que se muestran en la tabla \ref{Tab:FuncionesVXI11Basicas}. La aplicación se ebe compilar como un todo.
+	
+	La opción 2 permite generar una librería que contenga las funciones de comunicación y a la cual la aplicación puede cargar al momento de iniciar la ejecución. Presenta la ventaja que se compila y construye el código fuente VXI11 sólo una vez, cuando se construye la librería. Además es posible llamar a las funciones de esta librería escrita en C/C++ desde otros lenguajes de programación, como Java, C\# (CSharp) o Python.
+	
+	En linux, se pueden generar dos tipos de librería: estática o dinámica. Una librería estática es un archivo con extensión \texttt{.a}, esta se incluye como parte del programa durante la \emph{compilación}. Es el equivalente a un archivo \texttt{.lib} en Windows.
+	
+	Una \emph{librería dinámica de objetos compartidos (shared objects)} es un archivo con extensión \texttt{.so} se construye aparte de la aplicación principal y se carga cuando arranca la aplicación.
+	
+	Para generar la librería \texttt{libvxi11.so} se empleará el archivo de código fuente \texttt{vxi11\_user.cc} el cual incluye las funciones de usuario necesarias para establecer comunicación VXI11 con los instrumentos Lan. Este archivo requiere los archivos de cabecera fuente \texttt{vxi11\_user.h} y \texttt{vxi11.h}. 
+	
+	El archivo \texttt{vxi11\_user.cc} es un archivo de C++, ya que presenta funciones sobrecargadas, esto es, funciones con el mismo nombre pero con distintos numero y tipo de parámetros. La librería debe generarse con el compilador de C++ de linux, \texttt{g++}.
+	
+	El compilador de C++ genera una especie de transformación en los nombres de las funciones que se conoce como \emph{decoración de nombres} o \emph{name mangling}. Simplemente el compilador le agrega un prefijo al nombre de la función que indica el numero y tipo de argumentos que recibe la función. Esto lo realiza para permitir funciones con el mismo nombre pero distintos argumentos, es decir, la sobrecarga de funciones.  
+	
+	Por ejemplo, el nombre de la función \texttt{int	vxi11\_open\_device(const char *ip, CLINK *clink, char *device) } es codificado por el compilador g++ como 
+	
+	\begin{code}
+		\_Z15vxi11\_open\_linkPKcPP6CLIENTPP15Create\_LinkRespPc	
+	\end{code}
+
+	Si se pretende realizar llamadas a las funciones de la librería desde un lenguaje de programación como Java, es conveniente utilizar los nombre sin decoración, es decir los nombres de las funciones tal como se escriben en los archivos fuente. Para ello se agrega el especificador \texttt{extern "C"}
+	
+
+	\begin{code}
+		g++ vxi11_user.cc  -Wall -shared -o libvxi11.so
+	\end{code}
+	
+	
+
+	
+
+	
+	
+	
+	
 			
 	\section{Anexos}	
 		
@@ -333,6 +396,6 @@ int main()
 	
 	return 0;
 }
-
+{}
 		\end{lstlisting}
 \end{document}
