@@ -39,7 +39,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 \renewcommand{\familydefault}{\sfdefault}
 
 % Carga babel, idioma ingles
-\usepackage[english,spanish]{babel}
+\usepackage[english, spanish]{babel}
 
 % Mejor jsutificacion, tipografia alta calidad.
 \usepackage{microtype}
@@ -111,7 +111,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 
 % Entorno para formato de secciones de codigo
 \newenvironment{code}
-	{\begin{adjustwidth}{1.5cm}{0.0cm}\ttfamily}
+	{\begin{adjustwidth}{1.0cm}{0.0cm}\ttfamily}
 	{\end{adjustwidth}}
 
 % Entorno para formato de secciones de enlaces
@@ -355,29 +355,78 @@ program DEVICE_CORE {
 	
 	Para generar la librería \texttt{libvxi11.so} se empleará el archivo de código fuente \texttt{vxi11\_user.cc} el cual incluye las funciones de usuario necesarias para establecer comunicación VXI11 con los instrumentos Lan. Este archivo requiere los archivos de cabecera fuente \texttt{vxi11\_user.h} y \texttt{vxi11.h}. 
 	
-	El archivo \texttt{vxi11\_user.cc} es un archivo de C++, ya que presenta funciones sobrecargadas, esto es, funciones con el mismo nombre pero con distintos numero y tipo de parámetros. La librería debe generarse con el compilador de C++ de linux, \texttt{g++}.
+	El archivo \texttt{vxi11\_user.cc} es un archivo de C++, se deduce esto a partir de la extensión que presenta el nombre de archivo (\texttt{.cc}). Además dentro del archivo se encuentran funciones \emph{sobrecargadas}, esto es, funciones con el mismo nombre pero con distinto número y tipo de parámetros, una característica exclusiva del lenguaje C++. La librería debe generarse con el compilador gnu C++, \texttt{g++}.
 	
-	El compilador de C++ genera una especie de transformación en los nombres de las funciones que se conoce como \emph{decoración de nombres} o \emph{name mangling}. Simplemente el compilador le agrega un prefijo al nombre de la función que indica el numero y tipo de argumentos que recibe la función. Esto lo realiza para permitir funciones con el mismo nombre pero distintos argumentos, es decir, la sobrecarga de funciones.  
+	Para permitir identificar a las funciones sobrecargadas dentro del archivo binarios, el compilador de C++ genera una especie de transformación en los nombres de las funciones, la cual se conoce como \emph{decoración de nombres} o \emph{name mangling}. Simplemente el compilador le agrega un conjunto de caracteres al nombre de la función, estos indica de forma codificada el numero y tipo de argumentos que recibe la función. De esta forma a nivel de librería, se puede identifiacar de maneta univoca a cada una de las funciones sobrecargadas.
 	
-	Por ejemplo, el nombre de la función \texttt{int	vxi11\_open\_device(const char *ip, CLINK *clink, char *device) } es codificado por el compilador g++ como 
+	Por ejemplo, el nombre de la función 
 	
 	\begin{code}
-		\_Z15vxi11\_open\_linkPKcPP6CLIENTPP15Create\_LinkRespPc	
+		\texttt{int vxi11\_open\_device(const char *ip, CLINK *clink, char *device) } 
+	\end{code}
+	
+	es codificado por el compilador g++ como 
+	
+	\begin{code}
+		\_Z17vxi11\_open\_devicePKcP5CLINKPc		
 	\end{code}
 
-	Si se pretende realizar llamadas a las funciones de la librería desde un lenguaje de programación como Java, es conveniente utilizar los nombre sin decoración, es decir los nombres de las funciones tal como se escriben en los archivos fuente. Para ello se agrega el especificador \texttt{extern "C"}
+	Si se pretende realizar llamadas a las funciones de la librería de objetos compartidos (.so) desde un lenguaje de programación de alto nivel, como Java, es conveniente utilizar los nombre sin decoración, es decir los nombres de las funciones tal como se escriben en los archivos fuente. Se le debe indicar al compilador de C++ que no aplique la decoración de nombres a las funciones que se desean utilizar, esto se logra anteponiendo a la declaración de la función el especificador de enlace \texttt{extern~"C"}, el cual indica que la función tendrá enlace C.
 	
+	Por ejemplo, para la función \texttt{vxi11\_open\_device} se agrega el especificador de enlace C de la siguiente forma,
+	
+	\begin{code}
+		\ttfamily
+		extern "C" \\
+		int vxi11\_open\_device(const char *ip, CLINK *clink, char *device) 
+	\end{code}
+
+	En el archivo de código fuente \texttt{vxi11\_user.cc} se agrega el especificador de enlace \texttt{extern "C"} a las funciones que se indican en la tabla 
+
+	\textbf{Función de apertura}
+	\begin{code}
+		int	vxi11\_open\_device(const char *ip, CLINK *clink, char *device) 
+	\end{code}
+
+	\textbf{Función de cierre}
+	\begin{code}
+		int vxi11\_close\_device(const char *ip, CLINK *clink)
+	\end{code}
+
+	\textbf{Funciones para transmisión de datos}
+	\begin{code}
+		int	vxi11\_send(CLINK *clink, const char *cmd, unsigned long len) \\		
+		int	vxi11\_send\_data\_block(CLINK *clink, const char *cmd, char *buffer, unsigned long len) 		 		
+	\end{code}
+
+	\textbf{Funciones para recepción de datos}
+	\begin{code}
+		long vxi11\_receive(CLINK *clink, char *buffer, unsigned long len, unsigned long timeout) \\	
+		long vxi11\_receive\_data\_block(CLINK *clink, char *buffer, unsigned long len, unsigned long timeout) 			
+	\end{code}		
+
+	\textbf{Funciones para envío y recepción de datos}
+	\begin{code}
+		long vxi11\_send\_and\_receive(CLINK *clink, const char *cmd, char *buf, unsigned long buf\_len, unsigned long timeout) 
+	\end{code}	
+		
+	\textbf{Funciones para recepción de utilidad}
+	\begin{code}
+		long vxi11\_obtain\_long\_value(CLINK *clink, const char *cmd, unsigned long timeout) \\
+		double vxi11\_obtain\_double\_value(CLINK *clink, const char *cmd, unsigned long timeout)
+	\end{code}
+
+	EL especificador de enlace C aplicado a una función le indica al compilador de C++ que debe enlazar a esta función como una función de C. Como el lenguaje C no admite funciones sobrecargadas, el compilador de C++ no aplicará decoración de nombres a estas funciones. 
+	
+	En vista de lo anterior, no se debe agregar el especificador de enlace C a todas las funciones que tengan sobrecarga (funciones con el mismo nombre), esto es un error que impedirá la compilación de la librería. Solo se ha agragado el especificador a las funciones arriba citadas.
+	
+	Resta compilar el archivo \texttt{vxi11\_user.cc} para generar la libreria, esto se realiza introduciendo la siguiente línea de bash,
 
 	\begin{code}
-		g++ vxi11_user.cc  -Wall -shared -o libvxi11.so
+		g++ vxi11\_user.cc -Wall -shared -fPIC -o libvxi11.so
 	\end{code}
 	
-	
-
-	
-
-	
-	
+	Se le puede dar cualquier nombre que se deee a la librería, en este caso se nombró como \texttt{libvxi11.so}, pero siempre se debe utilizar el prefijo \texttt{lib} en el nombre, es una convención dentro de la familia de sistemas operativos unix-linux.	
 	
 	
 			
