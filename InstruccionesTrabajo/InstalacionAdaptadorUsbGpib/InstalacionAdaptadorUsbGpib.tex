@@ -386,7 +386,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		El comando de shell \texttt{modinfo} permite obtener información sobre un módulo, se puede utilizar para verificar que el modulo \texttt{agilent\_82357a} ha sido cargado, 
 		
 		\begin{code}
-			modinfo agilent_82357a 			
+			modinfo agilent\_82357a 			
 		\end{code}
 		
 		Al ejecutar el comando anterior, se obtiene un respuesta similar a la siguiente,
@@ -533,6 +533,42 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		\end{code}
 	
 		Como resultado de procedimiento en el dispositivo 82357B se debe encontrar únicamente el LED READY iluminado en verde.
+		
+	\subsection{Como configurar el dispositivo automáticamente al conectar}
+	
+	https://unix.stackexchange.com/questions/65891/how-to-execute-a-shellscript-when-i-plug-in-a-usb-device
+	
+	Se necesitan los datos de \emph{vendor ID} y \emph{product ID} que presenta el dispositivo antes de la carga de firmware. Justo después de conectar el dispositivo se ejecuta el comando
+	
+	\begin{code}
+		lsusb
+	\end{code}
+
+	el resultado del comando arroja varias lineas con información acerca de los dispositvos USB actualmente conectados al PC, debe mostrar una linea similar a la siguiente,	
+
+	\begin{code}
+		Bus 001 Device 038: ID 0957:0518 Agilent Technologies, Inc. 82357B GPIB Interface
+	\end{code}
+
+	en esta linea se observa que el campo vendor ID es el numero hexadecimal \texttt{0957} y el campo para device ID es el valor \texttt{0518}.
+	
+	Hecho esto, nos posicionamos en el subdirectorio \texttt{/etc/udev/rules.d} y allí creamos un archivo con nombre \texttt{agilent\_82357.rules}. Abrimos este archivo como usuario e introducimos la siguiente línea
+	
+	\begin{code}
+		ACTION=''add'', ATTRS\{idVendor\}=="0957", ATTRS\{idProduct\}=="0518", \\ RUN+="/tmp/firmware\_update\_agilent\_82357.sh"		
+	\end{code}
+
+	Esta linea le indica al SO que debe ejecutar un archivo de comandos bash llamado  \texttt{firmware\_update\_agilent\_82357.sh} cuando ocurre la acción de conectar (ACTION=''add'') un dispositivo USB con los valores de vendor id y product id indicados, que se obtuvieron con el comando lsusb. Se debe cambiar el propietario y grupo de este archivo a root, con chown root:root
+	
+	En el archivo \texttt{firmware\_update\_agilent\_82357.sh} se encuentran las instrucciones de bash para la carga de firmware.
+
+	Por último se ejecuta el siguiente comando,
+	
+	\begin{code}
+		udevadm trigger
+	\end{code}
+
+	Se desconecta y vuelve a conectar el dispositivo 82357B. Después de pocos segundos de conectado, las luces del mismo comenzaran a cambiar hasta que aparezca unicamente encendido el led verde, lo cual indica que la carga autoatica de firmware es exitosa.
 			
 	\section{Anexos}	
 		

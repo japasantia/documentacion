@@ -77536,7 +77536,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "Variable",
+											"text": "VariablesBundle",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -81863,7 +81863,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFdE5MUtF1LQq8="
 					},
-					"name": "Variable",
+					"name": "VariablesBundle",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
