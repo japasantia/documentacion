@@ -229,6 +229,14 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		https://www.cyberciti.biz/faq/howto-install-kernel-headers-package \\	
 		http://git.net/ml/linux.hardware.gpib.general/2008-02/msg00001.html
 	\end{link}
+
+	\subsection{Detección de dispositivos en Linux y carga automática de firmware}
+	
+	\begin{link}
+		https://es.wikipedia.org/wiki/Udev \\
+		https://unix.stackexchange.com/questions/65891/how-to-execute-a-shellscript \\ 
+		-when-i-plug-in-a-usb-device
+	\end{link}
 	
 	\section{Términos y definiciones}
 	
@@ -405,6 +413,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		
 		\subsection{Instalación de archivos binarios de firmware para el 82357B}	
 		
+		
 		Para que el dispositivo 82357B funcione correctamente debe actualizarse su firmware. Los archivo binarios para el firmware se pueden descargar en el siguiente enlace, 
 		
 		\begin{link}
@@ -534,47 +543,87 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 		Como resultado de procedimiento en el dispositivo 82357B se debe encontrar únicamente el LED READY iluminado en verde.
 		
-	\subsection{Como configurar el dispositivo automáticamente al conectar}
+	\subsection{Configuración en Linux para que actualice el dispositivo inmediatamente al conectar}
 	
 	https://unix.stackexchange.com/questions/65891/how-to-execute-a-shellscript-when-i-plug-in-a-usb-device
 	
-	Se necesitan los datos de \emph{vendor ID} y \emph{product ID} que presenta el dispositivo antes de la carga de firmware. Justo después de conectar el dispositivo se ejecuta el comando
+	Linux brinda al usuario la capacidad de ejecutar alguna acción cuando detecta la conexión o desconexión de un dispositivo. Esto se logra por medio del gestor de dispositivos \texttt{udev}, que usa el kernel de Linux en su versión 2.6. Este se encarga de controlar a los \emph{archivos de dispositivo}, ubicados dentro de la ruta \texttt{/dev} y de administrar la adicción o remoción de dispositivos, incluyendo la carga de firmware.
 	
+	Mediante lo que se conoce como un \emph{demonio} (o \emph{daemon}) llamado \texttt{udevd}, el gestor de dispositivos \texttt{udev} cuando se conecta o desconecta un obtiene información del contexto (subsistema de kernel, conector físico usado,...) así como también datos del propio dispositivo (numero de serie, fabricante,..).
+	
+	El usuario puede especificar que acción se debe ejecutar cuando se identifica un dispositivo. Por ejemplo, puede especificar que se ejecute un script de shell cuando se detecte la inserción de un dispositivo USB con los valores de \emph{Vendor ID (VID)} y \emph{Product ID (PID)} especificados. Los valores hexadecimales de VID y PID identifican de manera univoca a un dispositivo USB.
+	
+	La acción a ejecutar se da mediante un \emph{archivo de reglas}. Para ejecutar una acción al conectar un dispositivo USB, en el archivo de reglas se debe indicar en una linea los valores de PID y VID en conjunto con la acción a realizar. Los archivos de reglas se encuentran en \texttt{/etc/udev/rules.d}.
+	
+	Se necesitan los valores hexadecimales de \emph{VID} y \emph{PID} que presenta el dispositivo antes de la carga de firmware. Justo después de conectar el dispositivo se ejecuta el comando de shell,
+		
 	\begin{code}
 		lsusb
 	\end{code}
 
-	el resultado del comando arroja varias lineas con información acerca de los dispositvos USB actualmente conectados al PC, debe mostrar una linea similar a la siguiente,	
+	como resultado en pantalla se observarán varias lineas con información acerca de los dispositivos USB actualmente conectados al PC, debe mostrar una linea similar a la siguiente,	
 
 	\begin{code}
-		Bus 001 Device 038: ID 0957:0518 Agilent Technologies, Inc. 82357B GPIB Interface
+		Bus 001 Device 038: ID \textbf{0957}:\textbf{0518}
+		Agilent Technologies, Inc. \\ 
+		82357B GPIB Interface
 	\end{code}
 
-	en esta linea se observa que el campo vendor ID es el numero hexadecimal \texttt{0957} y el campo para device ID es el valor \texttt{0518}.
+	donde se han resaltado los valores de VID:PID, se observa que el campo VID es el numero \texttt{0957} y el campo para PID es el valor \texttt{0518}.
 	
-	Hecho esto, nos posicionamos en el subdirectorio \texttt{/etc/udev/rules.d} y allí creamos un archivo con nombre \texttt{agilent\_82357.rules}. Abrimos este archivo como usuario e introducimos la siguiente línea
+	Hecho esto, nos posicionamos en el subdirectorio \texttt{/etc/udev/rules.d} con el comando,
 	
 	\begin{code}
-		ACTION=''add'', ATTRS\{idVendor\}=="0957", ATTRS\{idProduct\}=="0518", \\ RUN+="/tmp/firmware\_update\_agilent\_82357.sh"		
+		cd /etc/udev/rules.d
 	\end{code}
 
-	Esta linea le indica al SO que debe ejecutar un archivo de comandos bash llamado  \texttt{firmware\_update\_agilent\_82357.sh} cuando ocurre la acción de conectar (ACTION=''add'') un dispositivo USB con los valores de vendor id y product id indicados, que se obtuvieron con el comando lsusb. Se debe cambiar el propietario y grupo de este archivo a root, con chown root:root
-	
-	En el archivo \texttt{firmware\_update\_agilent\_82357.sh} se encuentran las instrucciones de bash para la carga de firmware.
-
-	Por último se ejecuta el siguiente comando,
+	una vez dentro del subdirectorio \texttt{rules.d} creamos un archivo con nombre \texttt{agilent\_82357.rules}. Creamos este archivo como super usuario por medio del editor \texttt{nano},
 	
 	\begin{code}
+		sudo nano agilent\_82357.rules
+	\end{code}
+	
+	para luego introducir en el mismo la siguiente línea, 
+	
+	\begin{code}
+		ACTION=``add'', ATTRS\{idVendor\}=``0957'', ATTRS\{idProduct\}==``0518'', \\ RUN+``/tmp/firmware\_update\_agilent\_82357.sh''		
+	\end{code}
+
+	Esta linea le indica al gestor de dispositvos \texttt{udev} que debe ejecutar un archivo de comandos de shell llamado  \texttt{firmware\_update\_agilent\_82357.sh} cuando ocurre la acción de conectar \texttt{(ACTION=``add'')} un dispositivo USB con los valores de VID y PID indicados, que se obtuvieron con el comando \textbf{lsusb}. 	
+	
+	En el archivo \texttt{firmware\_update\_agilent\_82357.sh} se encuentran las instrucciones de bash para la carga de firmware, de forma automática sin intervención de usuario. Se muestra su contenido en el anexo \ref{Sec:FirmwareUploadScript}.
+	
+	Es importante que en el archivo de comandos a ejecutar cuando ocurre la conexión se establezca el permiso de ejecución y su como propietario del mismo al usuario administrador (\texttt{root}), de lo contrario no será ejecutado. 
+	
+	Se establece el \emph{bit de ejecución} en el archivo por medio del comando, 
+	
+	\begin{code}
+		sudo chmod 744 firmware\_update\_agilent\_82357.sh
+	\end{code}
+
+	Se asigna como propietario del archvo al usurio raiz (\texttt{root}) por medio del comando,
+	
+	\begin{code}
+		sudo chown root:root firmware\_update\_agilent\_82357.sh
+	\end{code}
+
+	Por último resta indicarle a \texttt{udev} que recargue los archivos de reglas, se logra esto con los siguientes comandos, 
+	
+	\begin{code}
+		udevadm control --reload-rules \\
 		udevadm trigger
 	\end{code}
 
-	Se desconecta y vuelve a conectar el dispositivo 82357B. Después de pocos segundos de conectado, las luces del mismo comenzaran a cambiar hasta que aparezca unicamente encendido el led verde, lo cual indica que la carga autoatica de firmware es exitosa.
+	Se desconecta y vuelve a conectar el dispositivo 82357B. Después de pocos segundos de conectado, las luces del mismo comenzaran a cambiar hasta que aparezca únicamente encendido el led verde READY, lo cual indica que la carga automática de firmware es exitosa.
+	
+	\newpage
 			
 	\section{Anexos}	
 		
 	\subsection{Script de Bash para carga automática de firmware}
+	\label{Sec:FirmwareUploadScript}
 	
-	\begin{lstlisting}[language=bash,caption={bash version}]
+	\begin{lstlisting}[language=bash,caption={firmware\_update\_agilent\_82357.sh}]
 #!/bin/bash 
 
 # Script de Bash para actualización automatica de firmware para 
@@ -638,6 +687,14 @@ fi
 
 echo "El adaptador Agilent 82357B esta listo para usarse"
 	\end{lstlisting}	
+	
+	\subsection{Archivo con regla para detección de dispositivo Agilent 82357}
 
+	\begin{lstlisting}[language=bash,caption={agilent\_82357.rules}]
+	
+ACTION=``add'', ATTRS\{idVendor\}=``0957'', ATTRS\{idProduct\}==``0518'', 
+RUN+``/tmp/firmware\_update\_agilent\_82357.sh''
+	
+	\end{lstlisting}
 		
 \end{document}

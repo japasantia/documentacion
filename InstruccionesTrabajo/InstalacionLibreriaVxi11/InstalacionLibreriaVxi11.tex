@@ -196,11 +196,11 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		
 	\section{Alcance}
 	
-		En este documento se explica como establecer un puente de conexión entre instrumentos de medición GPIB y una red LAN. Para ello se estblecerá la configuración del puente LAN/GPIB Agilent E5810A. Se detallará principalmente la instalación de la libreria VXI-11 para linux, soporte de software que permite el acceso programático a este dispositivo.	
+		En este documento se explica como establecer un puente de conexión entre instrumentos de medición GPIB y una red LAN. Para ello se establecerá la configuración del puente LAN/GPIB Agilent E5810A. Se detallará principalmente la instalación de la libreria VXI-11 para linux, soporte de software que permite el acceso programático a este dispositivo.	
 		
 	\section{Documentos de referencia}
 	
-		\subsection{Enlances de interés}
+		\subsection{Enlaces de interés}
 
 	
 			\begin{link}
@@ -426,7 +426,7 @@ program DEVICE_CORE {
 		g++ vxi11\_user.cc -Wall -shared -fPIC -o libvxi11.so
 	\end{code}
 	
-	Se le puede dar cualquier nombre que se deee a la librería, en este caso se nombró como \texttt{libvxi11.so}, pero siempre se debe utilizar el prefijo \texttt{lib} en el nombre, es una convención dentro de la familia de sistemas operativos unix-linux.	
+	Se le puede dar cualquier nombre que se desee a la librería, en este caso se nombró como \texttt{libvxi11.so}, pero siempre se debe utilizar el prefijo \texttt{lib} en el nombre, es una convención dentro de la familia de sistemas operativos unix-linux.	
 	
 	
 			
