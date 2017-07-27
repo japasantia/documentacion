@@ -39,7 +39,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 \renewcommand{\familydefault}{\sfdefault}
 
 % Carga babel, idioma ingles
-\usepackage[english, spanish]{babel}
+\usepackage[spanish]{babel}
 
 % Mejor jsutificacion, tipografia alta calidad.
 \usepackage{microtype}
@@ -88,15 +88,15 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 %}
 \fancyhead[L]{\includegraphics[width=0.3\textwidth]{Imagenes/cabecera.pdf}}
 \fancyfoot[C]{ 
-	\begin{tabularx}{\textwidth}{|m{3.0cm}|X|m{2.5cm}|m{1.0cm}|}
+	\begin{tabularx}{\textwidth}{|m{2.0cm}|X|m{2.5cm}|m{1.0cm}|}
 		\hline			
-			\centering
-			\includegraphics[height=0.8cm]{Imagenes/pie-izq.pdf} &			
-			\centering
-			Confidencial &
-			\centering
-			\includegraphics[height=0.8cm]{Imagenes/pie-der.pdf}  &			
-			\thepage~/~\pageref{LastPage} \\
+		\centering
+		\includegraphics[height=0.8cm]{Imagenes/pie-izq.pdf} &			
+		\centering
+		Confidencial &
+		\centering
+		\includegraphics[height=0.8cm]{Imagenes/pie-der.pdf}  &			
+		\thepage~/~\pageref{LastPage} \\
 		\hline 
 	\end{tabularx}	 
 }
@@ -154,7 +154,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			
 			% 12 puntos fuente large
 			\begin{large}						
-				\uppercase{Sub Título}
+				\uppercase{Control de instrumentos con capacidad de conexión a redes LAN}
 			\end{large}	
 			
 			\vfill
@@ -196,18 +196,32 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		
 	\section{Alcance}
 	
-		En este documento se explica como establecer un puente de conexión entre instrumentos de medición GPIB y una red LAN. Para ello se establecerá la configuración del puente LAN/GPIB Agilent E5810A. Se detallará principalmente la instalación de la libreria VXI-11 para linux, soporte de software que permite el acceso programático a este dispositivo.	
+		En este documento se explica como establecer un puente de conexión entre instrumentos de medición GPIB y una red LAN. Para ello se establecerá la configuración del puente LAN/GPIB Agilent E5810A. Se detallará principalmente la instalación de la librería
+		 VXI-11 para linux, soporte de software que permite el acceso programático a este dispositivo.	
 		
 	\section{Documentos de referencia}
 	
-		\subsection{Enlaces de interés}
-
-	
+		\subsection{Enlaces de interés}	
+		
+			Pagina home de la librería VXI11
+			
 			\begin{link}
-
+				http://optics.eee.nottingham.ac.uk/vxi11/
 			\end{link}	
-	
-
+		
+			Enlace de \emph{souceforge} en donde se puede descargar el código fuente para la librería VXI11
+			
+			\begin{link}
+				https://sourceforge.net/projects/vxi11/
+			\end{link}	
+		
+		
+			Enlace alternativo para la librería VX11
+		
+			\begin{link}		
+				https://github.com/applied-optics/tek\_vxi11		
+			\end{link}	
+		
 	
 	\section{Términos y definiciones}
 	
@@ -253,7 +267,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 
 		La especificación \emph{VXI-11} fue desarrollada a comienzos de los años 90 como una parte de una especificación mayor, la del bus \emph{VXIbus}. VXI-11 define el protocolo de comunicaciones por medio del cual instrumentos de medición y controladores se comunican sobre una red TCP/IP. 
 		
-		Fue empleada en puentes LAN/GPIB antes de que existiesen los instrumentos con una interfaz LAN nativa. 	Un punto importante de la especificación VXI-11 es la de lograr la interconexión de dispositivos de manera independiente de su fabricante.			
+		Fue empleada en puentes LAN/GPIB antes de que existiesen los instrumentos con una interfaz LAN nativa. Un punto importante de la especificación VXI-11 es la de lograr la interconexión de dispositivos de manera independiente de su fabricante.			
 		
 		Las comunicación y el paradigma de  programación es similar a los soportados por los estándares IEEE-488.1 e IEEE-488.2 en el sentido de que las comunicaciones son basadas en transferencia de datos ASCII y mensajes de control IEEE-488.1, entre un controlador y un dispositivo, sobre una red de computadores. Esto se debe a que	VXI-11 fue ideada en principio para replicar ciertas características de un bus GPIB a una red LAN, incluyendo aquellas características propias del hardware (señalización del bus). 
 				
@@ -277,7 +291,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			\end{center}
 		\end{figure}
 	
-		\begin{figure}
+		%\begin{figure}
 			\begin{lstlisting}[language=c]	
 program DEVICE_CORE { 
 	version DEVICE_CORE_VERSION { 
@@ -288,7 +302,7 @@ program DEVICE_CORE {
 	} = 1; 
 } = 0x0607AF;	
 			\end{lstlisting}
-		\end{figure}
+		%\end{figure}
 		
 		El sistema operativo brinda el soporte necesario para la transferencia de datos sobre RPC, en forma de librerías. Por ejemplo la función clnt\_call() del sistema operativo permite llamar a funciones RPC, aunque su uso es tedioso. Una forma de facilitar las llamadas RPC es por medio de una utilidad llamada rpcgen, la cul toma el archivo de definición de funciones RPCL del servidor y crea un conjunto de archivos con funciones de C, los cuales crean una capa de software que facilita las llamadas a funciones y la conversion de datos a XDR.
 		
@@ -426,25 +440,6 @@ program DEVICE_CORE {
 		g++ vxi11\_user.cc -Wall -shared -fPIC -o libvxi11.so
 	\end{code}
 	
-	Se le puede dar cualquier nombre que se desee a la librería, en este caso se nombró como \texttt{libvxi11.so}, pero siempre se debe utilizar el prefijo \texttt{lib} en el nombre, es una convención dentro de la familia de sistemas operativos unix-linux.	
+	Se le puede dar cualquier nombre que se desee a la librería, en este caso se nombró como \texttt{libvxi11.so}, pero siempre se debe utilizar el prefijo \texttt{lib} en el nombre, es una convención dentro de la familia de sistemas operativos unix-linux.		
 	
-	
-			
-	\section{Anexos}	
-		
-		\subsection{Script de Bash para carga automática de firmware}
-	
-			\begin{lstlisting}[language=c,caption={Listado programa}]
-	
-#include <stdlib.h>
-#include <stdio.h>
-
-int main()
-{
-	printf("Hola Gafo");
-	
-	return 0;
-}
-{}
-		\end{lstlisting}
 \end{document}

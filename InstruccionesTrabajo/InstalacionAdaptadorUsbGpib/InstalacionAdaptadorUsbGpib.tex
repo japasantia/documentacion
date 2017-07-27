@@ -39,7 +39,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 \renewcommand{\familydefault}{\sfdefault}
 
 % Carga babel, idioma ingles
-\usepackage[english,spanish]{babel}
+\usepackage[spanish]{babel}
 
 % Mejor jsutificacion, tipografia alta calidad.
 \usepackage{microtype}
@@ -73,6 +73,9 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 % Para formato de codigo fuente
 \usepackage{xcolor}
 \usepackage{listings}
+% Etiquetas de listandos codigo en españoñ
+\renewcommand\lstlistingname{Listado}
+
 \lstset{basicstyle=\ttfamily,
 	showstringspaces=false,
 	commentstyle=\color{red},
@@ -88,7 +91,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 %}
 \fancyhead[L]{\includegraphics[width=0.3\textwidth]{Imagenes/cabecera.pdf}}
 \fancyfoot[C]{ 
-	\begin{tabularx}{\textwidth}{|m{3.0cm}|X|m{2.5cm}|m{1.0cm}|}
+	\begin{tabularx}{\textwidth}{|m{2.0cm}|X|m{2.5cm}|m{2.0cm}|}
 		\hline			
 			\centering
 			\includegraphics[height=0.8cm]{Imagenes/pie-izq.pdf} &			
@@ -278,27 +281,28 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 		\subsection{Generalidades}
 	
-		El adaptador USB/GPIB modelo 82357B, de Agilent Technologies como el mostrado en la figura \ref{Fig:AdaptadorGpibUsb} permite conectar un computador a un bus GPIB. Para poder utilizar este dispositivo se requiere que en el computador este instalado el software que le sirve de soporte, como lo son el modulo de kernel y las librerías de usuario.	
+		El adaptador USB/GPIB modelo 82357B de \emph{Agilent Technologies}, como el mostrado en la figura \ref{Fig:AdaptadorGpibUsb}, permite conectar un computador a un bus GPIB. Para poder utilizar este dispositivo se requiere que en el computador este instalado el software que le sirve de soporte, como lo son el modulo de kernel (controlador de dispositivo) y las librerías de usuario.	
 		
 		\begin{figure}[!h]
 			\begin{center}
-				\includegraphics[width=10cm]{Imagenes/AdaptadorGpibUsb.pdf}
+				\includegraphics[height=6cm]{Imagenes/AdaptadorGpibUsb.pdf}
 				\caption{Adaptador USB GPIB 82357B de Agilent Technologies}
 				\label{Fig:AdaptadorGpibUsb}
 			\end{center}
 		\end{figure}	
 		
-		La empresa \emph{Keysight Technologies} (antigua Agilent) proporciona un conjunto de herramientas de software, conocido bajo el nombre de \emph{IO Libraries Suite}, de libre descarga en el sitio web de esta empresa en la versión 6.2017, a la fecha de redactar esta nota.
+		La empresa \emph{Keysight Technologies} (antigua Agilent) proporciona un conjunto de herramientas de software, conocido bajo el nombre de \emph{IO Libraries Suite}, de libre descarga en el sitio web de esta empresa, con la versión 6.2017 a la fecha de redactar esta nota.
 		
-		IO Libraries Suite proporciona el software necesario para el intercambio de datos con instrumentos programables a través de buses RS232, GPIB, USB y redes LAN. El software se presenta en forma de utilidades ejecutables que permiten enviar comandos a los instrumentos y recibir sus respuesta, resolución de problemas así como también un librerías para desarrollo de aplicaciones.
+		IO Libraries Suite proporciona el software necesario para el intercambio de datos con instrumentos programables a través de buses RS232, GPIB, USB y redes LAN. El software se presenta en forma de librerías y utilidades ejecutables que permiten enviar comandos a los instrumentos y recibir sus respuesta, resolución de problemas así como también un librerías para desarrollo de aplicaciones.
 		
-		Las librerías \emph{VISA (Virtual Instruments Software Architecture) } proporcionan una capa de software uniforme desde el punto de vista del programador, para el acceso a los buses mencionados. La librería VISA es parte integral de \emph{IO Libraries Suite}. Existen librerías VISA producidas por otras empresas del ramo de la instrumentación inteligente, una de las más reconocidas es la librería \emph{VISA de National Instruments (NI-VISA)} así como también la librería VISA de Tektronix.
+		Las librerías \emph{VISA (Virtual Instruments Software Architecture)} proporcionan una capa de software uniforme desde el punto de vista del programador, permite el intercambio de datos entre PC e instrumentos a través de los buses mencionados. La librería VISA es parte integral de IO Libraries Suite. Existen librerías VISA producidas por otras empresas del área de la instrumentación inteligente, una de las más reconocidas es la librería \emph{VISA de National Instruments (NI-VISA)} así como también la librería VISA de \emph{Tektronix}.
 		
-		El software proporcionado por Keysight Technologies es exclusivo para ambiente Windows. Las librerías VISA de National Instruments están dirigidas Windows y a ciertas distribuciones de Linux, pero no para Ubuntu.
+		El software proporcionado por Keysight Technologies es exclusivo para ambiente Windows. Las librerías VISA de National Instruments están dirigidas Windows y a ciertas distribuciones de Linux, excepto para Ubuntu.
 		
-		Existe una alternativa, la librería \emph{linux-gpib} 
+		En Linux existe una alternativa bajo software libre, el paquete de software \emph{linux-gpib}. Este es un paauqete de soporte para el hardware GPIB (IEE 488).
+		El paquete contiene los módulos controladores de núcleo (kernel), una librería de C que se ejecuta en espacio de usuario, con soporte en los lenguajes Perl, PHP, Python y TCL. La API de esta librería fue diseñada para ser compatible con la librería GPIB de National Instruments. EL paquete \texttt{linux-gpib} se distribuye bajo licencia \emph{GNU General Public License.} 
 		
-		Para utilizar el dispositivo adaptador USB / GPIB se requiere el siguiente soporte de software
+		Para utilizar el dispositivo adaptador USB/GPIB se requiere el siguiente soporte de software
 		
 		\begin{itemize}
 			\item El soporte a nivel de librerías de usuario (user space) en el PC, en Ubuntu se recurre a \emph{linux-gpib}.
@@ -314,20 +318,21 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			https://sourceforge.net/projects/linux-gpib/?source=dlp
 		\end{link}
 		
-		Como requisito para construir esta librería, en el sistema deben estar instalados los archivos de cabecera del núcleo, apropiado para la versión de núcleo de linux que se este utilizando. El comando \texttt{uname} de shell de linux permite obtener la versión de núcleo que se este utilizando,
+		Como requisito para construir esta librería, en el sistema deben estar instalados los archivos de cabecera del núcleo, apropiado para la versión de núcleo de linux que se este utilizando. El comando \texttt{uname} de shell de linux permite obtener la versión de núcleo que se este utilizando, 
 		
 		\begin{code}
 			uname -r
 		\end{code}
 		
-		Por medio del siguiente comando de shell se instalan los archivos de cabecera, acordes a la versión de linux,
+		Por medio de los siguientes comandos de shell se instalan los archivos de cabecera, acordes a la versión de linux,
 		
 		\begin{code}
 			sudo apt-get update		\\
 			sudo apt-get install linux-headers-\$(uname -r)
 		\end{code}
 		
-		Si se desea tener acceso a esta librería por medio de Python, se debe instalar el paquete \texttt{python-setuptools},
+		Si se desea tener acceso a las funciones de esta librería por medio de Python, se debe instalar el paquete \texttt{python-setuptools} y sus dependencias,
+		
 		\begin{code}		
 			sudo apt-get install python-dev libboost-python-dev python-setuptools --yes
 		\end{code}
@@ -339,7 +344,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			https://sourceforge.net/projects/linux-gpib/files/latest/download?source=dlp
 		\end{code}
 		
-		El paso siguiente es descomprimir el archivo mediante el comando de shell \texttt{tar}, como se indica a continuación, en donde se debe introducir el nombre del archivo comprimido el cual indica la versión, en este caso se trata de la versión 3.2.20,
+		El paso siguiente es descomprimir el archivo mediante el comando de shell \texttt{tar}, como se indica a continuación, en donde se debe introducir el nombre del archivo comprimido el cual indica la versión de la librería, en este caso se trata de la versión 3.2.20,
 
 		\begin{code}		
 			tar xvfz tar xvfz linux-gpib-3.2.20.tar.gz
@@ -353,13 +358,13 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			make install
 		\end{code}
 					
-		Para comprobar que la librería ha sido instalada correctamente, el comando de shell \texttt{whereis} nos reporta la ubicación del la librería \texttt{libgpib.so}.
+		Para comprobar que la librería ha sido instalada correctamente, el comando de shell \texttt{whereis} nos reporta la ubicación del la librería \texttt{libgpib.so},
 		
 		\begin{code}
 			whereis libgpib.so
 		\end{code}
 		
-		La repuesta del comando debe indicar la ruta en donde se encuentra la librería. En Debian:
+		La repuesta del comando debe indicar la ruta en donde se encuentra la librería \texttt{libgpib.so}. En Debian se obtendría una salida similar a la siguiente,
 
 		\begin{code}		
 			libgpib: /usr/local/lib/libgpib.so /usr/local/lib/libgpib.la
@@ -367,9 +372,9 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 		\subsection{Instalación de módulos de núcleo}
 		
-		El módulo de núcleo llamado \texttt{agilent\_82357a.ko} también fue instalado durante el procedimiento de construcción e instalación del código fuente en el paso anterior. Para proceder a su carga, se debe ubicar este módulo dentro del sistema de archivos. Por ejemplo, en Debian, se encuentra en \texttt{/lib/modules/3.16.0-4-amd64/gpib/agilent\_82357a}. En esta ruta el subdirectorio con nombre \texttt{3.16.0-4-amd64} indica la versión de núcleo del PC (3.14) y su arquitectura (amd64). 
+		El módulo de núcleo llamado \texttt{agilent\_82357a.ko} también fue instalado durante el procedimiento de construcción e instalación del código fuente en el paso anterior. Para proceder a su carga, se debe ubicar este módulo dentro del sistema de archivos. Por ejemplo, en Debian, se encuentra en \texttt{/lib/modules/3.16.0-4-amd64/gpib/agilent\_82357a}. En esta ruta el subdirectorio con nombre \texttt{3.16.0-4-amd64} indica la versión de núcleo del PC (3.14) y su arquitectura (amd64 para procesador de 64 bits). 
 		
-		Nos ubicaos dentro de la carpeta que contiene este módulo, para proceder a su carga con el comando de shell \texttt{modprobe}, de la siguiente forma,
+		Nos ubicamos dentro de la carpeta que contiene este módulo, para proceder a su carga con el comando de shell \texttt{modprobe}, de la siguiente forma,
 		
 		\begin{code}
 			sudo modprobe agilent\_82357a
@@ -420,7 +425,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			http://linux-gpib.sourceforge.net/firmware/gpib\_firmware-2008-08-10.tar.gz
 		\end{link}
 	
-		Se descargan los binarios comprimidos, se descomprimen con los acostumbrados comandos \texttt{wget} y \texttt{tar} respectivamente,
+		Se descargan los binarios comprimidos y se descomprimen, con los acostumbrados comandos \texttt{wget} y \texttt{tar} respectivamente,
 		
 		\begin{code}
 			wget https://gist.github.com/turingbirds/6eb05c9267a6437183a9567700e8581a \\ 		
@@ -447,7 +452,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			tar xvfz fxload-2008\_10\_13.tar.gz
 		\end{code}
 	
-		Ahora se ingresa al subdirectorio \texttt{fxload-2008\_10\_13} en donde se encuentra el códifo fuente,
+		Ahora se ingresa al subdirectorio \texttt{fxload-2008\_10\_13} en donde se encuentra el código fuente,
 
 		\begin{code}			
 			cd fxload-2008\_10\_13
@@ -497,7 +502,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		
 		De esta linea se infiere que el ID de bus es el valor 002 y el ID de dispositivo es el valor 005. Los valores de ID de bus y ID de dispositivo pueden resultar diferentes, dependiendo del equipo donde se ejecute el comando. Se requieren estos datos en los argumentos del comando \texttt{fxload}.
 		
-		Dentro de los archivos de firmware descargados se encuentra el archivo llamado \texttt{measat\_releaseX1.8.hex}, que contiene el firmware para el dispositivo. Para cargar el firmware en el dispositivo 82357B se emplea la utilidad de shell \texttt{fxload} ejecutada como superusuario, 
+		Dentro de los archivos de firmware descargados se encuentra el archivo llamado \texttt{measat\_releaseX1.8.hex}, que contiene el firmware para el dispositivo. Para cargar el firmware en el dispositivo 82357B se emplea la utilidad de shell \texttt{fxload} ejecutada como super usuario, 
 		
 		\begin{code}
 			sudo fxload -D /dev/bus/usb/002/005  -t fx2 -I \\ gpib\_firmware-2008-08-10/agilent\_82357a/measat\_releaseX1.8.hex
@@ -543,17 +548,16 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 		Como resultado de procedimiento en el dispositivo 82357B se debe encontrar únicamente el LED READY iluminado en verde.
 		
-	\subsection{Configuración en Linux para que actualice el dispositivo inmediatamente al conectar}
+	\subsection{Configuración de Linux para carga automática de firmware al conectar}
 	
-	https://unix.stackexchange.com/questions/65891/how-to-execute-a-shellscript-when-i-plug-in-a-usb-device
-	
+
 	Linux brinda al usuario la capacidad de ejecutar alguna acción cuando detecta la conexión o desconexión de un dispositivo. Esto se logra por medio del gestor de dispositivos \texttt{udev}, que usa el kernel de Linux en su versión 2.6. Este se encarga de controlar a los \emph{archivos de dispositivo}, ubicados dentro de la ruta \texttt{/dev} y de administrar la adicción o remoción de dispositivos, incluyendo la carga de firmware.
 	
-	Mediante lo que se conoce como un \emph{demonio} (o \emph{daemon}) llamado \texttt{udevd}, el gestor de dispositivos \texttt{udev} cuando se conecta o desconecta un obtiene información del contexto (subsistema de kernel, conector físico usado,...) así como también datos del propio dispositivo (numero de serie, fabricante,..).
+	Mediante lo que se conoce como un \emph{demonio} (o \emph{daemon}) llamado \texttt{udevd}, el gestor de dispositivos \texttt{udev}, cuando se conecta o desconecta un dispositivo, obtiene información del contexto (subsistema de kernel, conector físico usado, etc) así como también datos del propio dispositivo (numero de serie, fabricante, etc).
 	
-	El usuario puede especificar que acción se debe ejecutar cuando se identifica un dispositivo. Por ejemplo, puede especificar que se ejecute un script de shell cuando se detecte la inserción de un dispositivo USB con los valores de \emph{Vendor ID (VID)} y \emph{Product ID (PID)} especificados. Los valores hexadecimales de VID y PID identifican de manera univoca a un dispositivo USB.
+	El usuario puede especificar que acción se debe ejecutar cuando \texttt{udev} identifica un dispositivo. Por ejemplo, puede especificar que se ejecute un script de shell cuando se detecte la inserción de un dispositivo USB con los valores de \emph{Vendor ID (VID)} y \emph{Product ID (PID)} especificados. Los valores hexadecimales de VID y PID identifican de manera univoca a un dispositivo USB.
 	
-	La acción a ejecutar se da mediante un \emph{archivo de reglas}. Para ejecutar una acción al conectar un dispositivo USB, en el archivo de reglas se debe indicar en una linea los valores de PID y VID en conjunto con la acción a realizar. Los archivos de reglas se encuentran en \texttt{/etc/udev/rules.d}.
+	La acción a ejecutar se da mediante un \emph{archivo de reglas}. Para ejecutar una acción al conectar un dispositivo USB, en el archivo de reglas se debe indicar en una linea los valores de PID y VID que identifican al dispositivo USB, en conjunto con la acción a realizar. Los archivos de reglas se encuentran en la ruta \texttt{/etc/udev/rules.d}.
 	
 	Se necesitan los valores hexadecimales de \emph{VID} y \emph{PID} que presenta el dispositivo antes de la carga de firmware. Justo después de conectar el dispositivo se ejecuta el comando de shell,
 		
@@ -577,23 +581,23 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		cd /etc/udev/rules.d
 	\end{code}
 
-	una vez dentro del subdirectorio \texttt{rules.d} creamos un archivo con nombre \texttt{agilent\_82357.rules}. Creamos este archivo como super usuario por medio del editor \texttt{nano},
+	Una vez dentro del subdirectorio \texttt{rules.d} creamos un archivo con nombre \texttt{agilent\_82357.rules}. Creamos este archivo como super usuario por medio del editor \texttt{nano},
 	
 	\begin{code}
 		sudo nano agilent\_82357.rules
 	\end{code}
 	
-	para luego introducir en el mismo la siguiente línea, 
+	para luego introducir en el editor la siguiente línea, 
 	
 	\begin{code}
 		ACTION=``add'', ATTRS\{idVendor\}=``0957'', ATTRS\{idProduct\}==``0518'', \\ RUN+``/tmp/firmware\_update\_agilent\_82357.sh''		
 	\end{code}
 
-	Esta linea le indica al gestor de dispositvos \texttt{udev} que debe ejecutar un archivo de comandos de shell llamado  \texttt{firmware\_update\_agilent\_82357.sh} cuando ocurre la acción de conectar \texttt{(ACTION=``add'')} un dispositivo USB con los valores de VID y PID indicados, que se obtuvieron con el comando \textbf{lsusb}. 	
+	Esta linea le indica al gestor de dispositvos \texttt{udev} que debe ejecutar un archivo de comandos de shell llamado \texttt{firmware\_update\_agilent\_82357.sh} cuando ocurre la acción de conectar \texttt{(ACTION=``add'')} un dispositivo USB con los valores de VID y PID indicados, que se obtuvieron con el comando \textbf{lsusb}. 	
 	
 	En el archivo \texttt{firmware\_update\_agilent\_82357.sh} se encuentran las instrucciones de bash para la carga de firmware, de forma automática sin intervención de usuario. Se muestra su contenido en el anexo \ref{Sec:FirmwareUploadScript}.
 	
-	Es importante que en el archivo de comandos a ejecutar cuando ocurre la conexión se establezca el permiso de ejecución y su como propietario del mismo al usuario administrador (\texttt{root}), de lo contrario no será ejecutado. 
+	Es importante que en el archivo de comandos a ejecutar cuando ocurre la conexión se establezca su permiso para ejecución y como propietario del mismo al usuario administrador (\texttt{root}), de lo contrario no será ejecutado. 
 	
 	Se establece el \emph{bit de ejecución} en el archivo por medio del comando, 
 	
@@ -601,7 +605,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		sudo chmod 744 firmware\_update\_agilent\_82357.sh
 	\end{code}
 
-	Se asigna como propietario del archvo al usurio raiz (\texttt{root}) por medio del comando,
+	Se asigna como propietario del archvo al usuario raiz (\texttt{root}) por medio del comando,
 	
 	\begin{code}
 		sudo chown root:root firmware\_update\_agilent\_82357.sh
@@ -614,7 +618,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		udevadm trigger
 	\end{code}
 
-	Se desconecta y vuelve a conectar el dispositivo 82357B. Después de pocos segundos de conectado, las luces del mismo comenzaran a cambiar hasta que aparezca únicamente encendido el led verde READY, lo cual indica que la carga automática de firmware es exitosa.
+	Se desconecta y vuelve a conectar el dispositivo 82357B. Después de pocos segundos de conectado, los leds del mismo comenzaran a parpadear hasta que aparezca únicamente encendido el led verde READY, el cual indica que la carga automática de firmware ha resultado exitosa.
 	
 	\newpage
 			
@@ -693,7 +697,7 @@ echo "El adaptador Agilent 82357B esta listo para usarse"
 	\begin{lstlisting}[language=bash,caption={agilent\_82357.rules}]
 	
 ACTION=``add'', ATTRS\{idVendor\}=``0957'', ATTRS\{idProduct\}==``0518'', 
-RUN+``/tmp/firmware\_update\_agilent\_82357.sh''
+RUN+``/tmp/firmware_update_agilent_82357.sh''
 	
 	\end{lstlisting}
 		
