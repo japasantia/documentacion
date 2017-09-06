@@ -53,6 +53,9 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 % Tablas con ancho establecido por usuario
 \usepackage{tabularx}
 % Para posicionamiento preciso de tablas dentro del texto
+
+\usepackage[flushleft]{threeparttable}
+
 \usepackage{float}
 
 % Unir filas en tablas
@@ -197,7 +200,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			\vfill
 			
 			\begin{center}
-				Caracas, septiembre 1017.
+				Caracas, septiembre 2017.
 			\end{center}
 		
 		\end{center}
@@ -214,6 +217,14 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	\section{Descripción del Proyecto}
 	
 	En la figura \ref{Fig:SistemaMedicionFiguraRuido} se muestra un sistema propuesto por Agilent Technologies para medición de la figura de ruido en dispositivos de radio frecuencia y de microondas. Este sistema esta conformado por tres instrumentos fundamentales.
+	
+	\begin{figure}[!h]
+		\begin{center}
+			\includegraphics[height=6cm]{Imagenes/SistemaMedicionFiguraRuido.pdf}
+			\caption{Sistema para medición de figura de ruido}
+			\label{Fig:SistemaMedicionFiguraRuido}
+		\end{center}	
+	\end{figure}	
 	
 	\begin{table}[h!]
 		\begin{tabular}{p{3cm}l}
@@ -238,7 +249,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	Para suplir esta carencia, el Cendit requiere el diseño de un equipo electrónico que pueda suplir la funcionalidad de los equipos de la serie 11713 dentro del sistema. El diseño de este dispositivo es el tema del TEG del cual este documento es un informe de avance de pasantia.
 	
-	\begin{figure}[h!]
+	\begin{figure}[!h]
 		\begin{center}
 			\includegraphics[width=17cm]{Imagenes/DiagramaBloquesSistema.pdf}
 			\caption{Esquema de sistema para medición de figura de ruido}
@@ -247,15 +258,9 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	\end{figure}			
 	
 	
-	\begin{figure}[!h]
-		\begin{center}
-			\includegraphics[height=6cm]{Imagenes/SistemaMedicionFiguraRuido.pdf}
-			\caption{Sistema para medición de figura de ruido}
-			\label{Fig:SistemaMedicionFiguraRuido}
-		\end{center}	
-	\end{figure}	
 
-	\begin{figure}[h!]
+
+	\begin{figure}[!h]
 		\begin{center}
 			\includegraphics[width=18cm]{Imagenes/DiagramaBloquesHardware2.pdf}
 			\caption{Diagrama de Bloques Hardware}
@@ -270,7 +275,9 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	\subsection{Cronograma de Actividades}
 	
-	\begin{table}[!h]
+	Al iniciar la pasantía en el Cendit, en el anteproyecto de TEG entregado como parte de los recaudos exigido para su inscripción, se planteo el cronograma de actividades a seguir durante el desarrollo del proyecto que se muestra en la tabla \ref{Tab:CronogramaActividadesInicial}.
+	
+	\begin{threeparttable}[!h]
 		\centering
 		\arrayrulecolor{gray}
 		\setlength{\extrarowheight}{4pt}		
@@ -291,13 +298,20 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			\textbf{Fase 4} & & & & & & & & & & & & & & & & & & & & & & & \fd & \fd & \fd & \fd &  & \\
 			\hline
 			\textbf{Fase 5} & & & & & & & & & & & & & & & & & & & & & & & & & & & \fe & \fe \\
-			\hline
+			\hline	
 		\end{tabular}
 		}
-	\end{table}
+		\begin{tablenotes}
+			\item Fecha de inicio: 6 de Marzo de 2017. 
+			\item Jornada de 8 horas diarias, lunes a viernes, de 8:00 AM a 12:00 M y de 1:30 PM a 4:30 PM.
+		\end{tablenotes}
+		\caption{Cronograma de actividades inicial}			
+		\label{Tab:CronogramaActividadesInicial}
+	\end{threeparttable}
 	
+	La ejecución de proyecto se dividió en cinco fases, a desarrollar en un lapso de 28 semanas. A continuación se da una descripción general de las actividades propuestas en cada fase.
 
-	\begin{table}[h!]
+	\begin{table}[!h]
 		\begin{tabular}{rp{13cm}}
 			\textbf{Fase 1} & Preparación e investigación. Dedicada a investigar el funcionamiento de cada uno de los equipos que integran el sistema de medición de figura de ruido. La recopilación y lectura de la documentación de estos equipos que ofrecen las empresas Agilent y Keysight y a través de ensayos sobre el sistema se obtendrá un entendimiento del funcionamiento del mismo. La información obtenida se plasmará en un informe descriptivo del SMFR. \\			
 			\textbf{Fase 2} & Diseño de hardware. Comienza con la formulación de un concepto para un equipo que permita suplir la funcionalidad de un equipo de la serie Keysight 11713. Por medio de un proceso iterativo que implica el diseño de hardware, de firmware y mecánico se logrará la documentación de diseño, que permita construir el hardware en la siguiente fase.	\\		
@@ -307,17 +321,76 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		\end{tabular}
 	\end{table}
 
+	Diversos contratiempos surgidos en los últimos meses han impedido completar algunas de las fases en el tiempo estipulado, provocando que la fases anteriores se traslapen que le prosiguen.
+	
+	La situación de conflictividad que se presento en la ciudad de Caracas en los últimos meses provocó que el Cendit se viese obligado a recortar la jornada laboral e incluso suspender días completos de actividad en varias ocasiones, para reguardar la integridad física del personal.
+	
+	Se debe considerar que el proyecto asignado presenta un buen grado de complejidad, 
+	abarca el diseño y desarrollo de hardware, software y firmware. En un proyecto complejo, resulta difícil especificar de antemano un plan de trabajo, que detalle con exactitud las actividades a realizar y su extensión en tiempo, antes de involucrarse de lleno en su desarrollo. 
+	
+	En vista de lo anterior, en este tipo de proyectos, se debe considerar que el cronograma planteado es tentativo, no ha podido ser seguido al pie de la letra, sin embargo ha servido como una guía de la secuencia general de actividades a realizar.
+
+	Las actividades de investigación y desarrollo realizadas para la ejecución del TEG hasta la fecha, han demostrado que el proyecto requiere de tiempo adicional.	
+
 	\section{Actividades Realizadas}
 	
-	\subsection{Preparación inicial}
-	\subsection{Documentación bibliográfica acerca del SMFR}
-	\subsection{Investigación y recopilación de software asociado al SFRM}
-	\subsection{Diseño de hardware}
-	\subsection{Diseño de software}
-	\subsection{Documento de captura de requerimientos de software}
-	\subsection{Búsqueda, selección y pedido de componentes electrónicos}
+	En esta sección se detallan de forma sucinta las actividades realizadas en el desarrollo del TEG, para cada una de las fases, en los últimos 5 meses.
 	
-	\subsection{Elaboración de intrucciones de trabajo}
+	\subsection{Fase 1}
+	\subsubsection{Documentación}
+	Para entender con propiedad el funcionamiento del SMFR, se debe entender el concepto de figura de ruido. Se realizó un estudio sobre la medición de figura de ruido en dispositivos de RF y microondas, haciendo énfasis en la técnica de medición de figura de ruido conocida como el método del factor Y, la cual es empleada en el SMFR.
+	
+	Como el sistema mide figura de ruido en dispositivos de alta frecuencia, fue necesario estudiar el concepto de parámetros de dispersión en dispositivos de RF y de microondas. Los parámetros de dispersión son utilizados para caracterizar en frecuencia a dispositivos multipuertos, de forma análoga a las matrices de impedancia o admitancia.
+	
+	Se recopiló la documentación asociada a los instrumentos y componentes que integran el SMFR. Esta documentación, en forma de manuales de usuario, notas técnicas y hojas de datos, se consiguió de forma libre en internet, en los sitios web de Keysight Technologies y Agilent Technologies. 	
+	
+	\subsubsection{Investigación y recopilación de software asociado al SMFR}
+	
+	El proceso de medición en el SMFR puede ser totalmente automatizado por medio de aplicaciones de software apropiadas. El estudio de la documentación del SFMR permitió conocer que existe un buen soporte de software para este sistema, en forma de librerías, entornos de desarrollo y programas de utilidad general.
+	
+	El estudio de la documentación permitió conocer que existe una especificación que estandariza las comunicaciones entre instrumentos a través de diversos medios de transporte de datos en instrumentos de prueba y medición (Test \& Measurement), como  el bus de interfaz de propósito general (GPIB), o sobre protocolos como TCP/IP o USBTMC empleando puertos estandarizados de PC. Esta especificación se conoce como Virtual Instrument Software Architecture, conocida comúnmente como VISA, es una API que brinda una interfaz uniforme al programador para las operaciones de intercambio de datos. 
+	
+	Keysight Technologies suministra un amplio soporte de software para los dispositivos del SFMR, en especial un paquete de software conocido como Keysight IO Libraries Suite, que contiene las librerías VISA, exclusivamente para ambiente Windows. 
+	
+	National Instruments también proporciona librerias VISA para ambiente Windows y para algunas distribuciones de Linux, entre las cuales no se encuentra Ubuntu, 
+	sistema operativo que se empleado en el Cendit.
+	
+	Se realizo un estudio y pruebas con las aplicaciones contenidas en la suite de Keysight, y se empleo la librería VISA que contiene para acceder a los instrumentos del SMFR en ambiente Windows.
+	
+	Como el Cendit requiere el uso de software libre, se intento instalar las librerías VISA que National Instruments ofrece para Linux, sin resultados satisfactorios, ya que esta empresa proporciona una librería para Ubuntu.	
+	
+	Ante la carencia de una librería VISA que pueda ejecutarse en Ubuntu, se buscaron alternativas, por ejemplo para el acceso a instrumentos en el bus GPIB se logró por medio de la librería conocida como linux-gpib.
+	
+	\subsubsection{Informe técnico descriptivo del SMFR}	
+	
+	\subsection{Fase 2}
+	\subsubsection{Diseño de software}
+	
+	El proyecto requiere de una aplicación de software que permita gestionar y automatizar el proceso de medición con el SMFR empleando un PC. Para lograr un entendimiento de las características que debe poseer una aplicación de tipo T\&M (Test and Measuremt), se estudiaron dos aplicaciones de este tipo que dispone el Cendit.
+	
+	En particular se estudiaron las aplicaciones EmcTest 32
+	
+	El estudio se enfoco en dos aspectos fundamentales de estas aplicaciones, como lo son la interfaz de usuario y sus funciones principales. 
+	
+	Para sistematizar el proceso de captura de requerimientos de software, el tutor sugirió estudiar los estándares ISO/IEC/IEEE, que brindan un marco teorico y una metodología estandarizada para la captura de requerimientos de sistemas de software. Los documentos estudiados se lista a continuación,
+	
+	\begin{itemize}  
+		\item System and Software Engineering Life Cycle Processes Requirements Engineerng (ISO/IEC/IEEE 29148, 2011).
+		\item Systems and Software Engineering Vocabulary (ISO/IEC/IEEE 24765, 2011).
+		\item Systems and Software Engineering Architecture Description (ISO/IEC/IEEE 42010, 2011).		
+	\end{itemize}
+	
+	Los requerimientos que debe poseer la aplicación
+	
+	\subsubsection{Documento de captura de requerimientos de software}
+	
+	\subsubsection{Diseño de hardware}	
+	
+	Diagrama conceptual y adquisición de componentes.
+	
+	\subsubsection{Búsqueda, selección y pedido de componentes electrónicos}
+	
+	\section{Elaboración de instrucciones de trabajo}
 
 	
 
