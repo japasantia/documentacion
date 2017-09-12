@@ -1,6 +1,6 @@
 % Para documento texto corto
-%\documentclass[paper=letter,oneside,fontsize=12pt, parskip=full]{article}
-\documentclass[paper=letter,oneside,fontsize=11pt, parskip=full]{scrartcl}
+\documentclass[paper=letter,oneside,fontsize=12pt, parskip=full]{article}
+%\documentclass[paper=letter,oneside,fontsize=11pt, parskip=full]{scrartcl}
 %\documentclass{amsart}
 %\documentclass[paper=letter,oneside,fontsize=12pt]{scrartcl}
 
@@ -247,7 +247,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 
 	De los tres equipos listados, el Cendit dispone solo dos de ellos: el analizador de figura de ruido N8975A y el equipo para pruebas con fuente de ruido N2002A. Para que la institución pueda colocar en servicio el SMFR, requiere del controlador electrónico de atenuadores de la serie 11713 de Keysight Technologies. Por motivos presupuestarios, este equipo no ha podido ser adquirido.
 	
-	Para suplir esta carencia, el Cendit requiere el diseño de un equipo electrónico que pueda suplir la funcionalidad de los equipos de la serie 11713 dentro del sistema. El diseño de este dispositivo es el tema del TEG del cual este documento es un informe de avance de pasantia.
+	Para suplir esta carencia, el Cendit requiere el diseño de un equipo electrónico que pueda suplir la funcionalidad de los equipos de la serie 11713 dentro del sistema. El diseño de este dispositivo es el tema del TEG del cual este documento es un informe de avance de pasantía.
 	
 	\begin{figure}[!h]
 		\begin{center}
@@ -257,8 +257,6 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		\end{center}
 	\end{figure}			
 	
-	
-
 
 	\begin{figure}[!h]
 		\begin{center}
@@ -269,11 +267,9 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	\end{figure}
 
 
-
-
-	\subsection{Metodología Inicial}
+	\subsection{Metodología de trabajo}
 	
-	\subsection{Cronograma de Actividades}
+	\subsection{Metodología inicial}
 	
 	Al iniciar la pasantía en el Cendit, en el anteproyecto de TEG entregado como parte de los recaudos exigido para su inscripción, se planteo el cronograma de actividades a seguir durante el desarrollo del proyecto que se muestra en la tabla \ref{Tab:CronogramaActividadesInicial}.
 	
@@ -323,7 +319,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 
 	Diversos contratiempos surgidos en los últimos meses han impedido completar algunas de las fases en el tiempo estipulado, provocando que la fases anteriores se traslapen que le prosiguen.
 	
-	La situación de conflictividad que se presento en la ciudad de Caracas en los últimos meses provocó que el Cendit se viese obligado a recortar la jornada laboral e incluso suspender días completos de actividad en varias ocasiones, para reguardar la integridad física del personal.
+	La situación de conflictividad que se presento en la ciudad de Caracas en los últimos meses provocó que el Cendit se viese obligado a recortar la jornada laboral e incluso suspender días completos de actividad en varias ocasiones, para resguardar la integridad física del personal.
 	
 	Se debe considerar que el proyecto asignado presenta un buen grado de complejidad, 
 	abarca el diseño y desarrollo de hardware, software y firmware. En un proyecto complejo, resulta difícil especificar de antemano un plan de trabajo, que detalle con exactitud las actividades a realizar y su extensión en tiempo, antes de involucrarse de lleno en su desarrollo. 
@@ -336,15 +332,16 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	En esta sección se detallan de forma sucinta las actividades realizadas en el desarrollo del TEG, para cada una de las fases, en los últimos 5 meses.
 	
-	\subsection{Fase 1}
-	\subsubsection{Documentación}
+	\section{Fase 1}
+	
+	\subsection{Documentación}
 	Para entender con propiedad el funcionamiento del SMFR, se debe entender el concepto de figura de ruido. Se realizó un estudio sobre la medición de figura de ruido en dispositivos de RF y microondas, haciendo énfasis en la técnica de medición de figura de ruido conocida como el método del factor Y, la cual es empleada en el SMFR.
 	
 	Como el sistema mide figura de ruido en dispositivos de alta frecuencia, fue necesario estudiar el concepto de parámetros de dispersión en dispositivos de RF y de microondas. Los parámetros de dispersión son utilizados para caracterizar en frecuencia a dispositivos multipuertos, de forma análoga a las matrices de impedancia o admitancia.
 	
 	Se recopiló la documentación asociada a los instrumentos y componentes que integran el SMFR. Esta documentación, en forma de manuales de usuario, notas técnicas y hojas de datos, se consiguió de forma libre en internet, en los sitios web de Keysight Technologies y Agilent Technologies. 	
 	
-	\subsubsection{Investigación y recopilación de software asociado al SMFR}
+	\subsection{Investigación y recopilación de software asociado al SMFR}
 	
 	El proceso de medición en el SMFR puede ser totalmente automatizado por medio de aplicaciones de software apropiadas. El estudio de la documentación del SFMR permitió conocer que existe un buen soporte de software para este sistema, en forma de librerías, entornos de desarrollo y programas de utilidad general.
 	
@@ -361,28 +358,58 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	Ante la carencia de una librería VISA que pueda ejecutarse en Ubuntu, se buscaron alternativas, por ejemplo para el acceso a instrumentos en el bus GPIB se logró por medio de la librería conocida como linux-gpib.
 	
-	\subsubsection{Informe técnico descriptivo del SMFR}	
+	\subsection{Desarrollo de software}
 	
-	\subsection{Fase 2}
-	\subsubsection{Diseño de software}
+	Para el desarrollo de software se comenzó elaborando el concepto de la aplicación dentro del SMR que se muestra el la figura 
 	
-	El proyecto requiere de una aplicación de software que permita gestionar y automatizar el proceso de medición con el SMFR empleando un PC. Para lograr un entendimiento de las características que debe poseer una aplicación de tipo T\&M (Test and Measuremt), se estudiaron dos aplicaciones de este tipo que dispone el Cendit.
+	\begin{figure}[!h]
+		\begin{center}
+			\includegraphics[width=18cm]{Imagenes/DiagramaBloquesHardware2.pdf}
+			\caption{Diagrama de Bloques Hardware}
+			\label{Fig:Diagrama de Bloques de Hardware}
+		\end{center}
+	\end{figure}	
 	
-	En particular se estudiaron las aplicaciones EmcTest 32
+	
+	\subsection{Informe técnico descriptivo del SMFR}	
+	
+	\section{Fase 2}
+	
+	\subsection{Ingeniería de software}	
+	
+	\subsubsection{Captura de requerimientos de software}
+	
+	Para sistema de medición de ruido de la figura \ref{Fig:SistemaMedicionFiguraRuido} se diseñará e implementará una aplicación de software que permita gestionar y automatizar el proceso de medición con el SMFR empleando un PC. Conocidas como aplicaciones para sistemas \emph{Test and Measurement (T \& M)}, Keysight Technologies suministra varias aplicaciones de este tipo, para ambiente Windows, su uso requiere de la compra de una licencia, aunque se pueden descargar versiones pruebas con limite de tiempo. El Cendit requiere que el desarrollo de la aplicación se haga bajo los principios que rigen el software libre, destinada inicialmente a ejecutarse en Ubuntu.	
+	
+	Se inicio la captura de requerimientos de software por medio de dos vías: el estudio de aplicaciones de tipo T & M y captura de requerimientos por parte de los usuarios potenciales dentro del Cendit. En la primera de ellas se estudiaron las características esenciales del software para ambiente Windows que suministra la empresa Keysight Technologies, entre estas se tienen aplicaciones como BenchVue o Keysight VEE Pro la cual es un entorno de programación de instrumentos gráfico, que  guarda buena similitud con la aplicación de National Instruments LabView. 	
+	
+	Se estudiaron además las aplicaciones de tipo T \& M que dispone el Cendit, entre ellas la aplicación conocida como \emph{EmcTest32} en el laboratorio de compatibilidad electromagnética conducida (EMC), empleada para el control de la instrumentación que se emplea en ensayos de EMC en equipo electrónico.
 	
 	El estudio se enfoco en dos aspectos fundamentales de estas aplicaciones, como lo son la interfaz de usuario y sus funciones principales. 
 	
-	Para sistematizar el proceso de captura de requerimientos de software, el tutor sugirió estudiar los estándares ISO/IEC/IEEE, que brindan un marco teorico y una metodología estandarizada para la captura de requerimientos de sistemas de software. Los documentos estudiados se lista a continuación,
+	Dentro del Cendit, su personal técnico cuenta con amplia experiencia en el uso de aplicaciones de tipo T \& M, en especial para ensayos de EMC por medios guiados y radiados. Es por ello que se considero la opinión de la Ing. Katherine Moncada y el TSU José Rodriguez sobre la funcionalidad que debe brindar una aplicación que autoatice el proceso de medición de figura de ruido.  También resulto de importancia la opinión que dieron los usuarios potenciales de la futura aplicación dentro del Cendit, ya que ellos cuentan con la experiencia en el uso de estas aplicaciones. Se seleccionaron dos miembros del personal Cendit dieron sus 	
+
+	Para sistematizar el proceso de captura de requerimientos de software, el tutor sugirió estudiar los estándares ISO/IEC/IEEE, que brindan un marco teórico y una metodología estandarizada para la captura de requerimientos de sistemas de software. Los documentos estudiados se lista a continuación,
 	
-	\begin{itemize}  
-		\item System and Software Engineering Life Cycle Processes Requirements Engineerng (ISO/IEC/IEEE 29148, 2011).
-		\item Systems and Software Engineering Vocabulary (ISO/IEC/IEEE 24765, 2011).
+	\begin{enumerate}  
 		\item Systems and Software Engineering Architecture Description (ISO/IEC/IEEE 42010, 2011).		
-	\end{itemize}
+		\item System and Software Engineering Life Cycle Processes Requirements Engineerng (ISO/IEC/IEEE 29148, 2011).
+		\item Systems and Software Engineering Vocabulary (ISO/IEC/IEEE 24765, 2011).	
+	\end{enumerate}
 	
-	Los requerimientos que debe poseer la aplicación
+	El documento número 1 brinda una base conceptual, en el se definen de cada uno de los elementos e integrantes involucrados en desarrollo de un sistema de software. A partir de la definición de las partes, detalla como se interrelacionan entre si para formar lo que en el documento se conoce como la arquitectura del sistema. 
 	
+	Del documento número 2 se obtienen pautas para elaborar el documento de captura de requerimientos de software. Este documento trata sobre la ingeniería de requerimientos, definida como una disciplina interdisciplinaria que se encarga de mediar entre los dominio de las personas participantes del sistema para así establecer los requisitos que este debe cumplir. De este documento se obtienen las características que debe poseer un requerimientos de software bien plateado, además del esquema del documento escrito que los contiene.
+	
+	El documento 3 es un glosario que contiene la definición de una gran cantidad de terminos de uso común en la ingeniería de software. Pretende estandarizar la terminología.	
+
 	\subsubsection{Documento de captura de requerimientos de software}
+	
+	Con la información obtenida en la sección anterior, se procede a elaborar el documento de requerimientos de software. En el se describen de forma textual los requisitos que debe cumplir la aplicación en lo relativo a presentación y funcionalidad. Este documento sigue la estructura propuesta en el estándar ISO/IEC/IEEE 29148.
+	
+	\subsubsection{Diseño de software}
+	
+	\
 	
 	\subsubsection{Diseño de hardware}	
 	
@@ -391,8 +418,6 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	\subsubsection{Búsqueda, selección y pedido de componentes electrónicos}
 	
 	\section{Elaboración de instrucciones de trabajo}
-
-	
 
 	
 
