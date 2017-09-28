@@ -1,0 +1,18 @@
+En relación informe de avance de pasantía, en principio tengo las siguientes observaciones:
+
+- Estructuralmente esta bien, pero debes revisar la redacción de algunos párrafos pues veo errores de redacción.
+
+- la sección 2.1 debería llamarse metodología de trabajo, y en esta sección describir tanto la metodología inicialmente planteada como la actual.
+
+- la redacción de las fases debe ser la misma del último addendum al contrato ( ver adjunto)
+
+- en la Figura 3 en donde dice "Driver puertos" debería decir "Driver puertos Vikyng".
+
+-la sección 3.2.1 y 3.2.2 deberían englobarse en una solo llamada "Ingeniería del Software" y en ella diferenciar claramente la documentación asociada a cada etapa:
+
+  *el levantamiento de requerimientos,
+ *el diseño / arquitectura de la solución de software global de todo el TEG
+ *la codificación del diseño / arquitectura y la etapa del manual de usuario;
+
+tanto para el software embebido (firmware del equipo a construir) como el de alto nivel (aplicación SMFR) según le corresponda a cada uno. También debes indicar para que utilizaras de manera breve y consisa cada docuemnto tecnico normativo ISO/IEC/IEEE. 
+
