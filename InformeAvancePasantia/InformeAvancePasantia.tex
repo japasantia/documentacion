@@ -170,7 +170,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 				\uppercase{Facultad de Ingeniería} \\							
 				\uppercase{Escuela de Ingeniería Eléctrica} \\
         		\uppercase{Departamento de Electrónica, Computación y Control} \\
-        		\uppercase{Anteproyecto de Trabajo Especial de Grado}          	
+        		\uppercase{Informe de Avance de Pasantía}          	
 			\end{large}			
 		
 			\vfill
@@ -332,12 +332,21 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	En esta sección se detallan de forma sucinta las actividades realizadas en el desarrollo del TEG, para cada una de las fases, en los últimos 5 meses.
 	
-	\section{Fase 1}
-	
 	\subsection{Documentación}
-	Para entender con propiedad el funcionamiento del SMFR, se debe entender el concepto de figura de ruido. Se realizó un estudio sobre la medición de figura de ruido en dispositivos de RF y microondas, haciendo énfasis en la técnica de medición de figura de ruido conocida como el método del factor Y, la cual es empleada en el SMFR.
 	
-	Como el sistema mide figura de ruido en dispositivos de alta frecuencia, fue necesario estudiar el concepto de parámetros de dispersión en dispositivos de RF y de microondas. Los parámetros de dispersión son utilizados para caracterizar en frecuencia a dispositivos multipuertos, de forma análoga a las matrices de impedancia o admitancia.
+	Correspondientes a la  fase 1, las tareas de documentacion realizadas son las siguientes
+	
+	\begin{itemize}
+		\item Investigación sobre caracterización de dispositivos en alta frecuencia: parámetros de dispersión.
+		\item Investigación sobre edición de figura de ruido en RF y microondas.
+		\item Documentación acerca de cada uno de los instrumentos que integran el SMFR.
+		\item Documentación acerca del software asociado o que brinda soporte al SMFR.				
+	\end{itemize}
+	
+	
+	Para entender con propiedad el funcionamiento del SMFR, se debe entender el concepto de figura de ruido. Se realizó un estudio sobre la medición de figura de ruido en dispositivos de RF y microondas, haciendo énfasis en la técnica de medición de figura de ruido conocida como el método del factor Y, la cual es empleada por el SMFR.
+	
+	Como el sistema mide figura de ruido en dispositivos de alta frecuencia, fue necesario estudiar el concepto de parámetros de dispersión en dispositivos de RF y de microondas. Los parámetros de dispersión son utilizados para caracterizar en frecuencia a dispositivos multipuertos en alta frecuencia, de forma análoga a las matrices de impedancia o admitancia.
 	
 	Se recopiló la documentación asociada a los instrumentos y componentes que integran el SMFR. Esta documentación, en forma de manuales de usuario, notas técnicas y hojas de datos, se consiguió de forma libre en internet, en los sitios web de Keysight Technologies y Agilent Technologies. 	
 	
@@ -358,22 +367,51 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	Ante la carencia de una librería VISA que pueda ejecutarse en Ubuntu, se buscaron alternativas, por ejemplo para el acceso a instrumentos en el bus GPIB se logró por medio de la librería conocida como linux-gpib.
 	
+	\subsection{Investigación e instalación de aplicaciones de software}
+	
+	Para la elaboración de documentos se instalo el paquete de oficina \emph{LibreOffice} en su versión 5.3.4.2.
+	
+	Para generar documentos con formato pdf con alta calidad tipográfica, se instaló una distribución de \LaTeX conocida como \emph{TeX Live} (https://www.tug.org/texlive/) acorde al sistema operativo Ubuntu. 
+	
+	Obtenida esta distribución de \LaTeX, fue necesario instalar un editor de documentos en formato .tex conocido como \emph{TeX Studio} (http://texstudio.sourceforge.net/). 
+	
+	Los cálculos matemáticos se realizaran por medio de dos herramientas de software: un paquete de calculo simbólico y una aplicación para cálculo númerico. Para el cálculo simbólico se emplea \emph{Maple} version 13 para Linux y para el cálculo matricial se emplea el software de fuente libre \emph{Scilab} (https://www.scilab.org/) versión 6.0.0
+	
+	El desarrollo tanto de software como de firmware existen aplicaciones de software que facilitan en gran medida en trabajo del desarrollador, conocidas como \emph{entornos de desarrollo integrados}, \emph{IDE} por sus siglas en ingles. Las herramientas IDE permitan gestionar cada una de las actividades implicadas durante el ciclo de vida de desarrollo: edición de código, compilación,  depuración, administración de dependencias y librerías y control de versiones.
+	
+	Para el desarrollo de firmware con microcontroladores y dispositivos de Microchip, se emplea el MPLAB IDE, versión 3.50 para Ubuntu.
+	
+	Para el desarrollo de aplicaciones de escritorio en C/C++ se instaló la \emph{plataforma de desarrollo de software} conocida como \emph{QT} (https://www1.qt.io/es/). El interés por usar esta herraienta es que incluye un SDK - Source Development Kit, el cual es un conjunto de librerías que da soporte al diseño de interfaces gráficas y, además, integra un IDE conocido como QT creator.
+	
+	El desarrollo de aplicaciones Java requiere el uso de una distribución del JDK -Java Development Kit- apropiado para sistema operativo Linux. Se emplean dos variantes de JDK, con fines de establecer diferencias. Se instalaron la distribución del JDK de Oracle (http://www.oracle.com/technetwork/es/java/index.html) en  su versión 1.8.0 y la implementación en código abierto  suministrada por OpenJDK (http://openjdk.java.net/) con versión 1.7.0.
+	
+	El IDE empleado para el desarrollo de aplicaciones Java es \emph{Intelli J IDEA} (https://www.jetbrains.com/idea/).
+	
+	Como se hace uso del \emph{lenguaje unificado de modelado}, UML por sus siglas en ingles, para el diseño de software, se instaló una aplicación que permita generar los distintos tipos de diagramas UML. La aplicación elegida para este fin es \emph{StarUML} (http://staruml.io/), version 2.8.0.
+	
 	\subsection{Desarrollo de software}
 	
 	Para el desarrollo de software se comenzó elaborando el concepto de la aplicación dentro del SMR que se muestra el la figura 
 	
 	\begin{figure}[!h]
 		\begin{center}
-			\includegraphics[width=18cm]{Imagenes/DiagramaBloquesHardware2.pdf}
+			\includegraphics[width=18cm]{Imagenes/SystemMainDiagram.pdf}
 			\caption{Diagrama de Bloques Hardware}
 			\label{Fig:Diagrama de Bloques de Hardware}
 		\end{center}
 	\end{figure}	
+
+	\subsection{Desarrollo de librerías para comunicación con instrumentos}
 	
+	
+
+	\subsection{Investigación de librerías de software}
+	
+	La aplicación CenditLab presentará una interfaz gráfica, se decide emplear \emph{JavaFX} la cual es una tecnología dentro del ecosistema Java que permite desarrollar \emph{aplicaciones de internet enriquecidas} (rich internet application - RIA). De esta tecnología se toma la facilidad que brinda para desarrollar interfaces de usuario de alta calidad.
+	
+	CenditLab otorgará al usuario la funcionalidad de generar reportes de resultados en formato pdf. Para ello se estudio la librería \emph{iText} (https://sourceforge.net/projects/itext/) de Java, la cual perite al programador crear y manipular documentos pdf a través de código.	
 	
 	\subsection{Informe técnico descriptivo del SMFR}	
-	
-	\section{Fase 2}
 	
 	\subsection{Ingeniería de software}	
 	
@@ -381,7 +419,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	Para sistema de medición de ruido de la figura \ref{Fig:SistemaMedicionFiguraRuido} se diseñará e implementará una aplicación de software que permita gestionar y automatizar el proceso de medición con el SMFR empleando un PC. Conocidas como aplicaciones para sistemas \emph{Test and Measurement (T \& M)}, Keysight Technologies suministra varias aplicaciones de este tipo, para ambiente Windows, su uso requiere de la compra de una licencia, aunque se pueden descargar versiones pruebas con limite de tiempo. El Cendit requiere que el desarrollo de la aplicación se haga bajo los principios que rigen el software libre, destinada inicialmente a ejecutarse en Ubuntu.	
 	
-	Se inicio la captura de requerimientos de software por medio de dos vías: el estudio de aplicaciones de tipo T & M y captura de requerimientos por parte de los usuarios potenciales dentro del Cendit. En la primera de ellas se estudiaron las características esenciales del software para ambiente Windows que suministra la empresa Keysight Technologies, entre estas se tienen aplicaciones como BenchVue o Keysight VEE Pro la cual es un entorno de programación de instrumentos gráfico, que  guarda buena similitud con la aplicación de National Instruments LabView. 	
+	Se inicio la captura de requerimientos de software por medio de dos vías: el estudio de aplicaciones de tipo T \& M y captura de requerimientos por parte de los usuarios potenciales dentro del Cendit. En la primera de ellas se estudiaron las características esenciales del software para ambiente Windows que suministra la empresa Keysight Technologies, entre estas se tienen aplicaciones como BenchVue o Keysight VEE Pro la cual es un entorno de programación de instrumentos gráfico, que  guarda buena similitud con la aplicación de National Instruments LabView. 	
 	
 	Se estudiaron además las aplicaciones de tipo T \& M que dispone el Cendit, entre ellas la aplicación conocida como \emph{EmcTest32} en el laboratorio de compatibilidad electromagnética conducida (EMC), empleada para el control de la instrumentación que se emplea en ensayos de EMC en equipo electrónico.
 	
@@ -401,7 +439,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	Del documento número 2 se obtienen pautas para elaborar el documento de captura de requerimientos de software. Este documento trata sobre la ingeniería de requerimientos, definida como una disciplina interdisciplinaria que se encarga de mediar entre los dominio de las personas participantes del sistema para así establecer los requisitos que este debe cumplir. De este documento se obtienen las características que debe poseer un requerimientos de software bien plateado, además del esquema del documento escrito que los contiene.
 	
-	El documento 3 es un glosario que contiene la definición de una gran cantidad de terminos de uso común en la ingeniería de software. Pretende estandarizar la terminología.	
+	El documento 3 es un glosario que contiene la definición de una gran cantidad de términos de uso común en la ingeniería de software. Pretende estandarizar la terminología.	
 
 	\subsubsection{Documento de captura de requerimientos de software}
 	
@@ -409,7 +447,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	\subsubsection{Diseño de software}
 	
-	\
+	
 	
 	\subsubsection{Diseño de hardware}	
 	
