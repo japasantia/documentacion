@@ -1,0 +1,19 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{1}
+\contentsline {section}{\numberline {2}Descripci\IeC {\'o}n del Proyecto}{1}
+\contentsline {subsection}{\numberline {2.1}Metodolog\IeC {\'\i }a de trabajo}{2}
+\contentsline {subsection}{\numberline {2.2}Metodolog\IeC {\'\i }a inicial}{2}
+\contentsline {section}{\numberline {3}Actividades Realizadas}{4}
+\contentsline {subsection}{\numberline {3.1}Documentaci\IeC {\'o}n}{5}
+\contentsline {subsection}{\numberline {3.2}Investigaci\IeC {\'o}n y recopilaci\IeC {\'o}n de software asociado al SMFR}{5}
+\contentsline {subsection}{\numberline {3.3}Investigaci\IeC {\'o}n e instalaci\IeC {\'o}n de aplicaciones de software}{6}
+\contentsline {subsection}{\numberline {3.4}Desarrollo de software}{7}
+\contentsline {subsection}{\numberline {3.5}Investigaci\IeC {\'o}n de librer\IeC {\'\i }as de software}{7}
+\contentsline {subsection}{\numberline {3.6}Informe t\IeC {\'e}cnico descriptivo del SMFR}{8}
+\contentsline {subsection}{\numberline {3.7}Ingenier\IeC {\'\i }a de software}{8}
+\contentsline {subsubsection}{\numberline {3.7.1}Captura de requerimientos de software}{8}
+\contentsline {subsubsection}{\numberline {3.7.2}Documento de captura de requerimientos de software}{9}
+\contentsline {subsubsection}{\numberline {3.7.3}Dise\IeC {\~n}o de software}{9}
+\contentsline {subsubsection}{\numberline {3.7.4}Dise\IeC {\~n}o de hardware}{9}
+\contentsline {subsubsection}{\numberline {3.7.5}B\IeC {\'u}squeda, selecci\IeC {\'o}n y pedido de componentes electr\IeC {\'o}nicos}{9}
+\contentsline {section}{\numberline {4}Elaboraci\IeC {\'o}n de instrucciones de trabajo}{9}

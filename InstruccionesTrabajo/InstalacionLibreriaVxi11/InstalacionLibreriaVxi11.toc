@@ -1,0 +1,20 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Objetivos}{2}
+\contentsline {section}{\numberline {2}Alcance}{2}
+\contentsline {section}{\numberline {3}Documentos de referencia}{3}
+\contentsline {subsection}{\numberline {3.1}Enlances de inter\IeC {\'e}s}{3}
+\contentsline {section}{\numberline {4}T\IeC {\'e}rminos y definiciones}{3}
+\contentsline {section}{\numberline {5}Personal autorizado}{3}
+\contentsline {section}{\numberline {6}Personal requerido}{3}
+\contentsline {section}{\numberline {7}Materiales}{3}
+\contentsline {section}{\numberline {8}Herramientas y equipos}{3}
+\contentsline {section}{\numberline {9}Equipos de protecci\IeC {\'o}n personal}{3}
+\contentsline {section}{\numberline {10}Precauciones de seguridad}{4}
+\contentsline {section}{\numberline {11}Descripci\IeC {\'o}n de la actividad}{4}
+\contentsline {subsection}{\numberline {11.1}Generalidades}{4}
+\contentsline {subsection}{\numberline {11.2}Librer\IeC {\'\i }a VXI}{5}
+\contentsline {subsubsection}{\numberline {11.2.1}Archivos componentes}{6}
+\contentsline {subsubsection}{\numberline {11.2.2}Utilidades}{6}
+\contentsline {subsection}{\numberline {11.3}Construcci\IeC {\'o}n de la librer\IeC {\'\i }a libvxi11.so}{7}
+\contentsline {section}{\numberline {12}Anexos}{8}
+\contentsline {subsection}{\numberline {12.1}Script de Bash para carga autom\IeC {\'a}tica de firmware}{8}

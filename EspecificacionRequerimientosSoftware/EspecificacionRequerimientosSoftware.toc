@@ -1,0 +1,44 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{3}
+\contentsline {subsection}{\numberline {1.1}Prop\IeC {\'o}sito}{3}
+\contentsline {subsection}{\numberline {1.2}Alcance}{3}
+\contentsline {subsection}{\numberline {1.3}Definiciones, acr\IeC {\'o}nimos y abreviaturas}{4}
+\contentsline {subsection}{\numberline {1.4}Referencias}{4}
+\contentsline {subsection}{\numberline {1.5}Visi\IeC {\'o}n general}{4}
+\contentsline {section}{\numberline {2}Descripci\IeC {\'o}n general}{4}
+\contentsline {subsection}{\numberline {2.1}Perspectiva de producto}{5}
+\contentsline {subsection}{\numberline {2.2}Funciones de producto}{7}
+\contentsline {subsection}{\numberline {2.3}Caracter\IeC {\'\i }sticas de los usuarios}{7}
+\contentsline {subsection}{\numberline {2.4}Restricciones}{7}
+\contentsline {subsection}{\numberline {2.5}Suposiciones y dependencias}{7}
+\contentsline {section}{\numberline {3}Requerimientos espec\IeC {\'\i }ficos}{8}
+\contentsline {subsection}{\numberline {3.1}Requerimientos de interfaces externas}{8}
+\contentsline {subsubsection}{\numberline {3.1.1}Interfaces de usuario}{8}
+\contentsline {subsubsection}{\numberline {3.1.2}Interfaces de hardware}{10}
+\contentsline {subsubsection}{\numberline {3.1.3}Interfaces de software}{11}
+\contentsline {subsubsection}{\numberline {3.1.4}Interfaces de comunicaciones}{12}
+\contentsline {subsection}{\numberline {3.2}Requerimientos funcionales}{12}
+\contentsline {subsubsection}{\numberline {3.2.1}Requerimiento funcional {1}}{13}
+\contentsline {subsubsection}{\numberline {3.2.2}Requerimiento funcional {1}}{13}
+\contentsline {subsubsection}{\numberline {3.2.3}Requerimiento funcional {2}}{13}
+\contentsline {subsubsection}{\numberline {3.2.4}Requerimiento funcional {3}}{13}
+\contentsline {subsubsection}{\numberline {3.2.5}Requerimiento funcional {4}}{13}
+\contentsline {subsubsection}{\numberline {3.2.6}Requerimiento funcional {5}}{14}
+\contentsline {subsubsection}{\numberline {3.2.7}Requerimiento funcional {5}}{14}
+\contentsline {subsubsection}{\numberline {3.2.8}Requerimiento funcional {6}}{14}
+\contentsline {subsubsection}{\numberline {3.2.9}Requerimiento funcional {6}}{14}
+\contentsline {subsubsection}{\numberline {3.2.10}Requerimiento funcional {7}}{15}
+\contentsline {subsubsection}{\numberline {3.2.11}Requerimiento funcional {8}}{15}
+\contentsline {subsubsection}{\numberline {3.2.12}Requerimiento funcional {9}}{15}
+\contentsline {subsubsection}{\numberline {3.2.13}Requerimiento funcional {10}}{15}
+\contentsline {subsubsection}{\numberline {3.2.14}Requerimiento funcional {11}}{16}
+\contentsline {subsubsection}{\numberline {3.2.15}Requerimiento funcional {12}}{16}
+\contentsline {subsubsection}{\numberline {3.2.16}Requerimiento funcional {13}}{16}
+\contentsline {subsection}{\numberline {3.3}Requerimientos de desempe\IeC {\~n}o}{16}
+\contentsline {subsubsection}{\numberline {3.3.1}{Requerimiento de desempe\IeC {\~n}o 1}}{16}
+\contentsline {subsubsection}{\numberline {3.3.2}{Requerimiento de desempe\IeC {\~n}o 2}}{17}
+\contentsline {subsection}{\numberline {3.4}Restricciones de dise\IeC {\~n}o}{17}
+\contentsline {subsection}{\numberline {3.5}Atributos del sistema de software}{17}
+\contentsline {section}{\numberline {4}Asignaci\IeC {\'o}n de prioridades y plan de entregas}{17}
+\contentsline {subsection}{\numberline {4.1}Elecci\IeC {\'o}n del m\IeC {\'e}todo para asignar prioridades}{17}
+\contentsline {subsection}{\numberline {4.2}Plan de entregas}{17}
