@@ -51,6 +51,9 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 % Permite controlar colores de tablas
 \usepackage{xcolor, colortbl}
 
+% Elimina numeros de pagina del docuento
+\pagenumbering{gobble}
+
 
 % Definicion colores tabla cronograma
 \definecolor{colorta}{rgb}{0.3569,0.608,0.8353}
@@ -73,7 +76,6 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 
 \begin{document}
 
-
 	\begin{flushright}		
 		\large
 		Caracas, octubre de 2017. \\	
@@ -92,35 +94,43 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	Tengo el agrado de dirigirme a Usted, en la oportunidad de hacerle llegar un cordial saludo y a la vez solicitarle la extensión del lapso de ejecución de mi Trabajo Especial de Grado (TEG) y el replanteamiento del alcance y de los objetivos del TEG.
 	 
-	Soy José Aquilino Arias Bustamante, C.I. V-14.666.744 y me encuentro realizando mi TEG dentro de la fundación CENDIT. Aprobado por Consejo de Escuela el 21 de febrero, mi TEG comenzó el 6 de marzo del presente año aunque en la planilla de inscripción se indica como fecha de inicio el 31 de enero de 2017.
+	Soy José Aquilino Arias Bustamante, C.I. V-14.666.744 y me encuentro realizando mi TEG dentro de la fundación CENDIT. Aprobado por Consejo de Escuela el 21 de febrero del año en curso, mi TEG comenzó el 6 de marzo dentro de la fundación.
 	
-	El lapso asignado de 28 semanas, aprobado por Consejo de Escuela para la ejecución del TEG, se agotó sin que haya sido posible culminar el proyecto. Por causas ajenas a mi voluntad,  
-	una parte de este se ha perdido, menciono las siguientes:
+	El lapso asignado de 28 semanas, aprobado por Consejo de Escuela para la ejecución del TEG, se agotó sin que haya sido posible culminar el proyecto. Por causas ajenas a mi voluntad, no se ha aprovechado en su totalidad una parte del mismo, entre las cuales menciono las siguientes:
 	
-	Las protestas acontecidas en las inmediaciones de la base aérea la Carlota afecto la ejecución del proyecto durante el periodo que va desde comienzos de abril hasta finales de julio (16 semanas).
+	\begin{itemize}
+		\item Las protestas acontecidas en las inmediaciones de la fundación CENDIT (base aérea la Carlota) afectó en gran medida la ejecución del proyecto, durante el periodo que va desde comienzos de abril hasta finales de julio (16 semanas).
 	
-	Retardo en la contratación por parte de la fundación CENDIT. Aunque en la planilla de inscripción se indica como fecha de inicio del TEG el 31 de enero de 2017, el Cendit tramitó mi ingreso hasta el 6 de marzo del año en curso. 
+		\item Retardo en la contratación por parte de la fundación CENDIT. Aunque en la planilla de inscripción se indique como fecha de inicio del TEG el 31 de enero de 2017, el Cendit tramitó mi ingreso hasta el 6 de marzo del mismo año. 
 	
-	Por último, el proyecto asignado por la fundación CENDIT presenta un buen grado de complejidad, implica el diseño e implementación de software, hardware y firmware. Y aunque se han logrado avances en el mismo, en especial en las fases 1 y 2, se ha decidido hacer una revisión del alcance y objetivos, con miras a simplificar el proyecto. 
+		\item Por último, el proyecto asignado por la fundación CENDIT presenta un buen grado de complejidad, implica el diseño e implementación de software, hardware y firmware en conjunto con las tareas documentación asociada a cada una de estas fases.
+	\end{itemize}
 	
-	Seguidamente presento los cambios que se realizan en objetivos y alcance del proyecto. El titulo y el objetivo general permanecen sin cambios, a modo de recordatorio, se indican a continuación,
+	A pesar de los contratiempos citados arriba, se han logrado avances en el proyecto, en especial en las tareas de las fases 1 y 2, dedicadas principalmente a la documentación inicial y al diseño de software y de hardware. 
+	
+	La solicitud de la extensión del lapso de TEG se realiza con una revisión de su alcance y de sus objetivos, con miras a simplificar el proyecto. El proceso de revisión de y reformulación de objetivos así como la reducción del alcance del proyecto se ha hecho bajo la supervisión de Tutor y del Prof. Guía, quienes suscriben esta misiva. 
+	
+	Seguidamente presento los cambios que se realizan en objetivos y alcance del proyecto. El título y el objetivo general permanecen sin cambios que, a modo de recordatorio, se indican a continuación,
+	
+	\newpage
 	
 	\emph{Título del proyecto}
 
-	\begin{center}
-		DISEÑO DE UN EQUIPO ELECTRÓNICO CONTROLADOR DE
-		INTERRUPTORES Y ATENUADORES EMPLEADO EN LA
-		MEDICIÓN DE LA FIGURA DE RUIDO EN DISPOSITIVOS DE
-		RADIO FRECUENCIA
-	\end{center}		
+	\begin{minipage}{0.95\textwidth}
+		\centering
+		DISEÑO DE UN EQUIPO ELECTRÓNICO CONTROLADOR DE INTERRUPTORES Y ATENUADORES EMPLEADO EN LA MEDICIÓN DE LA FIGURA DE RUIDO EN DISPOSITIVOS DE RADIO FRECUENCIA
+	\end{minipage}
 
 	\emph{Objetivo general}
 	
-	Diseñar un equipo electrónico que permita emular las características funcionales de un controlador electrónico de interruptores y atenuadores.
+	\hfill%	
+	\begin{minipage}{0.95\textwidth}
+		Diseñar un equipo electrónico que permita emular las características funcionales de un controlador electrónico de interruptores y atenuadores.
+	\end{minipage}
 	
 	Inicialmente, los objetivos específicos propuestos en el anteproyecto de TEG eran los siguientes,
 	
-	\emph{Objetivos específicos, propuestos inicialmente}
+	\emph{Objetivos específicos, propuestos en el anteproyecto}
 	
 	\begin{enumerate}
 		\item Elaborar un informe técnico a partir de un estudio del funcionamiento de los
@@ -140,101 +150,41 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	Los nuevos objetivos específicos propuestos para el TEG se enumeran seguidamente,
 	
-	\emph{Objetivos específicos}
+	\emph{Objetivos específicos, nueva propuesta}
 		
 	\begin{enumerate}
 		\item Realizar una investigación documental sobre caracterización de dispositivos de radio frecuencia y su medición de figura de ruido.
-		\item Recopilar la documentación y software asociado al SMFR.
-		\item Codificar una librería de software para intercambio de datos de un PC con el SMFR.
-		\item Diseñar y codificar el firmware para dispositivo.
-		\item Diseño y construir las tarjetas electronicas PCB para cada uno de los módulos del equipo: expansor de puertos, fuente de alimentación y tarjeta madre.
-		\item Desarrollar aplicación de software para gestión de la medición de la figura de ruido con el SMFR.
-		\item Generar manuales de usuario para el equipo y para la aplicación.
-	\end{enumerate}
-	
-	
-	
-	
-	\begin{table}[h!]
-		\begin{tabularx}{\textwidth}{p{0.15\textwidth}p{0.6\textwidth}c}
-			\toprule
-			{\large Fase} & 
-			{\large Actividad} & 
-			{\large \% culminación} \\
-			\midrule
-			\multirow{4}{0.2\textwidth}{Fase 1 \newline semanas 1 a 5} &
-			Documentación sobre caracterización y medición de figura de ruido en dispositivos de radio frecuencia. & 100 \% \\
-			& Documentación sobre equipos que integran el sistema de medición de figura de ruido (SMFR). & 100 \% \\
-			& Elaboración de informe técnico descriptivo del SMFR. & 80 \% \\
-			& Investigación y recopilación del software asociado al SMFR. & 100 \% \\
-			\bottomrule		
-		\end{tabularx}
-		\caption{Actividades ejecutadas durante la fase 1}
-	\end{table}
-
-	\begin{table}[h!]
-		\begin{tabularx}{\textwidth}{p{0.2\textwidth}p{0.5\textwidth}c}
-			\toprule
-			{\large Fase} & 
-			{\large Actividad} & 
-			{\large \% culminación} \\
-			\midrule
-			\multirow{5}{0.2\textwidth}{Fase 2 \newline semanas 6 a la 17} &
-			Investigación y selección de componentes electrónicos y mecánicos. & 100 \% \\
-			& Elaboración de concepto de diseño de hardware para el prototipo. & 100 \% \\
-			& Elaboración de esquemáticos. & 75 \% \\
-			& Routeo de tarjetas de circuito impreso. & 25 \% \\	
-			& Elaboración de una tarjeta prototipo, con fines de pruebas de firmware. & 100 \% \\
-			\bottomrule			
-		\end{tabularx}
-		\caption{Actividades ejecutadas durante la fase 2 (relativas al hardware)}
-	\end{table}
-
-
-	\begin{table}[h!]
-		\begin{tabularx}{\textwidth}{p{0.2\textwidth}p{0.5\textwidth}c}
-			\toprule
-			{\large Fase} & 
-			{\large Actividad} & 
-			{\large \% culminación} \\
-			\midrule
-			\multirow{4}{0.2\textwidth}{Fase 2 \newline semanas 6 a la 17} &
-			Investigación de librería de software para comunicaciones con el SMFR & 100 \% \\
-			& Diseño y codificación de librería de comunicaciones alternativa & 80 \% \\
-			& Diseño de aplicación para gestión del SMFR & 50 \% \\
-			& Codificación de ésta aplicación & 50 \% \\	
-			\bottomrule	
-		\end{tabularx}
-		\caption{Actividades ejecutadas durante la fase 2 (relativas al software)}
-	\end{table}
-	
-	
 		
-	Por este motivo le solicito la extensión del tiempo de ejecución de TEG por 18 semanas adicionales, que equivalen al tiempo que resta para que concluya el semestre 20017-1.
-	
-	Seguidamente le presento la reformulación de objetivos del proyecto TEG, los cuales inicialmente eran los siguientes:		
-
-	
-
+		\item Recopilar la documentación y software asociado al SMFR.
+		
+		\item Codificar una librería de software para intercambio de datos entre PC y el SMFR.
+		
+		\item Diseñar y codificar el firmware para dispositivo.
+		
+		\item Diseño y construir las tarjetas electrónicas PCB para cada uno de los módulos del equipo: expansor de puertos, fuente de alimentación y tarjeta madre.
+		
+		\item Desarrollar aplicación de software para gestión de la medición de la figura de ruido con el SMFR.
+		
+		\item Generar manuales de usuario para el equipo y para la aplicación.
+	\end{enumerate}		
 
 	\emph{Cambios en el alcance}
 	
+	El proyecto asignado en la fundación CENDIT presenta un buen grado de complejidad, es bastante exigente en esfuerzo de investigación, diseño, implementación y documentación, así como en recursos materiales; presenta un nivel muy elevado para un proyecto de TEG. Por esta razón y bajo la supervisión y aprobación tanto del Tutor como del Prof Guía, se reduce el alcance del proyecto como se indica seguidamente,
+	
 	\emph{Cambios en el diseño de hardware}
 
-	En el diseño original para el dispositvo electrónico, se reducen sus  interfaces de comunicaciones, de tres que se habían propuesto inicialmente (GPIB, USB, LAN) a dos interfaces (USB y GPIB). De esta forma, se diseñará un dispositivo con todo el soporte requerido para las siguientes interfaces
-	
-	\begin{enumerate}
-		\item USB (Class Device Communication, full speed).		
-		\item LAN (Ethernet 100 Mbps BASE-T)
-	\end{enumerate}
+	En el diseño original para el dispositivo electrónico, se reducen sus  interfaces de comunicaciones, de tres que se habían propuesto inicialmente (GPIB, USB, LAN) a una interfaz (USB). De esta forma, se diseñará un dispositivo con todo el soporte requerido para la interfaz USB (Class Device Communication, full speed).			
 
-	La interfaz eléctrica del dispositivo,  que consiste en las señales eléctricas de control que el dispositivo para comandar la unidad de atenuadores y aisladores estarán constituidas por dos grupos de 16 señales cada uno. 
+	La interfaz eléctrica del dispositivo, que consiste en las señales de control que el dispositivo genera para comandar la unidad de atenuadores y aisladores estarán, constituidas por dos grupos de 16 señales cada uno. 
 	
 	El panel frontal consistirá de un teclado matricial, de no más de 16 teclas. 
 	
+	En el diseño y construcción de las tarjetas de circuitos impresos (PCB) se contará con la asesoría y ayuda del personal encargado del departamento de electrónica de la fundación CENDIT, quienes cuentan con experiencia y el equipo necesario para la elaboración de prototipos en PCB.
+	
 	\emph{Cambios en el diseño de software}
 	
-	La aplicación a desarrollar, conocida como Software para Gestion de la Medición de Figura de Ruido (SGMFR) consistirá, a grandes rasgos, de lo siguiente.
+	La aplicación a desarrollar, conocida como Software para Gestión de la Medición de Figura de Ruido (SGMFR) consistirá, a grandes rasgos, de lo siguiente.
 	
 	\begin{enumerate}
 		\item Instalador para la aplicación
@@ -246,8 +196,9 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 
 	\emph{Cambios en el diseño de firmware}
 	
-	El firmware que se desarrollará para el microcontrolador central brindará soporte a las comunicaciones por medio de las interfaces USB y LAN/GPIB. Se encargará de gestionar la interacción del usuario con el panel frontal. Se encargara de controlar el valor de la tensión de alimentación en los puertos de señal Viking, la cual es programable por el usuario.		
+	El firmware que se desarrollará para el microcontrolador central brindará soporte a las comunicaciones por medio de las interfaz USB. Se encargará de gestionar la interacción del usuario con el panel frontal. 	
 	
+	Para la ejecución de los nuevos objetivos, se propone el siguiente cronograma de actividades,
 	
 	\emph{Nuevo cronograma de trabajo}
 
@@ -278,22 +229,76 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 					7 & Libro TEG & & & & & & & \TJ & \TJ & \TJ & \TJ & \TJ & \TJ \\
 					\hline
 				\end{tabular}	
-				\begin{tablenotes}
-					\small
-					\item Fecha de inicio: 6 de Marzo de 2017. 
+				%\begin{tablenotes}
+					%\small
+					%\item Fecha de inicio: 6 de Marzo de 2017. 
 					%\item Jornada de 8 horas diarias, lunes a viernes 8:00 AM a 12:00 M y 1:30 %PM a 4:30 PM.
-				\end{tablenotes}
-			\caption{Cronograma de actividades inicial}			
+				%\end{tablenotes}
+			\caption{Cronograma de actividades para la extensión del lapso de TEG}			
 			\label{Tab:CronogramaActividadesInicial}
 		\end{threeparttable}
 	\end{center}
 
+	Como anexo, en las siguientes tablas se indican las actividades realizadas hasta la fecha. En éstas se indica la fase a la cual pertenece, la actividad y el porcentaje de culminación de cada actividad.
+
+	\begin{table}[h!]
+		\begin{tabularx}{\textwidth}{p{0.15\textwidth}p{0.6\textwidth}c}
+			\toprule
+			{Fase} & 
+			{Actividad} & 
+			{\% culminación} \\
+			\midrule
+			\multirow{4}{0.15\textwidth}{Fase 1 \newline \small semanas 1 a 5} &
+			Documentación sobre caracterización y medición de figura de ruido en dispositivos de radio frecuencia. & 100 \% \\
+			& Documentación sobre equipos que integran el sistema de medición de figura de ruido (SMFR). & 100 \% \\
+			& Elaboración de informe técnico descriptivo del SMFR. & 80 \% \\
+			& Investigación y recopilación del software asociado al SMFR. & 100 \% \\
+			\bottomrule		
+		\end{tabularx}
+		\caption{Actividades ejecutadas durante la fase 1}
+	\end{table}
+
+	\begin{table}[h!]
+		\begin{tabularx}{\textwidth}{p{0.15\textwidth}p{0.6\textwidth}c}
+			\toprule
+			{Fase} & 
+			{Actividad} & 
+			{\% culminación} \\
+			\midrule
+			\multirow{5}{0.15\textwidth}{Fase 2 \newline \small semanas 6 a 17} &
+			Investigación y selección de componentes electrónicos y mecánicos. & 100 \% \\
+			& Elaboración de concepto de diseño de hardware para el prototipo. & 100 \% \\
+			& Elaboración de esquemáticos. & 75 \% \\
+			& Routeo de tarjetas de circuito impreso. & 25 \% \\	
+			& Elaboración de una tarjeta prototipo, con fines de pruebas de firmware. & 100 \% \\
+			\bottomrule			
+		\end{tabularx}
+		\caption{Actividades ejecutadas durante la fase 2 (relativas al hardware)}
+	\end{table}
+
+	\begin{table}[h!]
+		\begin{tabularx}{\textwidth}{p{0.15\textwidth}p{0.6\textwidth}c}
+			\toprule
+			{Fase} & 
+			{Actividad} & 
+			{\% culminación} \\
+			\midrule
+			\multirow{4}{0.15\textwidth}{Fase 2 \newline \small semanas 6 a 17} &
+			Investigación de librería de software para comunicaciones con el SMFR & 100 \% \\
+			& Diseño y codificación de librería de comunicaciones alternativa & 80 \% \\
+			& Diseño de aplicación para gestión del SMFR & 50 \% \\
+			& Codificación de ésta aplicación & 50 \% \\	
+			\bottomrule	
+		\end{tabularx}
+		\caption{Actividades ejecutadas durante la fase 2 (relativas al software)}
+	\end{table}	
+
 	Sin más a que hacer referencia y agradecido por su atención, se despide de Ud.	
 	
 	\begin{flushright}
-		Atentamente, 		
-		
-		\vspace{2cm}
+		Atentamente, 			
+	
+		\vspace{0.5cm}
 		
 		\begin{singlespace}
 			\large
@@ -307,21 +312,25 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	\end{flushright}
 
-	\vspace{3cm}
+
+	%\vfill
+	\vspace{1.9cm}
 
 	\hfill
 	\begin{minipage}{0.4\textwidth}
-		\centering \large
-		MSC Pedro Ruiz \\
+		\centering 
+		\large
+		MSc. Pedro Ruiz \\
+		\small
 		Tutor
-	\end{minipage} %
+	\end{minipage}%
 	\hfill 
 	\begin{minipage}{0.4\textwidth}
 		\centering \large
-		MSC Alejandro Gonzalez	\\	
+		MSc. Alejandro G. González E.	\\	
+		\small
 		Prof. Guía
-	\end{minipage} %
-	\hfill
-
+	\end{minipage}%
+	\hfill 
 
 \end{document}
