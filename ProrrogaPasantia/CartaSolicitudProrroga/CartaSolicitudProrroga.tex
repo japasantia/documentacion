@@ -87,6 +87,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		Prof. Ebert Brea. \\
 		Jefe del Departamento de Electrónica, Computación y Control. \\
 		Escuela de Ingeniería Eléctrica. \\
+		Facultad de Ingeniería.
 		Universidad Central de Venezuela.	
 	\end{onehalfspace}
 
@@ -103,14 +104,14 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 		\item Retardo en la contratación por parte de la fundación CENDIT. Aunque en la planilla de inscripción se indique como fecha de inicio del TEG el 31 de enero de 2017, el CENDIT tramitó mi ingreso como pasante hasta el 6 de marzo del mismo año. 
 		
-		\item La situación económica actual plantea una seria dificultad en la adquisición de los materiales e insumos básicos que se requieren para sustentar un proyecto como este, que obliga a invertir una buena cantidad de tiempo en la búsqueda de alternativas,
+		\item La situación económica actual plantea una seria dificultad en la adquisición de los materiales e insumos básicos que se requieren para sustentar un proyecto como este, que obliga a invertir una buena cantidad de tiempo en la búsqueda de alternativas.
 	
 		\item Por último, el proyecto asignado por la fundación CENDIT presenta un buen grado de complejidad, la cual no se pudo identificar durante la redacción del anteproyecto, sino hasta haberme involucrado de lleno en el TEG. Éste implica el diseño e implementación de software, hardware y firmware en conjunto con las tareas documentación asociada a cada una de estas fases.
 	\end{itemize}
 	
 	A pesar de los contratiempos citados arriba, se han logrado avances en el proyecto, en especial en las tareas de las fases 1 y 2, dedicadas principalmente a la documentación inicial y al diseño de software y de hardware. 
 	
-	La solicitud de la extensión del lapso de TEG se realiza con una revisión de su alcance y de sus objetivos, con miras a simplificar el proyecto. El proceso de revisión de y reformulación de objetivos así como la reducción del alcance del proyecto se ha hecho bajo la supervisión de Tutor y del Prof. Guía, quienes suscriben esta misiva. 
+	La solicitud de la extensión del lapso de TEG se realiza con una revisión de su alcance y de sus objetivos, con miras a simplificar el proyecto. El proceso de revisión de y reformulación de objetivos, así como la reducción del alcance del proyecto, se ha hecho bajo la supervisión de Tutor y del Prof. Guía, quienes dan su aprobación al suscribir esta misiva. 
 	
 	Seguidamente presento los cambios que se realizan en objetivos y alcance del proyecto. El título y el objetivo general permanecen sin cambios que, a modo de recordatorio, se indican a continuación,	
 	
@@ -133,17 +134,13 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	\emph{Objetivos específicos, propuestos en el anteproyecto}
 	
 	\begin{enumerate}
-		\item Elaborar un informe técnico a partir de un estudio del funcionamiento de los
-		dispositivos presentes en el sistema de medición de figura de ruido de la fundación
-		CENDIT.
+		\item Elaborar un informe técnico a partir de un estudio del funcionamiento de los dispositivos presentes en el sistema de medición de figura de ruido (SMFR) de la fundación CENDIT.
 		
-		\item Diseñar un equipo electrónico que permita replicar las características funcionales de
-		una unidad de control para atenuadores e interruptores de la serie 11713 de KeySight.
+		\item Diseñar un equipo electrónico que permita replicar las características funcionales de	una unidad de control para atenuadores e interruptores de la serie 11713 de KeySight.
 		
 		\item Implementar el diseño como dispositivo físico.
 		
-		\item Integrar el diseño físico en el banco de medición de figura de ruido presente en el
-		laboratorio del CENDIT.
+		\item Integrar el diseño físico en el banco de medición de figura de ruido presente en el laboratorio del CENDIT.
 		
 		\item Generar un manual de usuario para el dispositivo diseñado.
 	\end{enumerate}	
@@ -153,7 +150,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	\emph{Objetivos específicos, nueva propuesta}
 		
 	\begin{enumerate}
-		\item Realizar una investigación documental sobre caracterización de dispositivos de radio frecuencia y su medición de figura de ruido.
+		\item Realizar una investigación documental sobre caracterización de dispositivos de radio frecuencia y la medición de figura de ruido en éstos.
 		
 		\item Recopilar la documentación y software asociado al SMFR.
 		
@@ -161,9 +158,9 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		
 		\item Diseñar y codificar el firmware para dispositivo.
 		
-		\item Diseño y construir las tarjetas electrónicas PCB para cada uno de los módulos del equipo: expansor de puertos, fuente de alimentación y tarjeta madre.
+		\item Diseñar y construir las tarjetas electrónicas PCB para cada uno de los módulos del equipo: expansor de puertos, fuente de alimentación y tarjeta madre.
 		
-		\item Desarrollar aplicación de software para gestión de la medición de la figura de ruido con el SMFR.
+		\item Desarrollar una aplicación de software para gestión de la medición de figura de ruido con el SMFR.
 		
 		\item Generar manuales de usuario para el equipo y para la aplicación.
 	\end{enumerate}		
@@ -176,11 +173,11 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 
 	En el diseño original para el dispositivo electrónico, se reducen sus  interfaces de comunicaciones, de tres que se habían propuesto inicialmente (GPIB, USB, LAN) a una interfaz (USB). De esta forma, se diseñará un dispositivo con todo el soporte requerido para la interfaz USB (Class Device Communication, full speed).			
 
-	La interfaz eléctrica del dispositivo, que consiste en las señales de control que el dispositivo genera para comandar la unidad de atenuadores y aisladores estarán, constituidas por dos grupos de 16 señales cada uno. 
+	La interfaz eléctrica del dispositivo, que consiste en las señales de control que el dispositivo genera para comandar la unidad de atenuadores y aisladores, se mantiene, la cual esta constituida por dos grupos de 16 señales cada uno. 
 	
 	El panel frontal consistirá de un teclado matricial, de no más de 16 teclas. 
 	
-	En el diseño y construcción de las tarjetas de circuitos impresos (PCB) se contará con la asesoría y ayuda del personal encargado del departamento de electrónica de la fundación CENDIT, quienes cuentan con experiencia y el equipo necesario para la elaboración de prototipos en PCB.
+	En el diseño y construcción de las tarjetas de circuitos impresos (PCB) se contará con la asesoría y ayuda del personal encargado del departamento de electrónica de la fundación CENDIT, quienes cuentan con la experiencia, el equipo y materiales necesarios para la elaboración de prototipos en PCB.
 	
 	\emph{Cambios en el diseño de software}
 	
@@ -188,10 +185,10 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	\begin{enumerate}
 		\item Instalador para la aplicación
-		\item Soporte para establecer comunicación de datos con los dispositivos del sistema de medición de figura de ruido.
+		\item Soporte, a nivel de librerías de software, para establecer comunicación de datos con los dispositivos del sistema de medición de figura de ruido.
 		\item Interfaz de usuario gráfica.
-		\item Asistencia al usuario en las etapas de medición: configuración, ejecución y generación de reportes.
-		\item Generación de reportes de resultados de medición, en formato pdf.
+		\item Asistencia al usuario durante el ciclo de medición: configuración, ejecución y generación de reportes.
+		\item Generación de reportes con resultados de una medición, en formato de documento portable (pdf).
 	\end{enumerate}
 
 	\emph{Cambios en el diseño de firmware}
@@ -199,6 +196,8 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	El firmware que se desarrollará para el microcontrolador central brindará soporte a las comunicaciones por medio de las interfaz USB. Se encargará de gestionar la interacción del usuario con el panel frontal. 	
 	
 	Para la ejecución de los nuevos objetivos, se propone el siguiente cronograma de actividades,
+	
+	\newpage
 	
 	\emph{Nuevo cronograma de trabajo}
 
@@ -239,7 +238,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		\end{threeparttable}
 	\end{center}
 
-	Como anexo, en las siguientes tablas se indican las actividades realizadas hasta la fecha. En éstas se indica la fase a la cual pertenece, la actividad y el porcentaje de culminación de cada actividad.
+	Como anexo, en las siguientes tablas se indican las actividades realizadas hasta la fecha. En éstas se indica la fase a la cual pertenece, la actividad y el porcentaje de culminación para cada actividad.
 
 	\begin{table}[h!]
 		\begin{tabularx}{\textwidth}{p{0.15\textwidth}p{0.6\textwidth}c}
@@ -295,19 +294,20 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 
 	\newpage	
 
-	Sin más a que hacer referencia y agradecido por su atención, se despide de Ud.	
+	Sin más a que hacer referencia y agradecido por su atención, se despide de Ud.,	
+	
+	%\vfill
 	
 	\begin{flushright}
 		Atentamente, 			
 	
-		\vspace{2cm}
+		\vspace{1.5cm}
 		%\vfill
 		\begin{singlespace}
 			\large
 			Jose Arias \\
 			{
-				\small
-				C.I. 14.666.744 \\
+				\small			
 				correo@josearias.com.ve \\			
 			}	
 		\end{singlespace}
