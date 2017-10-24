@@ -84,10 +84,12 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	\begin{onehalfspace}
 		\large
-		Prof. Ebert Brea. \\
-		Jefe del Departamento de Electrónica, Computación y Control. \\
+		%Prof. Ebert Brea. \\
+		Prof. Julio Molina. \\
+		%Jefe del Departamento de Electrónica, Computación y Control. \\
+		Director-Presidente del Consejo de Escuela. \\
 		Escuela de Ingeniería Eléctrica. \\
-		Facultad de Ingeniería.
+		Facultad de Ingeniería. \\
 		Universidad Central de Venezuela.	
 	\end{onehalfspace}
 
@@ -145,15 +147,17 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		\item Generar un manual de usuario para el dispositivo diseñado.
 	\end{enumerate}	
 	
-	Los nuevos objetivos específicos propuestos para el TEG se enumeran seguidamente,
+	%Los nuevos objetivos específicos propuestos para el TEG se enumeran %seguidamente,
+	Se solicita cambiar los objetivos específicos del anteproyecto original a los siguientes,	
 	
 	\emph{Objetivos específicos, nueva propuesta}
 		
 	\begin{enumerate}
 		\item Realizar una investigación documental sobre caracterización de dispositivos de radio frecuencia y la medición de figura de ruido en éstos.
 		
-		\item Recopilar la documentación y software asociado al SMFR.
-		
+		\item Recopilar la documentación y software asociado al sistema de medición de figura de ruido (SFMR).
+		%\item Recopilar la documentación y software asociado al sistema de medición de ﬁgura de ruido (SMFR).		
+	
 		\item Codificar una librería de software para intercambio de datos entre PC y el SMFR.
 		
 		\item Diseñar y codificar el firmware para dispositivo.
@@ -165,9 +169,11 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 		\item Generar manuales de usuario para el equipo y para la aplicación.
 	\end{enumerate}		
 
+	\newpage
+	
 	\emph{Cambios en el alcance}
 	
-	El proyecto asignado en la fundación CENDIT presenta un buen grado de complejidad, es bastante exigente en esfuerzo de investigación, diseño, implementación y documentación, así como en recursos materiales; presenta un nivel muy elevado para un proyecto de TEG. Por esta razón y bajo la supervisión y aprobación tanto del Tutor como del Prof Guía, se reduce el alcance del proyecto como se indica seguidamente,
+	El proyecto asignado en la fundación CENDIT presenta un buen grado de complejidad, es bastante exigente en esfuerzo de investigación, diseño, implementación y documentación, así como en recursos materiales; presenta un nivel elevado para un proyecto de TEG. Por esta razón y bajo la supervisión y aprobación tanto del Tutor y del Prof Guía, se reduce el alcance del proyecto como se indica seguidamente,
 	
 	\emph{Cambios en el diseño de hardware}
 
@@ -201,44 +207,38 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	\emph{Nuevo cronograma de trabajo}
 
-	\begin{center}
-		\begin{threeparttable}[!h]	
+		\begin{center}		
+			\begin{table}[!h]	
 			\arrayrulecolor{gray}
-			\setlength{\extrarowheight}{4pt}		
-		
-				\begin{tabular}{|c|c|l|l|l|l|l|l|l|l|l|l|l|l|}
+			\setlength{\extrarowheight}{4pt}					
+				\begin{tabular}{|c|c|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
 					\hline 		
 					\textbf{Item} &	
 					\begin{tabular}{c}
 						{\raggedright \textbf{Semanas}} \\
 						\textbf{Tareas}
 					\end{tabular}
-					 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+					 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15\\
 					\hline
-					1 & Expansor de puertos Viking & \TA & \TA & \TA & \TA & & & & & & & & \\
+					1 & Expansor de puertos Viking & \TA & \TA & \TA & \TA & & & & & & & & & & & \\
 					\hline				
-					3 & Firmware del dispositivo & & & & & & \TC & \TC & \TC & \TC & & & \\ 
+					2 & Firmware del dispositivo & & & & & & \TC & \TC & \TC & \TC & & & & & & \\ 
 					\hline
-					4 & Tarjeta madre & & & & & & & & \TD & \TD & \TD & \TD & \\
+					3 & Tarjeta madre & & & & & & & & \TD & \TD & \TD & \TD &  & & & \\
 					\hline
-					5 & Tarjeta de alimentación DC  &  & \TE & \TE & \TE & \TE & & & & & & & \\
+					4 & Tarjeta de alimentación DC  &  & \TE & \TE & \TE & \TE & & & & & & & & & & \\
 					\hline
-					6 & Aplicación SGMFR  & & & & & \TG & \TG & \TG & \TG & \TG & \TG & \TG & \TG \\
+					5 & Desarrollo de la aplicación SGMFR  & & & & & & &  & \TG & \TG & \TG & \TG & \TG & \TG & \TG & \TG \\
 					\hline
-					7 & Libro TEG & & & & & & & \TJ & \TJ & \TJ & \TJ & \TJ & \TJ \\
+					6 & Libro de TEG & & & & & & & & &  & \TJ & \TJ & \TJ & \TJ & \TJ & \TJ \\
 					\hline
-				\end{tabular}	
-				%\begin{tablenotes}
-					%\small
-					%\item Fecha de inicio: 6 de Marzo de 2017. 
-					%\item Jornada de 8 horas diarias, lunes a viernes 8:00 AM a 12:00 M y 1:30 %PM a 4:30 PM.
-				%\end{tablenotes}
-			\caption{Cronograma de actividades para la extensión del lapso de TEG}			
+				\end{tabular}		
+			\caption{Cronograma de actividades pendientes por ejecutar  en el TEG}			
 			\label{Tab:CronogramaActividadesInicial}
-		\end{threeparttable}
-	\end{center}
+		\end{table}			
+	\end{center}	
 
-	Como anexo, en las siguientes tablas se indican las actividades realizadas hasta la fecha. En éstas se indica la fase a la cual pertenece, la actividad y el porcentaje de culminación para cada actividad.
+	Como anexo, en las siguientes tablas se indican las actividades ejecutadas hasta el día 20 de octubre de 2017. En éstas se indica la fase a la cual pertenece, la actividad y el porcentaje de culminación respectivo.
 
 	\begin{table}[h!]
 		\begin{tabularx}{\textwidth}{p{0.15\textwidth}p{0.6\textwidth}c}
@@ -250,8 +250,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			\multirow{4}{0.15\textwidth}{Fase 1 \newline \small semanas 1 a 5} &
 			Documentación sobre caracterización y medición de figura de ruido en dispositivos de radio frecuencia. & 100 \% \\
 			& Documentación sobre equipos que integran el sistema de medición de figura de ruido (SMFR). & 100 \% \\
-			& Elaboración de informe técnico descriptivo del SMFR. & 80 \% \\
-			& Investigación y recopilación del software asociado al SMFR. & 100 \% \\
+			& Elaboración de informe técnico descriptivo del SMFR.		 Investigación y recopilación de las partes del software asociado al SMFR. \\
 			\bottomrule		
 		\end{tabularx}
 		\caption{Actividades ejecutadas durante la fase 1}
@@ -268,7 +267,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			Investigación y selección de componentes electrónicos y mecánicos. & 100 \% \\
 			& Elaboración de concepto de diseño de hardware para el prototipo. & 100 \% \\
 			& Elaboración de esquemáticos. & 75 \% \\
-			& Routeo de tarjetas de circuito impreso. & 25 \% \\	
+			& Construcción, depuración y prueba  de tarjetas de circuito impreso (incluye 3 tarjetas electrónicas). & 25 \% \\	
 			& Elaboración de una tarjeta prototipo, con fines de pruebas de firmware. & 100 \% \\
 			\bottomrule			
 		\end{tabularx}
