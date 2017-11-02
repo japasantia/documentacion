@@ -1,0 +1,236 @@
+% Para documento texto corto
+\documentclass[paper=letter,oneside,fontsize=10pt]{article}
+%\documentclass[paper=letter,oneside,fontsize=11pt, parskip=full]{scrartcl}
+%\documentclass{amsart}
+%\documentclass[paper=letter,oneside,fontsize=12pt]{scrartcl}
+
+% Establece dimensiones de los margenes
+% \usepackage[inner=1.5cm,outer=3cm,top=2cm,bottom=4cm,
+% bindingoffset=5mm]{geometry}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm,
+bindingoffset=0cm, footskip=0.0cm, headheight=2cm]{geometry}
+
+% Para espacio entre lineas y parrafos
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.1} 
+\setlength{\parskip}{0.0em}
+
+% Mejor jsutificacion, tipografia alta calidad.
+\usepackage{microtype}
+
+% Carga babel, idioma ingles
+\usepackage[english, spanish]{babel}
+
+% Elimina sangrias y aumenta espacio entre parrafos
+\usepackage{parskip}
+
+% Permite ingresar caracteres acentuados y especiales 
+% sin necesidad de emplear comando
+% utf8 codificacion de entrada Unicode (mas simbolos que ASCII)
+\usepackage[utf8]{inputenc}
+
+% T1 encoding for European, English, American text
+\usepackage[T1]{fontenc}
+% Fuente escalable
+\usepackage{lmodern}
+
+% Agrega comandos extra al comando tabular
+% \toprule, \midrule, \bottomrule
+\usepackage{booktabs}
+% Tablas con ancho establecido por usuario
+\usepackage{tabularx}
+% Para posicionamiento preciso de tablas dentro del texto
+
+\usepackage[flushleft]{threeparttable}
+
+% Establece espacio entre lineas
+%\usepackage[onehalfspacing]{setspace}
+
+%Para resizebox
+\usepackage{graphicx}
+
+% Elimina numeros de pagina del docuento
+\pagenumbering{gobble}
+
+%Uso de colores
+\usepackage{xcolor}
+% Permite controlar colores de tablas
+\usepackage{xcolor, colortbl}
+
+% Definicion colores tabla cronograma
+\definecolor{colorta}{rgb}{0.3569,0.608,0.8353}
+\definecolor{colortb}{rgb}{0.4392,0.678,0.2784}
+\definecolor{colortc}{rgb}{1.0000,0.361,0.0000}
+\definecolor{colortd}{rgb}{0.1804,0.455,0.7098}
+\definecolor{colorte}{rgb}{0.9294,0.490,0.1922}
+\definecolor{colortf}{rgb}{0.2667,0.3290,0.4157}
+\definecolor{colortg}{rgb}{0.3290,0.2667,0.4157}
+\definecolor{colortj}{rgb}{0.2667,0.4157,0.329}
+
+\newcommand{\TA}{\cellcolor{colorta}}
+\newcommand{\TB}{\cellcolor{colortb}}
+\newcommand{\TC}{\cellcolor{colortc}}
+\newcommand{\TD}{\cellcolor{colortd}}
+\newcommand{\TE}{\cellcolor{colorte}}
+\newcommand{\TF}{\cellcolor{colortf}}
+\newcommand{\TG}{\cellcolor{colortg}}
+\newcommand{\TJ}{\cellcolor{colortj}}
+
+\definecolor{colorfa}{rgb}{0.3569,0.608,0.8353}
+\definecolor{colorfb}{rgb}{0.4392,0.678,0.2784}
+\definecolor{colorfc}{rgb}{1.0000,0.361,0.0000}
+\definecolor{colorsem}{rgb}{0.1804,0.455,0.7098}
+\definecolor{colorfd}{rgb}{0.9294,0.490,0.1922}
+\definecolor{colorfe}{rgb}{0.2667,0.329,0.4157}
+
+\newcommand{\fa}{\cellcolor{colorfa}}
+\newcommand{\fb}{\cellcolor{colorfb}}
+\newcommand{\fc}{\cellcolor{colorfc}}
+\newcommand{\sem}{\cellcolor{colorsem}}
+\newcommand{\fd}{\cellcolor{colorfd}}
+\newcommand{\fe}{\cellcolor{colorfe}}
+
+% Elimina numeros de pagina del docuento
+\pagenumbering{gobble}
+
+\begin{document}
+	
+	\section{Anteproyecto inicial}
+	
+	A continuación se presentan el título, objetivo general, objetivos específicos y el cronograma de actividades presentes en el anteproyecto inicial.
+	
+	\subsection{Título}
+	
+	\begin{minipage}{0.95\textwidth}
+		\centering
+		DISEÑO DE UN EQUIPO ELECTRÓNICO CONTROLADOR DE INTERRUPTORES Y ATENUADORES EMPLEADO EN LA MEDICIÓN DE LA FIGURA DE RUIDO EN DISPOSITIVOS DE RADIO FRECUENCIA
+	\end{minipage}
+
+	\subsection{Objetivo general}
+
+	\begin{minipage}{0.95\textwidth}
+		Diseñar un equipo electrónico que permita emular las características funcionales de un controlador electrónico de interruptores y atenuadores.
+	\end{minipage}
+
+	\subsection{Objetivos específicos}
+
+	\begin{enumerate}
+		\item Elaborar un informe técnico a partir de un estudio del funcionamiento de los dispositivos presentes en el sistema de medición de figura de ruido (SMFR) de la fundación CENDIT.
+		
+		\item Diseñar un equipo electrónico que permita replicar las características funcionales de	una unidad de control para atenuadores e interruptores de la serie 11713 de KeySight.
+		
+		\item Implementar el diseño como dispositivo físico.
+		
+		\item Integrar el diseño físico en el banco de medición de figura de ruido presente en el laboratorio del CENDIT.
+		
+		\item Generar un manual de usuario para el dispositivo diseñado.
+	\end{enumerate}	
+
+	\subsection{Cronograma de actividades}
+	
+	\begin{threeparttable}[!h]
+		\centering
+		\arrayrulecolor{gray}
+		\setlength{\extrarowheight}{4pt}		
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{|c|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+				\hline 			
+				\textbf{Semanas} & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 \\
+				\hline
+				\textbf{Preparación e investigación}
+				& \fa & \fa & \fa & \fa & \fa & \fa & & & & & & & & & & & & & & & & & & & & & & \\			
+				\hline			
+				\textbf{Diseño de hardware} & & & & & & & \fb & \fb & \fb & \fb & \fb & \fb & \fb & \fb & \fb & \fb & \fb & & & & & & & & & & & \\
+				\hline
+				\textbf{Implementación del hardware} & & & & & & & & & & & & & & & & & & \fc & \fc & \fc & \fc & \fc & & & & & & \\	
+				\hline		
+				\textbf{Seminario} & & & & & & & & & & & & & & \sem & & & & & & & & & & & & & & \\
+				\hline
+				\textbf{Preparación de manuales} & & & & & & & & & & & & & & & & & & & & & & & \fd & \fd & \fd & \fd &  & \\
+				\hline
+				\textbf{Preparación de documentos } & & & & & & & & & & & & & & & & & & & & & & & & & & & \fe & \fe \\
+				\hline	
+			\end{tabular}
+		}
+		\begin{tablenotes}
+			\item Fecha de inicio: 6 de Marzo de 2017. 
+			\item Jornada de 8 horas diarias, lunes a viernes, de 8:00 AM a 12:00 M y de 1:30 PM a 4:30 PM.
+		\end{tablenotes}
+		\caption{Cronograma de actividades inicial}			
+		\label{Tab:CronogramaActividadesInicial}
+	\end{threeparttable}
+
+	\newpage
+	
+	\section{Propuesta de cambio}
+	
+	Seguidamente se indican los cambios que se proponen realizar para el proyecto. El título y el objetivo general se preservan sin cambios.
+	
+	\subsection{Título}
+	
+	\begin{minipage}{0.95\textwidth}
+		\centering
+		DISEÑO DE UN EQUIPO ELECTRÓNICO CONTROLADOR DE INTERRUPTORES Y ATENUADORES EMPLEADO EN LA MEDICIÓN DE LA FIGURA DE RUIDO EN DISPOSITIVOS DE RADIO FRECUENCIA
+	\end{minipage}
+	
+	\subsection{Objetivo general}
+	
+	\begin{minipage}{0.95\textwidth}
+		Diseñar un equipo electrónico que permita emular las características funcionales de un controlador electrónico de interruptores y atenuadores.
+	\end{minipage}
+	
+	\subsection{Objetivos específicos}	
+	
+	\begin{enumerate}
+		\item Realizar una investigación documental sobre caracterización de dispositivos de radio frecuencia y la medición de figura de ruido en éstos.
+		
+		\item Recopilar la documentación y software asociado al sistema de medición de figura de ruido (SFMR).
+		%\item Recopilar la documentación y software asociado al sistema de medición de ﬁgura de ruido (SMFR).		
+		
+		\item Codificar una librería de software para intercambio de datos entre PC y el SMFR.
+		
+		\item Diseñar y codificar el firmware para dispositivo.
+		
+		\item Diseñar y construir las tarjetas electrónicas PCB para cada uno de los módulos del equipo: expansor de puertos, fuente de alimentación y tarjeta madre.
+		
+		\item Desarrollar una aplicación de software para gestión de la medición de figura de ruido con el SMFR.
+		
+		\item Generar manuales de usuario para el equipo y para la aplicación.
+	\end{enumerate}	
+	
+	\subsection{Cronograma de actividades}	
+	
+		\begin{center}	
+			\begin{table}[h!]
+				\arrayrulecolor{gray}
+				\setlength{\extrarowheight}{4pt}	
+				\resizebox{\textwidth}{!}{				
+				\begin{tabular}{|c|c|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+					\hline 		
+					\textbf{Item} &	
+					\begin{tabular}{c}
+						{\raggedright \textbf{Semanas}} \\
+						\textbf{Tareas}
+					\end{tabular}
+					& 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15\\
+					\hline
+					1 & Expansor de puertos Viking & \TA & \TA & \TA & \TA & & & & & & & & & & & \\
+					\hline				
+					2 & Firmware del dispositivo & & & & & & \TC & \TC & \TC & \TC & & & & & & \\ 
+					\hline
+					3 & Tarjeta madre & & & & & & & & \TD & \TD & \TD & \TD &  & & & \\
+					\hline
+					4 & Tarjeta de alimentación DC  &  & \TE & \TE & \TE & \TE & & & & & & & & & & \\
+					\hline
+					5 & Desarrollo de la aplicación SGMFR  & & & & & & &  & \TG & \TG & \TG & \TG & \TG & \TG & \TG & \TG \\
+					\hline
+					6 & Libro de TEG & & & & & & & & &  & \TJ & \TJ & \TJ & \TJ & \TJ & \TJ \\
+					\hline
+				\end{tabular}	
+				}	
+				\caption{Cronograma de actividades pendientes por ejecutar  en el TEG}			
+				\label{Tab:CronogramaActividadesInicial}
+			\end{table}			
+		\end{center}	
+	
+\end{document}
