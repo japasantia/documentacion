@@ -1,0 +1,213 @@
+%\documentclass[paper=letter,oneside,fontsize=12pt, parskip=full]{article}
+\documentclass[paper=letter,oneside,fontsize=9pt]{scrartcl}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm,
+bindingoffset=0cm, footskip=0.5cm, headheight=1cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+
+% T1 encoding for European, English, American text
+\usepackage[T1]{fontenc}
+% Fuente escalable
+\usepackage{lmodern}
+
+\usepackage[english, spanish]{babel}
+
+\begin{document}
+	\section{Planteamiento del Problema}
+	
+	\subsection{Portada}
+	
+	Soy Jose Arias y en este seminario le presentaré un breve resumen de las actividades realizadas hasta el momento. Leer titulo, menionar que realizo mi TEG en el CENDIT. Mencionar al tutor
+	
+	\subsection{L 2}
+	
+	Breve exposición del tema del proyecto	Esencialmente trata del diseño de un dispositivo electrónico que actúa como controlador de otro dispositivo ciego y totalmente pasivo.
+	
+	En la figura se muestra un sistema para medición de figura de ruido y calibración de fuentes de ruido. La figura de ruido es una figura de merito que da una indicación de la degradación de la señal que sufre al propagarse a través de un dispositivo como un amplificador o un atenuador.
+	
+	De los tres equipos presentes en la figura el Cendit solo cuenta con dos de ellos: el NFA N8975A y el N2002A pero no dispone del controlador de interruptores y atenuadores. El NFA incluye las fuentes de ruido, generadores de ruido basados en diodo, que se muestran en la figura.
+	
+	\subsection{L 3}
+	
+	En la lamina se muestran los equipos mencionados. El NFA es el equipo fundamental, medición de parámetros fundamentales relacionados con NF: potencia de ruido, derivar potencia de ruido, ganancia. Configurables: puntos de muestreo, ancho de banda, temperatura ambiente, corrección para fuentes de ruido, corrección para atenuación de elementos de acople. Controla las fuentes de ruido. Emplea el metodo del factor Y.
+	
+	El N2002A  contiene tarjetas  atenuadoras y aisladores. Es un dispositivo ciego, si UI, panel frontal dos puertos de señal RF, panel trasero dos puertos que los he llamado puertos Viking, por los cuales se le inyectan señales que permiten seleccionar el nivel de atenuación introducido en el camino de señal.
+	
+	Por último se muestra un equipo 11713, el primero de esta serie fabricado por la extinta Agilent Technologies. Es el equipo por el cual el usuario puede controlar al N2002A. Presenta una interfaz de usuario sobre la cual este puede elegir la atenuación en el N2002. El Cendit no dispone de este equipo.
+	
+	\subsection{L 4}
+	
+	Equipos principales NFA, N2002 y el equipo a diseñar Cendit 11713. 	La figura muestra un esquema de conexiones para los dispositivos del SFMT. En el centro el dispositivo a diseñar, que se encarga de establecer la atenuación en el N2002. El N2002 se inserta en el camino de señal RF, justo a la entrada del NFA.	
+	
+	Los equipos cuentan con interfaces de usuarios, poseen interfacez el electricas: señales de control y señal de RF,  cuentan con interfaces de datos para los buses GPIB, interfaz para red LAN Ethernet, interfaz para USB y RS-232. 
+	
+	Se agregan dos dispositivos adicionales, el Cendit cuenta con dos dispositivo, adicionales. Puente LAN/GPIB Agilent E5810, el cual permite establecer un enlace entre una red LAN y un bus GPIB. El segundo es un adaptador de puerto USB a bus GPIB.
+	
+	Múltiples canales para intercambio de datos, entre los dispositivos y un computador.  Cuenta el sistema con 4 buses de datos, siendo los principales el bus GPIB, USB y LAN.
+	
+	En la parte central se muestra el dispositivo a diseñar controla al N2002A, cuenta con interfaz de usuario local e interfaz de datos remota, para intercambio de datos a través de los buses USB, Ethernet y GPIB.
+	
+	En el computador reside la aplicación a diseñar, a la cual le he dado el nombre interno de CenditLab. Se llamara Sistema de Gestión para Medición de Figura de Ruido. 
+	
+	CenditLab interfaz de software para los equipos del SMFR, se encargara de gestionar el ciclo de vida de un proceso de medición desde la selección de instrumentos, configuración, ejecución medición y presentación de resultados. Misión comandar a los restantes dispositvos empleando los canales de datos, automatizando en gran medida el proceso y presentando una interfaz amistosa, simplificada e intuitiva al usuario.
+	
+	\subsection{L 5. Metodología de trabajo. Cronograma inicial}
+	
+	Cronograma inicialmente propuesto en el anteproyecto. Fases consecutivas, en cascada. 
+	Preparación inicial: documentación y recopilación de material. Instalación de software
+	Diseño de dispositivo que incluye el diseño de software asociado
+	Implementar el hardware que incluye el desarrollo de la aplicación
+	Documentación: informe para el Cendit, manuales de usuario y programador, libro TEG.
+	
+	\textbf{Objetivo principal:} Diseñar un equipo electrónico que permita emular las características funcionales de un controlador electrónico de interruptores y atenuadores.
+	
+	Dificultades para seguir el cronograma
+	
+	Conflictividad y protestas en Caracas durante los meses de mayo a julio -> suspensión de actividades.
+	Situación económica, incremento acelerado de los precios de componentes y material de oficina.
+	El proyecto presenta un buen grado de complejidad. Requiere un significativo esfuerzo en investigación y diseño. Investigación en el uso de componentes como microcontroladores, IC. Investigación en desarrollo de software Java, librerías
+	
+	\section{Tareas realizadas}
+	
+	\subsection{L 6. Division de tareas. Organización en bloques}
+	
+	
+	Con ayuda del tutor se organizo el desarrollo del proyecto en bloques, identificadno en el sistema las tareas de diseño de software, hardwar y firmware. 
+	
+	A la izquierda, el desarrollo de la aplicación, dividido en sub modulos para cada tarea que debe ejecutar. 
+	
+	A la derecha el desarrollo de hardware y firmware, el dispositivo Cendit 11713.
+	
+	Así pues el proyecto abarca el diseño y elaboración de software + hardware + firmware y la documentación asociada.
+	
+	\subsection{L 7. Documentación}
+	
+	Comienza el proyecto con un proceso de documentación
+	
+	Como se trabajara con dispositivos de RF se investigo la caracterización de dispositivos en alta frecuencia, en especial los parámetros de dispersión.
+	
+	Se investigo sobre figura de ruido y los métodos de medición de figura de ruido existentes, haciendo énfasis en el método del factor Y.
+	
+	Se dedico una buena parte de la fase 1 una a la documentación acerca de cada dispositivo del SMFR. Se recopilaron manuales de usuario, notas de aplicación y hojas de datos disponibles en los sitios de internet del fabricante. Se estudio este material para producir el informe técnico, que aún esta en fase de edición.
+	
+	Tambien se dedico un buen tiempo a la investigación del software asociado al SMFR. Este software en forma de entornos de desarrollo, librerías y utilidades fue descargado, instalado y analizado.
+	
+	
+	\subsection{L 8. Software. Ciclo de diseño iterativo}
+	
+	Para el desarrollo de sofware se emplea un método iterativo
+	Investigación: librerías, tecnologías o herramientas de desarrollo para una fase.
+	Modelado UML: diseño estructural y modelado de comportamiento de componentes de software por medio de un lenguaje gráfico, UML es un conjunto de esquemas.
+	Codificación: implementación en codigo del diseño-
+	Pruebas: se prueba la implementación, el proceso de corrección forma parte del nuevo ciclo.
+	
+	\subsection{L 9. Software. Diseño de aplicación CenditLab}
+	
+	Se comienza el desarrollo de software planteando un modelo general de la aplicación dentro del sistema, como se muestra en el diagrama de paquetes UML.
+	
+	Se identifican los módulos que debe poseer la aplicación para ejecutar su tarea. Inicialmente se identifican los módulos de UI, gestión de instrumentos, control del proceso de medición, y gestión de comunicaciones (IO).
+	
+	\subsection{L 10. Software. Ingeniería de Software}
+	
+	El diseño de la aplicación no parte de cero, se realiza un proceso de ingeniería de software. Como guía para su desarrollo se inicia un proceso de captura de requerimientos, el cual se hizo por tres vías: 
+	
+	El estudio del software de tipo T\&M suministradas por KeySight Technologies. 	
+	El estudio de aplicaciones similares disponibles dentro del Cendit (aplicaciones T\& M). Y por medio de entrevistas a los usuarios de estas aplicaciones, potenciales usuarios de CenditLab.
+	
+	El tutor realizo aportes substancial en este proceso, aportando material bibliográfico relativo a la ingeniería de software. 
+	Además, por sugerencia del tutor, como ayuda para formalizar el proceso de captura de requisitos, se estudiaron las normas ISO/IEC/IEEE que establecen 
+	definiciones, esquemas formatos y metodología para sistematizar la captura de requisitos. 
+	
+	De estos documentos se tomo el formato de documentos de requisitorios de software, define el formato tabular para los requerimientos funcionales, de desempeño. Las restricciones de diseño, interfaces de software y de hardware.
+	
+	\subsection{L 11. Software. Tareas Realizadas}
+	
+	Ejemplo de requisitos funcionales, con el formato que recomienda las normas ISO.
+	
+	\subsection{L 12. Software. Recopilación e investigación de software...}
+	
+	El estudio de la documentación permitió conocer que existe una especificación que estandariza las comunicaciones entre instrumentos y un computador a través de diversas interfaces de datos, Esta especificación se conoce como Virtual Instrument Software Architecture, conocida comúnmente como VISA, es una API que brinda una interfaz uniforme al programador para las operaciones de intercambio de datos. 	
+	
+	La librería estándar VISA brinda soporte para comunicación sobre las interfaces GPIB, VXI, GPIB-VXI, Serial (RS-232), LAN y USB. Es por ello que se inicio un proceso de investigación y desarrollo de una forma de suplir la funcionalidad estandarizada de la librería VISA dentro de Ubuntu, para cada una de las interfaces mencionadas.	
+	
+	Existen dos vertientes para esta librería:
+	
+	La lib VISA de National Instruments y la lib VISA incluida en Keysight IO Libraries Suite. 
+	
+	Inconveniente -> disponibles para Windows y algunos distros de Linux.
+	
+	EL problema aqui es que no hay una lib VISA apropiada para Ubuntu. Así pués que se tuvo que iniciar la investigación de una alternativa.
+	
+	\subsection{L 13. Software. Desarrollo de librería alternativa}
+	
+	Se investigaron librerías adecuadas para Ubuntu que pudieran dar soporte a las comunicaciones a través de 4 interfaces pricipales: GPIB, LAN, USB y Serial Rs-232.
+	
+	El acceso del PC a la interfaz GPIB, se accede por medio del dispositivo adaptador USB/GPIB Agilent 82357A, se consigue por medio del paquete de linux conocido como \emph{Linux GPIB}, la cual contiene controladores a nivel de núcleo y una librería de C para el espacio de usuario.  Es de código fuente abierto y con licencia GPL, se consigue en internet.
+	
+	La construcción del código fuente de la librería Linux GPIB requirió como paso previo la instalación y construción del código fuente del núcleo de linux, acorde a la versión de la distribución en la cual se instaló la librería.		
+	
+	El acceso a las interfaces LAN, la cual se accede por medio del dispositivo puente LAN/GPIB Agilent E5810A, se consigue por medio de la librería de nombre Vxi-11 (VXI-11 is a TCP/IP instrument protocol specification defined by the VXIbus Consortium). Se consigue en Internet en forma de codigo fuente abierto. Varios archivos de codigo C++ constituten la lib y una utilidad de prueba El código fuente de esta librería se modifico ligeramente, para generar una librería que permita el enlace a traves del lenguaje C, se compiló dentro de Ubuntu parea generar un librería de  enlace dinámico  (extensión .so)  para Linux.	
+	
+	Para emplear las librerías de C mencionadas dentro de Java, fue necesario emplear la librería Java Native Access (JNA) la cual simplifica el acceso a librerías nativas dentro del entorno Java. Con licencia GPL. Por medio de la librería JNA, se crearon clases envoltorios de Java, que establecen una interfaz de programación dentro de java para las librerias de C VXI-11 y LinuxGPIB.
+	
+	El acceso a dispositivos con comunicación serial (RS232) a dispositivos USB de clase CDC (USB communication device class) se logró con la librería de Java conocida como Java Serial Simple Connector (jSCC) en su version 2.8.0. Presentada en formato de archivo comprimido Java (extension .jar), incluye librería  librerías que brindan soporte nativo tanto para Windows como para Linux, en diversas arquitecturas de procesador.
+	
+	\subsection{L 14. Software. Diagrama de paquetes} 
+	
+	Modelado UML para los módulos de software que dan soporte a la conexión con buses GPIB y redes LAN. 
+	
+	Se busca portabilidad, en principio para Linux y luego para Windows. Presentan una interfaz uniforme al programador, independiente del SO.
+	
+	\subsection{L 15. Software. Diagrama de paquetes} 
+
+	Modelado de módulos de software para comunicación serial y USB. 
+	
+	\subsection{L 16. Software. Diagrama de paquetes} 
+	
+	Al final, la librería de Java para comunicación brindará un único punto de acceso, una única interfaz para todos los buses. Un bus en particular se identifica por medio de una dirección VISA.
+	
+	El modulo actúa como una fabrica de objetos conexión de acuerdo al bus requerido, identificado por medio de una dirección VISA.	
+	
+	\subsection{L 17. Hardware. Estudio comparativo} 
+
+	El desarrollo de dispositivo de hardware comienza con un estudio comparativo de los dispositivos 11713, para identificar las características funcionales claves que debe poseer el dispositivo a diseñar.
+	
+	Con ayuda del tutor, el estudio comparativo se enfoca en dos puntos. Primero identificar las características externas en los dispositivos 11713 que deban ser replicadas en el dispositivo. Se identifican de los puntos clave de las interfaces eléctricas y mecánicas del dispositivo.	
+	
+	A partir de las interfaces establecen además las características funcionales del firmware.
+	
+	\subsection{L 18. Hardware. Identificación de características clave} 
+	
+	El equipo a diseñar debe poseer. Características eléctricas: Soporte de 2 puertos Viking de 12 pines con un pin alimentación de 24 VDC programable. Soporte para dos Jacks banana.
+	
+	Para la UI: pantalla LCD con teclado alfanumérico.
+	
+	Comunicaciones: con conexión USB, acceso a red LAN y opcional bus GPIB.
+	
+	\subsection{L 19. Hardware. Identificación de características clave} 
+	
+	El concepto de diseño -> un microcontrolador central operando en conjunto a periféricos que realizan las funciones identificadas. Es decir, las funciones de interfaz de usuario y de comunicaciones se extraen del microcontrolador central.
+	
+	Por ejemplo el teclado sera gestionado por un IC controlador capacitivo. Los puertos Viking seran gestionados por un expansor de puertos con la capacidad de corriente adecuada. La gestión de comunicaciones por red LAN la realizara un IC controlador de Ethernet.
+	
+	El acceso al bus GPIB necesitara un driver octal.
+	
+	Módulos de alimentación interna conmutado lineal + módulo alimentación interna conmutado programable por usuario. Ambos en IC.
+	
+	La pantalla sera una LCD de un teléfono Nokia modelo 1600, con bus serial.
+	
+	\subsection{L 20. Hardware. Diseño modular de tarjetas PCB} 
+	
+	Se propone un diseño modular para la tarjeta PCB. EL MCU central se encontrará en una tarjeta madre a la cual se conectan tarjetas de PCB hijas. Estas ultimas contienen las funcionalidades de dispositivos, como acceso a redes LAN o interfaz de usuario.
+	
+	Otra alternativa propuesta es diseño con backplane.
+	
+	\subsection{L 21. Hardware. Selección de componentes} 	
+	
+	Criterio de escogencia para MCU: poseer un módulo periferico comunicaciones USB, adicionalmente módulo periferico redes LAN que cubra las capas MAC y PHY. Se usará primero un MCU de 8 bits. 
+	
+	Adicionalmente, el microcontrolador debe brindar capacidad de carga de firmware a través de USB, debe poseer es decir un cargador de arranque o bootloader, en forma de firmware en código fuente o escrito en ROM.
+	
+	\subsection{}
+
+\end{document}

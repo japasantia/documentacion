@@ -54,6 +54,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 \usepackage{tabularx}
 % Para posicionamiento preciso de tablas dentro del texto
 
+% Tabla de tres secciones
 \usepackage[flushleft]{threeparttable}
 
 \usepackage{float}
@@ -83,13 +84,22 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 % Para formato de codigo fuente
 \usepackage{xcolor}
 \usepackage{listings}
-% Etiquetas de listandos codigo en españoñ
+% Etiquetas de listandos codigo en españo
+
+% Para diagramas de bloques entre otros
+\usepackage{smartdiagram}
+
 \renewcommand\lstlistingname{Listado}
 
 \lstset{basicstyle=\ttfamily,
 	showstringspaces=false,
 	commentstyle=\color{red},
 	keywordstyle=\color{blue}}
+
+% Definicion de tipos de columnas tabla
+\newcolumntype{C}[1]{>{\centering}m{#1}}
+\newcolumntype{L}[1]{>{\raggedleft}m{#1}}
+\newcolumntype{R}[1]{>{\raggedright}m{#1}}
 
 % Cabeceras
 \pagestyle{fancy}
@@ -255,16 +265,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			\caption{Esquema de sistema para medición de figura de ruido}
 			\label{Fig:SistemaMediciónFiguraRuido}
 		\end{center}
-	\end{figure}			
-	
-
-	\begin{figure}[!h]
-		\begin{center}
-			\includegraphics[width=18cm]{Imagenes/DiagramaBloquesHardware2.pdf}
-			\caption{Diagrama de Bloques Hardware}
-			\label{Fig:Diagrama de Bloques de Hardware}
-		\end{center}
-	\end{figure}
+	\end{figure}		
 
 
 	\subsection{Metodología de trabajo}
@@ -334,15 +335,14 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	\subsection{Documentación}
 	
-	Correspondientes a la  fase 1, las tareas de documentacion realizadas son las siguientes
+	Correspondientes a la  fase 1, las tareas de documentación realizadas son las siguientes
 	
 	\begin{itemize}
 		\item Investigación sobre caracterización de dispositivos en alta frecuencia: parámetros de dispersión.
 		\item Investigación sobre edición de figura de ruido en RF y microondas.
 		\item Documentación acerca de cada uno de los instrumentos que integran el SMFR.
 		\item Documentación acerca del software asociado o que brinda soporte al SMFR.				
-	\end{itemize}
-	
+	\end{itemize}	
 	
 	Para entender con propiedad el funcionamiento del SMFR, se debe entender el concepto de figura de ruido. Se realizó un estudio sobre la medición de figura de ruido en dispositivos de RF y microondas, haciendo énfasis en la técnica de medición de figura de ruido conocida como el método del factor Y, la cual es empleada por el SMFR.
 	
@@ -399,10 +399,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 			\caption{Diagrama de Bloques Hardware}
 			\label{Fig:Diagrama de Bloques de Hardware}
 		\end{center}
-	\end{figure}	
-
-	\subsection{Desarrollo de librerías para comunicación con instrumentos}
-	
+	\end{figure}		
 	
 
 	\subsection{Investigación de librerías de software}
@@ -413,9 +410,11 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	\subsection{Informe técnico descriptivo del SMFR}	
 	
+	\subsection{Diseño de software}
+	
 	\subsection{Ingeniería de software}	
 	
-	\subsubsection{Captura de requerimientos de software}
+	\subsubsection{Captura de requerimientos}
 	
 	Para sistema de medición de ruido de la figura \ref{Fig:SistemaMedicionFiguraRuido} se diseñará e implementará una aplicación de software que permita gestionar y automatizar el proceso de medición con el SMFR empleando un PC. Conocidas como aplicaciones para sistemas \emph{Test and Measurement (T \& M)}, Keysight Technologies suministra varias aplicaciones de este tipo, para ambiente Windows, su uso requiere de la compra de una licencia, aunque se pueden descargar versiones pruebas con limite de tiempo. El Cendit requiere que el desarrollo de la aplicación se haga bajo los principios que rigen el software libre, destinada inicialmente a ejecutarse en Ubuntu.	
 	
@@ -426,7 +425,7 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	El estudio se enfoco en dos aspectos fundamentales de estas aplicaciones, como lo son la interfaz de usuario y sus funciones principales. 
 	
 	Dentro del Cendit, su personal técnico cuenta con amplia experiencia en el uso de aplicaciones de tipo T \& M, en especial para ensayos de EMC por medios guiados y radiados. Es por ello que se considero la opinión de la Ing. Katherine Moncada y el TSU José Rodriguez sobre la funcionalidad que debe brindar una aplicación que autoatice el proceso de medición de figura de ruido.  También resulto de importancia la opinión que dieron los usuarios potenciales de la futura aplicación dentro del Cendit, ya que ellos cuentan con la experiencia en el uso de estas aplicaciones. Se seleccionaron dos miembros del personal Cendit dieron sus 	
-
+	
 	Para sistematizar el proceso de captura de requerimientos de software, el tutor sugirió estudiar los estándares ISO/IEC/IEEE, que brindan un marco teórico y una metodología estandarizada para la captura de requerimientos de sistemas de software. Los documentos estudiados se lista a continuación,
 	
 	\begin{enumerate}  
@@ -437,23 +436,309 @@ bindingoffset=0cm, footskip=0.5cm, headheight=2cm]{geometry}
 	
 	El documento número 1 brinda una base conceptual, en el se definen de cada uno de los elementos e integrantes involucrados en desarrollo de un sistema de software. A partir de la definición de las partes, detalla como se interrelacionan entre si para formar lo que en el documento se conoce como la arquitectura del sistema. 
 	
-	Del documento número 2 se obtienen pautas para elaborar el documento de captura de requerimientos de software. Este documento trata sobre la ingeniería de requerimientos, definida como una disciplina interdisciplinaria que se encarga de mediar entre los dominio de las personas participantes del sistema para así establecer los requisitos que este debe cumplir. De este documento se obtienen las características que debe poseer un requerimientos de software bien plateado, además del esquema del documento escrito que los contiene.
+	Del documento número 2 se obtienen pautas para elaborar el documento de captura de requerimientos de software. Este documento trata sobre la ingeniería de requerimientos, definida como una disciplina interdisciplinaria que se encarga de mediar entre los dominio de las personas participantes del sistema para así establecer los requisitos que este debe cumplir. De este documento se obtienen las características que debe poseer un sistema de software bien plateado, además del esquema del documento escrito que los contiene.
 	
 	El documento 3 es un glosario que contiene la definición de una gran cantidad de términos de uso común en la ingeniería de software. Pretende estandarizar la terminología.	
-
+	
 	\subsubsection{Documento de captura de requerimientos de software}
 	
 	Con la información obtenida en la sección anterior, se procede a elaborar el documento de requerimientos de software. En el se describen de forma textual los requisitos que debe cumplir la aplicación en lo relativo a presentación y funcionalidad. Este documento sigue la estructura propuesta en el estándar ISO/IEC/IEEE 29148.
+		
+
+	\subsubsection{Desarrollo de librerías para comunicación con instrumentos}
 	
-	\subsubsection{Diseño de software}
+	La librería VISA es una API para transferencia de datos y control de instrumentos, de forma independiente de su fabricante. Brinda una interfaz estandarizada al programador, al permitirle enviar, a través de código ejecutable, comandos y recibir datos de instrumentos y de dispositivos de T \& M.
+	 
+	La investigación realizada permitió determinar que existen dos empresas que suministran la librería VISA, National Instruments y Keysight Technologies. Esta última suministra la librería VISA la cual forma parte de un paquete de software mayor, destinado al control de sistemas T \& M, llamado \emph{Keysight IO Libraries Suite} disponible exclusivamente para ambiente Windows. National Instruments proporciona su distribución (estándar de facto) de la librería VISA, para sistemas operativos Windows y para una reducida selección de distribuciones de Linux, como CentOS, RedHat, Scientific Linux o SUSE.
 	
+	No se encontró una librería VISA destinada la distribución de Ubuntu o Debian (la cual sirve de base para Ubuntu). 
 	
+	La librería estándar VISA brinda soporte para comunicación sobre las interfaces GPIB, VXI, GPIB-VXI, Serial (RS-232), LAN y USB. Es por ello que se inicio un proceso de investigación y desarrollo de una forma de suplir la funcionalidad estandarizada de la librería VISA dentro de Ubuntu, para cada una de las interfaces mencionadas.
 	
-	\subsubsection{Diseño de hardware}	
+	El acceso a las interfaces VXI y GPIB-VXI, la cual se accede por medio del dispositivo puente LAN/GPIB Agilent E5810A, se consiguió una librería de código abierto para el protocolo VXI en el sitio de Internet http://optics.eee.nottingham.ac.uk/vxi11/. Integrada por varios archivos de código fuente C++ que forman la librería mas una utilidad ejecutable para pruebas. El código fuente de esta librería se modifico ligeramente, para generar una librería que permita el enlace a traves del lenguaje C, se compiló dentro de Ubuntu parea generar un librería de  enlace dinámico  (extensión .so)  para Linux.
 	
-	Diagrama conceptual y adquisición de componentes.
+	El acceso del PC a la interfaz GPIB, se accede por medio del dispositivo adaptador USB/GPIB Agilent 82357A, se consigue por medio del paquete de linux conocido como \emph{Linux GPIB}, la cual contiene controladores a nivel de núcleo y una librería de C para el espacio de usuario.  Es de código fuente abierto y con licencia GPL, se consigue en el sitio de internet http://linux-gpib.sourceforge.net/. 
 	
+	La construcción del código fuente de la librería Linux GPIB requirió como paso previo la instalación y construción del código fuente del núcleo de linux, acorde a la versión de la distribución en la cual se instaló la librería.
+	
+	Para emplear las librerías de C mencionadas dentro de Java, fue necesario emplear la librería Java Native Access (JNA) la cual simplifica el acceso a librerías nativas dentro del entorno Java. Con licencia GPL se obtiene en el sitio de intenet https://github.com/java-native-access/jna.  Por medio de la librería JNA, se crearon clases envoltorios de Java, que establecen una interfaz de programación dentro de java para las librerias de C VXI-11 y LinuxGPIB.
+	
+	El acceso a dispositivos con comunicación serial (RS232) a dispositivos USB de clase CDC (USB communication device class) se logró con la librería de Java conocida como
+	Java Serial Simple Connector (jSCC) en su version 2.8.0, la cual se obtuvo en la dirección de internet https://github.com/scream3r/java-simple-serial-connector. Presentada en formato de archivo comprimido Java (extension .jar), incluye libreria  librerías que brindan soporte nativo tanto para Windows como para Linux, en diversas arquitecturas de procesador.
+	
+	\subsubsection{Diseño de aplicación CenditLab}
+	
+	La aplicación a diseñar, la cual se le da como nombre interno CenditLab, comienza con la siguiente propuesta de diseño, en forma de diagrama de paquetes UML.
+	
+	\begin{figure}
+		\centering 
+		\includegraphics[width=\linewidth]{Imagenes/MainPackagesUml.pdf}
+		\caption{Diagrama de paquetes UML para la aplicación CenditLab}
+	\end{figure}
+	
+	En lineas generales cuenta con 4 módulos de software principales: IO, User Interface, Instruments y Control. 
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Diagrama de paquetes UML}
+		\includegraphics[width=8cm]{Imagenes/ConnectionPackageUml.pdf}
+	\end{table}
+	
+	\begin{table}[h!]
+		\centering 
+		\caption{Diagramas de paquetes UML}
+		\begin{tabular}{cc}
+			Módulo GPIB & Modulo USB \\
+			\includegraphics[width=6cm]{Imagenes/GpibConnectionPackageUml.pdf} & 
+			\includegraphics[width=6cm]{Imagenes/UsbConnectionPackageUml.pdf} \\	
+			Módulo Serial & Módulo Lan \\	
+			\includegraphics[width=6cm]{Imagenes/Rs232ConnectionPackageUml.pdf} & 
+			\includegraphics[width=6cm]{Imagenes/LanConnectionPackageUml.pdf}					
+		\end{tabular}
+	\end{table}
+
+	A partir de las ideas generales que proporcionan los diagramas de paquetes, se procede al modelado de clases
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=8cm]{Imagenes/ConnectionClassUml.pdf}
+		\caption{Diagrama de clase UML clases derivadas de Connection (paquete IO)}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=8cm]{Imagenes/Vxi11ClassUml.pdf}
+		\caption{Diagrama de clase UML envoltorio para librería Vxi-11}
+	\end{figure}	
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=8cm]{Imagenes/VisaClassUml.pdf}
+		\caption{Diagrama de clase UML envoltorio para librería Visa}
+	\end{figure}	
+	
+	\subsubsection{Diseño de interfaz de usuario}	
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=10cm]{Imagenes/InstrumentWindowSketchGui.png} 		
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=10cm]{Imagenes/CommunicationsWindowSketchGui.png} 
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=10cm]{Imagenes/ExecutionWindowSketchGui.png} 
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=10cm]{Imagenes/ProgramWindowSketchGui.png} 
+	\end{figure}
+	
+	\begin{table}
+		\centering 
+		\begin{tabular}{cc}			
+			\includegraphics[width=8cm]{Imagenes/InstrumentWindowSketchGui.png} &		
+			\includegraphics[width=6cm]{Imagenes/CommunicationsWindowSketchGui.png} \\
+			\includegraphics[width=6cm]{Imagenes/ExecutionWindowSketchGui.png} &
+			\includegraphics[width=8cm]{Imagenes/ProgramWindowSketchGui.png} 
+		\end{tabular}
+	\end{table}
+	
+			
+	\subsection{Diseño de hardware}		
+	
+
+		
+	\begin{itemize}
+		\item Eléctricas:  número de puertos en el panel posterior, sus niveles de tensión y corriente.
+		\item Mecánicas: tipos de conectores mecánicos en los puertos del panel posterior. Carcasa, dimensiones, ventilación y necesidad de blindaje.
+		\item Interfaz de usuario: panel frontal, pantalla LCD y paneles de botones. 
+	\end{itemize} 
+
+	\begin{center}
+		\smartdiagram[descriptive diagram]{
+		{Eléctricas, {interfaces y sus niveles de tensión y corriente}},
+		{Mecánicas, {elementos de conexión en puertos. Tipo de carcasa}},
+		{Interfaz de usuario, {tipos (botones, pantalla) y organización}}}
+	\end{center}
+
+
+	\begin{table}
+		\begin{center}
+			\begin{tabular}{ccc} 		
+				\multicolumn{3}{c}{Vistas del panel frontal} \\
+				\includegraphics[width=5cm]{Imagenes/front-11713A.pdf} &
+				\includegraphics[width=5cm]{Imagenes/front-11713B.pdf} &
+				\includegraphics[width=5cm]{Imagenes/front-11713C.pdf} \\
+				\multicolumn{3}{c}{Vistas del panel posterior} \\
+				\includegraphics[width=5cm]{Imagenes/back-11713A.pdf} &
+				\includegraphics[width=5cm]{Imagenes/back-11713B.pdf} &
+				\includegraphics[width=5cm]{Imagenes/back-11713C.pdf} \\			
+				Agilent 11713A & Keysight 11713B & Keysight 11713B \\
+			\end{tabular}
+			\caption{Vistas de los dispositivos de la serie 11713.}
+		\end{center}
+	\end{table}
+
+	Este estudio permitió identificar agrupar las características funcionales clave en un concepto de sistema modular, que se muestra en la figura \ref{Fig:EsquemaConceptualCendit11713}.
+	
+	\begin{figure}[h!]
+		\includegraphics[width=18cm]{Imagenes/EsquemaConceptualCendit11713.pdf}
+		\caption{Esquema conceptual para el sistema Cendit11713.}
+		\label{Fig:EsquemaConceptualCendit11713}
+	\end{figure}
+
+	A partir de este concepto, en donde cada función clave es desempeñada por un dispositivo periférico a un microcontrolador central, se propone el diseño de la figura \ref{Fig:EsquemaCendit11713Detallado}.
+
+	\begin{figure}[h!]
+		\includegraphics[width=18cm]{Imagenes/EsquemaCendit11713Detallado.pdf}
+		\caption{Diseño modular propuesto para el dispositivo Cendit 11713.}
+		\label{Fig:EsquemaCendit11713Detallado}
+	\end{figure}	
+
+	Separar cada función en módulos periféricos al núcleo microncontrolador facilitar la construcción y depuración del hardware. Con el fin de reducir la complejidad de los circuitos impresos, el microcontrolador central se ubicara en una tarjeta madre individual y cada función sera implementada por medio de tarjetas hijas conectadas en la tarjeta madre.
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=17cm]{Imagenes/EsquemaCircuitoImpresoCendit11713_2.pdf}
+		\caption{Propuesta para organización de circuito impreso para el dispositivo Cendit 11713.}	
+	\end{figure}
+
+
+	\begin{figure}[h!]
+		\centering
+		\smartdiagram[constellation diagram]{Cendit 11713, GPIB, Ethernet, USB, Serial, Pantalla LCD, Teclado}
+	\end{figure}
+
+
 	\subsubsection{Búsqueda, selección y pedido de componentes electrónicos}
+	
+	Comienza con la selección del microcontrolador núcleo del dispositivos. Uno de los criterios de escogencia fue que el microcontrolador posea un modulo periférico para comunicaciones a través de un puerto USB y de forma opcional un modulo de comunicaciones Ethernet, que cubra las capas MAC y física.
+	
+	Para el microcontrolador se consideran dos arquitecturas: la primera microcontroladores de 8 bits de la familia PIC18 producidos por Microchip. La segunda arquitectura, microcontroladores de 32 bits ARM Cortex. Los microcntroladores propuestos se muestran en los cuadros \ref{Tab:SeleccionMicrocontroladores32Bits} y \ref{Tab:SeleccionMicrocontroladores8Bits}.
+	
+	\begin{table}
+		\centering
+		\captionof{table}{Selección de microcontroladores de 32 bits}
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{cC{3cm}ccccc}
+				\toprule
+				MCU & Descripcion & Flash (kB) & SRam (kB) & Encapsulado & USB & Ethernet \\
+				\midrule
+				TM4C129ENCPDT & ARM Cortex-M4F 120 MHz & 1024 & 256 & TQFP-128 & H/D/OTG & MAC-PHY \\
+				LPC1768FBD1 & ARM Cortex-M3 100 MHz& 512 & 64 & LQFP100 & D/H/OTG & MAC \\
+				MKL26Z256VLL4 & Kinetis KL26 Cortex-M0+ 48 MHz & 256 & 32 & LQFP-100 & FS & NO \\
+				\bottomrule
+			\end{tabular}
+		}		
+		\label{Tab:SeleccionMicrocontroladores32Bits}
+	\end{table}
+	
+	\begin{table}[h!]
+		\captionof{table}{Selección de microcontroladores de 8 bits}	
+		\centering	
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{cC{3cm}ccccc}
+				\toprule
+				MCU & Descripcion & Flash (kB) & SRam (kB) & Encapsulado & USB & Ethernet \\
+				\midrule
+				PIC18F4550 &  MCU PIC18 8 bits & 32 & 2 & DIP40 & D & NO \\
+				PIC1845K50 & MCU PIC18 8 bits & 32 & 2 & TQFP-44 & D & NO \\
+				PIC18F67J60 & MCU PIC18 8 bits& 128 & 3.8 & TQFP-64 & NO & 10/100/1000 Base-T \\
+				\bottomrule
+			\end{tabular}
+		}	
+		\label{Tab:SeleccionMicrocontroladores8Bits}	
+	\end{table}
+	
+	Las funciones de control de interfaz de usuario (teclado y pantalla), control y gestión del puerto GPIB, control y gestión de los puertos Viking serán desempeñadas por circuitos integrados apropiados a tal fin, que se conectan como periféricos al microcontrolador central. Esta decisión de diseño se  toma con el fin de liberar al microcontrolador de tareas tales como el control de la interfaz de usuario, en especial el control de teclado capacitivo.
+	
+	Para cada funcionalidad se identificaron los siguientes IC candidatos	
+
+
+	\begin{table}[h!]
+		\captionof{table}{Selección para controlador de teclado}	
+		\centering
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{cC{3cm}ccc}
+				\toprule
+				Parte & Descripción & Encapsulado & Comunicaciones & Fabricante\\
+				\midrule
+				PCF8885 & Controlador de teclado capacitivo de 8 canales & TSSOP-28 & I2C (FM+) & NXP  \\
+				\bottomrule
+			\end{tabular}
+		}		
+	\end{table}
+
+	\begin{table}[h!]
+		\captionof{table}{Selección para controlador de puertos Viking}		
+		\centering
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{cC{3cm}ccc}
+				\toprule
+				Parte & Descripción & Encapsulado & Comunicaciones & Fabricante\\
+				\midrule
+				MC33996 & Interruptor de 16 salidas & SOIC-32 & SPI & NXP  \\
+				\bottomrule
+			\end{tabular}
+		}		
+	\end{table}
+
+	\begin{table}[h!]
+		\captionof{table}{Selección para controlador de Ethernet}			
+		\centering
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{cC{5cm}cC{4cm}c}
+				\toprule
+				Parte & Descripción & Encapsulado & Comunicaciones & Fabricante\\
+				\midrule
+				ENC28J60 & Controlador Ethernet 10/100/1000Base-T MAC con 10Base-T PHY & SOIC-28 & SPI & Microchip  \\
+				CP2200 &  Controlador Ethernet 100/1000 Base-T 10 Base-T PHY & TQFP-48 & Bus paralelo Intel o Motorola & Silicon Labs \\
+				CP2201 &  Controlador Ethernet 100/1000 Base-T 10 Base-T PHY & QFN-28 & 
+				Bus paralelo Intel o Motorola multiplexado & Silicon Labs \\				
+				\bottomrule
+			\end{tabular}
+		}		
+	\end{table}
+
+	\begin{table}[h!]
+		\captionof{table}{Selección de IC para transceptor de bus GPIB}			
+		\centering
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{cC{4cm}cc}
+				\toprule
+				Parte & Descripción & Encapsulado & Fabricante\\
+				\midrule
+				SN75ALS160 & Transceptor de bus octal IEEE 488 (bus datos) & SOIC-20 & Texas Instruments \\
+				SN75ALS162 & Transceptor de bus octal IEEE 488 (bus control) & SOIC-20 & Texas Instruments \\
+				\bottomrule
+			\end{tabular}
+		}		
+	\end{table}	
+
+	\begin{table}
+		\captionof{table}{Selección de IC para control de alimentación DC}	
+		\centering
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{cC{4cm}cc}
+				\toprule
+				Parte & Descripción & Encapsulado & Fabricante\\
+				\midrule
+				XR77129 & PMIC, controlador reductor cuadruple PWM/PFM 40V programable &
+				QFN-44 & Exar Corporation \\
+				XR77103 & PMIC reductor de 3 salidas programables 14V & TQFN-32 & Exar Corporation \\				
+				XR79110 & Módulo de potencia COT reductor síncrono de 22V 10A & QFN-72 & Exar Corporation \\
+				TL494 & Controlador de ancho de pulso & SOIC-16 / PDIP-16 & Texas Instruments \\
+				\bottomrule
+			\end{tabular}		}
+ 	\end{table}
+	
+
 	
 	\section{Elaboración de instrucciones de trabajo}
 
