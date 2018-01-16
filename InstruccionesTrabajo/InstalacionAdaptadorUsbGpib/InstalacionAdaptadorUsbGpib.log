@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.31)  25 JUL 2017 15:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.31)  8 JAN 2018 15:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -482,20 +482,14 @@ Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS)
 (/usr/local/texlive/2016/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2016/04/23 3.9r The Babel package
 
-(/usr/local/texlive/2016/texmf-dist/tex/generic/babel-english/english.ldf
-Language: english 2012/08/20 v3.3p English support from the babel system
+(/usr/local/texlive/2016/texmf-dist/tex/generic/babel-spanish/spanish.ldf
+Language: spanish.ldf 2016/03/03 v5.0p Spanish support from the babel system
 
 (/usr/local/texlive/2016/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2016/04/23 3.9r Babel common definitions
 \babel@savecnt=\count93
 \U@D=\dimen111
 )
-\l@canadian = a dialect from \language\l@american 
-\l@australian = a dialect from \language\l@british 
-\l@newzealand = a dialect from \language\l@british 
-)
-(/usr/local/texlive/2016/texmf-dist/tex/generic/babel-spanish/spanish.ldf
-Language: spanish.ldf 2016/03/03 v5.0p Spanish support from the babel system
 \es@quottoks=\toks18
 \es@quotdepth=\count94
 Package babel Info: Making " an active character on input line 561.
@@ -694,19 +688,19 @@ LaTeX Info: Redefining \% on input line 7.
 )
 \openout1 = `InstalacionAdaptadorUsbGpib.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 125.
-LaTeX Font Info:    ... okay on input line 125.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 125.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 128.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
@@ -745,9 +739,9 @@ File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \. on input line 125.
-LaTeX Info: Redefining \% on input line 125.
-LaTeX Info: Redefining \microtypecontext on input line 125.
+LaTeX Info: Redefining \. on input line 128.
+LaTeX Info: Redefining \% on input line 128.
+LaTeX Info: Redefining \microtypecontext on input line 128.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -820,22 +814,22 @@ e
 ))
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 125.
+(lastpage)             ! on input line 128.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count121
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 134.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 137.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 147.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 150.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 <Imagenes/cabecera.pdf, id=1, 1429.59094pt x 418.56375pt>
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
 
 <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 187.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 190.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
 
 <Imagenes/pie-izq.pdf, id=3, 200.75pt x 130.4875pt> <use Imagenes/pie-izq.pdf>
@@ -844,12 +838,12 @@ Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 187.
 <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
  <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 187.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 190.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 187.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 190.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
 
 
@@ -863,8 +857,8 @@ Package Fancyhdr Warning: \footskip is too small (14.22636pt):
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Image
 nes/cabecera.pdf> <./Imagenes/pie-izq.pdf (PNG copy)> <./Imagenes/pie-der.pdf (
 PNG copy)>]
-Package tocbasic Info: character protrusion at toc deactivated on input line 18
-9.
+Package tocbasic Info: character protrusion at toc deactivated on input line 19
+2.
  (./InstalacionAdaptadorUsbGpib.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
@@ -895,7 +889,7 @@ Package tocbasic Info: Using my definition of `\numberline' on input line 24.
 \tf@toc=\write3
 \openout3 = `InstalacionAdaptadorUsbGpib.toc'.
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 194.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 197.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1cmtt.fd
@@ -908,26 +902,26 @@ Package microtype Info: Loading generic settings for font family
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
 
 <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 196.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 200.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
  <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf> <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
  <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 196.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 200.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 196.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 200.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
  [2
 
 ]
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
  <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 240.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 243.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
 
 <use Imagenes/pie-izq.pdf> <use Imagenes/pie-der.pdf>
@@ -935,42 +929,43 @@ Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 240.
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 240.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 243.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
  <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 240.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 243.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
  [3]
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
 
 <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 277.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 280.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
  <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf> <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
  <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 277.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 280.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 277.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 280.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
  [4]
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 284.
+
 <Imagenes/AdaptadorGpibUsb.pdf, id=23, 313.17pt x 227.85126pt>
 File: Imagenes/AdaptadorGpibUsb.pdf Graphic file (type pdf)
 
 <use Imagenes/AdaptadorGpibUsb.pdf>
-Package pdftex.def Info: Imagenes/AdaptadorGpibUsb.pdf used on input line 285.
-(pdftex.def)             Requested size: 284.52756pt x 207.01814pt.
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 291.
+Package pdftex.def Info: Imagenes/AdaptadorGpibUsb.pdf used on input line 288.
+(pdftex.def)             Requested size: 234.64754pt x 170.71652pt.
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
  <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 296.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 301.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
 
 <use Imagenes/pie-izq.pdf> <use Imagenes/pie-der.pdf>
@@ -978,92 +973,92 @@ Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 296.
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 296.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 301.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
  <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 296.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 301.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
  [5 <./Imagenes/AdaptadorGpibUsb.pdf>]
-Overfull \hbox (17.8201pt too wide) in paragraph at lines 332--333
+Overfull \hbox (17.8201pt too wide) in paragraph at lines 337--338
 []\T1/cmtt/m/n/10.95 sudo apt-get install python-dev libboost-python-dev python
 -setuptools --yes 
  []
 
 
-Overfull \hbox (29.13684pt too wide) in paragraph at lines 338--340
+Overfull \hbox (29.13684pt too wide) in paragraph at lines 343--345
 \T1/cmtt/m/n/10.95 https://sourceforge.net/projects/linux-gpib/files/latest/dow
 nload?source=dlp 
  []
 
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
 <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 343.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 348.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
  <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf> <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
  <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 343.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 348.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 343.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 348.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
  [6]
-Underfull \hbox (badness 10000) in paragraph at lines 387--390
+Underfull \hbox (badness 10000) in paragraph at lines 392--395
 
  []
 
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
 <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 396.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 400.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
  <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf> <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
  <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 396.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 400.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 396.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 400.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
  [7]
-Overfull \hbox (12.16173pt too wide) in paragraph at lines 426--428
+Overfull \hbox (12.16173pt too wide) in paragraph at lines 431--433
 []\T1/cmtt/m/n/10.95 wget https://gist.github.com/turingbirds/6eb05c9267a643718
 3a9567700e8581a 
  []
 
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
 <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 451.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 456.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
  <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf> <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
  <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 451.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 456.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 451.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 456.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
  [8]
-Overfull \hbox (0.45595pt too wide) in paragraph at lines 469--470
+Overfull \hbox (0.45595pt too wide) in paragraph at lines 474--475
 []\T1/phv/m/n/10.95 (-20) Dentro del ar-chi-vo \T1/cmtt/m/n/10.95 gpib.conf \T1
 /phv/m/n/10.95 (-20) se edi-tan las l�-neas que con-tie-nen las en-tra-das pa-r
 a \T1/cmtt/m/n/10.95 board_type\T1/phv/m/n/10.95 (-20) ,
  []
 
 
-Overfull \hbox (61.53104pt too wide) in paragraph at lines 500--501
+Overfull \hbox (61.53104pt too wide) in paragraph at lines 505--506
 []\T1/phv/m/n/10.95 (-20) Dentro de los ar-chi-vos de firm-wa-re des-car-ga-dos
  se en-cuen-tra el ar-chi-vo lla-ma-do \T1/cmtt/m/n/10.95 measat_releaseX1.8.he
 x\T1/phv/m/n/10.95 (-20) ,
@@ -1071,101 +1066,82 @@ x\T1/phv/m/n/10.95 (-20) ,
 
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
 <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 504.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 509.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
  <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf> <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
  <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 504.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 509.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 504.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 509.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
  [9]
-Overfull \hbox (0.19522pt too wide) in paragraph at lines 548--549
-[]\T1/phv/m/n/10.95 (-11) https://unix.stackexchange.com/questions/65891/how-to
--execute-a-shellscript-when-i-plug-in-
- []
-
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
-<use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 552.
+ <use Imagenes/cabecera.pdf>
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 557.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
- <use Imagenes/pie-izq.pdf>
-<use Imagenes/pie-der.pdf> <use Imagenes/pie-izq.pdf>
-<use Imagenes/pie-der.pdf>
+
+<use Imagenes/pie-izq.pdf> <use Imagenes/pie-der.pdf>
+<use Imagenes/pie-izq.pdf> <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
- <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 552.
+
+<use Imagenes/pie-izq.pdf>
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 557.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
-
-<use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 552.
+ <use Imagenes/pie-der.pdf>
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 557.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
-
-Overfull \hbox (3.03857pt too wide) has occurred while \output is active
-[]|\T1/phv/m/n/10.95 (-20) 10 / 14[]| 
- []
-
-[10]
+ [10]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 567.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 571.
 
-Overfull \hbox (11.63234pt too wide) in paragraph at lines 580--581
-[]\T1/phv/m/n/10.95 (-20) una vez den-tro del sub-di-rec-to-rio \T1/cmtt/m/n/10
+Overfull \hbox (13.41373pt too wide) in paragraph at lines 584--585
+[]\T1/phv/m/n/10.95 (-20) Una vez den-tro del sub-di-rec-to-rio \T1/cmtt/m/n/10
 .95 rules.d \T1/phv/m/n/10.95 (-20) crea-mos un ar-chi-vo con nom-bre \T1/cmtt/
 m/n/10.95 agilent_82357.rules\T1/phv/m/n/10.95 (-20) .
  []
 
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
 <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 595.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 602.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
  <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf> <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
  <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 595.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 602.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 595.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 602.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
-
-Overfull \hbox (3.03857pt too wide) has occurred while \output is active
-[]|\T1/phv/m/n/10.95 (-20) 11 / 14[]| 
- []
-
-[11]
+ [11]
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
  <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 619.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 623.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
- <use Imagenes/pie-izq.pdf>
-<use Imagenes/pie-der.pdf> <use Imagenes/pie-izq.pdf>
-<use Imagenes/pie-der.pdf>
+
+<use Imagenes/pie-izq.pdf> <use Imagenes/pie-der.pdf>
+<use Imagenes/pie-izq.pdf> <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
- <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 619.
+
+<use Imagenes/pie-izq.pdf>
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 623.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
-
-<use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 619.
+ <use Imagenes/pie-der.pdf>
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 623.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
-
-Overfull \hbox (3.03857pt too wide) has occurred while \output is active
-[]|\T1/phv/m/n/10.95 (-20) 12 / 14[]| 
- []
-
-[12] (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
+ [12]
+(/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -1179,7 +1155,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.629 # Script de Bash para actualización 
+l.633 # Script de Bash para actualización 
                                            automatica de firmware para
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1193,40 +1169,35 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.629 # Script de Bash para actualización 
+l.633 # Script de Bash para actualización 
                                            automatica de firmware para
 You need to provide a definition with \DeclareInputText 
 or \DeclareInputMath before using this key.
 
 
-Overfull \hbox (18.14833pt too wide) in paragraph at lines 641--643
+Overfull \hbox (18.14833pt too wide) in paragraph at lines 645--647
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
 <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 668.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 672.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
  <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf> <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
  <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 668.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 672.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 668.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 672.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
-
-Overfull \hbox (3.03857pt too wide) has occurred while \output is active
-[]|\T1/phv/m/n/10.95 (-20) 13 / 14[]| 
- []
-
-[13]
-Overfull \hbox (52.09883pt too wide) in paragraph at lines 695--696
+ [13]
+Overfull \hbox (52.09883pt too wide) in paragraph at lines 699--700
 [][][][][][][][][][][][][][][][] 
  []
 
@@ -1234,34 +1205,29 @@ Overfull \hbox (52.09883pt too wide) in paragraph at lines 695--696
 AED: lastpage setting LastPage
 File: Imagenes/cabecera.pdf Graphic file (type pdf)
 <use Imagenes/cabecera.pdf>
-Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 700.
+Package pdftex.def Info: Imagenes/cabecera.pdf used on input line 704.
 (pdftex.def)             Requested size: 133.07489pt x 38.95923pt.
  <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf> <use Imagenes/pie-izq.pdf>
 <use Imagenes/pie-der.pdf>
 File: Imagenes/pie-izq.pdf Graphic file (type pdf)
  <use Imagenes/pie-izq.pdf>
-Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 700.
+Package pdftex.def Info: Imagenes/pie-izq.pdf used on input line 704.
 (pdftex.def)             Requested size: 35.01843pt x 22.76228pt.
 File: Imagenes/pie-der.pdf Graphic file (type pdf)
 
 <use Imagenes/pie-der.pdf>
-Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 700.
+Package pdftex.def Info: Imagenes/pie-der.pdf used on input line 704.
 (pdftex.def)             Requested size: 56.56407pt x 22.76228pt.
-
-Overfull \hbox (3.03857pt too wide) has occurred while \output is active
-[]|\T1/phv/m/n/10.95 (-20) 14 / 14[]| 
- []
-
-[14] (./InstalacionAdaptadorUsbGpib.aux
+ [14] (./InstalacionAdaptadorUsbGpib.aux
 LaTeX Info: Redefining \. on input line 7.
 LaTeX Info: Redefining \% on input line 7.
 ) ) 
 Here is how much of TeX's memory you used:
- 10768 strings out of 493014
- 168419 string characters out of 6133336
- 396078 words of memory out of 5000000
- 14019 multiletter control sequences out of 15000+600000
+ 10744 strings out of 493014
+ 167943 string characters out of 6133336
+ 395634 words of memory out of 5000000
+ 13999 multiletter control sequences out of 15000+600000
  32170 words of font info for 120 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  47i,23n,51p,8506b,2036s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1271,7 +1237,7 @@ xlive/2016/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texl
 ive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/201
 6/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2016/texmf
 -dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on InstalacionAdaptadorUsbGpib.pdf (14 pages, 683558 bytes).
+Output written on InstalacionAdaptadorUsbGpib.pdf (14 pages, 684665 bytes).
 PDF statistics:
  77 PDF objects out of 1000 (max. 8388607)
  51 compressed objects within 1 object stream

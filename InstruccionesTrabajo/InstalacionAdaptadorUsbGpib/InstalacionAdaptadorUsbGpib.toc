@@ -18,7 +18,7 @@
 \contentsline {subsection}{\numberline {11.2}Instalaci\IeC {\'o}n de linux-gpib y m\IeC {\'o}dulos de n\IeC {\'u}cleo}{6}
 \contentsline {subsection}{\numberline {11.3}Instalaci\IeC {\'o}n de m\IeC {\'o}dulos de n\IeC {\'u}cleo}{7}
 \contentsline {subsection}{\numberline {11.4}Instalaci\IeC {\'o}n de archivos binarios de firmware para el 82357B}{8}
-\contentsline {subsection}{\numberline {11.5}Configuraci\IeC {\'o}n en Linux para que actualice el dispositivo inmediatamente al conectar}{10}
+\contentsline {subsection}{\numberline {11.5}Configuraci\IeC {\'o}n de Linux para carga autom\IeC {\'a}tica de firmware al conectar}{10}
 \contentsline {section}{\numberline {12}Anexos}{13}
 \contentsline {subsection}{\numberline {12.1}Script de Bash para carga autom\IeC {\'a}tica de firmware}{13}
 \contentsline {subsection}{\numberline {12.2}Archivo con regla para detecci\IeC {\'o}n de dispositivo Agilent 82357}{14}
