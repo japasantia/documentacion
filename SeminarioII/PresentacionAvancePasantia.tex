@@ -56,20 +56,34 @@
 \newcolumntype{L}[1]{>{\raggedleft}m{#1}}
 \newcolumntype{R}[1]{>{\raggedright}m{#1}}
 
-\setbeamertemplate{headline}{}
+\setbeamertemplate{headline}{%
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex]{palette quaternary}%
+			\insertsectionhead
+		\end{beamercolorbox}%
+	}
+}
 
 \setbeamertemplate{footline}
 {
 	\leavevmode%
 	\hbox{%
-		\begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-		\usebeamerfont{date in head/foot}\insertshortauthor
-		\end{beamercolorbox}%
-		\begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center]%
+		%\begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+		%\usebeamerfont{date in head/foot}
+		%\insertshortauthor
+		%\end{beamercolorbox}%
+		%\begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center]%
+		\begin{beamercolorbox}[wd=0.9\paperwidth,ht=2.25ex,dp=1ex,center]%
 			{title in head/foot}%
 			\usebeamerfont{title in head/foot}\insertshorttitle\hspace*{3em}
+			%\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=0.1\paperwidth,ht=2.25ex,dp=1ex,center]%
+			{author in head/foot}%		
 			\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
-		\end{beamercolorbox}}%
+		\end{beamercolorbox}%		
+		}%
 	\vskip0pt%
 }
 
@@ -83,12 +97,13 @@
 		MEDICIÓN DE LA FIGURA DE RUIDO EN DISPOSITIVOS DE
 		RADIO FRECUENCIA}
 		
-	\author{{\bf Jose Arias}\\
-		%{Tutor: MSc. Pedro Ruiz}\\
-		%{Prof. Guía: MSc. Alejandro González}
-		}		
+	\author{{\bf Jose A. Arias B.} \\
+		{Tutor: MSc. Pedro Ruiz}\\
+		{Prof. Guía: MSc. Alejandro González}}				
+
 		
-	\institute{Universidad Central de Venezuela \\
+	\institute{	
+		Universidad Central de Venezuela \\
 		Facultad de Ingeniería \\
 		Escuela de Ingeniería Eléctrica \\
 		Departamento de Electrónica, Computación y Control}
@@ -96,10 +111,12 @@
 	\date{Febrero 2018}
 	
 	%\logo{\includegraphics[height=1.5cm]{Imagenes/pie-der.pdf}}
-
+	
 	\frame{\titlepage}
 	
 	\section{Planteamiento del Problema}
+	
+% FRAME 1 --------------------------------------------------------------------------------------
 	
 	\begin{frame}
 		\frametitle{Sistema para medición de figura de ruido (SMFR)}	
@@ -109,30 +126,39 @@
 		\end{figure}			
 
 		\begin{table}
-			%\resizebox{\textwidth}{!}{
-			\begin{tabular}{p{2cm}p{2cm}p{2cm}p{2cm}}
-				\begin{minipage}{2cm}
-					\includegraphics[width=2cm]{Imagenes/N8975A.pdf}
+			\tiny		
+			%\resizebox{12cm}{!}{
+			\begin{tabular}{p{2.5cm}p{2.5cm}p{2.5cm}p{2.5cm}}
+			%\begin{tabular}{cccc}
+				\begin{minipage}{2.5cm}
+					\includegraphics[width=2.5cm]{Imagenes/N8975A.pdf}				
 				\end{minipage} &	
-				\begin{minipage}{2cm}
-					\includegraphics[width=2cm]{Imagenes/N2002A.pdf}
+				\begin{minipage}{2.5cm}
+					\includegraphics[width=2.5cm]{Imagenes/N2002A.pdf}
 				\end{minipage} &							
-				\begin{minipage}{2cm}
-					\includegraphics[width=2cm]{Imagenes/11713A.pdf}
+				\begin{minipage}{2.5cm}
+					\includegraphics[width=2.5cm]{Imagenes/11713A.pdf}
 				\end{minipage} &	
-				\begin{minipage}{2cm}
-					\includegraphics[width=2cm]{Imagenes/11713B.pdf}
+				\begin{minipage}{2.5cm}
+					\includegraphics[width=2.5cm]{Imagenes/11713B.pdf}
 				\end{minipage} \\
 													
-				{\scriptsize Analizador de figura de ruido (NFA) N8975A} &
-				{\scriptsize Equipo para pruebas con fuente de ruido N2002A} &							
-				{\scriptsize Controlador electrónico de interruptores y atenuadores, serie 11713} &
-				{\scriptsize Controlador electrónico de interruptores y atenuadores, serie 11713} 
+				{N8975A} &
+				{N2002A} &									
+				{11713A} &
+				{11713C} \\
+				
+				{Analizador de figura de ruido (NFA)} &
+				{Unidad de atenuadores y aisladores} &	
+				
+				\multicolumn{2}{c}{Controlador electrónico de interruptores y atenuadores} \\
 				
 			\end{tabular}
 			%}	
 		\end{table}	
 	\end{frame}
+	
+% FRAME 2 --------------------------------------------------------------------------------------
 
 	\begin{frame}
 		\frametitle{Panorama del SMFR}			
@@ -147,42 +173,51 @@
 	
 	\section{Objetivos} 
 	
+% FRAME 3 --------------------------------------------------------------------------------------
+	
 	\begin{frame}
-		\frametitle{Objetivos}		
+		\frametitle{Objetivo general}		
 		
-		\begin{block}{Objetivo general}
+		\begin{block}{}
 			\centering
 			Diseñar un equipo electrónico que permita emular las características funcionales de un controlador electrónico de interruptores y atenuadores.
 		\end{block}
 		
-		El título y el objetivo general permanecen sin cambios	
+		\begin{center}			
+			\small 
+			 El título del proyecto y su objetivo general permanecen sin cambios
+		\end{center}
 		
 	\end{frame}
 	
+% FRAME 4 --------------------------------------------------------------------------------------	
+	
 	\begin{frame}
-		\frametitle{Objetivos}		
+		\frametitle{Objetivos específicos}		
 
 		\begin{small}
-			\begin{block}{Objetivos específicos}		
-				\begin{enumerate}
-					\item Realizar una investigación documental sobre caracterización de dispositivos de radio frecuencia y la medición de figura de ruido en éstos.	
+			\begin{block}{}		
+				\begin{itemize}
+					\item Realizar una investigación documental sobre caracterización de dispositivos de radio frecuencia y la medición de figura de ruido sobre éstos.	
 											
 					\item Recopilar la documentación y software asociado al sistema de medición de figura de ruido (SFMR).	
 					
-					\item Codificar una librería de software para intercambio de datos entre PC y el SMFR.
+					\item Codificar una librería de software para intercambio de datos entre un PC y el SMFR.
 					
 					\item Diseñar y codificar el firmware para dispositivo.
 					
-					\item Diseñar y construir las tarjetas electrónicas PCB para cada uno de los módulos del equipo: expansor de puertos, fuente de alimentación y tarjeta madre. 
+					\item Diseñar y construir las tarjetas electrónicas PCB para cada uno de los módulos del equipo: expansores de puertos, fuente de alimentación y tarjeta madre. 
 					
 					\item Desarrollar una aplicación de software para gestión de la medición de figura de ruido con el SMFR.
 					
 					\item Generar manuales de usuario para el equipo y para la aplicación.	
-				\end{enumerate}				
+				\end{itemize}				
 			\end{block}
 		\end{small}
 		
 	\end{frame}
+	
+% FRAME 5 --------------------------------------------------------------------------------------	
 	
 	\section{Alcance}
 	
@@ -191,18 +226,19 @@
 		
 		\begin{columns}
 			\begin{column}{6cm}
-				\begin{block}{Hardware}			
+				\begin{block}{Hardware}		
+					\small	
 					\begin{itemize}				
 						\item Interfaz de comunicaciones a través de USB. \\ 
-						{\tiny (Class Device Communication, full speed).}
-						{\tiny Inicialmente se habian propuesto las interfaces GPIB, USB, LAN}
+						{\tiny Class Device Communication, full speed.}
+						{\tiny Inicialmente se habían propuesto las interfaces GPIB, USB, LAN.}
 		
-						\item Señales para comandar la unidad de atenuadores y aisladores (N2002A) \\ 
-						{\tiny formada por 2 grupos de 16 señales cada uno.}
+						\item Señales para comandar la unidad de atenuadores y aisladores (N2002A). \\ 
+						{\tiny Formada por 2 grupos de 16 señales cada uno.}
 								
-						\item El panel frontal consistirá de un teclado matricial \\ 
+						\item El panel frontal consistirá de un teclado matricial. \\ 
 						{\tiny Con 16 teclas.} 
-						{\tiny Se elimina la pantalla LCD táctil}
+						{\tiny Se elimina la pantalla LCD táctil.}
 					\end{itemize}
 				\end{block}	
 			\end{column}
@@ -218,16 +254,18 @@
 		
 	\end{frame}
 	
+% FRAME 6 --------------------------------------------------------------------------------------
+	
 	\begin{frame}
 		\frametitle{Cambios en el alcance}
 		
 		\begin{block}{Software} 
-			\begin{itemize}
-				\item Instalador para la aplicación
-				\item Soporte, a nivel de librerías de software, para establecer comunicación de datos con los dispositivos del sistema de medición de figura de ruido.
+			\begin{itemize}			
+				\item Soporte, a nivel de librerías de software, para establecer comunicación de datos con los dispositivos del SMFR.
 				\item Interfaz de usuario gráfica.
 				\item Asistencia al usuario durante el ciclo de medición: configuración, ejecución y generación de reportes.
 				\item Generación de reportes con resultados de una medición, en formato de documento portable (pdf).
+				\item Instalador para la aplicación.
 			\end{itemize}	
 		\end{block}
 		
@@ -241,20 +279,25 @@
 		
 	\end{frame}	
 
-	\section{Metodología y Cronograma}
+	\section{Metodología}
+	
+% FRAME 7 --------------------------------------------------------------------------------------	
 	
 	\begin{frame}
-		\begin{block}{Nuevo cronograma de trabajo}		
+		\frametitle{Nuevo cronograma de trabajo}
+		\begin{block}{}		
 			\begin{threeparttable}[!h]
 				\centering
 				\arrayrulecolor{gray}
 				\setlength{\extrarowheight}{4pt}		
-				\resizebox{\textwidth}{!}{
+				\resizebox{\textwidth}{!}{						
 					\begin{tabular}{|c|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
-						\begin{tabular}{c}
-							{\raggedright \textbf{Semanas}} \\
-							\textbf{Tareas}
-						\end{tabular}
+						\hline
+							\begin{tabular}{c}
+								{\raggedright \textbf{Semanas}} \\
+								\hline
+								{\raggedleft \textbf{Tareas}}
+							\end{tabular}						
 						& 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15\\
 						\hline
 						Expansor de puertos Viking & \fa & \fa & \fa & \fa & & & & & & & & & & & \\
@@ -279,10 +322,12 @@
 		\end{block}			
 	\end{frame}
 	
-	\begin{frame}
-		\frametitle{Metodología de trabajo}
+% FRAME 8 --------------------------------------------------------------------------------------
 	
-		\begin{block}{Cronograma inicial}
+	\begin{frame}
+		\frametitle{Cronograma inicial}
+	
+		\begin{block}{}
 			\begin{threeparttable}[!h]
 				\centering
 				\arrayrulecolor{gray}
@@ -311,9 +356,10 @@
 					\item {\tiny Fecha de inicio: 6 de Marzo de 2017.} 
 					\item {\tiny Jornada de 8 horas diarias, lunes a viernes, de 8:00 AM a 12:00 M y de 1:30 PM a 4:30 PM.}
 				\end{tablenotes}
-			\end{threeparttable}
+			\end{threeparttable}		
 		
 			\begin{itemize}
+				\tiny
 				\item Fase 1: Preparación y documentación.
 				\item Fase 2: Diseño de dispositivo.
 				\item Fase 3: Implementación de dispositivo.
@@ -327,90 +373,96 @@
 
 	\section{Resumen de Tareas}
 	
+% FRAME 9 --------------------------------------------------------------------------------------
+		
 		\begin{frame}	
-			\frametitle{Realizadas desde el último seminario}
+			\frametitle{Tareas realizadas}			
+			\framesubtitle{desde el último seminario}
 			
-			\begin{block}{Hardware}				
-				\begin{columns}
-					\begin{column}{6cm} 
-						
-						
-						
-					\end{column}
-					\begin{column}{6cm} 
-						Diseño y construcción de tarjetas PCB.
-						Procura de componentes.
-					\end{column}
-				\end{columns}	
-			\end{block}
-		
-
-			
-			\begin{block}{Software}
-				Aplicación funcional hasta interfaz de usuario.
-			\end{block}
-		
-		\end{frame}
-
-	\begin{frame}
-		\frametitle{Documentación}
-		
-		\begin{itemize}
-		 	\item Investigación sobre caracterización de dispositivos en alta frecuencia: parámetros de dispersión.
-		 	\item Investigación sobre medición de figura de ruido en RF y microondas.
-		 	\item Documentación acerca de cada uno de los instrumentos que integran el SMFR.
-		 	\item Documentación acerca del software asociado o que brinda soporte al SMFR.				
-		 \end{itemize}		
-
-	\end{frame}
-
-	\begin{frame}
-		\frametitle{Tareas pendientes}	
-			
-			\begin{block}{Software}
-				Culminar el diseño de la aplicación CenditLab
+			\begin{block}{Hardware}					
+				\small
 				\begin{itemize}
-					\item Librerías de soporte de comunicaciones IO para Windows
-					\item Culminar módulo gestión GUI
-					\item Culminar módulos de gestión de instrumentos
-					\item Culminar módulos de gestión de medición
-				\end{itemize}
+					\item Diseño y construcción de tarjetas PCB.	\\
+					\begin{itemize}						
+						\item Tarjeta madre basada en PIC18F4550.
+						\item Expansor para puertos Viking.
+						\item Expansor de puertos para bus GPIB.
+						\item Regulador conmutado de +3.3V.
+						\item Regulador conmutado de +5.0V.					
+					\end{itemize}
+					\item Diseño de tarjetas PCB.
+					\begin{itemize}
+						\item Panel frontal (teclado).
+						\item Fuente conmutada principal 120 VAC a +24.0V.
+						\item Tarjeta PCB backplane.
+					\end{itemize}
+					\item Procura de componentes.
+				\end{itemize}	
+			\end{block}	
 					
-			\end{block}		
-
 		\end{frame}
-	
-	\begin{frame}
-	
-	\frametitle{Tareas pendientes}		
-	
-		\begin{block}{Firmware}
-			Iniciar el diseño y generación de firmware Cendit 11713
-			\begin{itemize}
-				\item Control de expansor de puertos Viking
-				\item Comunicaciones por medio del bus USB
-				\item Comunicaciones a través de redes LAN (TCP/IP)
-				\item Gestión de la fuente de alimentación
-				\item Gestión de la interfaz de usuario (teclado y pantalla)
-			\end{itemize}
-		\end{block}
+		
+% FRAME 10 --------------------------------------------------------------------------------------		
+		
+		\begin{frame}
+			\frametitle{Tareas realizadas}
+			\framesubtitle{desde el último seminario}
+			\begin{block}{Software}
+				\small
+				\begin{itemize}									
+					\item Diseño de vistas interfaz de usuario.
+					\item Codificación de sus controladores.
+					\item Librerías de comunicaciones (ajustes, revisión y pruebas).
+					\item Código para efectuar mediciones de NF.
+					\item Pruebas.
+				\end{itemize}
+			\end{block}			
+		\end{frame}
+		
+% FRAME 11 --------------------------------------------------------------------------------------		
 
-	\end{frame}	
+		\begin{frame}
+			\frametitle{Tareas realizadas}
+			\framesubtitle{desde el último seminario}
+			
+			\begin{block}{Documentación}
+				\begin{itemize}
+					\item Investigación sobre diseño y modelado de fuentes conmutadas.
+					\item Investigación sobre el bus GPIB.
+					\item Investigación sobre la programación del NFA (comandos SCPI).
+				 \end{itemize}		
+			 \end{block}	 
+		
+		\end{frame}
+		
+% FRAME 12 --------------------------------------------------------------------------------------		
 
-	\begin{frame}
-		\frametitle{Tareas pendientes}			
-	
-		\begin{block}{Hardware}
-			Culminar diseños, construcción y depuración para los módulos 
-			\begin{itemize}
-				\item Fuente de alimentación
-				\item Teclado capacitivo
-				\item Expansor de puertos Viking 
-				\item Módulo Ethernet
-				\item Pantalla LCD	
-				\item Tarjeta madre				
-			\end{itemize}
-		\end{block}
-	
+	\begin{frame} 
+		\frametitle{Tareas por completar}
+		
+		\small
+		
+		Software		
+		\begin{itemize}
+			\item  Integración de módulos software {\tiny (interfaz de usuario, librerías gestión de medición y de comunicaciones).}
+		\end{itemize}
+		
+		Hardware		
+		\begin{itemize}
+			\item Ensamblaje de PCBs {\tiny (tarjeta madre, expansores de puertos y reguladores conmutados).}
+			\item Fabricación y ensamblaje de PCBs {\tiny (panel frontal, fuente de alimentación principal y backplane).}
+			\item Ensamblaje e integración del dispositivo con aplicación de software.
+			\item Manufactura de carcasa.
+		\end{itemize}
+		
+		Firmware
+		\begin{itemize}
+			\item Gestión de comunicaciones en el bus USB.
+			\item Gestión de interfaz de usuario.
+			\item Interprete de comandos SCPI.
+			\item Control de expansores de puertos {\tiny (gestión de buses I2C y SPI).}
+		\end{itemize}
+		
 	\end{frame}
+	
 \end{document}
